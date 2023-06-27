@@ -1,4 +1,3 @@
-import { Children } from "react";
 import { styled } from "styled-components";
 
 export type CardProps = {
@@ -18,16 +17,16 @@ export const Card = ({
 }: CardProps): JSX.Element => {
   return (
     <MyCard>
-      <MyCardHeader textPrimary={primary}>
+      <MyCardHeader textPrimary={primary} data-cy="Card-Header" >
         <MyTitleAndLabelContaner>
           <MyTitleContainer drawLine={!primary}>
-            {title && <MyTitle>{title}</MyTitle>}
+            {title && <MyTitle data-cy="Card-title" >{title}</MyTitle>}
           </MyTitleContainer>
           {label}
         </MyTitleAndLabelContaner>
-        {subTitle && <MySubTitle>{subTitle}</MySubTitle>}
+        {subTitle && <MySubTitle data-cy="Card-SubTitle"  >{subTitle}</MySubTitle>}
       </MyCardHeader>
-      <MyCardContent>{children}</MyCardContent>
+      <MyCardContent data-cy="Card-Contents"  >{children}</MyCardContent>
     </MyCard>
   );
 };
@@ -82,4 +81,6 @@ const MySubTitle = styled.span`
 const MyCardContent = styled.div`
   padding: 5px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 `;
