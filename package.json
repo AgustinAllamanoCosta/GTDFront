@@ -17,11 +17,13 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "cypress": "^12.14.0",
     "fortawesome": "^0.0.1-security",
+    "jest": "^29.5.0",
     "prettier": "^2.8.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "storybook": "^7.0.22",
-    "styled-components": "^6.0.0-rc.3"
+    "styled-components": "^6.0.0-rc.3",
+    "ts-jest": "^29.1.1"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.22",
@@ -31,6 +33,9 @@
     "@storybook/react": "^7.0.22",
     "@storybook/react-vite": "^7.0.22",
     "@storybook/testing-library": "^0.0.14-next.2",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/cypress": "^1.1.3",
     "@types/jest": "^29.5.2",
     "@types/react": "^18.0.27",
@@ -39,5 +44,23 @@
     "prop-types": "^15.8.1",
     "typescript": "^4.9.3",
     "vite": "^4.1.0"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testRegex": ".*\\.spec\\.tsx$",
+    "transform": {
+      "^.+\\.(ts|tsx)?$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "testEnvironment": "node",
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "/src"
+    ]
   }
 }
