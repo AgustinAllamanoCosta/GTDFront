@@ -4,7 +4,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { Button } from "./Button";
 
 const meta = {
-  title: "Button",
+  title: "Components/Button",
   component: Button,
   tags: ["autodocs"],
 } satisfies Meta<typeof Button>;

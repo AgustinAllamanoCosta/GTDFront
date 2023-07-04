@@ -31,4 +31,5 @@ describe("Button with text", () => {
     cy.get('@onClickSpy').should('be.called');
     cy.get('[data-cy="button-icon"]');
   });
+
 });

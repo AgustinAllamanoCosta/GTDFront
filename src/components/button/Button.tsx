@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons'
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 export type ButtonProps = {
   text: string;
@@ -19,7 +19,7 @@ export const Button = ({ text, icon, onClick }: ButtonProps): JSX.Element => {
 
 const ButtonContainer = styled.div`
   display: inline-flex;
-  flex-wrap: wrap;
+  width: min-content;
   flex-direction: row;
   margin-top: 5px;
   margin-left: 5px;
