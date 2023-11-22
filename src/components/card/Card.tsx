@@ -18,7 +18,7 @@ export const Card = ({
   return (
     <MyCard>
       <MyCardHeader textPrimary={primary} data-cy="Card-Header" >
-        <MyTitleAndLabelContaner>
+        <MyTitleAndLabelContaner isCenter={primary}>
           <MyTitleContainer drawLine={!primary}>
             {title && <MyTitle data-cy="Card-title" >{title}</MyTitle>}
           </MyTitleContainer>
@@ -34,7 +34,7 @@ export const Card = ({
 const MyCard = styled.div`
   background-color: #d9d9d9;
   border-radius: 10px;
-  width: auto;
+  width: 90%;
   display: inline-flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -57,15 +57,17 @@ const MyTitleContainer = styled.div<{ drawLine?: boolean }>`
     props.drawLine
       ? `
       margin-bottom: 4px;
-      border-bottom-style : solid;
-  border-bottom-color : black;
-  border-bottom-width : 1px;`
-      : `margin-bottom: 5px;`}
+      border-bottom-style: solid;
+      border-bottom-color: black;
+      border-bottom-width: 1px;`
+      : `margin-bottom: 5px;`
+    }
 `;
 
-const MyTitleAndLabelContaner = styled.div`
+const MyTitleAndLabelContaner = styled.div<{ isCenter?: boolean }>`
   display: flex;
   flex-direction: row;
+  ${(props) => (props.isCenter ? `justify-content: center` : ``)};
   align-items: center;
 `;
 
