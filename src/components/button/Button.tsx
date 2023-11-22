@@ -30,6 +30,8 @@ const ButtonContainer = styled.div`
   border-bottom-width: 1px;
   cursor: pointer;
   font-weight: bold;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ButtonText = styled.span`
