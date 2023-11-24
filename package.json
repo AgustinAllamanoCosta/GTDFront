@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "cy": "npx cypress open"
+    "cy": "npx cypress open",
+    "test": "NODE_ENV=test jest test --passWithNoTests"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -23,6 +24,7 @@
     "prettier": "^2.8.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-test-renderer": "^18.2.0",
     "storybook": "^7.0.22",
     "styled-components": "^6.0.0-rc.3",
     "ts-jest": "^29.1.1"
@@ -42,27 +44,22 @@
     "@types/jest": "^29.5.2",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
+    "@types/react-test-renderer": "^18.0.7",
     "@vitejs/plugin-react": "^3.1.0",
+    "jest-environment-jsdom": "^29.7.0",
     "prop-types": "^15.8.1",
     "typescript": "^4.9.3",
     "vite": "^4.1.0"
   },
   "jest": {
+    "testEnvironment": "jest-environment-jsdom",
+    "verbose": true,
     "preset": "ts-jest",
-    "testRegex": ".*\\.spec\\.tsx$",
+    "rootDir": "src",
+    "collectCoverage": true,
+    "cleanMocks": true,
     "transform": {
-      "^.+\\.(ts|tsx)?$": "ts-jest"
-    },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
-    "testEnvironment": "node",
-    "transformIgnorePatterns": [
-      "<rootDir>/node_modules/"
-    ],
-    "moduleDirectories": [
-      "node_modules",
-      "/src"
-    ]
+      "^.+\\.tsx?$": "ts-jest"
+    }
   }
 }
