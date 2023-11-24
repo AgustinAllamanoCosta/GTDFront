@@ -4,7 +4,9 @@ import credentials from "../../assets/google/client_secret_153375467669-bl3575q2
 import { Children } from "react";
 
 export const PhoneContext = (Story: any) => (
-  <AppContext credential={credentials}>{Story}</AppContext>
+  <AppContext credential={credentials}>
+    <Story />
+  </AppContext>
 );
 
 type AppContextProps = {
