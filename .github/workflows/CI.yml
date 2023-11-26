@@ -3,21 +3,97 @@ name: Continues Integration
 on:
   push:
     branches:
-      - "master"
+      - 'master'
 
 jobs:
+
+  install-dep:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v2
+        with:
+          path: | 
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          node-version: 18.x
+
+      - name: Install dependencies with Node.js 18.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+      - run: yarn
+
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x]
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: yarn
-    - run: yarn build
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v2
+        with:
+          path: | 
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          node-version: 18.x
+
+      - name: Run Build with Node.js 18.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+      - run: yarn build
+    
+  lint:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v2
+        with:
+          path: | 
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          node-version: 18.x
+
+      - name: Run Lint with Node.js 18.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+      - run: yarn lint
+    
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v2
+        with:
+          path: | 
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          node-version: 18.x
+
+      - name: Run Test with Node.js 18.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+      - run: yarn test
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
