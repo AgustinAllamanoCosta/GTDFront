@@ -13,8 +13,10 @@ type AppContextProps = {
 };
 
 export const AppContext = ({ children }: AppContextProps) => {
+  const key: string = process.env.VITE_CLEINT_ID ? process.env.VITE_CLEINT_ID: '';
+  console.log(key)
   return (
-    <GoogleOAuthProvider clientId={process.env.CLEINT_ID ? process.env.CLEINT_ID: ''}>
+    <GoogleOAuthProvider clientId={key}>
       <MyPhoneContext>{children}</MyPhoneContext>
     </GoogleOAuthProvider>
   );

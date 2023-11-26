@@ -7,6 +7,12 @@ export default defineConfig({
       bundler: "vite",
     },
     watchForFileChanges: true,
-    specPattern:"**/*.spec.tsx"
+    specPattern: "**/*.spec.tsx",
+  },
+
+  e2e: {
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+    },
   },
 });

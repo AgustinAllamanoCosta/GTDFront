@@ -1,5 +1,5 @@
-import { styled } from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { styled } from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 export type ButtonProps = {
@@ -10,9 +10,17 @@ export type ButtonProps = {
 
 export const Button = ({ text, icon, onClick }: ButtonProps): JSX.Element => {
   return (
-    <ButtonContainer data-cy="button-gtd" onClick={onClick}>
-      <ButtonText data-cy="button-text" >{text}</ButtonText>
-      {icon && <Icon data-cy="button-icon" icon={icon} />}
+    <ButtonContainer
+      data-cy="button-gtd"
+      onClick={onClick}
+    >
+      <ButtonText data-cy="button-text">{text}</ButtonText>
+      {icon && (
+        <Icon
+          data-cy="button-icon"
+          icon={icon}
+        />
+      )}
     </ButtonContainer>
   );
 };
