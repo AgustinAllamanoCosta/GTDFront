@@ -9,7 +9,7 @@ type UserData = {
 }
 
 type MainViewProps = {
-  userData: UserData
+  userData?: UserData
 }
 
 const MainView = ({ userData = {
