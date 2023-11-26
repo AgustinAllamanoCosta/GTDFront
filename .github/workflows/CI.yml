@@ -21,7 +21,6 @@ jobs:
           path: | 
             **/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          node-version: 18.x
 
       - name: Install dependencies with Node.js 18.x
         uses: actions/setup-node@v1
@@ -45,7 +44,6 @@ jobs:
           path: | 
             **/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          node-version: 18.x
 
       - name: Run Lint with Node.js 18.x
         uses: actions/setup-node@v1
@@ -69,7 +67,6 @@ jobs:
           path: | 
             **/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          node-version: 18.x
 
       - name: Run Test with Node.js 18.x
         uses: actions/setup-node@v1
@@ -96,7 +93,6 @@ jobs:
           path: | 
             **/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          node-version: 18.x
 
       - name: Run Build with Node.js 18.x
         uses: actions/setup-node@v1
