@@ -28,32 +28,12 @@ jobs:
         with:
           node-version: 18.x
       - run: yarn
-
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Cache dependencies
-        id: cache-dependencies
-        uses: actions/cache@v2
-        with:
-          path: | 
-            **/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          node-version: 18.x
-
-      - name: Run Build with Node.js 18.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: 18.x
-      - run: yarn build
     
   lint:
     runs-on: ubuntu-latest
     
+    needs: install-dep
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -76,6 +56,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     
+    needs: lint
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -97,3 +79,27 @@ jobs:
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
+  
+  build:
+    runs-on: ubuntu-latest
+
+    needs: test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v2
+        with:
+          path: | 
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          node-version: 18.x
+
+      - name: Run Build with Node.js 18.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+      - run: yarn build
