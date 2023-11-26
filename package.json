@@ -10,7 +10,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "cy": "npx cypress open",
-    "test": "NODE_ENV=test jest test --passWithNoTests"
+    "test": "NODE_ENV=test jest test --passWithNoTests",
+    "lint": "prettier . --write --single-quote --single-attribute-per-line"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -18,16 +19,18 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@react-oauth/google": "^0.11.0",
     "axios": "^1.4.0",
+    "babel-plugin-transform-import-meta": "^2.2.1",
     "cypress": "^12.14.0",
     "fortawesome": "^0.0.1-security",
     "jest": "^29.5.0",
-    "prettier": "^2.8.8",
+    "prettier": "3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-test-renderer": "^18.2.0",
     "storybook": "^7.0.22",
     "styled-components": "^6.0.0-rc.3",
-    "ts-jest": "^29.1.1"
+    "ts-jest": "^29.1.1",
+    "vite-plugin-environment": "^1.1.3"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.0.22",
