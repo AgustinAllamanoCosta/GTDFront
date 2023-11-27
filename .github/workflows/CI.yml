@@ -115,5 +115,10 @@ jobs:
             **/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
+      - name: Configure commiter
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
+
       - name: Standard Version NodeJS
         uses: ltv/standard-version-action@v1.8.0
