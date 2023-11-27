@@ -119,12 +119,6 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-      - name: Bump version
-        id: release
-        uses: ltv/standard-version-action@v1.8.0
-        with:
-          releaseAs: 'minor'
-      - run: |
-          echo "Released version: $VERSION"
-        env:
-          VERSION: ${{ steps.release.output.version }}
+          yarn standard-version
+          git commit -m "[skip ci]"
+          git push --follow-tags origin master
