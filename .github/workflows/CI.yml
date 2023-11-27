@@ -98,3 +98,14 @@ jobs:
         with:
           node-version: 18.x
       - run: yarn build
+
+
+  version:
+    runs-on: ubuntu-latest
+
+    needs: build
+    steps:
+      - name: Standard Version NodeJS
+        uses: ltv/standard-version-action@v1.8.0
+              
+          
