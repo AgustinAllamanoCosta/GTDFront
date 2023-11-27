@@ -119,6 +119,12 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-
-      - name: Standard Version NodeJS
-        uses: qzb/standard-version-action@v1.0.5
+      - name: Bump version
+        id: release
+        uses: ltv/standard-version-action@v2
+        with:
+          releaseAs: 'minor'
+      - run: |
+          echo "Released version: $VERSION"
+        env:
+          VERSION: ${{ steps.release.output.version }}
