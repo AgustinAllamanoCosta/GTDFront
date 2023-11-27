@@ -120,5 +120,5 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
           yarn standard-version
-          git commit -m "[skip ci]"
+          git commit --allow-empty -m "[skip ci]"
           git push --follow-tags origin master
