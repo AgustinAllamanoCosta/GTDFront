@@ -67,6 +67,5 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     }
-  },
-  "standard-version": {}
+  }
 }
