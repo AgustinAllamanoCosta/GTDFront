@@ -104,5 +104,16 @@ jobs:
 
     needs: build
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v3.3.2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          
       - name: Standard Version NodeJS
         uses: ltv/standard-version-action@v1.8.0
