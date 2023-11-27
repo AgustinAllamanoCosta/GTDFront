@@ -114,6 +114,6 @@ jobs:
           path: |
             **/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          
+
       - name: Standard Version NodeJS
         uses: ltv/standard-version-action@v1.8.0
