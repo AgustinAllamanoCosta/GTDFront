@@ -49,7 +49,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18.x
-      - run: yarn lint
+      - run: yarn lint-check
     
   test:
     runs-on: ubuntu-latest
