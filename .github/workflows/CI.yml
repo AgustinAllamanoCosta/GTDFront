@@ -119,7 +119,7 @@ jobs:
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
-  
+
       - name: Generate Version
         run: |
           yarn standard-version
