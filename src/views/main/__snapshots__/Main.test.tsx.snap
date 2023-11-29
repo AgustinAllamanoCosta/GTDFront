@@ -3,10 +3,10 @@
 exports[`Login View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-hfDuwB gDAJOq"
+    class="sc-hfDuwB wnNtd"
   >
     <div
-      class="sc-bWPEIA"
+      class="sc-evVYyG kpwDim"
     >
       <div
         class="sc-laEPQd gtuaqv"
@@ -62,33 +62,29 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
           >
             <div
               class="sc-dBwcjI cxRRnt"
-            />
+            >
+              <span
+                class="sc-bXxmBy aiOYN"
+                data-cy="Card-title"
+              >
+                Active Task
+              </span>
+            </div>
+            <span>
+              0
+              /
+              0
+            </span>
           </div>
         </div>
         <div
           class="sc-dMnqAs eebQHq"
           data-cy="Card-Contents"
-        />
-      </div>
-      <div
-        class="sc-jCIOXC czNoOr"
-      >
-        <div
-          class="sc-fBEEOr pgVYt"
-          data-cy="Card-Header"
         >
           <div
-            class="sc-kPNBzt ljWCMB"
-          >
-            <div
-              class="sc-dBwcjI cxRRnt"
-            />
-          </div>
+            class="sc-BOZFl kGXeoO"
+          />
         </div>
-        <div
-          class="sc-dMnqAs eebQHq"
-          data-cy="Card-Contents"
-        />
       </div>
       <div
         class="sc-jCIOXC czNoOr"
