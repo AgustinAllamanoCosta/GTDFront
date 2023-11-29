@@ -14,16 +14,16 @@ type Story = StoryObj<typeof meta>;
 
 export const FullMainView: Story = {
   args: {
-    activeTask:[
-      { 
-        text: "Some task 1"
+    activeTask: [
+      {
+        text: 'Some task 1',
       },
-      { 
-        text: "Some task 2"
+      {
+        text: 'Some task 2',
       },
-      { 
-        text: "Some task 3"
-      }
-    ]
+      {
+        text: 'Some task 3',
+      },
+    ],
   },
 };

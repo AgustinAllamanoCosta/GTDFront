@@ -13,12 +13,12 @@ type Story = StoryObj<typeof meta>;
 
 export const StickyNoteWithText: Story = {
   args: {
-    text: "some text"
+    text: 'some text',
   },
 };
 
 export const StickyNoteWithLargeText: Story = {
   args: {
-    text: "some large large large large large large large text"
+    text: 'some large large large large large large large text',
   },
 };

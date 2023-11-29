@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { Card } from "../../components/card/Card";
-import { UserCard } from "../../components/userCard/UserCard";
-import { useState } from "react";
-import { StickyNote } from "../../components/stickyNote/StickyNote";
+import styled from 'styled-components';
+import { Card } from '../../components/card/Card';
+import { UserCard } from '../../components/userCard/UserCard';
+import { useState } from 'react';
+import { StickyNote } from '../../components/stickyNote/StickyNote';
 
 type UserData = {
   name: string;
@@ -24,8 +24,8 @@ type MainViewProps = {
 
 const MainView = ({
   userData = {
-    name: "Agustin Allamano Costa",
-    photoURL: "https://i.stack.imgur.com/Dj7eP.jpg",
+    name: 'Agustin Allamano Costa',
+    photoURL: 'https://i.stack.imgur.com/Dj7eP.jpg',
   },
   activeTask = [],
   inboxTask = [],
@@ -41,9 +41,15 @@ const MainView = ({
   );
   return (
     <Container>
-      <UserCard userName={userConfig.name} userPhoto={userConfig.photoURL} />
+      <UserCard
+        userName={userConfig.name}
+        userPhoto={userConfig.photoURL}
+      />
 
-      <Card title="Active Task" label={label}>
+      <Card
+        title="Active Task"
+        label={label}
+      >
         <ActiveTaskContainer>
           {activeTask[0] && <StickyNote text={activeTask[0].text} />}
           {activeTask[1] && <StickyNote text={activeTask[1].text} />}
