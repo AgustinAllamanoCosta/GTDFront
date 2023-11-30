@@ -19,7 +19,7 @@ export const UserCard = ({
       <Card
         title="Getting Things Done"
         primary={true}
-        sub_title={userName}
+        sub_title={`Hi ${userName} !`}
       />
     </UserCardContainer>
   );

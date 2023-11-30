@@ -6,14 +6,14 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
     class="sc-hdxXtv jPypRF"
   >
     <div
-      class="sc-dBwcjI ea-DaTq"
+      class="sc-dBwcjI dSgOBq"
     >
       <div
-        class="sc-kPNBzt fYtqUt"
+        class="sc-kPNBzt emywLL"
         data-cy="Card-Header"
       >
         <div
-          class="sc-jlOLRj bTdNNq"
+          class="sc-jlOLRj dAaIdB"
         >
           <div
             class="sc-bXxmBy jXyjXk"
@@ -28,7 +28,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
         </div>
       </div>
       <div
-        class="sc-eErDDp bkdnWY"
+        class="sc-eErDDp fEfSeJ"
         data-cy="Card-Contents"
       >
         <div

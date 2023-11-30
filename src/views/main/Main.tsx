@@ -57,7 +57,7 @@ const MainView = ({
         </ActiveTaskContainer>
       </Card>
 
-      <Card></Card>
+      <Card title="Task Inbox"></Card>
     </Container>
   );
 };

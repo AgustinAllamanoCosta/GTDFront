@@ -57,3 +57,13 @@ export const CardSecondaryWithChildsAndWithOutHeader: Story = {
     children: [postItOne, postItTwo, postItThree],
   },
 };
+
+export const CardWithContentCenter: Story = {
+  args: {
+    primary: false,
+    children: [postItOne, postItTwo, postItThree],
+    title: 'Get Thing Done',
+    sub_title: 'Soy un subtitulo',
+    content_center: true,
+  },
+};

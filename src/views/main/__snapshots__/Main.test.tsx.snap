@@ -17,14 +17,14 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
           imageurl="https://i.stack.imgur.com/Dj7eP.jpg"
         />
         <div
-          class="sc-jCIOXC czNoOr"
+          class="sc-jCIOXC fNsQyj"
         >
           <div
-            class="sc-fBEEOr pgVYt"
+            class="sc-fBEEOr iIPZpn"
             data-cy="Card-Header"
           >
             <div
-              class="sc-kPNBzt eRemWO"
+              class="sc-kPNBzt eKkcxh"
             >
               <div
                 class="sc-dBwcjI iBVcLN"
@@ -41,20 +41,20 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
               class="sc-jlOLRj fqEeBZ"
               data-cy="Card-SubTitle"
             >
-              Agustin Allamano Costa
+              Hi Agustin Allamano Costa !
             </span>
           </div>
           <div
-            class="sc-dMnqAs eebQHq"
+            class="sc-dMnqAs iSUHET"
             data-cy="Card-Contents"
           />
         </div>
       </div>
       <div
-        class="sc-jCIOXC czNoOr"
+        class="sc-jCIOXC fNsQyj"
       >
         <div
-          class="sc-fBEEOr pgVYt"
+          class="sc-fBEEOr iXhsNY"
           data-cy="Card-Header"
         >
           <div
@@ -78,7 +78,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
           </div>
         </div>
         <div
-          class="sc-dMnqAs eebQHq"
+          class="sc-dMnqAs iSUHET"
           data-cy="Card-Contents"
         >
           <div
@@ -87,10 +87,10 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
         </div>
       </div>
       <div
-        class="sc-jCIOXC czNoOr"
+        class="sc-jCIOXC fNsQyj"
       >
         <div
-          class="sc-fBEEOr pgVYt"
+          class="sc-fBEEOr iXhsNY"
           data-cy="Card-Header"
         >
           <div
@@ -98,11 +98,18 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
           >
             <div
               class="sc-dBwcjI cxRRnt"
-            />
+            >
+              <span
+                class="sc-bXxmBy aiOYN"
+                data-cy="Card-title"
+              >
+                Task Inbox
+              </span>
+            </div>
           </div>
         </div>
         <div
-          class="sc-dMnqAs eebQHq"
+          class="sc-dMnqAs iSUHET"
           data-cy="Card-Contents"
         />
       </div>
