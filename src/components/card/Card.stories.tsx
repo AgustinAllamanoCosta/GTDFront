@@ -67,3 +67,12 @@ export const CardWithContentCenter: Story = {
     content_center: true,
   },
 };
+
+export const CardWithOnlySubTitle: Story = {
+  args: {
+    primary: false,
+    children: [postItOne, postItTwo, postItThree],
+    sub_title: 'Soy un subtitulo',
+    content_center: true,
+  },
+};

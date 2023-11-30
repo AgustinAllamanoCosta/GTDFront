@@ -17,22 +17,35 @@ export const Card = ({
   content_center,
   children,
 }: CardProps): JSX.Element => {
+  const is_title_or_sub_title = () => {
+    return title || sub_title;
+  };
+
   return (
     <MyCard>
-      <MyCardHeader
-        text_primary={primary}
-        data-cy="Card-Header"
-      >
-        <MyTitleAndLabelContaner is_center={primary}>
-          <MyTitleContainer draw_line={!primary}>
-            {title && <MyTitle data-cy="Card-title">{title}</MyTitle>}
-          </MyTitleContainer>
-          {label}
-        </MyTitleAndLabelContaner>
-        {sub_title && (
-          <MySubTitle data-cy="Card-SubTitle">{sub_title}</MySubTitle>
-        )}
-      </MyCardHeader>
+      {is_title_or_sub_title() && (
+        <MyCardHeader
+          text_primary={primary}
+          data-cy="Card-Header"
+        >
+          {title && (
+            <MyTitleAndLabelContaner is_center={primary}>
+              <MyTitleContainer draw_line={!primary}>
+                <MyTitle
+                  text_primary={!primary}
+                  data-cy="Card-title"
+                >
+                  {title}
+                </MyTitle>
+              </MyTitleContainer>
+              {label}
+            </MyTitleAndLabelContaner>
+          )}
+          {sub_title && (
+            <MySubTitle data-cy="Card-SubTitle">{sub_title}</MySubTitle>
+          )}
+        </MyCardHeader>
+      )}
       <MyCardContent
         is_center={content_center}
         data-cy="Card-Contents"
@@ -56,7 +69,7 @@ const MyCard = styled.div`
 const MyCardHeader = styled.div<{ text_primary?: boolean }>`
   display: flex;
   flex-direction: column;
-  ${(props) => (props.text_primary ? `align-items: center` : ``)};
+  ${(props) => (props.text_primary ? `align-items: center;` : ``)};
   font-weight: bold;
   padding: 5px;
 `;
@@ -82,8 +95,8 @@ const MyTitleAndLabelContaner = styled.div<{ is_center?: boolean }>`
   align-items: center;
 `;
 
-const MyTitle = styled.span`
-  font-size: 24px;
+const MyTitle = styled.span<{ text_primary?: boolean }>`
+  ${(props) => (props.text_primary ? `font-size: 14px;` : `font-size: 24px;`)};
 `;
 
 const MySubTitle = styled.span`
