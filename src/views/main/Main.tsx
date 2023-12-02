@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { Card } from '../../components/card/Card';
 import { UserCard } from '../../components/userCard/UserCard';
 import { useState } from 'react';
 import { StickyNote } from '../../components/stickyNote/StickyNote';
+import { CardTitle } from '../../components/cardWithTile/CardWithTitle';
 
 type UserData = {
   name: string;
@@ -34,11 +34,6 @@ const MainView = ({
   const [activeTasks, setActiveTasks] = useState(activeTask);
   const [tasks, setTasks] = useState(inboxTask);
 
-  const label: JSX.Element = (
-    <span>
-      {activeTasks.length}/{tasks.length}
-    </span>
-  );
   return (
     <Container>
       <UserCard
@@ -46,18 +41,18 @@ const MainView = ({
         userPhoto={userConfig.photoURL}
       />
 
-      <Card
+      <CardTitle
         title="Active Task"
-        label={label}
+        label={`${activeTasks.length}/${tasks.length}`}
       >
         <ActiveTaskContainer>
           {activeTask[0] && <StickyNote text={activeTask[0].text} />}
           {activeTask[1] && <StickyNote text={activeTask[1].text} />}
           {activeTask[2] && <StickyNote text={activeTask[2].text} />}
         </ActiveTaskContainer>
-      </Card>
+      </CardTitle>
 
-      <Card title="Task Inbox"></Card>
+      <CardTitle title="Task Inbox"></CardTitle>
     </Container>
   );
 };

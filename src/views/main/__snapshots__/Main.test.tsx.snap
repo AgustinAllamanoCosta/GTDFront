@@ -6,13 +6,13 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
     class="sc-hfDuwB wnNtd"
   >
     <div
-      class="sc-evVYyG kpwDim"
+      class="sc-jjIKjs brJxVP"
     >
       <div
-        class="sc-laEPQd gtuaqv"
+        class="sc-dBwcjI bhYBxT"
       >
         <div
-          class="sc-eErDDp ibnyDm"
+          class="sc-kPNBzt kfRNst"
           data-cy="Avatar-photo"
           imageurl="https://i.stack.imgur.com/Dj7eP.jpg"
         />
@@ -20,33 +20,62 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
           class="sc-jCIOXC fNsQyj"
         >
           <div
-            class="sc-fBEEOr jBiBJM"
-            data-cy="Card-Header"
+            class="sc-fBEEOr fKCOYR"
+            data-cy="Card-Contents"
           >
             <div
-              class="sc-kPNBzt eKkcxh"
+              class="sc-bXxmBy bSIEXq"
+              data-cy="User-Card-Header"
             >
               <div
-                class="sc-dBwcjI iBVcLN"
+                class="sc-dMnqAs cAOBYD"
               >
-                <span
-                  class="sc-bXxmBy cMdJGK"
-                  data-cy="Card-title"
+                <div
+                  class="sc-jlOLRj jEvdST"
                 >
-                  Getting Things Done
-                </span>
+                  <span
+                    class="sc-laEPQd hnPnfI"
+                    data-cy="Card-title"
+                  >
+                    Getting Things Done
+                  </span>
+                </div>
               </div>
+              <span
+                class="sc-eErDDp WdbYy"
+                data-cy="Card-SubTitle"
+              >
+                Hi Agustin Allamano Costa !
+              </span>
             </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-jCIOXC fNsQyj"
+      >
+        <div
+          class="sc-fBEEOr eFWqUg"
+          data-cy="Card-Contents"
+        >
+          <div
+            class="sc-evVYyG fEmtHa"
+          >
             <span
-              class="sc-jlOLRj fqEeBZ"
-              data-cy="Card-SubTitle"
+              class="sc-BOZFl hhMcHb"
+              data-cy="Card-title"
             >
-              Hi Agustin Allamano Costa !
+              Active Task
+            </span>
+            <span
+              class="sc-BOZFl hhMcHb"
+              data-cy="Card-label"
+            >
+              0/0
             </span>
           </div>
           <div
-            class="sc-dMnqAs iSUHET"
-            data-cy="Card-Contents"
+            class="sc-daVtvr llnhRY"
           />
         </div>
       </div>
@@ -54,64 +83,24 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
         class="sc-jCIOXC fNsQyj"
       >
         <div
-          class="sc-fBEEOr iXhsNY"
-          data-cy="Card-Header"
+          class="sc-fBEEOr eFWqUg"
+          data-cy="Card-Contents"
         >
           <div
-            class="sc-kPNBzt ljWCMB"
+            class="sc-evVYyG fEmtHa"
           >
-            <div
-              class="sc-dBwcjI cxRRnt"
+            <span
+              class="sc-BOZFl hhMcHb"
+              data-cy="Card-title"
             >
-              <span
-                class="sc-bXxmBy knAmoF"
-                data-cy="Card-title"
-              >
-                Active Task
-              </span>
-            </div>
-            <span>
-              0
-              /
-              0
+              Task Inbox
             </span>
+            <span
+              class="sc-BOZFl hhMcHb"
+              data-cy="Card-label"
+            />
           </div>
         </div>
-        <div
-          class="sc-dMnqAs iSUHET"
-          data-cy="Card-Contents"
-        >
-          <div
-            class="sc-BOZFl kGXeoO"
-          />
-        </div>
-      </div>
-      <div
-        class="sc-jCIOXC fNsQyj"
-      >
-        <div
-          class="sc-fBEEOr iXhsNY"
-          data-cy="Card-Header"
-        >
-          <div
-            class="sc-kPNBzt ljWCMB"
-          >
-            <div
-              class="sc-dBwcjI cxRRnt"
-            >
-              <span
-                class="sc-bXxmBy knAmoF"
-                data-cy="Card-title"
-              >
-                Task Inbox
-              </span>
-            </div>
-          </div>
-        </div>
-        <div
-          class="sc-dMnqAs iSUHET"
-          data-cy="Card-Contents"
-        />
       </div>
     </div>
   </div>

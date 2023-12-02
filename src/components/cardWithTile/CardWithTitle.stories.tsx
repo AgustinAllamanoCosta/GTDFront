@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Card } from './Card';
+import { CardTitle } from './CardWithTitle';
 
 const meta = {
-  title: 'Components/Card',
-  component: Card,
+  title: 'Components/CardTitle',
+  component: CardTitle,
   tags: ['autodocs'],
-} satisfies Meta<typeof Card>;
+} satisfies Meta<typeof CardTitle>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -15,15 +15,10 @@ const postItOne: JSX.Element = <span>post it one</span>;
 const postItTwo: JSX.Element = <span>post it two</span>;
 const postItThree: JSX.Element = <span>post it three</span>;
 
-export const CardSecondaryWithChilds: Story = {
+export const CardWithTitle: Story = {
   args: {
+    title: "Some title",
+    label: "some label",
     children: [postItOne, postItTwo, postItThree],
-  },
-};
-
-export const CardWithContentCenter: Story = {
-  args: {
-    children: [postItOne, postItTwo, postItThree],
-    content_center: true,
   },
 };
