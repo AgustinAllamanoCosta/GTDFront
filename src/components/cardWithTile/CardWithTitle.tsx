@@ -1,5 +1,5 @@
-import { styled } from "styled-components";
-import { Card } from "../card/Card";
+import { styled } from 'styled-components';
+import { Card } from '../card/Card';
 
 export type CardProps = {
   title?: string;

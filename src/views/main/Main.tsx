@@ -54,7 +54,10 @@ const MainView = ({
         </ActiveTaskContainer>
       </CardTitle>
 
-      <ItemList title="Task Inbox" items={tasks} ></ItemList>
+      <ItemList
+        title="Task Inbox"
+        items={tasks}
+      ></ItemList>
     </Container>
   );
 };

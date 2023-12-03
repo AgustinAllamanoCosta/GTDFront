@@ -1,15 +1,15 @@
-import { styled } from "styled-components";
-import { Button } from "../../components/button/Button";
-import { Card } from "../../components/card/Card";
-import { faAddressCard, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { googleLogout, useGoogleLogin } from "@react-oauth/google";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { styled } from 'styled-components';
+import { Button } from '../../components/button/Button';
+import { Card } from '../../components/card/Card';
+import { faAddressCard, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const LoginView = () => {
   const singUp = () => {
-    console.group("SingUp");
-    console.info("SignUp executing");
+    console.group('SingUp');
+    console.info('SignUp executing');
     console.groupEnd();
   };
 
@@ -21,8 +21,8 @@ const LoginView = () => {
       setUser(codeResponse);
     },
     onError: (error) => {
-      console.group("Login Error");
-      console.error("Login Failed:", error);
+      console.group('Login Error');
+      console.error('Login Failed:', error);
       console.groupEnd();
     },
   });
@@ -40,9 +40,9 @@ const LoginView = () => {
           {
             headers: {
               Authorization: `Bearer ${user.access_token}`,
-              Accept: "application/json",
+              Accept: 'application/json',
             },
-          }
+          },
         )
         .then((res) => {
           setProfile(res.data);
@@ -54,8 +54,16 @@ const LoginView = () => {
   return (
     <Card content_center={true}>
       <Title>Get Things Done</Title>
-      <Button text="Login" icon={faAddressCard} onClick={login} />
-      <Button text="SingUp" icon={faPlus} onClick={singUp} />
+      <Button
+        text="Login"
+        icon={faAddressCard}
+        onClick={login}
+      />
+      <Button
+        text="SingUp"
+        icon={faPlus}
+        onClick={singUp}
+      />
     </Card>
   );
 };

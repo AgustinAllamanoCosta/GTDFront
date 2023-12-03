@@ -1,9 +1,9 @@
-import { styled } from "styled-components";
-import { CardTitle } from "../cardWithTile/CardWithTitle";
-import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCheck, faPlus } from "@fortawesome/free-solid-svg-icons";
-import { Task } from "../../views/main/Main";
+import { styled } from 'styled-components';
+import { CardTitle } from '../cardWithTile/CardWithTitle';
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Task } from '../../views/main/Main';
 
 export type ItemListProps = {
   title: string;
@@ -14,7 +14,7 @@ const ItemAddButton = (): JSX.Element => {
   return (
     <AddItemContent>
       <Icon icon={faPlus} />
-      <AddItemInput placeholder={"Add Task"} />
+      <AddItemInput placeholder={'Add Task'} />
     </AddItemContent>
   );
 };
@@ -32,10 +32,18 @@ export const ItemList = ({ title, items }: ItemListProps): JSX.Element => {
   const [task, setTask] = useState<Array<Task>>(items);
 
   return (
-    <CardTitle title={title} label={`total ${task.length}`}>
+    <CardTitle
+      title={title}
+      label={`total ${task.length}`}
+    >
       <>
         {task.map((item, index) => {
-          return <Item key={`${index}-${item.title}`} {...item} />;
+          return (
+            <Item
+              key={`${index}-${item.title}`}
+              {...item}
+            />
+          );
         })}
         <ItemAddButton />
       </>
@@ -66,7 +74,7 @@ const ItemText = styled.span`
 
 const AddItemInput = styled.input`
   border: 0px;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   &::placeholder {
     color: black;
     font-weight: bold;

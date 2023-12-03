@@ -12,13 +12,13 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const task: Task = {
-  title: "some title",
-  isComplete: false
-}
+  title: 'some title',
+  isComplete: false,
+};
 
 export const ItemListInTheVoid: Story = {
   args: {
-    title: "Some title",
+    title: 'Some title',
     items: [task],
   },
 };

@@ -1,5 +1,5 @@
-import { styled } from "styled-components";
-import { Card } from "../card/Card";
+import { styled } from 'styled-components';
+import { Card } from '../card/Card';
 
 export type UserCardProps = {
   userName: string;
@@ -12,7 +12,10 @@ export const UserCard = ({
 }: UserCardProps): JSX.Element => {
   return (
     <UserCardContainer>
-      <AvatarImage data-cy="Avatar-photo" imageurl={userPhoto} />
+      <AvatarImage
+        data-cy="Avatar-photo"
+        imageurl={userPhoto}
+      />
       <Card>
         <MyCardHeader data-cy="User-Card-Header">
           <MyTitleAndLabelContaner>

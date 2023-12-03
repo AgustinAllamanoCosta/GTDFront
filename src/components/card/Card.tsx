@@ -34,7 +34,7 @@ const MyCard = styled.div`
   margin-bottom: 16px;
 `;
 
-const MyCardContent = styled.div<{ is_center?: boolean, padding?: boolean }>`
+const MyCardContent = styled.div<{ is_center?: boolean; padding?: boolean }>`
   position: relative;
   display: flex;
   flex-direction: column;

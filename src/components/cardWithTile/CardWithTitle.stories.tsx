@@ -17,16 +17,16 @@ const postItThree: JSX.Element = <span>post it three</span>;
 
 export const CardWithTitle: Story = {
   args: {
-    title: "Some title",
-    label: "some label",
+    title: 'Some title',
+    label: 'some label',
     children: [postItOne, postItTwo, postItThree],
   },
 };
 
 export const CardWithTitleAndTagJoin: Story = {
   args: {
-    title: "Some title",
-    label: "some label",
+    title: 'Some title',
+    label: 'some label',
     children: [postItOne, postItTwo, postItThree],
     joinTag: true,
   },
