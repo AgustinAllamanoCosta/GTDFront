@@ -12,16 +12,16 @@ export type ItemListProps = {
 
 const ItemAddButton = (): JSX.Element => {
   return (
-    <AddItemContent>
+    <AddItemContent data-cy={`task-add-button`} >
       <Icon icon={faPlus} />
-      <AddItemInput placeholder={'Add Task'} />
+      <AddItemInput data-cy={`task-add-button-input`} placeholder={'Add Task'} />
     </AddItemContent>
   );
 };
 
 const Item = ({ title, isComplete }: Task): JSX.Element => {
   return (
-    <ItemContent>
+    <ItemContent data-cy={`task-${title}`}>
       <Icon icon={faCheck} />
       <ItemText>{title}</ItemText>
     </ItemContent>
@@ -45,7 +45,7 @@ export const ItemList = ({ title, items }: ItemListProps): JSX.Element => {
             />
           );
         })}
-        <ItemAddButton />
+        <ItemAddButton/>
       </>
     </CardTitle>
   );
