@@ -121,7 +121,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
               />
             </svg>
             <input
-              class="sc-bubcaR bIPwvs"
+              class="sc-bubcaR gMPofY"
               placeholder="Add Task"
             />
           </div>
