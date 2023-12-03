@@ -12,9 +12,12 @@ export type ItemListProps = {
 
 const ItemAddButton = (): JSX.Element => {
   return (
-    <AddItemContent data-cy={`task-add-button`} >
+    <AddItemContent data-cy={`task-add-button`}>
       <Icon icon={faPlus} />
-      <AddItemInput data-cy={`task-add-button-input`} placeholder={'Add Task'} />
+      <AddItemInput
+        data-cy={`task-add-button-input`}
+        placeholder={'Add Task'}
+      />
     </AddItemContent>
   );
 };
@@ -45,7 +48,7 @@ export const ItemList = ({ title, items }: ItemListProps): JSX.Element => {
             />
           );
         })}
-        <ItemAddButton/>
+        <ItemAddButton />
       </>
     </CardTitle>
   );
