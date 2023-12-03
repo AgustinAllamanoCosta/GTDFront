@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.7 (2023-12-03)
+
+
+### Bug Fixes
+
+* 🐛 import in story ([13afceb](https://github.com/AgustinAllamanoCosta/GTDFront/commit/13afcebe70b5e0a99ec2689030426f7bc19aa46c))
+
 ### 0.0.6 (2023-11-30)
 
 ### 0.0.5 (2023-11-30)
