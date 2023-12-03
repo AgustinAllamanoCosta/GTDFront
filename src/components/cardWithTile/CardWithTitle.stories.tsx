@@ -22,3 +22,12 @@ export const CardWithTitle: Story = {
     children: [postItOne, postItTwo, postItThree],
   },
 };
+
+export const CardWithTitleAndTagJoin: Story = {
+  args: {
+    title: "Some title",
+    label: "some label",
+    children: [postItOne, postItTwo, postItThree],
+    joinTag: true,
+  },
+};

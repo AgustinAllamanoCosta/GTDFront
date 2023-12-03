@@ -4,14 +4,19 @@ import { Card } from "../card/Card";
 export type CardProps = {
   title?: string;
   label?: string;
+  joinTag?: boolean;
   children?: string | JSX.Element | JSX.Element[];
 };
 
-export const CardTitle = ({ title, children, label }: CardProps): JSX.Element => {
-
+export const CardTitle = ({
+  title,
+  children,
+  joinTag,
+  label,
+}: CardProps): JSX.Element => {
   return (
     <Card padding={false}>
-      <MyTitleContainer>
+      <MyTitleContainer join_tag={joinTag}>
         <TitleContent data-cy="Card-title">{title}</TitleContent>
         <TitleContent data-cy="Card-label">{label}</TitleContent>
       </MyTitleContainer>
@@ -20,13 +25,15 @@ export const CardTitle = ({ title, children, label }: CardProps): JSX.Element =>
   );
 };
 
-const MyTitleContainer = styled.div`
+const MyTitleContainer = styled.div<{ join_tag?: boolean }>`
   border-bottom-style: solid;
   border-bottom-color: black;
   border-bottom-width: 1px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  ${(prop) => {
+    return prop.join_tag ? '' : `justify-content: space-between;`;
+  }}
   padding-left: 8px;
   padding-right: 8px;
   padding-top: 9px;

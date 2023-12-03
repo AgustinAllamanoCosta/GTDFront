@@ -3,14 +3,16 @@ import { UserCard } from '../../components/userCard/UserCard';
 import { useState } from 'react';
 import { StickyNote } from '../../components/stickyNote/StickyNote';
 import { CardTitle } from '../../components/cardWithTile/CardWithTitle';
+import { ItemList } from '../../components/itemList/ItemList';
 
 type UserData = {
   name: string;
   photoURL: string;
 };
 
-type Task = {
-  text: string;
+export type Task = {
+  title: string;
+  isComplete: boolean;
 };
 
 type ActiveTask = Array<Task>;
@@ -31,8 +33,8 @@ const MainView = ({
   inboxTask = [],
 }: MainViewProps) => {
   const [userConfig, setUserConfig] = useState(userData);
-  const [activeTasks, setActiveTasks] = useState(activeTask);
-  const [tasks, setTasks] = useState(inboxTask);
+  const [activeTasks, setActiveTasks] = useState<Array<Task>>(activeTask);
+  const [tasks, setTasks] = useState<Array<Task>>(inboxTask);
 
   return (
     <Container>
@@ -46,13 +48,13 @@ const MainView = ({
         label={`${activeTasks.length}/${tasks.length}`}
       >
         <ActiveTaskContainer>
-          {activeTask[0] && <StickyNote text={activeTask[0].text} />}
-          {activeTask[1] && <StickyNote text={activeTask[1].text} />}
-          {activeTask[2] && <StickyNote text={activeTask[2].text} />}
+          {activeTask[0] && <StickyNote text={activeTask[0].title} />}
+          {activeTask[1] && <StickyNote text={activeTask[1].title} />}
+          {activeTask[2] && <StickyNote text={activeTask[2].title} />}
         </ActiveTaskContainer>
       </CardTitle>
 
-      <CardTitle title="Task Inbox"></CardTitle>
+      <ItemList title="Task Inbox" items={tasks} ></ItemList>
     </Container>
   );
 };

@@ -16,13 +16,16 @@ export const FullMainView: Story = {
   args: {
     activeTask: [
       {
-        text: 'Some task 1',
+        title: 'Some task 1',
+        isComplete: false,
       },
       {
-        text: 'Some task 2',
+        title: 'Some task 2',
+        isComplete: false,
       },
       {
-        text: 'Some task 3',
+        title: 'Some task 3',
+        isComplete: false,
       },
     ],
   },
