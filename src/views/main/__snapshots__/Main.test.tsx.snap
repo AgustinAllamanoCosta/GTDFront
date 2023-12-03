@@ -104,6 +104,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
           </div>
           <div
             class="sc-jjIKjs sc-daVtvr bMktBm kyGhnj"
+            data-cy="task-add-button"
           >
             <svg
               aria-hidden="true"
@@ -122,6 +123,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
             </svg>
             <input
               class="sc-bubcaR gMPofY"
+              data-cy="task-add-button-input"
               placeholder="Add Task"
             />
           </div>
