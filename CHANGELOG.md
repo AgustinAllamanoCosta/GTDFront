@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.8 (2023-12-04)
+
+
+### Features
+
+* 🎸 add function to item list button ([37d9b5e](https://github.com/AgustinAllamanoCosta/GTDFront/commit/37d9b5eb5e741cd370185826efe628f7e0320417))
+
 ### 0.0.7 (2023-12-03)
 
 
