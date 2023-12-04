@@ -13,7 +13,8 @@
     "test": "NODE_ENV=test jest test --passWithNoTests",
     "lint-format": "prettier . --write --single-quote --single-attribute-per-line",
     "lint-check": "prettier . --check --single-quote --single-attribute-per-line",
-    "commit": "npx git-cz"
+    "commit": "npx git-cz",
+    "ci": "./CI.sh"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",

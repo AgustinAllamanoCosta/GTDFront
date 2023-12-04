@@ -57,7 +57,7 @@ const MainView = ({
       <ItemList
         title="Task Inbox"
         items={tasks}
-      ></ItemList>
+      />
     </Container>
   );
 };

@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Task } from '../../views/main/Main';
@@ -10,13 +10,18 @@ export type ItemListProps = {
   items: Array<Task>;
 };
 
-const ItemAddButton = (): JSX.Element => {
+type ItemAddButtonProps = {
+  action: (event: any) => void;
+};
+
+const ItemAddButton = ({ action }: ItemAddButtonProps): JSX.Element => {
   return (
     <AddItemContent data-cy={`task-add-button`}>
       <Icon icon={faPlus} />
       <AddItemInput
         data-cy={`task-add-button-input`}
         placeholder={'Add Task'}
+        onBlur={action}
       />
     </AddItemContent>
   );
@@ -34,6 +39,14 @@ const Item = ({ title, isComplete }: Task): JSX.Element => {
 export const ItemList = ({ title, items }: ItemListProps): JSX.Element => {
   const [task, setTask] = useState<Array<Task>>(items);
 
+  const buttonAdd = (event: any) => {
+    if (event.target.value !== '') {
+      const oldTask = task;
+      oldTask.push({ title: event.target.value, isComplete: false });
+      setTask([...oldTask]);
+    }
+  };
+
   return (
     <CardTitle
       title={title}
@@ -48,7 +61,7 @@ export const ItemList = ({ title, items }: ItemListProps): JSX.Element => {
             />
           );
         })}
-        <ItemAddButton />
+        <ItemAddButton action={buttonAdd} />
       </>
     </CardTitle>
   );
@@ -78,6 +91,8 @@ const ItemText = styled.span`
 const AddItemInput = styled.input`
   border: 0px;
   background-color: #d9d9d9;
+  outline: none;
+  width: 100%;
   &::placeholder {
     color: black;
     font-weight: bold;

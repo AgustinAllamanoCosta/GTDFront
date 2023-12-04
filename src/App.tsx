@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import MainView from './views/main/Main';
 
 function App() {
   return (
     <MainContainer>
-      <h3>Get Things Done</h3>
+      <MainView />
     </MainContainer>
   );
 }

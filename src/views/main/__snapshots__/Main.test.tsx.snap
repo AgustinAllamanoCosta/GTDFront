@@ -122,7 +122,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
               />
             </svg>
             <input
-              class="sc-bubcaR gMPofY"
+              class="sc-bubcaR AKuiU"
               data-cy="task-add-button-input"
               placeholder="Add Task"
             />
