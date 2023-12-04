@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.9 (2023-12-04)
+
+
+### Features
+
+* 🎸 clean input after add a task ([da4ed0c](https://github.com/AgustinAllamanoCosta/GTDFront/commit/da4ed0c741e52d815721d1e71e798b60578f5eb3))
+
 ### 0.0.8 (2023-12-04)
 
 
