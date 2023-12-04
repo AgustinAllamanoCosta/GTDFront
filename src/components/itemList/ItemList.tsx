@@ -12,9 +12,15 @@ export type ItemListProps = {
 
 type ItemAddButtonProps = {
   action: (event: any) => void;
+  onChange: (event: any) => void;
+  value: string;
 };
 
-const ItemAddButton = ({ action }: ItemAddButtonProps): JSX.Element => {
+const ItemAddButton = ({
+  onChange,
+  action,
+  value,
+}: ItemAddButtonProps): JSX.Element => {
   return (
     <AddItemContent data-cy={`task-add-button`}>
       <Icon icon={faPlus} />
@@ -22,6 +28,8 @@ const ItemAddButton = ({ action }: ItemAddButtonProps): JSX.Element => {
         data-cy={`task-add-button-input`}
         placeholder={'Add Task'}
         onBlur={action}
+        value={value}
+        onChange={onChange}
       />
     </AddItemContent>
   );
@@ -38,13 +46,19 @@ const Item = ({ title, isComplete }: Task): JSX.Element => {
 
 export const ItemList = ({ title, items }: ItemListProps): JSX.Element => {
   const [task, setTask] = useState<Array<Task>>(items);
+  const [value, setValue] = useState<string>('');
 
   const buttonAdd = (event: any) => {
     if (event.target.value !== '') {
       const oldTask = task;
       oldTask.push({ title: event.target.value, isComplete: false });
       setTask([...oldTask]);
+      setValue('');
     }
+  };
+
+  const onChangeButton = (event: any) => {
+    setValue(event.target.value);
   };
 
   return (
@@ -61,7 +75,11 @@ export const ItemList = ({ title, items }: ItemListProps): JSX.Element => {
             />
           );
         })}
-        <ItemAddButton action={buttonAdd} />
+        <ItemAddButton
+          onChange={onChangeButton}
+          value={value}
+          action={buttonAdd}
+        />
       </>
     </CardTitle>
   );
