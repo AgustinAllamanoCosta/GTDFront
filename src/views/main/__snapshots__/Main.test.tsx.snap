@@ -79,13 +79,14 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
             </div>
             <div
               class="sc-cpKBeH jfhgZK"
+              data-cy="Active-task-container"
             >
               <div
                 class="sc-kbUMEY dihFTn"
               >
                 <span
                   class="sc-bubcaR lgalXB"
-                  data-cy="StickNote"
+                  data-cy="stick-note-text"
                 >
                   SOME TASK
                 </span>
@@ -95,7 +96,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
               >
                 <span
                   class="sc-bubcaR lgalXB"
-                  data-cy="StickNote"
+                  data-cy="stick-note-text"
                 >
                   SOME TASK
                 </span>
@@ -105,7 +106,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
               >
                 <span
                   class="sc-bubcaR lgalXB"
-                  data-cy="StickNote"
+                  data-cy="stick-note-text"
                 >
                   SOME TASK
                 </span>

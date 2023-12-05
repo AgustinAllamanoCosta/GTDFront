@@ -7,7 +7,9 @@ export type StickyNoteProps = {
 export const StickyNote = ({ text }: StickyNoteProps): JSX.Element => {
   return (
     <MyNote>
-      <TextContainer data-cy="StickNote">{text.toUpperCase()}</TextContainer>
+      <TextContainer data-cy="stick-note-text">
+        {text.toUpperCase()}
+      </TextContainer>
     </MyNote>
   );
 };

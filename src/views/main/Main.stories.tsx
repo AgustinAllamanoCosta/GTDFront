@@ -14,7 +14,7 @@ type Story = StoryObj<typeof meta>;
 
 export const FullMainView: Story = {
   args: {
-    activeTask: [
+    activeTasks: [
       {
         title: 'Some task 1',
         isComplete: false,

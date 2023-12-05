@@ -17,7 +17,7 @@ export const ActiveTask = ({ task_list }: ActiveTaskProps): JSX.Element => {
         title="Active Task"
         label={`${activeTasks.length}/3`}
       >
-        <ActiveTaskContent>
+        <ActiveTaskContent data-cy="Active-task-container">
           {activeTasks[0] && <StickyNote text={activeTasks[0].title} />}
           {activeTasks[1] && <StickyNote text={activeTasks[1].title} />}
           {activeTasks[2] && <StickyNote text={activeTasks[2].title} />}
