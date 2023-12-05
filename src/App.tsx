@@ -12,5 +12,10 @@ function App() {
 export default App;
 
 const MainContainer = styled.div`
-  background-color: #d9d9d9;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 884px;
 `;

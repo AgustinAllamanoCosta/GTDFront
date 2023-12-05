@@ -33,7 +33,13 @@ export const UserCard = ({
 const UserCardContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   margin: 8px;
+  max-width: 500px;
+  width: 90%;
+  height: 100px;
 `;
 
 const AvatarImage = styled.div<{ imageurl: string }>`

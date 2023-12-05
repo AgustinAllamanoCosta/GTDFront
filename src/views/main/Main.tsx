@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import { UserCard } from '../../components/userCard/UserCard';
 import { useState } from 'react';
-import { StickyNote } from '../../components/stickyNote/StickyNote';
-import { CardTitle } from '../../components/cardWithTile/CardWithTitle';
 import { ItemList } from '../../components/itemList/ItemList';
+import { ActiveTask } from '../../components/activeTask/ActiveTask';
 
 type UserData = {
   name: string;
@@ -20,8 +19,8 @@ type InboxTask = Array<Task>;
 
 type MainViewProps = {
   userData?: UserData;
-  activeTask?: ActiveTask;
-  inboxTask?: InboxTask;
+  activeTasks?: ActiveTask;
+  inboxTasks?: InboxTask;
 };
 
 const MainView = ({
@@ -29,12 +28,15 @@ const MainView = ({
     name: 'Agustin Allamano Costa',
     photoURL: 'https://i.stack.imgur.com/Dj7eP.jpg',
   },
-  activeTask = [],
-  inboxTask = [],
+  activeTasks = [
+    { title: 'some task', isComplete: false },
+    { title: 'some task', isComplete: false },
+    { title: 'some task', isComplete: false },
+  ],
+  inboxTasks = [],
 }: MainViewProps) => {
   const [userConfig, setUserConfig] = useState(userData);
-  const [activeTasks, setActiveTasks] = useState<Array<Task>>(activeTask);
-  const [tasks, setTasks] = useState<Array<Task>>(inboxTask);
+  const [tasks, setTasks] = useState<Array<Task>>(inboxTasks);
 
   return (
     <Container>
@@ -42,18 +44,7 @@ const MainView = ({
         userName={userConfig.name}
         userPhoto={userConfig.photoURL}
       />
-
-      <CardTitle
-        title="Active Task"
-        label={`${activeTasks.length}/${tasks.length}`}
-      >
-        <ActiveTaskContainer>
-          {activeTask[0] && <StickyNote text={activeTask[0].title} />}
-          {activeTask[1] && <StickyNote text={activeTask[1].title} />}
-          {activeTask[2] && <StickyNote text={activeTask[2].title} />}
-        </ActiveTaskContainer>
-      </CardTitle>
-
+      <ActiveTask task_list={activeTasks} />
       <ItemList
         title="Task Inbox"
         items={tasks}
@@ -66,12 +57,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
   width: 100%;
-`;
-
-const ActiveTaskContainer = styled.div`
-  display: flex;
-  flex-direction: row;
+  height: 90%;
 `;
 
 export default MainView;

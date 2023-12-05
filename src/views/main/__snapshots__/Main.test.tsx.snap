@@ -6,10 +6,10 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
     class="sc-hfDuwB wnNtd"
   >
     <div
-      class="sc-hbwYeq kaJZKU"
+      class="sc-ZHFQk jCzlHp"
     >
       <div
-        class="sc-dBwcjI bhYBxT"
+        class="sc-dBwcjI dwHRBD"
       >
         <div
           class="sc-kPNBzt kfRNst"
@@ -17,7 +17,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
           imageurl="https://i.stack.imgur.com/Dj7eP.jpg"
         />
         <div
-          class="sc-jCIOXC fNsQyj"
+          class="sc-jCIOXC hLtUsb"
         >
           <div
             class="sc-fBEEOr fKCOYR"
@@ -52,63 +52,98 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
         </div>
       </div>
       <div
-        class="sc-jCIOXC fNsQyj"
+        class="sc-hbwYeq eGAIGh"
       >
         <div
-          class="sc-fBEEOr eFWqUg"
-          data-cy="Card-Contents"
+          class="sc-jCIOXC hLtUsb"
         >
           <div
-            class="sc-evVYyG dsYGDa"
+            class="sc-fBEEOr eFWqUg"
+            data-cy="Card-Contents"
           >
-            <span
-              class="sc-BOZFl hhMcHb"
-              data-cy="Card-title"
+            <div
+              class="sc-bWPEIA hEwZMM"
             >
-              Active Task
-            </span>
-            <span
-              class="sc-BOZFl hhMcHb"
-              data-cy="Card-label"
+              <span
+                class="sc-hdxXtv immkOM"
+                data-cy="Card-title"
+              >
+                Active Task
+              </span>
+              <span
+                class="sc-hdxXtv immkOM"
+                data-cy="Card-label"
+              >
+                3/3
+              </span>
+            </div>
+            <div
+              class="sc-cpKBeH jfhgZK"
             >
-              0/0
-            </span>
+              <div
+                class="sc-kbUMEY dihFTn"
+              >
+                <span
+                  class="sc-bubcaR lgalXB"
+                  data-cy="StickNote"
+                >
+                  SOME TASK
+                </span>
+              </div>
+              <div
+                class="sc-kbUMEY dihFTn"
+              >
+                <span
+                  class="sc-bubcaR lgalXB"
+                  data-cy="StickNote"
+                >
+                  SOME TASK
+                </span>
+              </div>
+              <div
+                class="sc-kbUMEY dihFTn"
+              >
+                <span
+                  class="sc-bubcaR lgalXB"
+                  data-cy="StickNote"
+                >
+                  SOME TASK
+                </span>
+              </div>
+            </div>
           </div>
-          <div
-            class="sc-cpKBeH brLBgc"
-          />
         </div>
       </div>
       <div
-        class="sc-jCIOXC fNsQyj"
+        class="sc-jCIOXC hLtUsb"
       >
         <div
           class="sc-fBEEOr eFWqUg"
           data-cy="Card-Contents"
         >
           <div
-            class="sc-evVYyG dsYGDa"
+            class="sc-bWPEIA hEwZMM"
           >
             <span
-              class="sc-BOZFl hhMcHb"
+              class="sc-hdxXtv immkOM"
               data-cy="Card-title"
             >
               Task Inbox
             </span>
             <span
-              class="sc-BOZFl hhMcHb"
+              class="sc-hdxXtv immkOM"
               data-cy="Card-label"
             >
               total 0
             </span>
           </div>
           <div
-            class="sc-jjIKjs sc-daVtvr bMktBm kyGhnj"
+            class="sc-evVYyG sc-BOZFl dMVVvn kNpJbF"
             data-cy="task-add-button"
           >
             <svg
               aria-hidden="true"
-              class="svg-inline--fa fa-plus sc-kbUMEY kFwCnV"
+              class="svg-inline--fa fa-plus sc-ttuAC jVXlpn"
               data-icon="plus"
               data-prefix="fas"
               focusable="false"
@@ -122,7 +157,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
               />
             </svg>
             <input
-              class="sc-bubcaR AKuiU"
+              class="sc-daVtvr iOmOIa"
               data-cy="task-add-button-input"
               placeholder="Add Task"
               value=""

@@ -28,6 +28,7 @@ const MyCard = styled.div`
   background-color: #d9d9d9;
   border-radius: 10px;
   width: 90%;
+  height: 100%;
   display: inline-flex;
   flex-wrap: wrap;
   flex-direction: column;
