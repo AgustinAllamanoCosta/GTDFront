@@ -158,7 +158,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
               />
             </svg>
             <input
-              class="sc-daVtvr iOmOIa"
+              class="sc-daVtvr dDNvNj"
               data-cy="task-add-button-input"
               placeholder="Add Task"
               value=""

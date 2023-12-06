@@ -1,9 +1,11 @@
 import { styled } from 'styled-components';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
-import { useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Task } from '../../views/main/Main';
+
+const ENTER_KEY_COE = 13;
 
 export type ItemListProps = {
   title: string;
@@ -21,15 +23,36 @@ const ItemAddButton = ({
   action,
   value,
 }: ItemAddButtonProps): JSX.Element => {
+  const newTaskInput = useRef<any>();
+
+  const focusInput = (event: any) => {
+    if (newTaskInput.current) {
+      newTaskInput.current.focus();
+    }
+  };
+
+  const onInputKeyDown = (event: any) => {
+    const keyCode = event.keyCode;
+    if (keyCode === ENTER_KEY_COE) {
+      event.preventDefault();
+      action(event);
+    }
+  };
+
   return (
     <AddItemContent data-cy={`task-add-button`}>
-      <Icon icon={faPlus} />
+      <Icon
+        icon={faPlus}
+        onClick={focusInput}
+      />
       <AddItemInput
+        ref={newTaskInput}
         data-cy={`task-add-button-input`}
         placeholder={'Add Task'}
         onBlur={action}
         value={value}
         onChange={onChange}
+        onKeyDown={onInputKeyDown}
       />
     </AddItemContent>
   );
@@ -109,8 +132,10 @@ const ItemText = styled.span`
 const AddItemInput = styled.input`
   border: 0px;
   background-color: #d9d9d9;
-  outline: none;
-  width: 100%;
+  width: 85%;
+  outline-width: 1px;
+  border-radius: 2px;
+  padding: 3px;
   &::placeholder {
     color: black;
     font-weight: bold;
