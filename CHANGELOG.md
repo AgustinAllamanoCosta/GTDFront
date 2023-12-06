@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.10 (2023-12-05)
+
+
+### Bug Fixes
+
+* 🐛 fix build stage ([b7788c2](https://github.com/AgustinAllamanoCosta/GTDFront/commit/b7788c28766a0911a72be93b0d620268a17fd5d7))
+
 ### 0.0.9 (2023-12-04)
 
 
