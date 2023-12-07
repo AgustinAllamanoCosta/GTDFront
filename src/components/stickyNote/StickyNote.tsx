@@ -1,33 +1,81 @@
+import { useState } from 'react';
 import { styled } from 'styled-components';
 
 export type StickyNoteProps = {
   text: string;
+  onConfirm?: (event: any) => void;
+  onCancel?: (event: any) => void;
 };
 
-export const StickyNote = ({ text }: StickyNoteProps): JSX.Element => {
+export const StickyNote = ({
+  text,
+  onConfirm,
+  onCancel,
+}: StickyNoteProps): JSX.Element => {
+  const [showControls, setShowControls] = useState<boolean>(false);
+
   return (
-    <MyNote>
-      <TextContainer data-cy="stick-note-text">
-        {text.toUpperCase()}
-      </TextContainer>
-    </MyNote>
+    <ButtonAndNoteContainer
+      onPointerEnter={(e) => setShowControls(true)}
+      onPointerLeave={(e) => setShowControls(false)}
+    >
+      <MyNote>
+        <TextContainer>
+          <TextNote data-cy="stick-note-text">{text.toUpperCase()}</TextNote>
+        </TextContainer>
+        <ButtonContainer>
+          {showControls && (
+            <>
+              <span>OK</span>
+              <span>X</span>
+            </>
+          )}
+        </ButtonContainer>
+      </MyNote>
+    </ButtonAndNoteContainer>
   );
 };
 
-const TextContainer = styled.span`
+const TextNote = styled.span`
+  top: 30px;
   font-size: 14px;
   font-weight: 700;
 `;
 
-const MyNote = styled.div`
-  background-color: #ffff99;
+const TextContainer = styled.div`
   width: 100px;
-  height: 100px;
-  padding: 12px;
-  border-radius: 10px;
+  height: 100%;
   overflow-y: scroll;
   &::-webkit-scrollbar {
-    width: 30px;
+    width: 5px;
   }
-  margin: 12px;
+`;
+
+const MyNote = styled.div`
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  background-color: #ffff99;
+  width: 112px;
+  height: 112px;
+  border-radius: 10px;
+  padding: 6px;
+`;
+
+const ButtonContainer = styled.div`
+  position: absolute;
+  left: 124px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100px;
+  z-index: 900;
+`;
+
+const ButtonAndNoteContainer = styled.div`
+  width: 124px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 6px;
+  padding-right: 6px;
 `;

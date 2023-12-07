@@ -38,5 +38,5 @@ const ActiveTasksContainer = styled.div`
 const ActiveTaskContent = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
 `;

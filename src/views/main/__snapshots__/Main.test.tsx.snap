@@ -6,7 +6,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
     class="sc-hfDuwB wnNtd"
   >
     <div
-      class="sc-ZHFQk jCzlHp"
+      class="sc-jCDGFz gpOrBF"
     >
       <div
         class="sc-dBwcjI dwHRBD"
@@ -52,7 +52,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
         </div>
       </div>
       <div
-        class="sc-hbwYeq eGAIGh"
+        class="sc-hDqSpx fFJASH"
       >
         <div
           class="sc-jCIOXC hLtUsb"
@@ -78,38 +78,71 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
               </span>
             </div>
             <div
-              class="sc-cpKBeH jfhgZK"
+              class="sc-cYUugm cwkKjB"
               data-cy="Active-task-container"
             >
               <div
-                class="sc-kbUMEY dihFTn"
+                class="sc-ZHFQk cMEHNQ"
               >
-                <span
-                  class="sc-bubcaR lgalXB"
-                  data-cy="stick-note-text"
+                <div
+                  class="sc-hbwYeq bZrtFF"
                 >
-                  SOME TASK
-                </span>
+                  <div
+                    class="sc-kbUMEY kuUybK"
+                  >
+                    <span
+                      class="sc-bubcaR dTGQLW"
+                      data-cy="stick-note-text"
+                    >
+                      SOME TASK
+                    </span>
+                  </div>
+                  <div
+                    class="sc-cpKBeH epmimb"
+                  />
+                </div>
               </div>
               <div
-                class="sc-kbUMEY dihFTn"
+                class="sc-ZHFQk cMEHNQ"
               >
-                <span
-                  class="sc-bubcaR lgalXB"
-                  data-cy="stick-note-text"
+                <div
+                  class="sc-hbwYeq bZrtFF"
                 >
-                  SOME TASK
-                </span>
+                  <div
+                    class="sc-kbUMEY kuUybK"
+                  >
+                    <span
+                      class="sc-bubcaR dTGQLW"
+                      data-cy="stick-note-text"
+                    >
+                      SOME TASK
+                    </span>
+                  </div>
+                  <div
+                    class="sc-cpKBeH epmimb"
+                  />
+                </div>
               </div>
               <div
-                class="sc-kbUMEY dihFTn"
+                class="sc-ZHFQk cMEHNQ"
               >
-                <span
-                  class="sc-bubcaR lgalXB"
-                  data-cy="stick-note-text"
+                <div
+                  class="sc-hbwYeq bZrtFF"
                 >
-                  SOME TASK
-                </span>
+                  <div
+                    class="sc-kbUMEY kuUybK"
+                  >
+                    <span
+                      class="sc-bubcaR dTGQLW"
+                      data-cy="stick-note-text"
+                    >
+                      SOME TASK
+                    </span>
+                  </div>
+                  <div
+                    class="sc-cpKBeH epmimb"
+                  />
+                </div>
               </div>
             </div>
           </div>
