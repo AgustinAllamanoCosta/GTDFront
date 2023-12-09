@@ -1,81 +1,76 @@
 import { useState } from 'react';
 import { styled } from 'styled-components';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export type StickyNoteProps = {
   text: string;
   onConfirm?: (event: any) => void;
-  onCancel?: (event: any) => void;
 };
 
 export const StickyNote = ({
   text,
   onConfirm,
-  onCancel,
 }: StickyNoteProps): JSX.Element => {
-  const [showControls, setShowControls] = useState<boolean>(false);
-
   return (
-    <ButtonAndNoteContainer
-      onPointerEnter={(e) => setShowControls(true)}
-      onPointerLeave={(e) => setShowControls(false)}
-    >
-      <MyNote>
-        <TextContainer>
-          <TextNote data-cy="stick-note-text">{text.toUpperCase()}</TextNote>
-        </TextContainer>
-        <ButtonContainer>
-          {showControls && (
-            <>
-              <span>OK</span>
-              <span>X</span>
-            </>
-          )}
-        </ButtonContainer>
-      </MyNote>
+    <ButtonAndNoteContainer>
+      <TextContainer>
+        <TextNote data-cy="stick-note-text">{text.toUpperCase()}</TextNote>
+      </TextContainer>
+      <ButtonContainer onClick={onConfirm}>
+        <Icon
+          icon={faCheck}
+          onClick={onConfirm}
+        />
+      </ButtonContainer>
     </ButtonAndNoteContainer>
   );
 };
 
-const TextNote = styled.span`
-  top: 30px;
+const TextNote = styled.textarea`
   font-size: 14px;
   font-weight: 700;
+  background-color: unset;
+  border: unset;
+  width: 100px;
+  height: 100%;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
 `;
 
 const TextContainer = styled.div`
   width: 100px;
   height: 100%;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
-`;
-
-const MyNote = styled.div`
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  background-color: #ffff99;
-  width: 112px;
-  height: 112px;
-  border-radius: 10px;
   padding: 6px;
 `;
 
 const ButtonContainer = styled.div`
-  position: absolute;
-  left: 124px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100px;
-  z-index: 900;
+  flex-direction: row;
+  justify-content: center;
+  border-top: 1px solid;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 16px;
+  padding: 3px;
+  &:hover {
+    background-color: #5fff5f;
+  }
 `;
 
 const ButtonAndNoteContainer = styled.div`
-  width: 124px;
-  padding-top: 6px;
-  padding-bottom: 6px;
-  padding-left: 6px;
-  padding-right: 6px;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffff99;
+  width: 112px;
+  height: 112px;
+  border-radius: 10px;
+  margin: 6px;
+`;
+
+const Icon = styled(FontAwesomeIcon)`
+  padding-left: 5px;
+  padding-right: 5px;
 `;
