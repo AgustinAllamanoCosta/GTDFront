@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { styled } from "styled-components";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from 'react';
+import { styled } from 'styled-components';
+import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export type StickyNoteProps = {
   text: string;
@@ -17,8 +17,14 @@ export const StickyNote = ({
       <TextContainer>
         <TextNote data-cy="stick-note-text">{text.toUpperCase()}</TextNote>
       </TextContainer>
-      <ButtonContainer onClick={onConfirm} data-cy="stick-note-button">
-        <Icon icon={faCheck} onClick={onConfirm} />
+      <ButtonContainer
+        onClick={onConfirm}
+        data-cy="stick-note-button"
+      >
+        <Icon
+          icon={faCheck}
+          onClick={onConfirm}
+        />
       </ButtonContainer>
     </ButtonAndNoteContainer>
   );
