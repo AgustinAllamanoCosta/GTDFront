@@ -122,7 +122,7 @@ jobs:
 
       - name: Generate Version
         run: |
-          yarn standard-version
+          yarn release
 
       - name: Pushing Version
         run: |

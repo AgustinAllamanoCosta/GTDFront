@@ -3,13 +3,13 @@
 exports[`Login View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-hfDuwB wnNtd"
+    class="sc-hfDuwB gDAJOq"
   >
     <div
       class="sc-jCDGFz gpOrBF"
     >
       <div
-        class="sc-dBwcjI dwHRBD"
+        class="sc-dBwcjI keYshG"
       >
         <div
           class="sc-kPNBzt kfRNst"
@@ -17,7 +17,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
           imageurl="https://i.stack.imgur.com/Dj7eP.jpg"
         />
         <div
-          class="sc-jCIOXC hLtUsb"
+          class="sc-jCIOXC dAtuPy"
         >
           <div
             class="sc-fBEEOr fKCOYR"
@@ -55,7 +55,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
         class="sc-hDqSpx fFJASH"
       >
         <div
-          class="sc-jCIOXC hLtUsb"
+          class="sc-jCIOXC dAtuPy"
         >
           <div
             class="sc-fBEEOr eFWqUg"
@@ -78,70 +78,109 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
               </span>
             </div>
             <div
-              class="sc-cYUugm cwkKjB"
+              class="sc-cYUugm edkJTZ"
               data-cy="Active-task-container"
             >
               <div
-                class="sc-ZHFQk cMEHNQ"
+                class="sc-cpKBeH unXHf"
               >
                 <div
-                  class="sc-hbwYeq bZrtFF"
+                  class="sc-kbUMEY wgZWi"
                 >
-                  <div
-                    class="sc-kbUMEY kuUybK"
+                  <textarea
+                    class="sc-bubcaR buqKrK"
+                    data-cy="stick-note-text"
                   >
-                    <span
-                      class="sc-bubcaR dTGQLW"
-                      data-cy="stick-note-text"
-                    >
-                      SOME TASK
-                    </span>
-                  </div>
-                  <div
-                    class="sc-cpKBeH epmimb"
-                  />
+                    SOME TASK
+                  </textarea>
+                </div>
+                <div
+                  class="sc-hbwYeq lacoDf"
+                  data-cy="stick-note-button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="svg-inline--fa fa-check sc-ZHFQk dHhnXS"
+                    data-icon="check"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    viewBox="0 0 448 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                      fill="currentColor"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
-                class="sc-ZHFQk cMEHNQ"
+                class="sc-cpKBeH unXHf"
               >
                 <div
-                  class="sc-hbwYeq bZrtFF"
+                  class="sc-kbUMEY wgZWi"
                 >
-                  <div
-                    class="sc-kbUMEY kuUybK"
+                  <textarea
+                    class="sc-bubcaR buqKrK"
+                    data-cy="stick-note-text"
                   >
-                    <span
-                      class="sc-bubcaR dTGQLW"
-                      data-cy="stick-note-text"
-                    >
-                      SOME TASK
-                    </span>
-                  </div>
-                  <div
-                    class="sc-cpKBeH epmimb"
-                  />
+                    SOME TASK
+                  </textarea>
+                </div>
+                <div
+                  class="sc-hbwYeq lacoDf"
+                  data-cy="stick-note-button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="svg-inline--fa fa-check sc-ZHFQk dHhnXS"
+                    data-icon="check"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    viewBox="0 0 448 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                      fill="currentColor"
+                    />
+                  </svg>
                 </div>
               </div>
               <div
-                class="sc-ZHFQk cMEHNQ"
+                class="sc-cpKBeH unXHf"
               >
                 <div
-                  class="sc-hbwYeq bZrtFF"
+                  class="sc-kbUMEY wgZWi"
                 >
-                  <div
-                    class="sc-kbUMEY kuUybK"
+                  <textarea
+                    class="sc-bubcaR buqKrK"
+                    data-cy="stick-note-text"
                   >
-                    <span
-                      class="sc-bubcaR dTGQLW"
-                      data-cy="stick-note-text"
-                    >
-                      SOME TASK
-                    </span>
-                  </div>
-                  <div
-                    class="sc-cpKBeH epmimb"
-                  />
+                    SOME TASK
+                  </textarea>
+                </div>
+                <div
+                  class="sc-hbwYeq lacoDf"
+                  data-cy="stick-note-button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="svg-inline--fa fa-check sc-ZHFQk dHhnXS"
+                    data-icon="check"
+                    data-prefix="fas"
+                    focusable="false"
+                    role="img"
+                    viewBox="0 0 448 512"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                      fill="currentColor"
+                    />
+                  </svg>
                 </div>
               </div>
             </div>
@@ -149,7 +188,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
         </div>
       </div>
       <div
-        class="sc-jCIOXC hLtUsb"
+        class="sc-jCIOXC dAtuPy"
       >
         <div
           class="sc-fBEEOr eFWqUg"
