@@ -6,217 +6,109 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
     class="sc-hfDuwB gDAJOq"
   >
     <div
-      class="sc-jCDGFz gpOrBF"
+      class="sc-imALrc efCFCf"
     >
       <div
-        class="sc-dBwcjI keYshG"
+        class="sc-laEPQd cka-dRM"
       >
         <div
-          class="sc-kPNBzt kfRNst"
+          class="sc-fBEEOr PYOAJ"
           data-cy="Avatar-photo"
           imageurl="https://i.stack.imgur.com/Dj7eP.jpg"
         />
         <div
-          class="sc-jCIOXC dAtuPy"
-        >
-          <div
-            class="sc-fBEEOr fKCOYR"
-            data-cy="Card-Contents"
-          >
-            <div
-              class="sc-bXxmBy bSIEXq"
-              data-cy="User-Card-Header"
-            >
-              <div
-                class="sc-dMnqAs cAOBYD"
-              >
-                <div
-                  class="sc-jlOLRj jEvdST"
-                >
-                  <span
-                    class="sc-laEPQd hnPnfI"
-                    data-cy="Card-title"
-                  >
-                    Getting Things Done
-                  </span>
-                </div>
-              </div>
-              <span
-                class="sc-eErDDp WdbYy"
-                data-cy="Card-SubTitle"
-              >
-                Hi Agustin Allamano Costa !
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="sc-hDqSpx fFJASH"
-      >
-        <div
-          class="sc-jCIOXC dAtuPy"
-        >
-          <div
-            class="sc-fBEEOr eFWqUg"
-            data-cy="Card-Contents"
-          >
-            <div
-              class="sc-bWPEIA hEwZMM"
-            >
-              <span
-                class="sc-hdxXtv immkOM"
-                data-cy="Card-title"
-              >
-                Active Task
-              </span>
-              <span
-                class="sc-hdxXtv immkOM"
-                data-cy="Card-label"
-              >
-                3/3
-              </span>
-            </div>
-            <div
-              class="sc-cYUugm edkJTZ"
-              data-cy="Active-task-container"
-            >
-              <div
-                class="sc-cpKBeH unXHf"
-              >
-                <div
-                  class="sc-kbUMEY wgZWi"
-                >
-                  <textarea
-                    class="sc-bubcaR buqKrK"
-                    data-cy="stick-note-text"
-                  >
-                    SOME TASK
-                  </textarea>
-                </div>
-                <div
-                  class="sc-hbwYeq lacoDf"
-                  data-cy="stick-note-button"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="svg-inline--fa fa-check sc-ZHFQk dHhnXS"
-                    data-icon="check"
-                    data-prefix="fas"
-                    focusable="false"
-                    role="img"
-                    viewBox="0 0 448 512"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </div>
-              </div>
-              <div
-                class="sc-cpKBeH unXHf"
-              >
-                <div
-                  class="sc-kbUMEY wgZWi"
-                >
-                  <textarea
-                    class="sc-bubcaR buqKrK"
-                    data-cy="stick-note-text"
-                  >
-                    SOME TASK
-                  </textarea>
-                </div>
-                <div
-                  class="sc-hbwYeq lacoDf"
-                  data-cy="stick-note-button"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="svg-inline--fa fa-check sc-ZHFQk dHhnXS"
-                    data-icon="check"
-                    data-prefix="fas"
-                    focusable="false"
-                    role="img"
-                    viewBox="0 0 448 512"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </div>
-              </div>
-              <div
-                class="sc-cpKBeH unXHf"
-              >
-                <div
-                  class="sc-kbUMEY wgZWi"
-                >
-                  <textarea
-                    class="sc-bubcaR buqKrK"
-                    data-cy="stick-note-text"
-                  >
-                    SOME TASK
-                  </textarea>
-                </div>
-                <div
-                  class="sc-hbwYeq lacoDf"
-                  data-cy="stick-note-button"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="svg-inline--fa fa-check sc-ZHFQk dHhnXS"
-                    data-icon="check"
-                    data-prefix="fas"
-                    focusable="false"
-                    role="img"
-                    viewBox="0 0 448 512"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="sc-jCIOXC dAtuPy"
-      >
-        <div
-          class="sc-fBEEOr eFWqUg"
+          class="sc-jCIOXC fWCdz"
           data-cy="Card-Contents"
         >
           <div
-            class="sc-bWPEIA hEwZMM"
+            class="sc-dBwcjI jySlOX"
+            data-cy="User-Card-Header"
+          >
+            <div
+              class="sc-bXxmBy hdHbjH"
+            >
+              <div
+                class="sc-kPNBzt dgnXOz"
+              >
+                <span
+                  class="sc-jlOLRj bkDUrU"
+                  data-cy="Card-title"
+                >
+                  Getting Things Done
+                </span>
+              </div>
+            </div>
+            <span
+              class="sc-dMnqAs ekIyvU"
+              data-cy="Card-SubTitle"
+            >
+              Hi Agustin Allamano Costa !
+            </span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-jCDGFz flnqWc"
+      >
+        <div
+          class="sc-jCIOXC jwENDK"
+          data-cy="Card-Contents"
+        >
+          <div
+            class="sc-eErDDp edVibq"
           >
             <span
-              class="sc-hdxXtv immkOM"
+              class="sc-bWPEIA dDLEVB"
+              data-cy="Card-title"
+            >
+              Active Task
+            </span>
+            <span
+              class="sc-bWPEIA dDLEVB"
+              data-cy="Card-label"
+            >
+              0/3
+            </span>
+          </div>
+          <div
+            class="sc-cYUugm dnMdiH"
+            data-cy="Active-task-container"
+          />
+        </div>
+      </div>
+      <div
+        class="sc-bubcaR gSRhfK"
+      >
+        <div
+          class="sc-jCIOXC jwENDK"
+          data-cy="Card-Contents"
+        >
+          <div
+            class="sc-eErDDp edVibq"
+          >
+            <span
+              class="sc-bWPEIA dDLEVB"
               data-cy="Card-title"
             >
               Task Inbox
             </span>
             <span
-              class="sc-hdxXtv immkOM"
+              class="sc-bWPEIA dDLEVB"
               data-cy="Card-label"
             >
               total 0
             </span>
           </div>
           <div
-            class="sc-evVYyG sc-BOZFl dMVVvn kNpJbF"
+            class="sc-ttuAC byTmaL"
+          />
+          <div
+            class="sc-hdxXtv sc-evVYyG jHzaLj hsGbby"
             data-cy="task-add-button"
           >
             <svg
               aria-hidden="true"
-              class="svg-inline--fa fa-plus sc-ttuAC jVXlpn"
+              class="svg-inline--fa fa-plus sc-daVtvr gGjQZH"
               data-icon="plus"
               data-prefix="fas"
               focusable="false"
@@ -230,7 +122,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
               />
             </svg>
             <input
-              class="sc-daVtvr dDNvNj"
+              class="sc-jjIKjs hZaJJr"
               data-cy="task-add-button-input"
               placeholder="Add Task"
               value=""

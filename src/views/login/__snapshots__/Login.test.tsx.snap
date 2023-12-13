@@ -3,74 +3,70 @@
 exports[`Login View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-dMnqAs iBhIfk"
+    class="sc-bXxmBy gOYNuE"
   >
     <div
-      class="sc-dBwcjI jzQSpD"
+      class="sc-dBwcjI dCdbfO"
+      data-cy="Card-Contents"
     >
+      <span
+        class="sc-kPNBzt dfLIVk"
+      >
+        Get Things Done
+      </span>
       <div
-        class="sc-kPNBzt kdOtQN"
-        data-cy="Card-Contents"
+        class="sc-hfDuwB iNQNqE"
+        data-cy="button-gtd"
       >
         <span
-          class="sc-jlOLRj dSAIjI"
+          class="sc-jCIOXC cfyTgc"
+          data-cy="button-text"
         >
-          Get Things Done
+          Login
         </span>
-        <div
-          class="sc-hfDuwB iNQNqE"
-          data-cy="button-gtd"
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-address-card sc-fBEEOr eedbxR"
+          data-cy="button-icon"
+          data-icon="address-card"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 576 512"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <span
-            class="sc-jCIOXC uLkTi"
-            data-cy="button-text"
-          >
-            Login
-          </span>
-          <svg
-            aria-hidden="true"
-            class="svg-inline--fa fa-address-card sc-fBEEOr eedbxR"
-            data-cy="button-icon"
-            data-icon="address-card"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            viewBox="0 0 576 512"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 256h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zm256-32H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
-              fill="currentColor"
-            />
-          </svg>
-        </div>
-        <div
-          class="sc-hfDuwB iNQNqE"
-          data-cy="button-gtd"
+          <path
+            d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 256h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zm256-32H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+      <div
+        class="sc-hfDuwB iNQNqE"
+        data-cy="button-gtd"
+      >
+        <span
+          class="sc-jCIOXC cfyTgc"
+          data-cy="button-text"
         >
-          <span
-            class="sc-jCIOXC uLkTi"
-            data-cy="button-text"
-          >
-            SingUp
-          </span>
-          <svg
-            aria-hidden="true"
-            class="svg-inline--fa fa-plus sc-fBEEOr eedbxR"
-            data-cy="button-icon"
-            data-icon="plus"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
-              fill="currentColor"
-            />
-          </svg>
-        </div>
+          SingUp
+        </span>
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-plus sc-fBEEOr eedbxR"
+          data-cy="button-icon"
+          data-icon="plus"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 448 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+            fill="currentColor"
+          />
+        </svg>
       </div>
     </div>
   </div>

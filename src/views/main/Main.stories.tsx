@@ -6,7 +6,6 @@ const meta = {
   title: 'Views/Main',
   component: MainView,
   tags: ['autodocs'],
-  decorators: [PhoneContext],
 } satisfies Meta<typeof MainView>;
 
 export default meta;
@@ -15,6 +14,20 @@ type Story = StoryObj<typeof meta>;
 export const FullMainView: Story = {
   args: {
     activeTasks: [
+      {
+        title: 'Some task 1',
+        isComplete: false,
+      },
+      {
+        title: 'Some task 2',
+        isComplete: false,
+      },
+      {
+        title: 'Some task 3',
+        isComplete: false,
+      },
+    ],
+    inboxTasks: [
       {
         title: 'Some task 1',
         isComplete: false,

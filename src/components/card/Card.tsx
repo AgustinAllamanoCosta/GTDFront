@@ -12,32 +12,22 @@ export const Card = ({
   padding = true,
 }: CardProps): JSX.Element => {
   return (
-    <MyCard>
-      <MyCardContent
-        is_center={content_center}
-        data-cy="Card-Contents"
-        padding={padding}
-      >
-        {children}
-      </MyCardContent>
+    <MyCard
+      is_center={content_center}
+      data-cy="Card-Contents"
+      padding={padding}
+    >
+      {children}
     </MyCard>
   );
 };
 
-const MyCard = styled.div`
+const MyCard = styled.div<{ is_center?: boolean; padding?: boolean }>`
   background-color: #d9d9d9;
   border-radius: 10px;
-  width: 95%;
+  width: 100%;
   height: 100%;
   display: inline-flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  margin-bottom: 16px;
-`;
-
-const MyCardContent = styled.div<{ is_center?: boolean; padding?: boolean }>`
-  position: relative;
-  display: flex;
   flex-direction: column;
   ${(props) => (props.is_center ? `align-items: center;` : ``)};
   ${(props) => (props.padding ? `padding: 5px;` : ``)};

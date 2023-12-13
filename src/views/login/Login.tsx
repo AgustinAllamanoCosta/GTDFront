@@ -5,6 +5,7 @@ import { faAddressCard, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { FONTS } from '../../constants /size';
 
 const LoginView = () => {
   const singUp = () => {
@@ -68,16 +69,9 @@ const LoginView = () => {
   );
 };
 
-const ButtonsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  align-content: center;
-`;
-
 const Title = styled.span`
   font-weight: bold;
-  font-size: 24px;
+  font-size: ${FONTS.TITLE};
 `;
 
 export default LoginView;

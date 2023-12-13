@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { Card } from '../card/Card';
+import { FONTS } from '../../constants /size';
 
 export type UserCardProps = {
   userName: string;
@@ -29,18 +30,6 @@ export const UserCard = ({
     </UserCardContainer>
   );
 };
-
-const UserCardContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  margin: 8px;
-  max-width: 500px;
-  width: 95%;
-  height: 100px;
-`;
 
 const AvatarImage = styled.div<{ imageurl: string }>`
   ${(props) => `background-image: url(${props.imageurl})`};
@@ -74,10 +63,21 @@ const MyTitleAndLabelContaner = styled.div`
 `;
 
 const MyTitle = styled.span`
-  font-size: 24px;
+  font-size: ${FONTS.TITLE};
 `;
 
 const MySubTitle = styled.span`
-  font-size: 16px;
+  font-size: ${FONTS.TEXT};
   margin: 5px;
+`;
+
+const UserCardContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  width: 43vh;
+  height: 10vh;
 `;

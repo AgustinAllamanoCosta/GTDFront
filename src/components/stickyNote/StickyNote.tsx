@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { styled } from 'styled-components';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FONTS } from '../../constants /size';
 
 export type StickyNoteProps = {
   text: string;
@@ -31,7 +32,7 @@ export const StickyNote = ({
 };
 
 const TextNote = styled.textarea`
-  font-size: 14px;
+  font-size: ${FONTS.TEXT};
   font-weight: 700;
   background-color: unset;
   border: unset;

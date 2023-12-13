@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import { Card } from '../card/Card';
+import { FONTS } from '../../constants /size';
 
 export type CardProps = {
   title?: string;
@@ -34,7 +35,7 @@ const MyTitleContainer = styled.div<{ join_tag?: boolean }>`
   ${(prop) => {
     return prop.join_tag ? '' : `justify-content: space-between;`;
   }}
-  padding-left: 8px;
+  padding-left:   8px;
   padding-right: 8px;
   padding-top: 9px;
   padding-bottom: 8px;
@@ -42,5 +43,5 @@ const MyTitleContainer = styled.div<{ join_tag?: boolean }>`
 
 const TitleContent = styled.span`
   font-weight: bold;
-  font-size: 14px;
+  font-size: ${FONTS.TITLE};
 `;

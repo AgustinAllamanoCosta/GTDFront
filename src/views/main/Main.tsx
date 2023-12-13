@@ -28,11 +28,7 @@ const MainView = ({
     name: 'Agustin Allamano Costa',
     photoURL: 'https://i.stack.imgur.com/Dj7eP.jpg',
   },
-  activeTasks = [
-    { title: 'some task', isComplete: false },
-    { title: 'some task', isComplete: false },
-    { title: 'some task', isComplete: false },
-  ],
+  activeTasks = [],
   inboxTasks = [],
 }: MainViewProps) => {
   const [userConfig, setUserConfig] = useState(userData);

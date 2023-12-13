@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { FONTS } from '../../constants /size';
 
 export type ButtonProps = {
   text: string;
@@ -43,7 +44,7 @@ const ButtonContainer = styled.div`
 `;
 
 const ButtonText = styled.span`
-  font-size: 14px;
+  font-size: ${FONTS.TEXT};
 `;
 
 const Icon = styled(FontAwesomeIcon)`

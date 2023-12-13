@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { Task } from '../../views/main/Main';
+import { FONTS } from '../../constants /size';
 
 const ENTER_KEY_COE = 13;
 
@@ -85,26 +86,28 @@ export const ItemList = ({ title, items }: ItemListProps): JSX.Element => {
   };
 
   return (
-    <CardTitle
-      title={title}
-      label={`total ${task.length}`}
-    >
-      <>
-        {task.map((item, index) => {
-          return (
-            <Item
-              key={`${index}-${item.title}`}
-              {...item}
-            />
-          );
-        })}
+    <InboxTaskContainer>
+      <CardTitle
+        title={title}
+        label={`total ${task.length}`}
+      >
+        <InboxContainer>
+          {task.map((item, index) => {
+            return (
+              <Item
+                key={`${index}-${item.title}`}
+                {...item}
+              />
+            );
+          })}
+        </InboxContainer>
         <ItemAddButton
           onChange={onChangeButton}
           value={value}
           action={buttonAdd}
         />
-      </>
-    </CardTitle>
+      </CardTitle>
+    </InboxTaskContainer>
   );
 };
 
@@ -125,7 +128,7 @@ const AddItemContent = styled(ItemContent)`
 
 const ItemText = styled.span`
   font-weight: bold;
-  font-size: 14px;
+  font-size: ${FONTS.TEXT};
   height: 20px;
 `;
 
@@ -145,4 +148,14 @@ const AddItemInput = styled.input`
 const Icon = styled(FontAwesomeIcon)`
   padding-left: 5px;
   padding-right: 5px;
+`;
+
+const InboxContainer = styled.div`
+  width: 100%;
+  overflow-y: scroll;
+`;
+
+const InboxTaskContainer = styled.div`
+  height: 60vh;
+  width: 43vh;
 `;
