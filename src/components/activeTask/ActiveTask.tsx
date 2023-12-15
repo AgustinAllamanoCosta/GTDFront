@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import { Task } from '../../views/main/Main';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
@@ -9,7 +9,30 @@ export type ActiveTaskProps = {
 };
 
 export const ActiveTask = ({ task_list }: ActiveTaskProps): JSX.Element => {
-  const [activeTasks, setActiveTasks] = useState<Array<Task>>(task_list);
+  const [activeTasks, setActiveTasks] = useState<Array<Task>>([
+    {
+      title: 'Some task 1',
+      isComplete: false,
+    },
+    {
+      title: 'Some task 2',
+      isComplete: false,
+    },
+    {
+      title: 'Some task 3',
+      isComplete: false,
+    },
+  ]);
+
+  const removeActiveTaks = (index: number) => {
+    const array = [...activeTasks];
+    array.splice(index, 1);
+    setActiveTasks(array);
+  };
+
+  useEffect(() => {
+    console.log(activeTasks);
+  }, [activeTasks]);
 
   return (
     <ActiveTasksContainer>
@@ -18,9 +41,16 @@ export const ActiveTask = ({ task_list }: ActiveTaskProps): JSX.Element => {
         label={`${activeTasks.length}/3`}
       >
         <ActiveTaskContent data-cy="Active-task-container">
-          {activeTasks[0] && <StickyNote text={activeTasks[0].title} />}
-          {activeTasks[1] && <StickyNote text={activeTasks[1].title} />}
-          {activeTasks[2] && <StickyNote text={activeTasks[2].title} />}
+          {activeTasks.map((item, index) => {
+            console.log(item.title);
+            return (
+              <StickyNote
+                key={`${index}-${item.title}`}
+                text={item.title}
+                onConfirm={(e) => removeActiveTaks(index)}
+              />
+            );
+          })}
         </ActiveTaskContent>
       </CardTitle>
     </ActiveTasksContainer>

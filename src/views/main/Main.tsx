@@ -25,14 +25,13 @@ type MainViewProps = {
 
 const MainView = ({
   userData = {
-    name: 'Agustin Allamano Costa',
+    name: '',
     photoURL: 'https://i.stack.imgur.com/Dj7eP.jpg',
   },
   activeTasks = [],
   inboxTasks = [],
 }: MainViewProps) => {
   const [userConfig, setUserConfig] = useState(userData);
-  const [tasks, setTasks] = useState<Array<Task>>(inboxTasks);
 
   return (
     <Container>
@@ -43,7 +42,7 @@ const MainView = ({
       <ActiveTask task_list={activeTasks} />
       <ItemList
         title="Task Inbox"
-        items={tasks}
+        items={inboxTasks}
       />
     </Container>
   );

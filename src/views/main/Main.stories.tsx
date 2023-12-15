@@ -41,5 +41,9 @@ export const FullMainView: Story = {
         isComplete: false,
       },
     ],
+    userData: {
+      name: 'Agustin Allamano Costa',
+      photoURL: 'https://i.stack.imgur.com/Dj7eP.jpg',
+    },
   },
 };
