@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from '@storybook/react';
 
-import { ActiveTask } from "./ActiveTask";
-import { TaskContextDecorator } from "../../storybook/decorators/tasks";
+import { ActiveTask } from './ActiveTask';
+import { TaskContextDecorator } from '../../storybook/decorators/tasks';
 
 const meta = {
-  title: "Components/ActiveTaskList",
+  title: 'Components/ActiveTaskList',
   component: ActiveTask,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   decorators: [TaskContextDecorator],
 } satisfies Meta<typeof ActiveTask>;
 

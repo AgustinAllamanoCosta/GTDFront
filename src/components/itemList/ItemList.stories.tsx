@@ -7,7 +7,7 @@ const meta = {
   title: 'Components/ItemList',
   component: ItemList,
   tags: ['autodocs'],
-  decorators: [TaskContextDecorator]
+  decorators: [TaskContextDecorator],
 } satisfies Meta<typeof ItemList>;
 
 export default meta;

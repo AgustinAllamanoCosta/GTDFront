@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { UserCard } from "../../components/userCard/UserCard";
-import { useEffect, useState } from "react";
-import { ItemList } from "../../components/itemList/ItemList";
-import { ActiveTask } from "../../components/activeTask/ActiveTask";
-import { createContext } from "react";
+import styled from 'styled-components';
+import { UserCard } from '../../components/userCard/UserCard';
+import { useEffect, useState } from 'react';
+import { ItemList } from '../../components/itemList/ItemList';
+import { ActiveTask } from '../../components/activeTask/ActiveTask';
+import { createContext } from 'react';
 
 type UserData = {
   name: string;
@@ -27,19 +27,19 @@ type MainViewProps = {
 export const TaskInformationContext = createContext<{
   activeTasks: ActiveTask;
   inboxTasks: InboxTask;
-  setActiveTask: (e:any)=>void;
-  setInboxTasks: (e:any)=>void;
+  setActiveTask: (e: any) => void;
+  setInboxTasks: (e: any) => void;
 }>({
   activeTasks: [],
   inboxTasks: [],
-  setActiveTask: (e)=>{},
-  setInboxTasks: (e)=>{},
+  setActiveTask: (e) => {},
+  setInboxTasks: (e) => {},
 });
 
 const MainView = ({
   userData = {
-    name: "",
-    photoURL: "https://i.stack.imgur.com/Dj7eP.jpg",
+    name: '',
+    photoURL: 'https://i.stack.imgur.com/Dj7eP.jpg',
   },
   activeTasks = [],
   inboxTasks = [],
@@ -52,11 +52,14 @@ const MainView = ({
     if (inboxTasks.length >= 3) {
       const newActiveTask: Array<Task> = inboxTasks.splice(0, 3);
       activeTasks = newActiveTask;
-      setActiveItems([...newActiveTask])
-    }else if (inboxTasks.length > 0){
-      const newActiveTask: Array<Task> = inboxTasks.splice(0, inboxTasks.length);
+      setActiveItems([...newActiveTask]);
+    } else if (inboxTasks.length > 0) {
+      const newActiveTask: Array<Task> = inboxTasks.splice(
+        0,
+        inboxTasks.length,
+      );
       activeTasks = newActiveTask;
-      setActiveItems([...newActiveTask])
+      setActiveItems([...newActiveTask]);
     }
   };
 
@@ -71,12 +74,15 @@ const MainView = ({
           activeTasks: activeItems,
           inboxTasks: items,
           setActiveTask: setActiveItems,
-          setInboxTasks: setItems
+          setInboxTasks: setItems,
         }}
       >
-        <UserCard userName={userConfig.name} userPhoto={userConfig.photoURL} />
-        <ActiveTask/>
-        <ItemList title="Task Inbox"/>
+        <UserCard
+          userName={userConfig.name}
+          userPhoto={userConfig.photoURL}
+        />
+        <ActiveTask />
+        <ItemList title="Task Inbox" />
       </TaskInformationContext.Provider>
     </Container>
   );

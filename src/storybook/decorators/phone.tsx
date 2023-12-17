@@ -18,9 +18,7 @@ export const AppContext = ({ children }: AppContextProps) => {
     : '';
   return (
     <GoogleOAuthProvider clientId={key}>
-      <MyPhoneContext>
-        {children}
-        </MyPhoneContext>
+      <MyPhoneContext>{children}</MyPhoneContext>
     </GoogleOAuthProvider>
   );
 };

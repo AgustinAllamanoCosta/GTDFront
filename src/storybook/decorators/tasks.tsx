@@ -1,21 +1,21 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   ActiveTask,
   InboxTask,
   Task,
   TaskInformationContext,
-} from "../../views/main/Main";
+} from '../../views/main/Main';
 
 const task1: Task = {
-  title: "some task 1",
+  title: 'some task 1',
   isComplete: false,
 };
 const task2: Task = {
-  title: "some task 2",
+  title: 'some task 2',
   isComplete: false,
 };
 const task3: Task = {
-  title: "some task 3",
+  title: 'some task 3',
   isComplete: false,
 };
 
