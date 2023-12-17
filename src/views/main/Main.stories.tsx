@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { PhoneContext } from '../../storybook/decorators/phone';
 import MainView from './Main';
 
 const meta = {
@@ -14,18 +13,6 @@ type Story = StoryObj<typeof meta>;
 export const FullMainView: Story = {
   args: {
     activeTasks: [
-      {
-        title: 'Some task 1',
-        isComplete: false,
-      },
-      {
-        title: 'Some task 2',
-        isComplete: false,
-      },
-      {
-        title: 'Some task 3',
-        isComplete: false,
-      },
     ],
     inboxTasks: [
       {
@@ -40,6 +27,15 @@ export const FullMainView: Story = {
         title: 'Some task 3',
         isComplete: false,
       },
+      {
+        title: 'Some task 4',
+        isComplete: false,
+      },
+      {
+        title: 'Some task 5',
+        isComplete: false,
+      },
+
     ],
     userData: {
       name: 'Agustin Allamano Costa',

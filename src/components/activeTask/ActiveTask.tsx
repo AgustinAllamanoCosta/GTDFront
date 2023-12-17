@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { styled } from 'styled-components';
-import { Task } from '../../views/main/Main';
+import { Task, TaskInformationContext } from '../../views/main/Main';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
 import { StickyNote } from '../stickyNote/StickyNote';
 
@@ -8,41 +8,23 @@ export type ActiveTaskProps = {
   task_list: Array<Task>;
 };
 
-export const ActiveTask = ({ task_list }: ActiveTaskProps): JSX.Element => {
-  const [activeTasks, setActiveTasks] = useState<Array<Task>>([
-    {
-      title: 'Some task 1',
-      isComplete: false,
-    },
-    {
-      title: 'Some task 2',
-      isComplete: false,
-    },
-    {
-      title: 'Some task 3',
-      isComplete: false,
-    },
-  ]);
+export const ActiveTask = (): JSX.Element => {
+  const activeInformation = useContext(TaskInformationContext);
 
   const removeActiveTaks = (index: number) => {
-    const array = [...activeTasks];
+    const array = [...activeInformation.activeTasks];
     array.splice(index, 1);
-    setActiveTasks(array);
+    activeInformation.setActiveTask(array);
   };
-
-  useEffect(() => {
-    console.log(activeTasks);
-  }, [activeTasks]);
 
   return (
     <ActiveTasksContainer>
       <CardTitle
         title="Active Task"
-        label={`${activeTasks.length}/3`}
+        label={`${activeInformation.activeTasks.length}/3`}
       >
         <ActiveTaskContent data-cy="Active-task-container">
-          {activeTasks.map((item, index) => {
-            console.log(item.title);
+          {activeInformation.activeTasks.map((item, index) => {
             return (
               <StickyNote
                 key={`${index}-${item.title}`}
@@ -61,6 +43,7 @@ const ActiveTaskContent = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
+  min-height: 139px;
   flex-direction: row;
   justify-content: center;
   overflow-x: scroll;

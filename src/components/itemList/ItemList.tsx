@@ -1,16 +1,15 @@
 import { styled } from 'styled-components';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
-import { useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { Task } from '../../views/main/Main';
+import { Task, TaskInformationContext } from '../../views/main/Main';
 import { FONTS } from '../../constants /size';
 
 const ENTER_KEY_COE = 13;
 
 export type ItemListProps = {
   title: string;
-  items: Array<Task>;
 };
 
 type ItemAddButtonProps = {
@@ -68,15 +67,15 @@ const Item = ({ title, isComplete }: Task): JSX.Element => {
   );
 };
 
-export const ItemList = ({ title, items }: ItemListProps): JSX.Element => {
-  const [task, setTask] = useState<Array<Task>>(items);
+export const ItemList = ({ title }: ItemListProps): JSX.Element => {
+  const activeInformation = useContext(TaskInformationContext);
   const [value, setValue] = useState<string>('');
 
   const buttonAdd = (event: any) => {
     if (event.target.value !== '') {
-      const oldTask = task;
+      const oldTask = activeInformation.inboxTasks;
       oldTask.push({ title: event.target.value, isComplete: false });
-      setTask([...oldTask]);
+      activeInformation.setInboxTasks([...oldTask]);
       setValue('');
     }
   };
@@ -89,10 +88,10 @@ export const ItemList = ({ title, items }: ItemListProps): JSX.Element => {
     <InboxTaskContainer>
       <CardTitle
         title={title}
-        label={`total ${task.length}`}
+        label={`total ${activeInformation.inboxTasks.length}`}
       >
         <InboxContainer>
-          {task.map((item, index) => {
+          {activeInformation.inboxTasks.map((item, index) => {
             return (
               <Item
                 key={`${index}-${item.title}`}
