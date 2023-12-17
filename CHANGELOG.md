@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.14 (2023-12-15)
+
+
+### Features
+
+* 🎸 delete and element when is tag as complete ([c43f5b6](https://github.com/AgustinAllamanoCosta/GTDFront/commit/c43f5b646200861c4a0dc7c3bca80225a43e415b))
+
 ### 0.0.13 (2023-12-11)
 
 
