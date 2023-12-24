@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { UserCard } from '../../components/userCard/UserCard';
 import { useEffect, useState } from 'react';
-import { ItemList } from '../../components/itemList/ItemList';
 import { ActiveTask } from '../../components/activeTask/ActiveTask';
 import { createContext } from 'react';
+import { ItemList } from '../../components/itemList/ItemList';
 
 type UserData = {
   name: string;
@@ -11,29 +11,35 @@ type UserData = {
 };
 
 export type Task = {
+  id: string;
   title: string;
   isComplete: boolean;
+  isCancele: boolean;
+  isActive: boolean;
 };
 
-export type ActiveTask = Array<Task>;
-export type InboxTask = Array<Task>;
+export type ActiveTasks = Array<Task>;
+export type InboxTasks = Array<Task>;
+export type Tasks = Array<Task>;
 
 type MainViewProps = {
   userData?: UserData;
-  activeTasks?: ActiveTask;
-  inboxTasks?: InboxTask;
+  activeTasks?: ActiveTasks;
+  inboxTasks?: InboxTasks;
 };
 
 export const TaskInformationContext = createContext<{
-  activeTasks: ActiveTask;
-  inboxTasks: InboxTask;
-  setActiveTask: (e: any) => void;
-  setInboxTasks: (e: any) => void;
+  activeTasks: ActiveTasks;
+  inboxTasks: InboxTasks;
+  items: Tasks;
+  setActiveTask: (e: ActiveTasks) => void;
+  setItems: (e: Tasks) => void;
 }>({
   activeTasks: [],
   inboxTasks: [],
+  items: [],
   setActiveTask: (e) => {},
-  setInboxTasks: (e) => {},
+  setItems: (e) => {},
 });
 
 const MainView = ({
@@ -41,40 +47,43 @@ const MainView = ({
     name: '',
     photoURL: 'https://i.stack.imgur.com/Dj7eP.jpg',
   },
-  activeTasks = [],
   inboxTasks = [],
 }: MainViewProps) => {
   const [userConfig, setUserConfig] = useState(userData);
-  const [activeItems, setActiveItems] = useState<ActiveTask>(activeTasks);
-  const [items, setItems] = useState<InboxTask>(inboxTasks);
 
-  const getTheActiveTask = () => {
-    if (inboxTasks.length >= 3) {
-      const newActiveTask: Array<Task> = inboxTasks.splice(0, 3);
-      activeTasks = newActiveTask;
-      setActiveItems([...newActiveTask]);
-    } else if (inboxTasks.length > 0) {
-      const newActiveTask: Array<Task> = inboxTasks.splice(
-        0,
-        inboxTasks.length,
-      );
-      activeTasks = newActiveTask;
-      setActiveItems([...newActiveTask]);
-    }
+  const [activeItems, setActiveItems] = useState<ActiveTasks>([]);
+  const [inboxTask, setInboxTask] = useState<InboxTasks>([]);
+
+  const [items, setItems] = useState<InboxTasks>(inboxTasks);
+
+  const getTheActiveTask = (taskToAnalize: InboxTasks) => {
+    const newActiveTask: Array<Task> = taskToAnalize.filter((task: Task) => {
+      return task.isActive && !task.isCancele && !task.isComplete;
+    });
+    setActiveItems([...newActiveTask]);
+  };
+
+  const getInboxTask = (taskToAnalize: InboxTasks) => {
+    const newInboxTask: Array<Task> = taskToAnalize.filter((task: Task) => {
+      return !task.isActive && !task.isCancele && !task.isComplete;
+    });
+    setInboxTask([...newInboxTask]);
   };
 
   useEffect(() => {
-    if (activeItems.length == 0) getTheActiveTask();
-  }, [activeItems, items]);
+    getTheActiveTask(items);
+    getInboxTask(items);
+  }, [items]);
 
   return (
     <Container>
       <TaskInformationContext.Provider
         value={{
           activeTasks: activeItems,
-          inboxTasks: items,
+          inboxTasks: inboxTask,
+          items,
           setActiveTask: setActiveItems,
-          setInboxTasks: setItems,
+          setItems,
         }}
       >
         <UserCard

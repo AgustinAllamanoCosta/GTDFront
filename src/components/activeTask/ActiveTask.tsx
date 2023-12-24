@@ -4,17 +4,17 @@ import { Task, TaskInformationContext } from '../../views/main/Main';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
 import { StickyNote } from '../stickyNote/StickyNote';
 
-export type ActiveTaskProps = {
-  task_list: Array<Task>;
-};
-
 export const ActiveTask = (): JSX.Element => {
   const activeInformation = useContext(TaskInformationContext);
 
   const removeActiveTaks = (index: number) => {
-    const array = [...activeInformation.activeTasks];
-    array.splice(index, 1);
-    activeInformation.setActiveTask(array);
+    //TODO: improve this :D
+    activeInformation.items.forEach((task: Task) => {
+      if (task.id === activeInformation.activeTasks[index].id) {
+        task.isComplete = true;
+      }
+    });
+    activeInformation.setItems([...activeInformation.items]);
   };
 
   return (
@@ -24,7 +24,7 @@ export const ActiveTask = (): JSX.Element => {
         label={`${activeInformation.activeTasks.length}/3`}
       >
         <ActiveTaskContent data-cy="Active-task-container">
-          {activeInformation.activeTasks.map((item, index) => {
+          {activeInformation.activeTasks.map((item: Task, index: number) => {
             return (
               <StickyNote
                 key={`${index}-${item.title}`}

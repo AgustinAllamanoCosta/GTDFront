@@ -1,9 +1,9 @@
 import React from 'react';
-import { ItemList } from './ItemList';
 import {
   TaskContext,
   mockTaskInContext,
 } from '../../storybook/decorators/tasks';
+import { ItemList } from './ItemList';
 
 describe('Item List', () => {
   it('render a list of item with a add button at the end', () => {

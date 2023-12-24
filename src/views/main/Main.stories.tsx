@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import MainView from './Main';
+import { v4 as uuidv4 } from 'uuid';
 
 const meta = {
   title: 'Views/Main',
@@ -15,24 +16,39 @@ export const FullMainView: Story = {
     activeTasks: [],
     inboxTasks: [
       {
+        id: uuidv4(),
         title: 'Some task 1',
         isComplete: false,
+        isActive: false,
+        isCancele: false,
       },
       {
+        id: uuidv4(),
         title: 'Some task 2',
         isComplete: false,
+        isActive: false,
+        isCancele: false,
       },
       {
+        id: uuidv4(),
         title: 'Some task 3',
         isComplete: false,
+        isActive: false,
+        isCancele: false,
       },
       {
+        id: uuidv4(),
         title: 'Some task 4',
         isComplete: false,
+        isActive: false,
+        isCancele: false,
       },
       {
+        id: uuidv4(),
         title: 'Some task 5',
         isComplete: false,
+        isActive: false,
+        isCancele: false,
       },
     ],
     userData: {

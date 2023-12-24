@@ -1,70 +1,13 @@
 import { styled } from 'styled-components';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
-import { useContext, useRef, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck, faPlus } from '@fortawesome/free-solid-svg-icons';
-import { Task, TaskInformationContext } from '../../views/main/Main';
-import { FONTS } from '../../constants /size';
-
-const ENTER_KEY_COE = 13;
+import { useContext, useState } from 'react';
+import { TaskInformationContext } from '../../views/main/Main';
+import { ItemAddButton } from '../itemButton/ItemButton';
+import { Item } from '../item/Item';
+import { v4 as uuidv4 } from 'uuid';
 
 export type ItemListProps = {
   title: string;
-};
-
-type ItemAddButtonProps = {
-  action: (event: any) => void;
-  onChange: (event: any) => void;
-  value: string;
-};
-
-const ItemAddButton = ({
-  onChange,
-  action,
-  value,
-}: ItemAddButtonProps): JSX.Element => {
-  const newTaskInput = useRef<any>();
-
-  const focusInput = (event: any) => {
-    if (newTaskInput.current) {
-      newTaskInput.current.focus();
-    }
-  };
-
-  const onInputKeyDown = (event: any) => {
-    const keyCode = event.keyCode;
-    if (keyCode === ENTER_KEY_COE) {
-      event.preventDefault();
-      action(event);
-    }
-  };
-
-  return (
-    <AddItemContent data-cy={`task-add-button`}>
-      <Icon
-        icon={faPlus}
-        onClick={focusInput}
-      />
-      <AddItemInput
-        ref={newTaskInput}
-        data-cy={`task-add-button-input`}
-        placeholder={'Add Task'}
-        onBlur={action}
-        value={value}
-        onChange={onChange}
-        onKeyDown={onInputKeyDown}
-      />
-    </AddItemContent>
-  );
-};
-
-const Item = ({ title, isComplete }: Task): JSX.Element => {
-  return (
-    <ItemContent data-cy={`task-${title}`}>
-      <Icon icon={faCheck} />
-      <ItemText>{title}</ItemText>
-    </ItemContent>
-  );
 };
 
 export const ItemList = ({ title }: ItemListProps): JSX.Element => {
@@ -73,10 +16,30 @@ export const ItemList = ({ title }: ItemListProps): JSX.Element => {
 
   const buttonAdd = (event: any) => {
     if (event.target.value !== '') {
-      const oldTask = activeInformation.inboxTasks;
-      oldTask.push({ title: event.target.value, isComplete: false });
-      activeInformation.setInboxTasks([...oldTask]);
+      const oldTask = activeInformation.items;
+      oldTask.push({
+        id: uuidv4(),
+        title: event.target.value,
+        isComplete: false,
+        isCancele: false,
+        isActive: false,
+      });
+      activeInformation.setItems([...oldTask]);
       setValue('');
+    }
+  };
+
+  const onCancelTask = (index: number) => {
+    const oldTask = activeInformation.items;
+    oldTask[index].isCancele = true;
+    activeInformation.setItems([...oldTask]);
+  };
+
+  const onActiveTask = (index: number) => {
+    if (activeInformation.activeTasks.length < 3) {
+      const oldTask = activeInformation.items;
+      oldTask[index].isActive = true;
+      activeInformation.setItems([...oldTask]);
     }
   };
 
@@ -95,7 +58,9 @@ export const ItemList = ({ title }: ItemListProps): JSX.Element => {
             return (
               <Item
                 key={`${index}-${item.title}`}
-                {...item}
+                title={item.title}
+                onAcive={() => onActiveTask(index)}
+                onCancel={() => onCancelTask(index)}
               />
             );
           })}
@@ -109,45 +74,6 @@ export const ItemList = ({ title }: ItemListProps): JSX.Element => {
     </InboxTaskContainer>
   );
 };
-
-const ItemContent = styled.div`
-  border-bottom-style: solid;
-  border-bottom-color: black;
-  border-bottom-width: 1px;
-  display: flex;
-  flex-direction: row;
-  padding-left: 9px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-`;
-
-const AddItemContent = styled(ItemContent)`
-  margin-bottom: 15px;
-`;
-
-const ItemText = styled.span`
-  font-weight: bold;
-  font-size: ${FONTS.TEXT};
-  height: 20px;
-`;
-
-const AddItemInput = styled.input`
-  border: 0px;
-  background-color: #d9d9d9;
-  width: 85%;
-  outline-width: 1px;
-  border-radius: 2px;
-  padding: 3px;
-  &::placeholder {
-    color: black;
-    font-weight: bold;
-  }
-`;
-
-const Icon = styled(FontAwesomeIcon)`
-  padding-left: 5px;
-  padding-right: 5px;
-`;
 
 const InboxContainer = styled.div`
   width: 100%;
