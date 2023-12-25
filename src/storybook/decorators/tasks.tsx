@@ -12,21 +12,21 @@ const task1: Task = {
   isComplete: false,
   id: uuidv4(),
   isCancele: false,
-  isActive: false,
+  isActive: true,
 };
 const task2: Task = {
   title: 'some task 2',
   isComplete: false,
   id: uuidv4(),
   isCancele: false,
-  isActive: false,
+  isActive: true,
 };
 const task3: Task = {
   title: 'some task 3',
   isComplete: false,
   id: uuidv4(),
   isCancele: false,
-  isActive: false,
+  isActive: true,
 };
 
 type TaskContextProps = {
@@ -44,8 +44,8 @@ export const TaskContextDecorator = (Story: any) => {
 };
 
 export const TaskContext = ({ children }: TaskContextProps) => {
-  const [activeItems, setActiveItems] = useState<ActiveTasks>([]);
-  const [inboxTask, setInboxTask] = useState<InboxTasks>([]);
+  const [activeItems, setActiveItems] = useState<ActiveTasks>(mockTaskInContext);
+  const [inboxTask, setInboxTask] = useState<InboxTasks>(mockTaskInContext);
 
   const [items, setItems] = useState<InboxTasks>(mockTaskInContext);
 

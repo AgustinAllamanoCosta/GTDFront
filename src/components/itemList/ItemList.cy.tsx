@@ -11,7 +11,9 @@ describe('Item List', () => {
     const buttonText: string = 'Add Task';
     cy.mount(
       <TaskContext>
-        <ItemList title={listTitle} />
+        <ItemList
+          title={listTitle} 
+        />
       </TaskContext>,
     );
     cy.get('[data-cy="Card-title"]').should('have.text', listTitle);

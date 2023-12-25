@@ -10,7 +10,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "cy": "npx cypress open",
-    "test": "NODE_ENV=test jest test --passWithNoTests",
+    "test": "NODE_ENV=test jest --passWithNoTests",
     "lint-format": "prettier . --write --single-quote --single-attribute-per-line",
     "lint-check": "prettier . --check --single-quote --single-attribute-per-line",
     "commit": "npx git-cz",
@@ -67,6 +67,7 @@
     "verbose": true,
     "preset": "ts-jest",
     "rootDir": "src",
+    "testMatch": ["<rootDir>/**/*.spec.tsx"],
     "collectCoverage": true,
     "cleanMocks": true,
     "transform": {

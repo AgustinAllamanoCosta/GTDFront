@@ -7,7 +7,7 @@ export default defineConfig({
       bundler: 'vite',
     },
     watchForFileChanges: true,
-    specPattern: '**/*.spec.tsx',
+    specPattern: '**/*.cy.tsx',
   },
 
   e2e: {

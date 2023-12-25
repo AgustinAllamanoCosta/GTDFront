@@ -6,6 +6,7 @@ describe('User Card with title Getting Things Done and subtitle Agustin Allamano
     const userName: string = 'Agustin Allamano Costa';
     const userPhoto: string = 'https://i.stack.imgur.com/Dj7eP.jpg';
     const cardTitle: string = 'Getting Things Done';
+
     cy.mount(
       <UserCard
         userName={userName}
@@ -14,7 +15,7 @@ describe('User Card with title Getting Things Done and subtitle Agustin Allamano
     );
 
     cy.get('[data-cy="Card-title"]').should('have.text', cardTitle);
-    cy.get('[data-cy="Card-SubTitle"]').should('have.text', userName);
+    cy.get('[data-cy="Card-SubTitle"]').should('have.text', `Hi ${userName} !`);
     cy.get('[data-cy="Avatar-photo"]').should(
       'have.attr',
       'imageurl',
