@@ -67,7 +67,9 @@
     "verbose": true,
     "preset": "ts-jest",
     "rootDir": "src",
-    "testMatch": ["<rootDir>/**/*.spec.tsx"],
+    "testMatch": [
+      "<rootDir>/**/*.spec.tsx"
+    ],
     "collectCoverage": true,
     "cleanMocks": true,
     "transform": {

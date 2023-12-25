@@ -44,7 +44,8 @@ export const TaskContextDecorator = (Story: any) => {
 };
 
 export const TaskContext = ({ children }: TaskContextProps) => {
-  const [activeItems, setActiveItems] = useState<ActiveTasks>(mockTaskInContext);
+  const [activeItems, setActiveItems] =
+    useState<ActiveTasks>(mockTaskInContext);
   const [inboxTask, setInboxTask] = useState<InboxTasks>(mockTaskInContext);
 
   const [items, setItems] = useState<InboxTasks>(mockTaskInContext);
