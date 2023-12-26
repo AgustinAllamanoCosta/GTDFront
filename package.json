@@ -10,6 +10,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "cy": "npx cypress open",
+    "cy-ci": "npx cypress install && yarn dev",
     "test": "NODE_ENV=test jest --passWithNoTests",
     "lint-format": "prettier . --write --single-quote --single-attribute-per-line",
     "lint-check": "prettier . --check --single-quote --single-attribute-per-line",
