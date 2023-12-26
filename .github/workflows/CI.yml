@@ -19,6 +19,7 @@ jobs:
         with:
           path: |
             **/node_modules
+            **/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies with Node.js 18.x
@@ -42,6 +43,7 @@ jobs:
         with:
           path: |
             **/node_modules
+            **/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Run Lint with Node.js 18.x
@@ -65,6 +67,7 @@ jobs:
         with:
           path: |
             **/node_modules
+            **/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Run Test with Node.js 18.x
@@ -91,6 +94,7 @@ jobs:
         with:
           path: |
             **/node_modules
+            **/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Run Build with Node.js 18.x
@@ -114,6 +118,7 @@ jobs:
         with:
           path: |
             **/node_modules
+            **/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Cypress run
