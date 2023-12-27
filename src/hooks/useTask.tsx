@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import { ActiveTasks, InboxTasks, Task } from '../types/types';
+import { doc, setDoc } from 'firebase/firestore';
+import useFireBase from './useFirebase';
 
 export const useTask = (userTask: InboxTasks) => {
   const LOCAL_HOST_KEY: string = 'gtd-data';
+  const FIRE_BASE_COLLECTION_NAME: string = 'users-task';
   const [activeItems, setActiveItems] = useState<ActiveTasks>([]);
   const [inboxTask, setInboxTask] = useState<InboxTasks>([]);
 
@@ -31,11 +34,22 @@ export const useTask = (userTask: InboxTasks) => {
     );
   };
 
+  const saveIntoFirebase = async (items: InboxTasks) => {
+    const userTask = doc(useFireBase, FIRE_BASE_COLLECTION_NAME, 'user-id');
+    try {
+      const firebaseResponse = await setDoc(userTask, { items });
+      console.log(firebaseResponse);
+    } catch (error) {
+      console.log('firebase error', error);
+    }
+  };
+
   useEffect(() => {
     getTheActiveTask(items);
     getInboxTask(items);
     if (items.length !== 0) {
       saveItems(items);
+      saveIntoFirebase(items);
     }
   }, [items]);
 
@@ -48,6 +62,7 @@ export const useTask = (userTask: InboxTasks) => {
       }
     } else {
       saveItems(items);
+      saveIntoFirebase(items);
     }
   }, []);
 

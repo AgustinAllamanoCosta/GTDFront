@@ -15,6 +15,7 @@ type MainViewProps = {
 
 const MainView = ({
   userData = {
+    id: 'some user id',
     name: 'default-user',
     photoURL: 'https://i.stack.imgur.com/Dj7eP.jpg',
   },
