@@ -1,10 +1,10 @@
 import { styled } from 'styled-components';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
 import { useContext, useState } from 'react';
-import { TaskInformationContext } from '../../views/main/Main';
 import { ItemAddButton } from '../itemButton/ItemButton';
 import { Item } from '../item/Item';
 import { v4 as uuidv4 } from 'uuid';
+import { TaskInformationContext } from '../../contexts/taskContext';
 
 export type ItemListProps = {
   title: string;

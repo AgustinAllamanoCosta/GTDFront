@@ -1,11 +1,7 @@
 import { useState } from 'react';
-import {
-  ActiveTasks,
-  InboxTasks,
-  Task,
-  TaskInformationContext,
-} from '../../views/main/Main';
 import { v4 as uuidv4 } from 'uuid';
+import { ActiveTasks, InboxTasks, Task } from '../../types/types';
+import { TaskInformationContext } from '../../contexts/taskContext';
 
 const task1: Task = {
   title: 'some task 1',

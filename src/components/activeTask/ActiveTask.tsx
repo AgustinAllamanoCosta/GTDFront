@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import { styled } from 'styled-components';
-import { Task, TaskInformationContext } from '../../views/main/Main';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
 import { StickyNote } from '../stickyNote/StickyNote';
+import { TaskInformationContext } from '../../contexts/taskContext';
+import { Task } from '../../types/types';
 
 export const ActiveTask = (): JSX.Element => {
   const activeInformation = useContext(TaskInformationContext);
