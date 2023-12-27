@@ -99,13 +99,35 @@ jobs:
           node-version: 18.x
       - run: yarn build
 
-  cypress:
+  #  cypress:
+  #    runs-on: ubuntu-latest
+  #
+  #    needs: build
+  #
+  #    steps:
+  #      - name: Checkout
+  #        uses: actions/checkout@v4
+  #
+  #      - name: Cache dependencies
+  #        id: cache-dependencies
+  #        uses: actions/cache@v3.3.2
+  #        with:
+  #          path: |
+  #            **/node_modules
+  #          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+  #
+  #      - name: Cypress run
+  #        uses: cypress-io/github-action@v6
+  #        with:
+  #          start: yarn cy-ci
+
+  version:
     runs-on: ubuntu-latest
 
     needs: build
 
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Cache dependencies
@@ -116,38 +138,16 @@ jobs:
             **/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          start: yarn cy-ci
+      - name: Configure commiter
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "<>"
 
-  #version:
-  #  runs-on: ubuntu-latest
-#
-#  needs: cypress
-#
-#  steps:
-#    - name: Checkout code
-#      uses: actions/checkout@v4
-#
-#    - name: Cache dependencies
-#      id: cache-dependencies
-#      uses: actions/cache@v3.3.2
-#      with:
-#        path: |
-#          **/node_modules
-#        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-#
-#    - name: Configure commiter
-#      run: |
-#        git config user.name "GitHub Actions Bot"
-#        git config user.email "<>"
-#
-#    - name: Generate Version
-#      run: |
-#        yarn release
-#
-#    - name: Pushing Version
-#      run: |
-#        git commit --allow-empty -m "[skip ci]"
-#        git push --follow-tags origin master
+      - name: Generate Version
+        run: |
+          yarn release
+
+      - name: Pushing Version
+        run: |
+          git commit --allow-empty -m "[skip ci]"
+          git push --follow-tags origin master

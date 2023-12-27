@@ -42,7 +42,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
               class="sc-dMnqAs ekIyvU"
               data-cy="Card-SubTitle"
             >
-              Hi  !
+              Hi default-user !
             </span>
           </div>
         </div>
