@@ -1,8 +1,8 @@
-name: Continues Deployment
+name: Continues_Deployment
 
 on:
   workflow_run:
-    workflows: ['Continues Integration']
+    workflows: ['Continues_Integration']
     types:
       - completed
 
