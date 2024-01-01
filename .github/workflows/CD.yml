@@ -35,4 +35,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GETTHINGSDONE_391622 }}'
           projectId: getthingsdone-391622
-          channelId: ${ $CHANNEL_ID }
+          channelId: ${{ $CHANNEL_ID }}
