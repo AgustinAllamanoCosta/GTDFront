@@ -151,14 +151,3 @@ jobs:
         run: |
           git commit --allow-empty -m "[skip ci]"
           git push --follow-tags origin master
-
-      - name: Trigger Deploy
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: 'CD.yml',
-              ref: 'master',
-            })
