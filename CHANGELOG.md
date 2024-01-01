@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### 0.0.29 (2024-01-01)
 
+* CI and CD change related
+
 ### 0.0.28 (2024-01-01)
 
 * CI and CD change related
