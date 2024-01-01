@@ -1,9 +1,7 @@
 name: Continues_Deployment
 
 on:
-  workflow_run:
-    workflows: ['Continues_Integration']
-    types: [completed]
+  workflow_dispatch:
 
 jobs:
   build_and_preview:
