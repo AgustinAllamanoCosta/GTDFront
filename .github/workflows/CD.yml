@@ -34,4 +34,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GETTHINGSDONE_391622 }}'
           projectId: getthingsdone-391622
-          channelId: '${ git describe --tags `git rev-list --tags --max-count=1` }'
+          channelId: ${ git describe --tags `git rev-list --tags --max-count=1` }
