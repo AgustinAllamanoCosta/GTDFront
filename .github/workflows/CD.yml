@@ -3,11 +3,13 @@ name: Continues_Deployment
 on:
   workflow_run:
     workflows: ['Continues_Integration']
-    types: [completed]
+    types:
+      - completed
+    branches: master
 
 jobs:
   deploy_on_cache:
-    if: ${{ needs.Continues_Integration.outputs.run_cd  }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
