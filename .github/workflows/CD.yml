@@ -4,21 +4,14 @@ on:
   push:
     tags:
       - '*'
+    branches: ['master']
 
 jobs:
-  deploy_on_cache:
+  geting-artifact:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Cache dependencies
-        id: cache-dependencies
-        uses: actions/cache@v3.3.2
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Download production artifact
         uses: aochmann/actions-download-artifact@1.0.0
@@ -26,6 +19,9 @@ jobs:
           github_token: ${{secrets.GITHUB_TOKEN}}
           name: dist-to-prod
 
+  creating_release:
+    runs-on: ubuntu-latest
+    steps:
       - name: Calculate channel id
         id: tag
         uses: devops-actions/action-get-tag@v1.0.2
@@ -43,6 +39,15 @@ jobs:
           body_path: 'CHANGELOG.md'
           draft: false
           prerelease: false
+
+  deploy_on_firebase:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Calculate channel id
+        id: tag
+        uses: devops-actions/action-get-tag@v1.0.2
+        with:
+          default: v0.0.0
 
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0.6-alpha
