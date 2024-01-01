@@ -28,11 +28,17 @@ jobs:
           workflow: ${{ github.event.workflow_run.workflow_id }}
           workflow_conclusion: success
 
+      - name: Calculate channel id
+        id: calculate_channel_id
+        run: |
+          latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
+          echo "Latest tag is $latest_tag"
+          echo "::set-output name=latest_tag::$latest_tag"
+
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0.6-alpha
         with:
-          run: export CHANNEL_ID=$(git describe --tags `git rev-list --tags --max-count=1`)
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GETTHINGSDONE_391622 }}'
           projectId: getthingsdone-391622
-          channelId: ${{ $CHANNEL_ID }}
+          channelId: ${{ steps.calculate_channel_id.outputs.latest_tag }}
