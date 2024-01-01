@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy_on_cache:
-    if: vars.RUN_CD == true
+    if: ${{ needs.Continues_Integration.outputs.run_cd  }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
