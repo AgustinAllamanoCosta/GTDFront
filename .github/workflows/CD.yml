@@ -3,8 +3,7 @@ name: Continues_Deployment
 on:
   workflow_run:
     workflows: ['Continues_Integration']
-    types:
-      - completed
+    types: [completed]
 
 jobs:
   build_and_preview:
