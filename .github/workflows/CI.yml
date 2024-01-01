@@ -158,3 +158,6 @@ jobs:
         run: |
           git commit --allow-empty -m "[skip ci]"
           git push --follow-tags origin master
+      
+      - name: Enabling CD pipeline
+        run: vars.RUN_CD=true
