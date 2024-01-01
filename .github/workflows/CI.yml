@@ -99,6 +99,13 @@ jobs:
           node-version: 18.x
       - run: yarn build
 
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-to-prod
+          path: |
+            dist
+
   #  cypress:
   #    runs-on: ubuntu-latest
   #

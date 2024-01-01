@@ -18,6 +18,11 @@ jobs:
           path: |
             **/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      
+      - name: Download production artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist-to-prod
 
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0.6-alpha
