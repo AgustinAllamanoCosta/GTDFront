@@ -180,9 +180,10 @@ jobs:
         id: create_release
         uses: ncipollo/release-action@v1.9.0
         with:
+          run: version=$(jq -r '.version' package.json)
           bodyFile: 'CHANGELOG.md'
           artifacts: 'dist.zip'
-          tag: $(jq -r '.version' package.json)
+          tag: ${ $version }
 
   deploy_on_firebase:
     runs-on: ubuntu-latest
@@ -196,7 +197,8 @@ jobs:
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0.6-alpha
         with:
+          run: version=$(jq -r '.version' package.json)
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GETTHINGSDONE_391622 }}'
           projectId: getthingsdone-391622
-          channelId: $(jq -r '.version' package.json)
+          channelId: ${ $version }
