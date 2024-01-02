@@ -176,6 +176,11 @@ jobs:
             **/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
+      - name: Get package.json version
+        id: get_version
+        run: |
+          echo "::set-output name=version::$(jq -r '.version' package.json)"
+
       - name: Create Release
         id: create_release
         uses: ncipollo/release-action@v1.9.0
@@ -183,7 +188,7 @@ jobs:
           run: version=$(jq -r '.version' package.json)
           bodyFile: 'CHANGELOG.md'
           artifacts: 'dist.zip'
-          tag: ${ $version }
+          tag: ${{ steps.get_version.outputs.version }}
 
   deploy_on_firebase:
     runs-on: ubuntu-latest
@@ -194,6 +199,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Get package.json version
+        id: get_version
+        run: |
+          echo "::set-output name=version::$(jq -r '.version' package.json)"
+
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0.6-alpha
         with:
@@ -201,4 +211,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GETTHINGSDONE_391622 }}'
           projectId: getthingsdone-391622
-          channelId: ${ $version }
+          channelId: ${{ steps.get_version.outputs.version }}
