@@ -173,15 +173,12 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: surmon-china/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ncipollo/release-action@v1.9.0
         with:
           tag_name: ${{ steps.tag.outputs.tag }}
-          release_name: Release ${{ steps.tag.outputs.tag }}
-          body_path: 'CHANGELOG.md'
-          draft: false
-          prerelease: false
+          bodyFile: 'CHANGELOG.md'
+          artifacts: 'dist-to-prod.zip'
+          tag: ${{steps.tag.outputs.tag}}
 
   deploy_on_firebase:
     runs-on: ubuntu-latest
