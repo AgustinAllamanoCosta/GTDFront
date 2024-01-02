@@ -182,14 +182,14 @@ jobs:
           echo "::set-output name=version::$(jq -r '.version' package.json)"
 
       - name: Download production artifact
-        uses: aochmann/actions-download-artifact@1.0.0
+        uses: aochmann/actions-download-artifact@1.0.4
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
           name: dist
 
       - name: Create Release
         id: create_release
-        uses: ncipollo/release-action@v1.9.0
+        uses: ncipollo/release-action@v1.13.0
         with:
           run: version=$(jq -r '.version' package.json)
           bodyFile: 'CHANGELOG.md'
@@ -211,7 +211,7 @@ jobs:
           echo "::set-output name=version::$(jq -r '.version' package.json)"
 
       - name: Download production artifact
-        uses: aochmann/actions-download-artifact@1.0.0
+        uses: aochmann/actions-download-artifact@1.0.4
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
           name: dist
