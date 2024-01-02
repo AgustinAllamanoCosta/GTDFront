@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 /env/.env
 coverage
+/cypress/videos
+/cypress/screenshots
+**/cypress.env.json

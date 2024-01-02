@@ -23,11 +23,14 @@ export const ActiveTask = (): JSX.Element => {
       <CardTitle
         title="Active Task"
         label={`${activeInformation.activeTasks.length}/3`}
+        data-cy="Active-task-title"
       >
-        <ActiveTaskContent data-cy="Active-task-container">
+        <ActiveTaskContent data-cy="Active-task-list">
           {activeInformation.activeTasks.map((item: Task, index: number) => {
             return (
               <StickyNote
+                number={index.toString()}
+                data-cy={`task-number-${index}`}
                 key={`${index}-${item.title}`}
                 text={item.title}
                 onConfirm={(e) => removeActiveTaks(index)}

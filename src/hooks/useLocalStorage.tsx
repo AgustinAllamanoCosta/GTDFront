@@ -1,3 +1,4 @@
+import { Dict } from 'styled-components/dist/types';
 import { LOCAL_STORAGE_KEY } from '../constants /keys';
 import { InboxTasks, UserData } from '../types/types';
 
@@ -13,11 +14,9 @@ export const useLocalStorage = () => {
     return get(ITEMS_KEY);
   };
 
-  const saveUserData = (useData: UserData | undefined) => {
-    if (useData) {
-      save(USER_DATA_KEY, useData);
-    } else {
-    }
+  const saveUserData = (userData: UserData | undefined) => {
+    if (userData) save(USER_DATA_KEY, userData);
+    else deleteKey(USER_DATA_KEY);
   };
 
   const getUserData = () => {
@@ -31,7 +30,9 @@ export const useLocalStorage = () => {
       dataInLocal[key] = item;
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(dataInLocal));
     } else {
-      deleteKey(key);
+      const dataInLocal: Dict<any> = {};
+      dataInLocal[`${key}`] = item;
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(dataInLocal));
     }
   };
 

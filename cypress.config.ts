@@ -9,7 +9,6 @@ export default defineConfig({
     watchForFileChanges: true,
     specPattern: '**/*.cy.tsx',
   },
-
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here

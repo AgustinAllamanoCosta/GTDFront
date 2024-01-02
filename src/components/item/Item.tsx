@@ -26,6 +26,7 @@ export const Item = ({ title, onCancel, onAcive }: ItemProps): JSX.Element => {
       {showButton && (
         <ButtonContainer>
           <Icon
+            data-cy={`task-${title}-active`}
             icon={faCheck}
             onClick={() => {
               setShowButton(false);
@@ -33,6 +34,7 @@ export const Item = ({ title, onCancel, onAcive }: ItemProps): JSX.Element => {
             }}
           />
           <Icon
+            data-cy={`task-${title}-cancel`}
             icon={faX}
             onClick={() => {
               setShowButton(false);

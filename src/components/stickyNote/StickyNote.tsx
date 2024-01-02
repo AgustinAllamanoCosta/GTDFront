@@ -5,22 +5,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FONTS } from '../../constants /size';
 
 export type StickyNoteProps = {
+  number: string;
   text: string;
   onConfirm?: (event: any) => void;
 };
 
 export const StickyNote = ({
+  number,
   text,
   onConfirm,
 }: StickyNoteProps): JSX.Element => {
   return (
-    <ButtonAndNoteContainer>
-      <TextContainer>
-        <TextNote data-cy="stick-note-text">{text.toUpperCase()}</TextNote>
+    <ButtonAndNoteContainer data-cy={`stick-note-container-${number}`}>
+      <TextContainer data-cy={`stick-note-text-container-${number}`}>
+        <TextNote data-cy={`stick-note-text-${number}`}>
+          {text.toUpperCase()}
+        </TextNote>
       </TextContainer>
       <ButtonContainer
         onClick={onConfirm}
-        data-cy="stick-note-button"
+        data-cy={`stick-note-button-${number}`}
       >
         <Icon
           icon={faCheck}

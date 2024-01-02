@@ -7,15 +7,16 @@ describe('StickNote with title and subtitle', () => {
     const addInfo: string = 'add description';
     cy.mount(
       <StickyNote
+        number="0"
         text={stickText}
         onConfirm={() => {}}
       />,
     );
-    cy.get('[data-cy="stick-note-text"]').should(
+    cy.get('[data-cy="stick-note-text-0"]').should(
       'have.text',
       stickText.toUpperCase(),
     );
-    cy.get('[data-cy="stick-note-text"]').type(addInfo);
-    cy.get('[data-cy="stick-note-button"]').click();
+    cy.get('[data-cy="stick-note-text-0"]').type(addInfo);
+    cy.get('[data-cy="stick-note-button-0"]').click();
   });
 });
