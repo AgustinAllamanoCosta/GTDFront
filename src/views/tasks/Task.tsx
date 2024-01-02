@@ -1,28 +1,19 @@
 import styled from 'styled-components';
 import { UserCard } from '../../components/userCard/UserCard';
-import { useState } from 'react';
+import { useContext } from 'react';
 import { ActiveTask } from '../../components/activeTask/ActiveTask';
 import { ItemList } from '../../components/itemList/ItemList';
-import { ActiveTasks, InboxTasks, UserData } from '../../types/types';
+import { InboxTasks } from '../../types/types';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { useTask } from '../../hooks/useTask';
+import { UserInformationContext } from '../../contexts/userContext';
 
 type TaskViewProps = {
-  userData?: UserData;
-  activeTasks?: ActiveTasks;
   inboxTasks?: InboxTasks;
 };
 
-const TaskView = ({
-  userData = {
-    id: undefined,
-    name: '',
-    photoURL: '',
-    accessToken: '',
-  },
-  inboxTasks = [],
-}: TaskViewProps) => {
-  const [userConfig, setUserConfig] = useState(userData);
+const TaskView = ({ inboxTasks = [] }: TaskViewProps) => {
+  const userInformation = useContext(UserInformationContext);
   const { activeItems, inboxTask, items, setActiveItems, setItems } =
     useTask(inboxTasks);
 
@@ -37,10 +28,12 @@ const TaskView = ({
           setItems,
         }}
       >
-        <UserCard
-          userName={userConfig.name}
-          userPhoto={userConfig.photoURL}
-        />
+        {userInformation.userData && (
+          <UserCard
+            userName={userInformation.userData.name}
+            userPhoto={userInformation.userData.photoURL}
+          />
+        )}
         <ActiveTask />
         <ItemList title="Task Inbox" />
       </TaskInformationContext.Provider>

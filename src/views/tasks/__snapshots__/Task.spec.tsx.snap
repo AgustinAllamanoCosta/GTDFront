@@ -9,45 +9,6 @@ exports[`Task View Should render a login view with singin and login buttons 1`] 
       class="sc-dasNVf fFEXxr"
     >
       <div
-        class="sc-laEPQd cka-dRM"
-      >
-        <div
-          class="sc-fBEEOr kVivnY"
-          data-cy="Avatar-photo"
-          imageurl=""
-        />
-        <div
-          class="sc-jCIOXC fWCdz"
-          data-cy="Card-Contents"
-        >
-          <div
-            class="sc-dBwcjI jySlOX"
-            data-cy="User-Card-Header"
-          >
-            <div
-              class="sc-bXxmBy hdHbjH"
-            >
-              <div
-                class="sc-kPNBzt dgnXOz"
-              >
-                <span
-                  class="sc-jlOLRj bkDUrU"
-                  data-cy="Card-title"
-                >
-                  Getting Things Done
-                </span>
-              </div>
-            </div>
-            <span
-              class="sc-dMnqAs ekIyvU"
-              data-cy="Card-SubTitle"
-            >
-              Hi  !
-            </span>
-          </div>
-        </div>
-      </div>
-      <div
         class="sc-bubcaR ekwLyH"
       >
         <div

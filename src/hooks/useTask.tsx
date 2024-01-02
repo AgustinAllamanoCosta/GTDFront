@@ -2,9 +2,12 @@ import { useEffect, useState } from 'react';
 import { ActiveTasks, InboxTasks, Task } from '../types/types';
 import { doc, setDoc } from 'firebase/firestore';
 import useFireBase from './useFirebase';
-import { FIRE_BASE_COLLECTION_NAME, LOCAL_HOST_KEY } from '../constants /keys';
+import { FIRE_BASE_COLLECTION_NAME } from '../constants /keys';
+import { useLocalStorage } from './useLocalStorage';
 
 export const useTask = (userTask: InboxTasks) => {
+  const { getItem, saveItems } = useLocalStorage();
+
   const [activeItems, setActiveItems] = useState<ActiveTasks>([]);
   const [inboxTask, setInboxTask] = useState<InboxTasks>([]);
 
@@ -24,15 +27,6 @@ export const useTask = (userTask: InboxTasks) => {
     setInboxTask([...newInboxTask]);
   };
 
-  const saveItems = (items: InboxTasks) => {
-    localStorage.setItem(
-      LOCAL_HOST_KEY,
-      JSON.stringify({
-        items,
-      }),
-    );
-  };
-
   const saveIntoFirebase = async (items: InboxTasks) => {
     const userTask = doc(useFireBase, FIRE_BASE_COLLECTION_NAME, 'user-id');
     try {
@@ -42,26 +36,27 @@ export const useTask = (userTask: InboxTasks) => {
     }
   };
 
+  const save = async (items: InboxTasks) => {
+    saveItems(items);
+    await saveIntoFirebase(items);
+  };
+
   useEffect(() => {
     getTheActiveTask(items);
     getInboxTask(items);
-
     if (items.length !== 0) {
-      saveItems(items);
-      saveIntoFirebase(items);
+      save(items);
     }
   }, [items]);
 
   useEffect(() => {
     if (items.length === 0) {
-      const gtd_data = localStorage.getItem(LOCAL_HOST_KEY);
-      if (gtd_data) {
-        const gtd_data_pars = JSON.parse(gtd_data);
-        setItems(gtd_data_pars.items);
+      const items = getItem();
+      if (items) {
+        setItems(items);
       }
     } else {
-      saveItems(items);
-      saveIntoFirebase(items);
+      save(items);
     }
   }, []);
 
