@@ -102,7 +102,7 @@ jobs:
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: dist-to-prod
+          name: dist
           path: |
             dist
 
@@ -181,13 +181,19 @@ jobs:
         run: |
           echo "::set-output name=version::$(jq -r '.version' package.json)"
 
+      - name: Download production artifact
+        uses: aochmann/actions-download-artifact@1.0.0
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          name: dist
+
       - name: Create Release
         id: create_release
         uses: ncipollo/release-action@v1.9.0
         with:
           run: version=$(jq -r '.version' package.json)
           bodyFile: 'CHANGELOG.md'
-          artifacts: 'dist.zip'
+          artifacts: './dist'
           tag: ${{ steps.get_version.outputs.version }}
 
   deploy_on_firebase:
@@ -203,6 +209,12 @@ jobs:
         id: get_version
         run: |
           echo "::set-output name=version::$(jq -r '.version' package.json)"
+
+      - name: Download production artifact
+        uses: aochmann/actions-download-artifact@1.0.0
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          name: dist
 
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0.6-alpha
