@@ -163,7 +163,7 @@ jobs:
     runs-on: ubuntu-latest
 
     needs: version
-    
+
     steps:
       - name: Calculate channel id
         id: tag
@@ -187,7 +187,7 @@ jobs:
     runs-on: ubuntu-latest
 
     needs: creating_release
-    
+
     steps:
       - name: Calculate channel id
         id: tag
