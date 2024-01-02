@@ -1,17 +1,17 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import MainView from './Main';
+import TaskView from './Task';
 import { v4 as uuidv4 } from 'uuid';
 
 const meta = {
-  title: 'Views/Main',
-  component: MainView,
+  title: 'Views/Task',
+  component: TaskView,
   tags: ['autodocs'],
-} satisfies Meta<typeof MainView>;
+} satisfies Meta<typeof TaskView>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const FullMainView: Story = {
+export const FullTaskView: Story = {
   args: {
     activeTasks: [],
     inboxTasks: [
@@ -55,6 +55,7 @@ export const FullMainView: Story = {
       id: '12312312312312312',
       name: 'Agustin Allamano Costa',
       photoURL: 'https://i.stack.imgur.com/Dj7eP.jpg',
+      accessToken: 'some acess token',
     },
   },
 };

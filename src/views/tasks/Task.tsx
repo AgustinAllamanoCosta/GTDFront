@@ -7,20 +7,21 @@ import { ActiveTasks, InboxTasks, UserData } from '../../types/types';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { useTask } from '../../hooks/useTask';
 
-type MainViewProps = {
+type TaskViewProps = {
   userData?: UserData;
   activeTasks?: ActiveTasks;
   inboxTasks?: InboxTasks;
 };
 
-const MainView = ({
+const TaskView = ({
   userData = {
-    id: 'some user id',
-    name: 'default-user',
-    photoURL: 'https://i.stack.imgur.com/Dj7eP.jpg',
+    id: undefined,
+    name: '',
+    photoURL: '',
+    accessToken: '',
   },
   inboxTasks = [],
-}: MainViewProps) => {
+}: TaskViewProps) => {
   const [userConfig, setUserConfig] = useState(userData);
   const { activeItems, inboxTask, items, setActiveItems, setItems } =
     useTask(inboxTasks);
@@ -56,4 +57,4 @@ const Container = styled.div`
   height: 100%;
 `;
 
-export default MainView;
+export default TaskView;

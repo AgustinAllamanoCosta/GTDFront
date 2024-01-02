@@ -1,7 +1,8 @@
 export type UserData = {
-  id: string;
+  id: string | undefined;
   name: string;
   photoURL: string;
+  accessToken: string;
 };
 
 export type Task = {

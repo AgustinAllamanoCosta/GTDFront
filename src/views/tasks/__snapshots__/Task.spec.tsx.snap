@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Login View Should render a login view with singin and login buttons 1`] = `
+exports[`Task View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
     class="sc-hfDuwB gDAJOq"
@@ -12,9 +12,9 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
         class="sc-laEPQd cka-dRM"
       >
         <div
-          class="sc-fBEEOr PYOAJ"
+          class="sc-fBEEOr kVivnY"
           data-cy="Avatar-photo"
-          imageurl="https://i.stack.imgur.com/Dj7eP.jpg"
+          imageurl=""
         />
         <div
           class="sc-jCIOXC fWCdz"
@@ -42,7 +42,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
               class="sc-dMnqAs ekIyvU"
               data-cy="Card-SubTitle"
             >
-              Hi default-user !
+              Hi  !
             </span>
           </div>
         </div>
