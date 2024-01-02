@@ -165,20 +165,24 @@ jobs:
     needs: version
 
     steps:
-      - name: Calculate channel id
-        id: tag
-        uses: devops-actions/action-get-tag@v1.0.2
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v3.3.2
         with:
-          default: v0.0.0
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Create Release
         id: create_release
         uses: ncipollo/release-action@v1.9.0
         with:
-          tag_name: ${{ steps.tag.outputs.tag }}
           bodyFile: 'CHANGELOG.md'
-          artifacts: 'dist-to-prod.zip'
-          tag: ${{steps.tag.outputs.tag}}
+          artifacts: 'dist.zip'
+          tag: $(jq -r '.version' package.json)
 
   deploy_on_firebase:
     runs-on: ubuntu-latest
@@ -186,11 +190,8 @@ jobs:
     needs: creating_release
 
     steps:
-      - name: Calculate channel id
-        id: tag
-        uses: devops-actions/action-get-tag@v1.0.2
-        with:
-          default: v0.0.0
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0.6-alpha
@@ -198,4 +199,4 @@ jobs:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GETTHINGSDONE_391622 }}'
           projectId: getthingsdone-391622
-          channelId: ${{steps.tag.outputs.tag}}
+          channelId: $(jq -r '.version' package.json)
