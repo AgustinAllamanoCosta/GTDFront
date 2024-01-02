@@ -1,4 +1,4 @@
-name: Continues_Integration
+name: Continues_Integration_and_Deployment
 
 on:
   push:
