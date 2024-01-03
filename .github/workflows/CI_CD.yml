@@ -76,6 +76,26 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
 
+  component_testing:
+    runs-on: ubuntu-latest
+
+    needs: lint
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v3.3.2
+        with:
+          path: |
+            **/node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Cypress Component testing
+        run: yarn cy-run-components
+
   build:
     runs-on: ubuntu-latest
 
@@ -105,28 +125,6 @@ jobs:
           name: dist
           path: |
             dist
-
-  #  cypress:
-  #    runs-on: ubuntu-latest
-  #
-  #    needs: build
-  #
-  #    steps:
-  #      - name: Checkout
-  #        uses: actions/checkout@v4
-  #
-  #      - name: Cache dependencies
-  #        id: cache-dependencies
-  #        uses: actions/cache@v3.3.2
-  #        with:
-  #          path: |
-  #            **/node_modules
-  #          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-  #
-  #      - name: Cypress run
-  #        uses: cypress-io/github-action@v6
-  #        with:
-  #          start: yarn cy-ci
 
   version:
     runs-on: ubuntu-latest

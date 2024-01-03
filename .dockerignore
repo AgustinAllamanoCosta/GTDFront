@@ -1,0 +1,17 @@
+**/node_modules
+cypress
+.storybook
+.github
+CI.sh
+.gitignore
+.prettierignore
+CHANGELOG.log 
+cypress.config.ts
+cypress.env.json
+**/*.cy.tsx
+**/*.spc.tsx
+**/stoyrbook
+*.stories.tsx
+**/__snapshots__
+**/coverage
+.firebase

@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { Routes, Route } from 'react-router-dom';
 import TaskView from './views/tasks/Task';
 import LoginView from './views/login/Login';
