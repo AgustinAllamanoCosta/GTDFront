@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.46 (2024-01-03)
+
+
+### Features
+
+* 🎸 add new e2e test and docker file ([080c897](https://github.com/AgustinAllamanoCosta/GTDFront/commit/080c8975814450f6134b065c391a838f8b9ff2eb))
+
 ### 0.0.45 (2024-01-02)
 
 ### 0.0.44 (2024-01-02)
