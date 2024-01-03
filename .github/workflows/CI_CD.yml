@@ -103,7 +103,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    needs: test
+    needs: component_testing
 
     steps:
       - name: Checkout code
@@ -130,6 +130,28 @@ jobs:
           name: dist
           path: |
             dist
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        with:
+          images: |
+            ghcr.io/${{ github.repository }}
+
+      - name: Build and push Docker images
+        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
 
   version:
     runs-on: ubuntu-latest
@@ -217,13 +239,7 @@ jobs:
         with:
           path: |
             **/node_modules
-            /home/runner/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Get package.json version
-        id: get_version
-        run: |
-          echo "::set-output name=version::$(jq -r '.version' package.json)"
 
       - name: Download production artifact
         uses: aochmann/actions-download-artifact@1.0.4
@@ -235,8 +251,7 @@ jobs:
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0.6-alpha
         with:
-          run: version=$(jq -r '.version' package.json)
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GETTHINGSDONE_391622 }}'
           projectId: getthingsdone-391622
-          channelId: ${{ steps.get_version.outputs.version }}
+          channelId: live
