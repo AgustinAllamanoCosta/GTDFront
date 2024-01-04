@@ -195,7 +195,7 @@ jobs:
           CYPRESS_PHOTO_URL: ${{ secrets.CYPRESS_PHOTO_URL }}
           CYPRESS_REMOTE_URL: ${{ secrets.CYPRESS_REMOTE_URL }}
         shell: bash
-        run: echo "$E2E_CYPRESS_TESTING" >> cypress.env.json && yarn cy-run-e2e
+        run: yarn cy-run-e2e
 
   version:
     runs-on: ubuntu-latest
