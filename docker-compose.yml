@@ -1,0 +1,7 @@
+services:
+  e2e-app:
+    image: ghcr.io/agustinallamanocosta/gtdfront:master
+    env_file:
+      - ./env/.env
+    ports:
+      - 8080:8080
