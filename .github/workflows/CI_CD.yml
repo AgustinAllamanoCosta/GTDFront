@@ -189,11 +189,13 @@ jobs:
 
       - name: Run end to end testing
         env:
-          E2E_CYPRESS_TESTING: ${{ secrets.E2E_CYPRESS_SECRETS }}
+           CYPRESS_ACCESS_TOKEN: ${{ secrets.CYPRESS_ACCESS_TOKEN }}
+           CYPRESS_ID: ${{ secrets.CYPRESS_ID }}
+           CYPRESS_NAME: ${{ secrets.CYPRESS_NAME }}
+           CYPRESS_PHOTO_URL: ${{ secrets.CYPRESS_PHOTO_URL }}
+           CYPRESS_REMOTE_URL: ${{ secrets.CYPRESS_REMOTE_URL }}
         shell: bash
-        run: |
-          echo "$E2E_CYPRESS_TESTING" >> cypress.env.json
-          yarn cy-run-e2e
+        run: echo "$E2E_CYPRESS_TESTING" >> cypress.env.json && yarn cy-run-e2e
 
   version:
     runs-on: ubuntu-latest
