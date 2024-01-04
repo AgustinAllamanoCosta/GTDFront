@@ -161,6 +161,7 @@ jobs:
     services:
       app_to_test:
         image: ghcr.io/agustinallamanocosta/gtdfront:master
+        options: --name app_to_test
         env:
           VITE_CLEINT_ID: ${{ secrets.VITE_CLEINT_ID }}
           API_KEY: ${{ secrets.API_KEY }}
