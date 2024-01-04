@@ -173,7 +173,7 @@ jobs:
           MEASUREMENT_ID: ${{ secrets.MEASUREMENT_ID }}
           GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
         ports:
-          - 8080
+          - 8080:8080
 
     steps:
       - name: Checkout code
