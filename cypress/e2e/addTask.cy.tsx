@@ -2,8 +2,6 @@ import { LOCAL_STORAGE_KEY } from '../../src/constants /keys';
 import { Task } from '../../src/types/types';
 
 describe('Get The Things Done', () => {
-  const SITE_URL: string = 'http://localhost:8080/task';
-
   afterEach(() => {
     window.localStorage.clear();
   });
@@ -24,7 +22,7 @@ describe('Get The Things Done', () => {
   });
 
   it('Should Login into the app with a gmail account', () => {
-    cy.visit(SITE_URL);
+    cy.visit(Cypress.env('REMOTE_URL'));
     cy.get('[data-cy="Card-SubTitle"]').should(
       'have.text',
       'Hi Agustin Allamano Costa !',
@@ -33,7 +31,7 @@ describe('Get The Things Done', () => {
 
   it('Should add a new task', () => {
     const taskContent: string = 'some task to do';
-    cy.visit(SITE_URL);
+    cy.visit(Cypress.env('REMOTE_URL'));
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.get('[data-cy="task-some task to do"]').should('have.text', taskContent);
@@ -41,7 +39,7 @@ describe('Get The Things Done', () => {
 
   it('Should add a new task and active', () => {
     const taskContent: string = 'some task to do';
-    cy.visit(SITE_URL);
+    cy.visit(Cypress.env('REMOTE_URL'));
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.get('[data-cy="task-some task to do"]').trigger('mouseover');
@@ -56,7 +54,7 @@ describe('Get The Things Done', () => {
 
   it('Should add a new task, active it and mark as complete', () => {
     const taskContent: string = 'some task to do';
-    cy.visit(SITE_URL);
+    cy.visit(Cypress.env('REMOTE_URL'));
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.get('[data-cy="task-some task to do"]').trigger('mouseover');
@@ -80,7 +78,7 @@ describe('Get The Things Done', () => {
       userData['items'] = [taskInLocalStorage];
       window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(userData));
     }
-    cy.visit(SITE_URL);
+    cy.visit(Cypress.env('REMOTE_URL'));
     cy.get('[data-cy="task-some task to do 1"]').should(
       'have.text',
       taskInLocalStorage.title,
@@ -92,7 +90,7 @@ describe('Get The Things Done', () => {
     const taskContentTwo: string = 'some task to do 2';
     const taskContentThree: string = 'some task to do 3';
     const taskContentFour: string = 'some task to do 4';
-    cy.visit(SITE_URL);
+    cy.visit(Cypress.env('REMOTE_URL'));
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentOne);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
@@ -139,7 +137,7 @@ describe('Get The Things Done', () => {
     const taskContentTwo: string = 'some task to do 2';
     const taskContentThree: string = 'some task to do 3';
     const taskContentFour: string = 'some task to do 4';
-    cy.visit(SITE_URL);
+    cy.visit(Cypress.env('REMOTE_URL'));
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentOne);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
@@ -191,7 +189,7 @@ describe('Get The Things Done', () => {
 
   it('Should add a new task and them cancel it', () => {
     const taskContentOne: string = 'some task to do 1';
-    cy.visit(SITE_URL);
+    cy.visit(Cypress.env('REMOTE_URL'));
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentOne);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');

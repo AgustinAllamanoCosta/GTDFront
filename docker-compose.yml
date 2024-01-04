@@ -1,5 +1,5 @@
 services:
-  e2e-app:
+  app_to_test:
     image: ghcr.io/agustinallamanocosta/gtdfront:master
     env_file:
       - ./env/.env
