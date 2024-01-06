@@ -11,7 +11,7 @@ describe('User Card with title Getting Things Done and subtitle Agustin Allamano
       <UserCard
         userName={userName}
         userPhoto={userPhoto}
-        logout={()=>{}}
+        logout={() => {}}
       />,
     );
 

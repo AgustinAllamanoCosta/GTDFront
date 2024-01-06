@@ -1,6 +1,6 @@
 services:
   app_to_test:
-    image: ghcr.io/agustinallamanocosta/gtdfront:master
+    image: vite-example
     env_file:
       - ./env/.env
     ports:
