@@ -15,6 +15,12 @@ type Story = StoryObj<typeof meta>;
 
 export const FullTaskView: Story = {
   args: {
+    userData: {
+      id: 'some user id',
+      name: 'Test in storybook',
+      photoURL: 'https://www.pngall.com/wp-content/uploads/5/Profile.png',
+      accessToken: 'some access token',
+    },
     inboxTasks: [
       {
         id: uuidv4(),

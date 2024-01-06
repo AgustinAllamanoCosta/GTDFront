@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { Button } from '../../components/button/Button';
 import { Card } from '../../components/card/Card';
 import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
-import { googleLogout, useGoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
 import { useContext, useEffect } from 'react';
 import axios from 'axios';
 import { FONTS } from '../../constants /size';
@@ -31,11 +31,6 @@ const LoginView = () => {
       userInformation.setUserData(undefined);
     },
   });
-
-  const logOut = () => {
-    googleLogout();
-    userInformation.setUserData(undefined);
-  };
 
   const getUserInfo = async () => {
     const userId: string | undefined = userInformation.userData?.id;

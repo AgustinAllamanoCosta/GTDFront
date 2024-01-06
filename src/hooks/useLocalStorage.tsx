@@ -46,12 +46,12 @@ export const useLocalStorage = () => {
   };
 
   const deleteKey = (key: string) => {
-    const gtdData = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const gtdData: string | null = localStorage.getItem(LOCAL_STORAGE_KEY);
     if (gtdData) {
-      const gtdDataPars = JSON.parse(gtdData);
-      delete gtdDataPars[key];
-      const dataInLocal = JSON.parse(gtdDataPars);
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(dataInLocal));
+      const dataParse: any = JSON.parse(gtdData);
+      delete dataParse[key];
+      const dataInLocal = JSON.stringify(dataParse);
+      localStorage.setItem(LOCAL_STORAGE_KEY, dataInLocal);
     }
   };
 

@@ -1,21 +1,34 @@
 import styled from 'styled-components';
 import { UserCard } from '../../components/userCard/UserCard';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { ActiveTask } from '../../components/activeTask/ActiveTask';
 import { ItemList } from '../../components/itemList/ItemList';
-import { InboxTasks } from '../../types/types';
+import { InboxTasks, UserData } from '../../types/types';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { useTask } from '../../hooks/useTask';
 import { UserInformationContext } from '../../contexts/userContext';
+import { googleLogout } from '@react-oauth/google';
 
 type TaskViewProps = {
   inboxTasks?: InboxTasks;
+  userData?: UserData;
 };
 
-const TaskView = ({ inboxTasks = [] }: TaskViewProps) => {
+const TaskView = ({ inboxTasks = [], userData }: TaskViewProps) => {
   const userInformation = useContext(UserInformationContext);
   const { activeItems, inboxTask, items, setActiveItems, setItems } =
     useTask(inboxTasks);
+
+  const logOut = () => {
+    googleLogout();
+    userInformation.setUserData(undefined);
+  };
+
+  useEffect(() => {
+    if (userData) {
+      userInformation.setUserData(userData);
+    }
+  }, []);
 
   return (
     <Container>
@@ -32,6 +45,7 @@ const TaskView = ({ inboxTasks = [] }: TaskViewProps) => {
           <UserCard
             userName={userInformation.userData.name}
             userPhoto={userInformation.userData.photoURL}
+            logout={logOut}
           />
         )}
         <ActiveTask />

@@ -1,10 +1,11 @@
-
 # Get Things Done Front End
 
 ## What's in this repo?
+
 This repository showcases my abilities as a System Engineer. It contains a simple app for task management, encompassing a full CI/CD pipeline. The implementation includes continuous integration, trunk-based development, component testing, end-to-end testing, unit testing, build processes, release processes, and versioning processes. It adheres to good practices such as Clean Code and TDD (Test-Driven Development).
 
 ## Technologies involved
+
 The technologies used include React.js 18, TypeScript, Vite, Storybook, Styled Components, CSS, Firebase, GitHub Actions, Docker, Docker-Compose, Bash scripting, Cypress, React Testing Library, Babel, Jest, Prettier, and Axios.
 
 ### Why React.js 18, TypeScript, Vite, Storybook, Styled Components, CSS?
