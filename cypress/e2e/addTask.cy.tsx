@@ -19,7 +19,7 @@ describe('Get The Things Done', () => {
         },
       }),
     );
-    cy.viewport(800,800);
+    cy.viewport(800, 800);
   });
 
   it('Should Login into the app with a gmail account', () => {
@@ -203,7 +203,7 @@ describe('Get The Things Done', () => {
 
   it('Should logout', () => {
     cy.visit(Cypress.env('REMOTE_URL'));
-    cy.get('[data-cy="button-text"]').click(); 
+    cy.get('[data-cy="button-text"]').click();
     cy.get('[data-cy="Card-SubTitle"]').should('not.exist');
   });
 });
