@@ -8,49 +8,64 @@ import { useEffect, useState } from 'react';
 import { UserData } from './types/types';
 import RequireAuth from './components/auth/RequireAuth';
 import { useLocalStorage } from './hooks/useLocalStorage';
+import { ErrorHandlerContext } from './contexts/errorHandlerContext';
+import ErrorView from './views/error/Error';
 
 const App = () => {
   const [userData, setUserData] = useState<UserData>();
+  const [googleKey, setGoogleKey] = useState<string>('');
+  const [anErrorHappend, setError] = useState<boolean>(false);
   const { getUserData, saveUserData } = useLocalStorage();
-  const key: string = process.env.VITE_CLEINT_ID
-    ? process.env.VITE_CLEINT_ID
-    : '';
 
   useEffect(() => {
     const localUserData: UserData | undefined = getUserData();
     if (localUserData) {
       setUserData(localUserData);
     }
+    if (googleKey === '' && process.env.VITE_CLEINT_ID) {
+      setGoogleKey(process.env.VITE_CLEINT_ID);
+    }
   }, []);
 
   return (
-    <UserInformationContext.Provider
+    <ErrorHandlerContext.Provider
       value={{
-        userData,
-        setUserData: (userData: UserData | undefined) => {
-          saveUserData(userData);
-          setUserData(userData);
-        },
+        anErrorHappend,
+        setError,
       }}
     >
-      <GlobalStyles />
-      <GoogleOAuthProvider clientId={key}>
-        <Routes>
-          <Route
-            path="/"
-            element={<LoginView />}
-          />
-          <Route
-            path="/task"
-            element={
-              <RequireAuth>
-                <TaskView />
-              </RequireAuth>
-            }
-          />
-        </Routes>
-      </GoogleOAuthProvider>
-    </UserInformationContext.Provider>
+      <UserInformationContext.Provider
+        value={{
+          userData,
+          setUserData: (userData: UserData | undefined) => {
+            saveUserData(userData);
+            setUserData(userData);
+          },
+        }}
+      >
+        <GlobalStyles />
+        {!anErrorHappend ? (
+          <GoogleOAuthProvider clientId={googleKey}>
+            <Routes>
+              <Route
+                path="/"
+                element={<LoginView />}
+              />
+              <Route
+                path="/task"
+                element={
+                  <RequireAuth>
+                    <TaskView />
+                  </RequireAuth>
+                }
+              />
+            </Routes>
+          </GoogleOAuthProvider>
+        ) : (
+          <ErrorView />
+        )}
+      </UserInformationContext.Provider>
+    </ErrorHandlerContext.Provider>
   );
 };
 

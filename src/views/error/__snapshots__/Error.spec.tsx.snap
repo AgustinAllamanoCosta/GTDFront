@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Error View Should render an Error view  1`] = `
+<div>
+  <div
+    class="sc-hfDuwB gDAJOq"
+  >
+    <div
+      class="sc-jCIOXC erSRMr"
+      data-cy="Card-Contents"
+    >
+      <span
+        class="sc-bXxmBy cxsGLJ"
+      >
+        Something went wrong!
+      </span>
+      <div
+        class="sc-fBEEOr jbAmbj"
+        data-cy="button-gtd"
+      >
+        <span
+          class="sc-dBwcjI kHmhxt"
+          data-cy="button-text"
+        >
+          OK
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
