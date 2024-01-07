@@ -128,7 +128,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: production-build
-          path: | 
+          path: |
             ./dist
 
       - name: Log in to the Container registry
