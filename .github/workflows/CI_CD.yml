@@ -260,7 +260,6 @@ jobs:
         with:
           run: version=$(jq -r '.version' package.json)
           bodyFile: 'CHANGELOG.md'
-          artifacts: production-build
           tag: ${{ steps.get_version.outputs.version }}
 
   deploy_on_firebase:
@@ -281,7 +280,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Download production artifact
-        uses: actions/download-artifact@4.1
+        uses: actions/download-artifact@4.1.0
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
           name: production-build
