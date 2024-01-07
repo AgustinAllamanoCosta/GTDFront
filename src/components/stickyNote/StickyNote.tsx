@@ -15,12 +15,20 @@ export const StickyNote = ({
   text,
   onConfirm,
 }: StickyNoteProps): JSX.Element => {
+  const [textNoteValue, setTextNoteValue] = useState<string>(
+    text.toUpperCase(),
+  );
+
   return (
     <ButtonAndNoteContainer data-cy={`stick-note-container-${number}`}>
       <TextContainer data-cy={`stick-note-text-container-${number}`}>
-        <TextNote data-cy={`stick-note-text-${number}`}>
-          {text.toUpperCase()}
-        </TextNote>
+        <TextNote
+          data-cy={`stick-note-text-${number}`}
+          value={textNoteValue}
+          onChange={(e) => {
+            setTextNoteValue(e.target.value);
+          }}
+        />
       </TextContainer>
       <ButtonContainer
         onClick={onConfirm}

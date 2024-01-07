@@ -12,7 +12,7 @@ exports[`Task View Should render a login view with singin and login buttons 1`] 
         class="sc-cpKBeH jOducB"
       >
         <div
-          class="sc-jCIOXC erSRMr"
+          class="sc-jCIOXC jwENDK"
           data-cy="Card-Contents"
           is_center="undefined"
           padding="false"
@@ -43,7 +43,7 @@ exports[`Task View Should render a login view with singin and login buttons 1`] 
         class="sc-QdHZx limMyI"
       >
         <div
-          class="sc-jCIOXC erSRMr"
+          class="sc-jCIOXC jwENDK"
           data-cy="Card-Contents"
           is_center="undefined"
           padding="false"
