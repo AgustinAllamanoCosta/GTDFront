@@ -1,6 +1,7 @@
 import { Dict } from 'styled-components/dist/types';
 import { LOCAL_STORAGE_KEY } from '../constants /keys';
 import { InboxTasks, UserData } from '../types/types';
+import secureLocalStorage from 'react-secure-storage';
 
 export const useLocalStorage = () => {
   const ITEMS_KEY: string = 'items';
@@ -24,34 +25,30 @@ export const useLocalStorage = () => {
   };
 
   const save = (key: string, item: any) => {
-    const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const data: any = secureLocalStorage.getItem(LOCAL_STORAGE_KEY);
     if (data) {
-      const dataInLocal = JSON.parse(data);
-      dataInLocal[key] = item;
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(dataInLocal));
+      data[key] = item;
+      secureLocalStorage.setItem(LOCAL_STORAGE_KEY, data);
     } else {
       const dataInLocal: Dict<any> = {};
       dataInLocal[`${key}`] = item;
-      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(dataInLocal));
+      secureLocalStorage.setItem(LOCAL_STORAGE_KEY, dataInLocal);
     }
   };
 
   const get = (key: string) => {
-    const gtdData = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const gtdData: any = secureLocalStorage.getItem(LOCAL_STORAGE_KEY);
     if (gtdData) {
-      const gtdDataPars = JSON.parse(gtdData);
-      return gtdDataPars[key];
+      return gtdData[key];
     }
     return undefined;
   };
 
   const deleteKey = (key: string) => {
-    const gtdData: string | null = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const gtdData: any = secureLocalStorage.getItem(LOCAL_STORAGE_KEY);
     if (gtdData) {
-      const dataParse: any = JSON.parse(gtdData);
-      delete dataParse[key];
-      const dataInLocal = JSON.stringify(dataParse);
-      localStorage.setItem(LOCAL_STORAGE_KEY, dataInLocal);
+      delete gtdData[key];
+      secureLocalStorage.setItem(LOCAL_STORAGE_KEY, gtdData);
     }
   };
 

@@ -5,7 +5,7 @@ import useFireBase from './useFirebase';
 import { FIRE_BASE_COLLECTION_NAME } from '../constants /keys';
 import { useLocalStorage } from './useLocalStorage';
 
-export const useTask = (userTask: InboxTasks) => {
+export const useTask = (userTask: InboxTasks = []) => {
   const { getItem, saveItems } = useLocalStorage();
 
   const [activeItems, setActiveItems] = useState<ActiveTasks>([]);

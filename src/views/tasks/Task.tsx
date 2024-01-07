@@ -4,10 +4,9 @@ import { useContext, useEffect } from 'react';
 import { ActiveTask } from '../../components/activeTask/ActiveTask';
 import { ItemList } from '../../components/itemList/ItemList';
 import { InboxTasks, UserData } from '../../types/types';
-import { TaskInformationContext } from '../../contexts/taskContext';
-import { useTask } from '../../hooks/useTask';
 import { UserInformationContext } from '../../contexts/userContext';
 import { googleLogout } from '@react-oauth/google';
+import { TaskInformationContext } from '../../contexts/taskContext';
 
 type TaskViewProps = {
   inboxTasks?: InboxTasks;
@@ -16,8 +15,7 @@ type TaskViewProps = {
 
 const TaskView = ({ inboxTasks = [], userData }: TaskViewProps) => {
   const userInformation = useContext(UserInformationContext);
-  const { activeItems, inboxTask, items, setActiveItems, setItems } =
-    useTask(inboxTasks);
+  const itemContext = useContext(TaskInformationContext);
 
   const logOut = () => {
     googleLogout();
@@ -28,29 +26,20 @@ const TaskView = ({ inboxTasks = [], userData }: TaskViewProps) => {
     if (userData) {
       userInformation.setUserData(userData);
     }
+    if (inboxTasks.length > 0) itemContext.setItems(inboxTasks);
   }, []);
 
   return (
     <Container>
-      <TaskInformationContext.Provider
-        value={{
-          activeTasks: activeItems,
-          inboxTasks: inboxTask,
-          items,
-          setActiveTask: setActiveItems,
-          setItems,
-        }}
-      >
-        {userInformation.userData && (
-          <UserCard
-            userName={userInformation.userData.name}
-            userPhoto={userInformation.userData.photoURL}
-            logout={logOut}
-          />
-        )}
-        <ActiveTask />
-        <ItemList title="Task Inbox" />
-      </TaskInformationContext.Provider>
+      {userInformation.userData && (
+        <UserCard
+          userName={userInformation.userData.name}
+          userPhoto={userInformation.userData.photoURL}
+          logout={logOut}
+        />
+      )}
+      <ActiveTask />
+      <ItemList title="Task Inbox" />
     </Container>
   );
 };

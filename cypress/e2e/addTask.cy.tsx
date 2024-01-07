@@ -1,6 +1,3 @@
-import { LOCAL_STORAGE_KEY } from '../../src/constants /keys';
-import { Task } from '../../src/types/types';
-
 describe('Get The Things Done', () => {
   afterEach(() => {
     window.localStorage.clear();
@@ -8,17 +5,6 @@ describe('Get The Things Done', () => {
 
   beforeEach(() => {
     cy.log('Logging in to Google');
-    window.localStorage.setItem(
-      LOCAL_STORAGE_KEY,
-      JSON.stringify({
-        userData: {
-          accessToken: Cypress.env('ACCESS_TOKEN'),
-          id: Cypress.env('ID'),
-          name: Cypress.env('NAME'),
-          photoURL: Cypress.env('PHOTO_URL'),
-        },
-      }),
-    );
     cy.viewport(800, 800);
   });
 
@@ -66,23 +52,14 @@ describe('Get The Things Done', () => {
   });
 
   it('Should load a task from local storage', () => {
-    const taskInLocalStorage: Task = {
-      id: '783d42aa-d860-45e8-b059-7106ec3eebb7',
-      title: 'some task to do 1',
-      isComplete: false,
-      isCancele: false,
-      isActive: false,
-    };
-    const userRawData = window.localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (userRawData) {
-      const userData = JSON.parse(userRawData);
-      userData['items'] = [taskInLocalStorage];
-      window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(userData));
-    }
     cy.visit(Cypress.env('REMOTE_URL'));
+    const taskContent = 'some task to do 1';
+    cy.get('[data-cy="task-add-button-input"]').type(taskContent);
+    cy.get('[data-cy="task-add-button-input"]').type('{enter}');
+    cy.reload();
     cy.get('[data-cy="task-some task to do 1"]').should(
       'have.text',
-      taskInLocalStorage.title,
+      taskContent,
     );
   });
 

@@ -32,7 +32,7 @@ const LoginView = () => {
     },
   });
 
-  const getUserInfo = async () => {
+  const processLoginInfo = async () => {
     const userId: string | undefined = userInformation.userData?.id;
     if (!userId && userInformation.userData) {
       const googleResponse = await axios.get(
@@ -59,7 +59,7 @@ const LoginView = () => {
   };
 
   useEffect(() => {
-    getUserInfo();
+    processLoginInfo();
   }, [userInformation.userData]);
 
   return (

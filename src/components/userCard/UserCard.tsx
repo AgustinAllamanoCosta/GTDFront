@@ -5,7 +5,7 @@ import { Button } from '../button/Button';
 
 export type UserCardProps = {
   userName: string;
-  userPhoto: any;
+  userPhoto: string;
   logout: () => void;
 };
 
