@@ -8,6 +8,8 @@ exports[`Error View Should render an Error view  1`] = `
     <div
       class="sc-jCIOXC erSRMr"
       data-cy="Card-Contents"
+      is_center="true"
+      padding="true"
     >
       <span
         class="sc-bXxmBy cxsGLJ"

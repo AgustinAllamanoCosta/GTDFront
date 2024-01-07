@@ -8,6 +8,8 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
     <div
       class="sc-dBwcjI dCdbfO"
       data-cy="Card-Contents"
+      is_center="true"
+      padding="true"
     >
       <span
         class="sc-kPNBzt dfLIVk"
