@@ -239,6 +239,7 @@ jobs:
           ID: ${{ secrets.ID }}
           NAME: ${{ secrets.NAME }}
           PHOTO_URL: ${{ secrets.PHOTO_URL }}
+          APP_ENV: ${{ secrets.APP_ENV }}
         ports:
           - 8080:8080
 
@@ -260,6 +261,13 @@ jobs:
           CYPRESS_REMOTE_URL: ${{ secrets.CYPRESS_REMOTE_URL }}
         shell: bash
         run: yarn cy-run-e2e
+
+      - name: Archive cypress videos
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: |
+            ./cypress/videos
 
   deploy_on_firebase:
     runs-on: ubuntu-latest
