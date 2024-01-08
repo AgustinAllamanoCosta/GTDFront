@@ -171,7 +171,10 @@ jobs:
           MESSAGING_SENDER_ID: ${{ secrets.MESSAGING_SENDER_ID }}
           APP_ID: ${{ secrets.APP_ID }}
           MEASUREMENT_ID: ${{ secrets.MEASUREMENT_ID }}
-          GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
+          ACCESS_TOKEN: ${{ secrets.CYPRESS_ACCESS_TOKEN }}
+          ID: ${{ secrets.CYPRESS_ID }}
+          NAME: ${{ secrets.CYPRESS_NAME }}
+          PHOTO_URL: ${{ secrets.CYPRESS_PHOTO_URL }}
         ports:
           - 8080:8080
 
@@ -190,10 +193,6 @@ jobs:
 
       - name: Run end to end testing
         env:
-          CYPRESS_ACCESS_TOKEN: ${{ secrets.CYPRESS_ACCESS_TOKEN }}
-          CYPRESS_ID: ${{ secrets.CYPRESS_ID }}
-          CYPRESS_NAME: ${{ secrets.CYPRESS_NAME }}
-          CYPRESS_PHOTO_URL: ${{ secrets.CYPRESS_PHOTO_URL }}
           CYPRESS_REMOTE_URL: ${{ secrets.CYPRESS_REMOTE_URL }}
         shell: bash
         run: yarn cy-run-e2e
