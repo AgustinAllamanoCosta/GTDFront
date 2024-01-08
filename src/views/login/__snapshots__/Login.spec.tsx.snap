@@ -3,46 +3,31 @@
 exports[`Login View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-bXxmBy gOYNuE"
+    class="sc-dBwcjI dCdbfO"
+    data-cy="Card-Contents"
+    is_center="true"
+    padding="true"
   >
+    <span
+      class="sc-jlOLRj brXJtI"
+      data-cy="Error-view-title"
+    >
+      Something went wrong!
+    </span>
+    <span
+      class="sc-bXxmBy kpAIEI"
+      data-cy="Error-view-message"
+    />
     <div
-      class="sc-dBwcjI dCdbfO"
-      data-cy="Card-Contents"
-      is_center="true"
-      padding="true"
+      class="sc-hfDuwB iNQNqE"
+      data-cy="button-gtd"
     >
       <span
-        class="sc-kPNBzt dfLIVk"
+        class="sc-jCIOXC cfyTgc"
+        data-cy="button-text"
       >
-        Get Things Done
+        OK
       </span>
-      <div
-        class="sc-hfDuwB iNQNqE"
-        data-cy="button-gtd"
-      >
-        <span
-          class="sc-jCIOXC cfyTgc"
-          data-cy="button-text"
-        >
-          Login
-        </span>
-        <svg
-          aria-hidden="true"
-          class="svg-inline--fa fa-address-card sc-fBEEOr eedbxR"
-          data-cy="button-icon"
-          data-icon="address-card"
-          data-prefix="fas"
-          focusable="false"
-          role="img"
-          viewBox="0 0 576 512"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H512c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 256h64c44.2 0 80 35.8 80 80c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16c0-44.2 35.8-80 80-80zm-32-96a64 64 0 1 1 128 0 64 64 0 1 1 -128 0zm256-32H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s7.2-16 16-16zm0 64H496c8.8 0 16 7.2 16 16s-7.2 16-16 16H368c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
-            fill="currentColor"
-          />
-        </svg>
-      </div>
     </div>
   </div>
 </div>

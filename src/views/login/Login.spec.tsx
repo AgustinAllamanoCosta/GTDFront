@@ -1,15 +1,18 @@
 import React from 'react';
 import { expect } from '@jest/globals';
-import { render, act, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import LoginView from './Login';
-import { AppContext } from '../../storybook/decorators/phone';
+import GoogleAuthContext from '../../components/useGoogleAuth/useGoogleAuth';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('Login View', () => {
   test('Should render a login view with singin and login buttons', async () => {
     const { container } = render(
-      <AppContext>
-        <LoginView />
-      </AppContext>,
+      <BrowserRouter>
+        <GoogleAuthContext>
+          <LoginView />
+        </GoogleAuthContext>
+      </BrowserRouter>,
     );
     expect(container).toMatchSnapshot();
   });

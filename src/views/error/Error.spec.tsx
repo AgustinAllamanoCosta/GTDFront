@@ -1,18 +1,18 @@
 import React from 'react';
 import { expect } from '@jest/globals';
 import { render } from '@testing-library/react';
-import { AppContext } from '../../storybook/decorators/phone';
 import ErrorView from './Error';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('Error View', () => {
   test('Should render an Error view ', async () => {
     const { container } = render(
-      <AppContext>
+      <BrowserRouter>
         <ErrorView
           onClick={() => {}}
           message="some error message"
         />
-      </AppContext>,
+      </BrowserRouter>,
     );
     expect(container).toMatchSnapshot();
   });

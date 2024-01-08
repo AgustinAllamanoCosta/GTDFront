@@ -51,6 +51,7 @@ export const ItemAddButton = ({
   );
 };
 
+//TODO: PIXELS
 const ItemContent = styled.div`
   border-bottom-style: solid;
   border-bottom-color: black;

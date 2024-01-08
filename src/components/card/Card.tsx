@@ -22,6 +22,7 @@ export const Card = ({
   );
 };
 
+//TODO: PIXEL AND %
 const MyCard = styled.div<{ is_center?: string; padding?: string }>`
   background-color: #d9d9d9;
   border-radius: 10px;

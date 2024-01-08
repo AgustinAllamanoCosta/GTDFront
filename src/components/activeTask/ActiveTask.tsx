@@ -43,6 +43,7 @@ export const ActiveTask = (): JSX.Element => {
   );
 };
 
+//TODO: PIXELS AND % TO REMOVE
 const ActiveTaskContent = styled.div`
   display: flex;
   width: 100%;

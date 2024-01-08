@@ -3,96 +3,92 @@
 exports[`Task View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-hfDuwB gDAJOq"
+    class="sc-QdHZx pJhcI"
   >
     <div
-      class="sc-iUXMdM cvNaiL"
+      class="sc-hbwYeq ejWnqu"
     >
       <div
-        class="sc-cpKBeH jOducB"
+        class="sc-hfDuwB ldHbDs"
+        data-cy="Card-Contents"
+        is_center="undefined"
+        padding="false"
       >
         <div
-          class="sc-jCIOXC jwENDK"
-          data-cy="Card-Contents"
-          is_center="undefined"
-          padding="false"
+          class="sc-hdxXtv DAwqi"
         >
-          <div
-            class="sc-evVYyG ktGrly"
+          <span
+            class="sc-evVYyG NaZUL"
+            data-cy="Card-title"
           >
-            <span
-              class="sc-BOZFl iAEnlg"
-              data-cy="Card-title"
-            >
-              Active Task
-            </span>
-            <span
-              class="sc-BOZFl iAEnlg"
-              data-cy="Card-label"
-            >
-              0/3
-            </span>
-          </div>
-          <div
-            class="sc-hbwYeq ertiaX"
-            data-cy="Active-task-list"
-          />
+            Active Task
+          </span>
+          <span
+            class="sc-evVYyG NaZUL"
+            data-cy="Card-label"
+          >
+            0/3
+          </span>
         </div>
+        <div
+          class="sc-kbUMEY geLPum"
+          data-cy="Active-task-list"
+        />
       </div>
+    </div>
+    <div
+      class="sc-lfmRZu fwEZKN"
+    >
       <div
-        class="sc-QdHZx limMyI"
+        class="sc-hfDuwB ldHbDs"
+        data-cy="Card-Contents"
+        is_center="undefined"
+        padding="false"
       >
         <div
-          class="sc-jCIOXC jwENDK"
-          data-cy="Card-Contents"
-          is_center="undefined"
-          padding="false"
+          class="sc-hdxXtv DAwqi"
         >
-          <div
-            class="sc-evVYyG ktGrly"
+          <span
+            class="sc-evVYyG NaZUL"
+            data-cy="Card-title"
           >
-            <span
-              class="sc-BOZFl iAEnlg"
-              data-cy="Card-title"
-            >
-              Task Inbox
-            </span>
-            <span
-              class="sc-BOZFl iAEnlg"
-              data-cy="Card-label"
-            >
-              total 0
-            </span>
-          </div>
-          <div
-            class="sc-lfmRZu gYBcxC"
-          />
-          <div
-            class="sc-ZHFQk sc-hDqSpx gQJQZX hMgDai"
-            data-cy="task-add-button"
+            Task Inbox
+          </span>
+          <span
+            class="sc-evVYyG NaZUL"
+            data-cy="Card-label"
           >
-            <svg
-              aria-hidden="true"
-              class="svg-inline--fa fa-plus sc-jCDGFz hVrBsq"
-              data-icon="plus"
-              data-prefix="fas"
-              focusable="false"
-              role="img"
-              viewBox="0 0 448 512"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
-                fill="currentColor"
-              />
-            </svg>
-            <input
-              class="sc-cYUugm fpMwbI"
-              data-cy="task-add-button-input"
-              placeholder="Add Task"
-              value=""
+            total 0
+          </span>
+        </div>
+        <div
+          class="sc-dasNVf irclbw"
+        />
+        <div
+          class="sc-cpKBeH sc-ZHFQk fiLIYm UcFRe"
+          data-cy="task-add-button"
+        >
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-plus sc-cYUugm gftMPA"
+            data-icon="plus"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            viewBox="0 0 448 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+              fill="currentColor"
             />
-          </div>
+          </svg>
+          <input
+            class="sc-hDqSpx jBVQaa"
+            data-cy="task-add-button-input"
+            placeholder="Add Task"
+            value=""
+          />
         </div>
       </div>
     </div>

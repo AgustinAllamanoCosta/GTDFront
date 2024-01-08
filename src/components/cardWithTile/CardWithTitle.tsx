@@ -26,6 +26,7 @@ export const CardTitle = ({
   );
 };
 
+//TODO: PIXEL
 const MyTitleContainer = styled.div<{ join_tag?: boolean }>`
   border-bottom-style: solid;
   border-bottom-color: black;

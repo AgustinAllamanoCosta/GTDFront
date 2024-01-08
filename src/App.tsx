@@ -1,13 +1,10 @@
-import { createGlobalStyle } from 'styled-components';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import TaskView from './views/tasks/Task';
 import LoginView from './views/login/Login';
 import RequireAuth from './components/auth/RequireAuth';
-import ErrorContext from './components/useError/useError';
-import ItemsContext from './components/useItems/useItems';
-import UserContext from './components/useUserInformation/useUserInformation';
-import GoogleAuthContext from './components/useGoogleAuth/useGoogleAuth';
 import ErrorView from './views/error/Error';
+import { AppContext } from './contexts/appContext';
+import { INDEX, OTHER, TASK } from './constants /routePaths';
 
 const App = () => {
   const navigate = useNavigate();
@@ -16,51 +13,36 @@ const App = () => {
     'Ups looks like this page does not exist :(';
 
   const goToIndex = () => {
-    navigate('/');
+    navigate(INDEX);
   };
 
   return (
-    <>
-      <GlobalStyles />
-      <ErrorContext>
-        <ItemsContext>
-          <UserContext>
-            <GoogleAuthContext>
-              <Routes>
-                <Route
-                  path="/"
-                  element={<LoginView />}
-                />
-                <Route
-                  path="/task"
-                  element={
-                    <RequireAuth>
-                      <TaskView />
-                    </RequireAuth>
-                  }
-                />
-                <Route
-                  path="*"
-                  element={
-                    <ErrorView
-                      onClick={goToIndex}
-                      message={defaultRouteMessage}
-                    />
-                  }
-                />
-              </Routes>
-            </GoogleAuthContext>
-          </UserContext>
-        </ItemsContext>
-      </ErrorContext>
-    </>
+    <AppContext>
+      <Routes>
+        <Route
+          path={INDEX}
+          element={<LoginView />}
+        />
+        <Route
+          path={TASK}
+          element={
+            <RequireAuth>
+              <TaskView />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={OTHER}
+          element={
+            <ErrorView
+              onClick={goToIndex}
+              message={defaultRouteMessage}
+            />
+          }
+        />
+      </Routes>
+    </AppContext>
   );
 };
-
-const GlobalStyles = createGlobalStyle`
-  body {
-    background-color: black;
-  }
-`;
 
 export default App;

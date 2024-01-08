@@ -120,9 +120,22 @@ jobs:
 
       - name: Run Build with Node.js 18.x
         uses: actions/setup-node@v4
+        env:
+          VITE_CLEINT_ID: ${{ secrets.VITE_CLEINT_ID }}
+          API_KEY: ${{ secrets.API_KEY }}
+          AUTH_DOMAIN: ${{ secrets.AUTH_DOMAIN }}
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          STORAGE_BUCKET: ${{ secrets.STORAGE_BUCKET }}
+          MESSAGING_SENDER_ID: ${{ secrets.MESSAGING_SENDER_ID }}
+          APP_ID: ${{ secrets.APP_ID }}
+          MEASUREMENT_ID: ${{ secrets.MEASUREMENT_ID }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ID: ${{ secrets.ID }}
+          NAME: ${{ secrets.NAME }}
+          PHOTO_URL: ${{ secrets.PHOTO_URL }}
         with:
           node-version: 18.x
-      - run: yarn build
+          run: yarn build
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v4
@@ -239,7 +252,7 @@ jobs:
           ID: ${{ secrets.ID }}
           NAME: ${{ secrets.NAME }}
           PHOTO_URL: ${{ secrets.PHOTO_URL }}
-          APP_ENV: ${{ secrets.APP_ENV }}
+          APP_ENV: 'E2E'
         ports:
           - 8080:8080
 
@@ -257,8 +270,6 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Run end to end testing
-        env:
-          CYPRESS_REMOTE_URL: ${{ secrets.CYPRESS_REMOTE_URL }}
         shell: bash
         run: yarn cy-run-e2e
 

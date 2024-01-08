@@ -3,6 +3,8 @@ import { UserInformationContext } from '../../contexts/userContext';
 import { UserData } from '../../types/types';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
+import { configuration } from '../../config/appConfig';
+import { IS_END_TO_END } from '../../constants /environment';
 
 const UserContext = ({ children }: { children: ReactNode }) => {
   const errorContext = useContext(ErrorHandlerContext);
@@ -17,12 +19,12 @@ const UserContext = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     try {
-      if (process.env.APP_ENV === 'E2E') {
+      if (configuration.environment === IS_END_TO_END) {
         const userData = {
-          accessToken: process.env.ACCESS_TOKEN ? process.env.ACCESS_TOKEN : '',
-          id: process.env.ID ? process.env.ID : '',
-          name: process.env.NAME ? process.env.NAME : '',
-          photoURL: process.env.PHOTO_URL ? process.env.PHOTO_URL : '',
+          accessToken: configuration.accessToken,
+          id: configuration.id,
+          name: configuration.name,
+          photoURL: configuration.photoURL,
         };
         saveUserDataInApp(userData);
       } else {

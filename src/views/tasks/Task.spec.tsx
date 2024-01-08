@@ -1,15 +1,15 @@
 import React from 'react';
 import { expect } from '@jest/globals';
-import { render, act, screen } from '@testing-library/react';
-import { AppContext } from '../../storybook/decorators/phone';
+import { render } from '@testing-library/react';
 import TaskView from './Task';
+import { BrowserRouter } from 'react-router-dom';
 
 describe('Task View', () => {
   test('Should render a login view with singin and login buttons', async () => {
     const { container } = render(
-      <AppContext>
+      <BrowserRouter>
         <TaskView />
-      </AppContext>,
+      </BrowserRouter>,
     );
     expect(container).toMatchSnapshot();
   });

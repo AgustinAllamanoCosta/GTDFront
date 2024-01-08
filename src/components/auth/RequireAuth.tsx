@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { UserInformationContext } from '../../contexts/userContext';
 import { useLocation, Navigate } from 'react-router-dom';
+import { INDEX } from '../../constants /routePaths';
 
 const RequireAuth = ({ children }: { children: JSX.Element }) => {
   const userInformation = useContext(UserInformationContext);
@@ -12,7 +13,7 @@ const RequireAuth = ({ children }: { children: JSX.Element }) => {
         children
       ) : (
         <Navigate
-          to="/"
+          to={INDEX}
           state={{ from: location }}
           replace
         />

@@ -26,6 +26,7 @@ export const Button = ({ text, icon, onClick }: ButtonProps): JSX.Element => {
   );
 };
 
+//TODO: PIXELS
 const ButtonContainer = styled.div`
   display: inline-flex;
   width: min-content;
