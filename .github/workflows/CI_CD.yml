@@ -106,7 +106,6 @@ jobs:
     needs: component_testing
 
     steps:
-
       - name: Checkout code
         uses: actions/checkout@v4
 
