@@ -7,6 +7,7 @@ import { InboxTasks, UserData } from '../../types/types';
 import { UserInformationContext } from '../../contexts/userContext';
 import { googleLogout } from '@react-oauth/google';
 import { TaskInformationContext } from '../../contexts/taskContext';
+import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 
 type TaskViewProps = {
   inboxTasks?: InboxTasks;
@@ -14,6 +15,7 @@ type TaskViewProps = {
 };
 
 const TaskView = ({ inboxTasks = [], userData }: TaskViewProps) => {
+  const errorContext = useContext(ErrorHandlerContext);
   const userInformation = useContext(UserInformationContext);
   const itemContext = useContext(TaskInformationContext);
 
@@ -23,10 +25,15 @@ const TaskView = ({ inboxTasks = [], userData }: TaskViewProps) => {
   };
 
   useEffect(() => {
-    if (userData) {
-      userInformation.setUserData(userData);
+    try {
+      if (userData) {
+        userInformation.setUserData(userData);
+      }
+      if (inboxTasks.length > 0) itemContext.setItems(inboxTasks);
+    } catch (error: any) {
+      errorContext.setError(true);
+      errorContext.setMessage(error.message);
     }
-    if (inboxTasks.length > 0) itemContext.setItems(inboxTasks);
   }, []);
 
   return (

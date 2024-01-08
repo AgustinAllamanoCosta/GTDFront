@@ -1,3 +1,5 @@
+export {};
+
 describe('Get The Things Done', () => {
   afterEach(() => {
     window.localStorage.clear();

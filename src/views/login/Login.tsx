@@ -9,9 +9,11 @@ import { FONTS } from '../../constants /size';
 import { UserInformationContext } from '../../contexts/userContext';
 import { UserData } from '../../types/types';
 import { useNavigate } from 'react-router-dom';
+import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 
 const LoginView = () => {
   const userInformation = useContext(UserInformationContext);
+  const errorContext = useContext(ErrorHandlerContext);
   const navigate = useNavigate();
 
   const login = useGoogleLogin({
@@ -59,7 +61,12 @@ const LoginView = () => {
   };
 
   useEffect(() => {
-    processLoginInfo();
+    try {
+      processLoginInfo();
+    } catch (error: any) {
+      errorContext.setError(true);
+      errorContext.setMessage(error.message);
+    }
   }, [userInformation.userData]);
 
   return (
