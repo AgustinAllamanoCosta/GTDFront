@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { UserInformationContext } from "../../contexts/userContext";
-import { useLocation, Navigate } from "react-router-dom";
+import { useContext } from 'react';
+import { UserInformationContext } from '../../contexts/userContext';
+import { useLocation, Navigate } from 'react-router-dom';
 
 const RequireAuth = ({ children }: { children: JSX.Element }) => {
   const userInformation = useContext(UserInformationContext);
@@ -11,7 +11,11 @@ const RequireAuth = ({ children }: { children: JSX.Element }) => {
       {userInformation.userData?.id ? (
         children
       ) : (
-        <Navigate to="/" state={{ from: location }} replace />
+        <Navigate
+          to="/"
+          state={{ from: location }}
+          replace
+        />
       )}
     </>
   );

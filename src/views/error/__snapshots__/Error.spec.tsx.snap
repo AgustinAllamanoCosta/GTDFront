@@ -12,10 +12,15 @@ exports[`Error View Should render an Error view  1`] = `
       padding="true"
     >
       <span
-        class="sc-bXxmBy cxsGLJ"
+        class="sc-jlOLRj brXJtI"
+        data-cy="Error-view-title"
       >
         Something went wrong!
       </span>
+      <span
+        class="sc-bXxmBy kpAIEI"
+        data-cy="Error-view-message"
+      />
       <div
         class="sc-fBEEOr jbAmbj"
         data-cy="button-gtd"

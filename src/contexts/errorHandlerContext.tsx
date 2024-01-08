@@ -2,7 +2,7 @@ import { createContext } from 'react';
 
 export const ErrorHandlerContext = createContext<{
   anErrorHappend: boolean;
-  errorMessage:string;
+  errorMessage: string;
   setError: (e: boolean) => void;
   setMessage: (e: string) => void;
 }>({
