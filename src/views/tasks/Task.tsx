@@ -8,6 +8,7 @@ import { UserInformationContext } from '../../contexts/userContext';
 import { googleLogout } from '@react-oauth/google';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
+import { useNavigate } from 'react-router-dom';
 
 type TaskViewProps = {
   inboxTasks?: InboxTasks;
@@ -18,10 +19,12 @@ const TaskView = ({ inboxTasks = [], userData }: TaskViewProps) => {
   const errorContext = useContext(ErrorHandlerContext);
   const userInformation = useContext(UserInformationContext);
   const itemContext = useContext(TaskInformationContext);
+  const navigate = useNavigate();
 
   const logOut = () => {
     googleLogout();
     userInformation.setUserData(undefined);
+    navigate('/');
   };
 
   useEffect(() => {

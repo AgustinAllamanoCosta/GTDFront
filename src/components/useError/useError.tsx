@@ -1,19 +1,16 @@
-import { useState, ReactNode, useEffect } from 'react';
-import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
-import { useNavigate } from 'react-router-dom';
+import { useState, ReactNode, useEffect } from "react";
+import { ErrorHandlerContext } from "../../contexts/errorHandlerContext";
+import ErrorView from "../../views/error/Error";
 
 const ErrorContext = ({ children }: { children: ReactNode }) => {
   const [anErrorHappend, setError] = useState<boolean>(false);
-  const [errorMessage, setErrorMessage] = useState<string>('');
-  const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
     if (anErrorHappend) {
-      console.group('Error handlers ');
-      console.error('An error happend', anErrorHappend);
-      console.error('ErrorMessage', errorMessage);
+      console.group("Error handlers ");
+      console.debug("ErrorMessage", errorMessage);
       console.groupEnd();
-      navigate('/error');
     }
   }, [anErrorHappend]);
 
@@ -21,11 +18,16 @@ const ErrorContext = ({ children }: { children: ReactNode }) => {
     <ErrorHandlerContext.Provider
       value={{
         anErrorHappend,
+        errorMessage,
         setError,
         setMessage: setErrorMessage,
       }}
     >
-      {children}
+      {anErrorHappend ? (
+        <ErrorView onClick={() => setError(false)} />
+      ) : (
+        children
+      )}
     </ErrorHandlerContext.Provider>
   );
 };
