@@ -2,11 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### 0.0.53 (2024-01-08)
+### [0.0.53](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.52...v0.0.53) (2024-01-08)
 
-### 0.0.52 (2024-01-07)
 
-### 0.0.51 (2024-01-07)
+### Features
+
+* 🎸 add encription to local storage ([b93ba68](https://github.com/AgustinAllamanoCosta/GTDFront/commit/b93ba68b1d249ea8871c9b9c75d5f5d108fee073))
+* 🎸 add fallback route and error view ([724d253](https://github.com/AgustinAllamanoCosta/GTDFront/commit/724d253630d47d58ae035f739f9928b0dd129978))
+* 🎸 add first version of the error screen ([7408852](https://github.com/AgustinAllamanoCosta/GTDFront/commit/7408852a48b3a9932a84ec53602dd4a00001f5e6))
+
+
+### Bug Fixes
+
+* 🐛 warning in props ([96abfba](https://github.com/AgustinAllamanoCosta/GTDFront/commit/96abfbac3a6287cc7a835f2549ea97e25a826383))
+* 🐛 warnings ([ebddd35](https://github.com/AgustinAllamanoCosta/GTDFront/commit/ebddd35476bfc7b442a27546f8a3e526e11d32ac))
+
+### [0.0.52](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.51...v0.0.52) (2024-01-07)
+
+### [0.0.51](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.50...v0.0.51) (2024-01-07)
 
 ### [0.0.50](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.49...v0.0.50) (2024-01-06)
 
@@ -22,15 +35,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.0.49](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.48...v0.0.49) (2024-01-04)
 
-* CI Change related
-
 ### [0.0.48](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.47...v0.0.48) (2024-01-03)
 
-* CI Change related
-
 ### [0.0.47](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.46...v0.0.47) (2024-01-03)
-
-* CI Change related
 
 ### [0.0.46](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.45...v0.0.46) (2024-01-03)
 
@@ -48,111 +55,57 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.0.45](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.44...v0.0.45) (2024-01-02)
 
-* CI Change related
-
 ### [0.0.44](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.43...v0.0.44) (2024-01-02)
-
-* CI Change related
 
 ### [0.0.43](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.42...v0.0.43) (2024-01-02)
 
-* CI Change related
-
 ### [0.0.42](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.41...v0.0.42) (2024-01-02)
-
-* CI Change related
 
 ### [0.0.41](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.40...v0.0.41) (2024-01-02)
 
-* CI Change related
-
 ### [0.0.40](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.39...v0.0.40) (2024-01-02)
-
-* CI Change related
 
 ### [0.0.39](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.38...v0.0.39) (2024-01-02)
 
-* CI Change related
-
 ### [0.0.38](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.37...v0.0.38) (2024-01-02)
-
-* CI Change related
 
 ### [0.0.37](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.36...v0.0.37) (2024-01-01)
 
-* CI Change related
-
 ### [0.0.36](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.35...v0.0.36) (2024-01-01)
-
-* CI Change related
 
 ### [0.0.35](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.34...v0.0.35) (2024-01-01)
 
-* CI Change related
-
 ### [0.0.34](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.33...v0.0.34) (2024-01-01)
-
-* CI Change related
 
 ### [0.0.33](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.32...v0.0.33) (2024-01-01)
 
-* CI Change related
-
 ### [0.0.32](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.31...v0.0.32) (2024-01-01)
-
-* CI Change related
 
 ### [0.0.31](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.30...v0.0.31) (2024-01-01)
 
-* CI Change related
-
 ### [0.0.30](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.29...v0.0.30) (2024-01-01)
-
-* CI Change related
 
 ### [0.0.29](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.28...v0.0.29) (2024-01-01)
 
-* CI Change related
-
 ### [0.0.28](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.27...v0.0.28) (2024-01-01)
-
-* CI Change related
 
 ### [0.0.27](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.26...v0.0.27) (2024-01-01)
 
-* CI Change related
-
 ### [0.0.26](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.25...v0.0.26) (2024-01-01)
-
-* CI Change related
 
 ### [0.0.25](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.24...v0.0.25) (2024-01-01)
 
-* CI Change related
-
 ### [0.0.24](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.23...v0.0.24) (2024-01-01)
-
-* CI Change related
 
 ### [0.0.23](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.22...v0.0.23) (2024-01-01)
 
-* CI Change related
-
 ### [0.0.22](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.21...v0.0.22) (2024-01-01)
-
-* CI Change related
 
 ### [0.0.21](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.20...v0.0.21) (2024-01-01)
 
-* CI Change related
-
 ### [0.0.20](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.19...v0.0.20) (2024-01-01)
 
-* CI Change related
-
 ### [0.0.19](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.18...v0.0.19) (2023-12-31)
-
-* CI Change related
 
 ### [0.0.18](https://github.com/AgustinAllamanoCosta/GTDFront/compare/v0.0.17...v0.0.18) (2023-12-31)
 
@@ -283,23 +236,3 @@ All notable changes to this project will be documented in this file. See [standa
 
 * 🐛 CI file ([9103c59](https://github.com/AgustinAllamanoCosta/GTDFront/commit/9103c599a41abcdc1aaabb471e8209a4faa2665f))
 * 🐛 CI file ([a7eab0f](https://github.com/AgustinAllamanoCosta/GTDFront/commit/a7eab0f028ba04f091cfc50412adf641ca7fef81))
-
-### [0.0.2](https://github.com/AgustinAllamanoCosta/GTDFront/compare/a5eaf6044c3a6e7c101209eb5c4a1805d8e8ce44...v0.0.2) (2023-11-27)
-
-
-### Features
-
-* 🎸 add button ([548b5c6](https://github.com/AgustinAllamanoCosta/GTDFront/commit/548b5c6f0a123ae4b3a466a3dec0fcba9bd13824))
-* 🎸 add button with icon ([02d32a3](https://github.com/AgustinAllamanoCosta/GTDFront/commit/02d32a37a8505a5413c6657b2a8dcddfaecfb566))
-* 🎸 add envs files ([441b723](https://github.com/AgustinAllamanoCosta/GTDFront/commit/441b723ca6bbc0e1d7394e991ea0052e33d59243))
-* 🎸 add login template ([17c2143](https://github.com/AgustinAllamanoCosta/GTDFront/commit/17c2143af1b8105ebe20b563e8f27002ccb8aadc))
-* 🎸 add login view with buttons ([cb69139](https://github.com/AgustinAllamanoCosta/GTDFront/commit/cb691393702bf73f65c1a4df0545c94209f11698))
-* 🎸 add new version of the cards ([b05530a](https://github.com/AgustinAllamanoCosta/GTDFront/commit/b05530a1a13e42bbfe8a21301aa993bb020d2b83))
-* 🎸 add storybbok and other tools to develop ([a5eaf60](https://github.com/AgustinAllamanoCosta/GTDFront/commit/a5eaf6044c3a6e7c101209eb5c4a1805d8e8ce44))
-* 🎸 add user card ([1e1f411](https://github.com/AgustinAllamanoCosta/GTDFront/commit/1e1f411e05cfc921465dbff46901eb3e82393a2a))
-
-
-### Bug Fixes
-
-* 🐛 build command ([2f73e67](https://github.com/AgustinAllamanoCosta/GTDFront/commit/2f73e67f69828e5769918fc8546c71bc92adee4a))
-* 🐛 storybook decorator ([fbb6f42](https://github.com/AgustinAllamanoCosta/GTDFront/commit/fbb6f421a9c5c42e43d2dbc80e2aa3ad30269fdd))
