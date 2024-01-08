@@ -153,54 +153,10 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-  end_to_end_testing:
-    runs-on: ubuntu-latest
-
-    needs: build
-
-    services:
-      app_to_test:
-        image: ghcr.io/agustinallamanocosta/gtdfront:master
-        options: --name app_to_test
-        env:
-          VITE_CLEINT_ID: ${{ secrets.VITE_CLEINT_ID }}
-          API_KEY: ${{ secrets.API_KEY }}
-          AUTH_DOMAIN: ${{ secrets.AUTH_DOMAIN }}
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
-          STORAGE_BUCKET: ${{ secrets.STORAGE_BUCKET }}
-          MESSAGING_SENDER_ID: ${{ secrets.MESSAGING_SENDER_ID }}
-          APP_ID: ${{ secrets.APP_ID }}
-          MEASUREMENT_ID: ${{ secrets.MEASUREMENT_ID }}
-          ACCESS_TOKEN: ${{ secrets.CYPRESS_ACCESS_TOKEN }}
-          ID: ${{ secrets.CYPRESS_ID }}
-          NAME: ${{ secrets.CYPRESS_NAME }}
-          PHOTO_URL: ${{ secrets.CYPRESS_PHOTO_URL }}
-        ports:
-          - 8080:8080
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Cache dependencies
-        id: cache-dependencies
-        uses: actions/cache@v3.3.2
-        with:
-          path: |
-            **/node_modules
-            /home/runner/.cache/Cypress
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-
-      - name: Run end to end testing
-        env:
-          CYPRESS_REMOTE_URL: ${{ secrets.CYPRESS_REMOTE_URL }}
-        shell: bash
-        run: yarn cy-run-e2e
-
   version:
     runs-on: ubuntu-latest
 
-    needs: end_to_end_testing
+    needs: build
 
     steps:
       - name: Checkout code
@@ -261,10 +217,54 @@ jobs:
           bodyFile: 'CHANGELOG.md'
           tag: ${{ steps.get_version.outputs.version }}
 
-  deploy_on_firebase:
+  end_to_end_testing:
     runs-on: ubuntu-latest
 
     needs: creating_release
+
+    services:
+      app_to_test:
+        image: ghcr.io/agustinallamanocosta/gtdfront:master
+        options: --name app_to_test
+        env:
+          VITE_CLEINT_ID: ${{ secrets.VITE_CLEINT_ID }}
+          API_KEY: ${{ secrets.API_KEY }}
+          AUTH_DOMAIN: ${{ secrets.AUTH_DOMAIN }}
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          STORAGE_BUCKET: ${{ secrets.STORAGE_BUCKET }}
+          MESSAGING_SENDER_ID: ${{ secrets.MESSAGING_SENDER_ID }}
+          APP_ID: ${{ secrets.APP_ID }}
+          MEASUREMENT_ID: ${{ secrets.MEASUREMENT_ID }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          ID: ${{ secrets.ID }}
+          NAME: ${{ secrets.NAME }}
+          PHOTO_URL: ${{ secrets.PHOTO_URL }}
+        ports:
+          - 8080:8080
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v3.3.2
+        with:
+          path: |
+            **/node_modules
+            /home/runner/.cache/Cypress
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Run end to end testing
+        env:
+          CYPRESS_REMOTE_URL: ${{ secrets.CYPRESS_REMOTE_URL }}
+        shell: bash
+        run: yarn cy-run-e2e
+
+  deploy_on_firebase:
+    runs-on: ubuntu-latest
+
+    needs: end_to_end_testing
 
     steps:
       - name: Checkout code
