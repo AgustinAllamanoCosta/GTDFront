@@ -76,9 +76,6 @@ jobs:
           node-version: 18.x
       - run: yarn test
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
-
   component_testing:
     runs-on: ubuntu-latest
 
@@ -235,7 +232,7 @@ jobs:
       - name: Get package.json version
         id: get_version
         run: |
-          echo "::set-output name=version::$(jq -r '.version' package.json)"
+          echo "version=$(jq -r '.version' package.json)" >> $GITHUB_OUTPUT
 
       - name: Create Release
         id: create_release
@@ -329,7 +326,7 @@ jobs:
           path: ./dist
 
       - name: Deploy to Firebase
-        uses: FirebaseExtended/action-hosting-deploy@v0.6-alpha
+        uses: FirebaseExtended/action-hosting-deploy@v0.7.1
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_GETTHINGSDONE_391622 }}'
