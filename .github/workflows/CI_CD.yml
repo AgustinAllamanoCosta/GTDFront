@@ -118,8 +118,10 @@ jobs:
             /home/runner/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
-      - name: Run Build with Node.js 18.x
+      - name: Use Node.js 18.x
         uses: actions/setup-node@v4
+
+      - name: Build with envs
         env:
           VITE_CLEINT_ID: ${{ secrets.VITE_CLEINT_ID }}
           API_KEY: ${{ secrets.API_KEY }}
