@@ -98,7 +98,10 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
       - name: Cypress Component testing
-        run: yarn cy-run-components
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+      - run: yarn cy-run-components
 
   build:
     runs-on: ubuntu-latest
@@ -186,6 +189,11 @@ jobs:
             /home/runner/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
+      - name: Install Latest Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+
       - name: Configure commiter
         run: |
           git config user.name "GitHub Actions Bot"
@@ -219,6 +227,11 @@ jobs:
             /home/runner/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
+      - name: Install Latest Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+
       - name: Get package.json version
         id: get_version
         run: |
@@ -228,7 +241,6 @@ jobs:
         id: create_release
         uses: ncipollo/release-action@v1.13.0
         with:
-          run: version=$(jq -r '.version' package.json)
           bodyFile: 'CHANGELOG.md'
           tag: ${{ steps.get_version.outputs.version }}
 
@@ -271,6 +283,11 @@ jobs:
             /home/runner/.cache/Cypress
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
+      - name: Install Latest Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+
       - name: Run end to end testing
         shell: bash
         run: yarn cy-run-e2e
@@ -299,10 +316,15 @@ jobs:
             **/node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
+      - name: Install Latest Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+
       - name: Download production artifact
         uses: actions/download-artifact@v4.1.0
         with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
+          github-token: ${{secrets.GITHUB_TOKEN}}
           name: production-build
           path: ./dist
 
