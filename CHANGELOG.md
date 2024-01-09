@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.62 (2024-01-09)
+
+
+### Bug Fixes
+
+* 🐛 firebase config ([2b5cc6c](https://github.com/AgustinAllamanoCosta/GTDFront/commit/2b5cc6c4fcef1479c14a1ed043bde096b444f961))
+
 ### 0.0.61 (2024-01-09)
 
 
