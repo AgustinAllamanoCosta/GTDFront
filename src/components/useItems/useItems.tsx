@@ -1,9 +1,30 @@
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useTask } from '../../hooks/useTask';
 import { TaskInformationContext } from '../../contexts/taskContext';
+import { Task } from '../../types/types';
 
-const ItemsContext = ({ children }: { children: ReactNode }) => {
-  const { activeItems, inboxTask, items, setActiveItems, setItems } = useTask();
+const ItemsContext = ({
+  defaultItems,
+  defaultActiveItems,
+  children,
+}: {
+  defaultItems?: Array<Task>;
+  defaultActiveItems?: Array<Task>;
+  children: ReactNode;
+}) => {
+  const {
+    activeItems,
+    inboxTask,
+    items,
+    setActiveItems,
+    setItems,
+    setInboxTask,
+  } = useTask(defaultItems);
+
+  useEffect(() => {
+    if (defaultActiveItems) setActiveItems(defaultActiveItems);
+    if (defaultItems) setInboxTask(defaultItems);
+  }, []);
 
   return (
     <TaskInformationContext.Provider

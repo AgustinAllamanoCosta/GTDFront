@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { ActiveTasks, InboxTasks, Task } from '../../types/types';
-import { TaskInformationContext } from '../../contexts/taskContext';
+import { Task } from '../../types/types';
+import { BrowserRouter } from 'react-router-dom';
+import ItemsContext from '../../components/useItems/useItems';
 
 const task1: Task = {
   title: 'some task 1',
@@ -25,38 +25,14 @@ const task3: Task = {
   isActive: true,
 };
 
-type TaskContextProps = {
-  children: string | JSX.Element | JSX.Element[];
-};
-
-export const mockTaskInContext = [task1, task2, task3];
+export const mockTaskInContext: Array<Task> = [task1, task2, task3];
 
 export const TaskContextDecorator = (Story: any) => {
   return (
-    <TaskContext>
-      <Story />
-    </TaskContext>
-  );
-};
-
-export const TaskContext = ({ children }: TaskContextProps) => {
-  const [activeItems, setActiveItems] =
-    useState<ActiveTasks>(mockTaskInContext);
-  const [inboxTask, setInboxTask] = useState<InboxTasks>(mockTaskInContext);
-
-  const [items, setItems] = useState<InboxTasks>(mockTaskInContext);
-
-  return (
-    <TaskInformationContext.Provider
-      value={{
-        activeTasks: activeItems,
-        inboxTasks: inboxTask,
-        items,
-        setActiveTask: setActiveItems,
-        setItems,
-      }}
-    >
-      {children}
-    </TaskInformationContext.Provider>
+    <BrowserRouter>
+      <ItemsContext>
+        <Story />
+      </ItemsContext>
+    </BrowserRouter>
   );
 };

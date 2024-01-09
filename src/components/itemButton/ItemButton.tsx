@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { BLACK, GREY } from '../../constants /colors';
 
 const ENTER_KEY_COE = 13;
 
@@ -54,7 +55,7 @@ export const ItemAddButton = ({
 //TODO: PIXELS
 const ItemContent = styled.div`
   border-bottom-style: solid;
-  border-bottom-color: black;
+  border-bottom-color: ${BLACK};
   border-bottom-width: 1px;
   display: flex;
   flex-direction: row;
@@ -69,13 +70,13 @@ const AddItemContent = styled(ItemContent)`
 
 const AddItemInput = styled.input`
   border: 0px;
-  background-color: #d9d9d9;
+  background-color: ${GREY};
   width: 85%;
   outline-width: 1px;
   border-radius: 2px;
   padding: 3px;
   &::placeholder {
-    color: black;
+    color: ${BLACK};
     font-weight: bold;
   }
 `;

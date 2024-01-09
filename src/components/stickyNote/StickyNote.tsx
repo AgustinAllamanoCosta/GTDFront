@@ -3,6 +3,7 @@ import { styled } from 'styled-components';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FONTS } from '../../constants /size';
+import { BLACK, GREEN, YELLOW } from '../../constants /colors';
 
 export type StickyNoteProps = {
   number: string;
@@ -52,7 +53,11 @@ const TextNote = styled.textarea`
   height: 100%;
   overflow-y: scroll;
   &::-webkit-scrollbar {
-    width: 0px;
+    width: 3px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${BLACK};
+    border-radius: 10px;
   }
 `;
 
@@ -72,14 +77,14 @@ const ButtonContainer = styled.div`
   height: 16px;
   padding: 3px;
   &:hover {
-    background-color: #5fff5f;
+    background-color: ${GREEN};
   }
 `;
 
 const ButtonAndNoteContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #ffff99;
+  background-color: ${YELLOW};
   width: 112px;
   height: 112px;
   border-radius: 10px;

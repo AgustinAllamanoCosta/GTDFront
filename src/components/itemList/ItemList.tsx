@@ -6,6 +6,7 @@ import { Item } from '../item/Item';
 import { v4 as uuidv4 } from 'uuid';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { Task } from '../../types/types';
+import { BLACK } from '../../constants /colors';
 
 export type ItemListProps = {
   title: string;
@@ -89,6 +90,13 @@ export const ItemList = ({ title }: ItemListProps): JSX.Element => {
 const InboxContainer = styled.div`
   width: 100%;
   overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${BLACK};
+    border-radius: 10px;
+  }
 `;
 
 const InboxTaskContainer = styled.div`

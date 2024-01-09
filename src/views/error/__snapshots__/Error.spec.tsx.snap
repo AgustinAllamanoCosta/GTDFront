@@ -3,7 +3,7 @@
 exports[`Error View Should render an Error view  1`] = `
 <div>
   <div
-    class="sc-hfDuwB fXIcpB"
+    class="sc-hfDuwB kEggvJ"
     data-cy="Card-Contents"
     is_center="true"
     padding="true"
@@ -19,7 +19,7 @@ exports[`Error View Should render an Error view  1`] = `
       data-cy="Error-view-message"
     />
     <div
-      class="sc-jCIOXC cBnJyG"
+      class="sc-jCIOXC fChOOW"
       data-cy="button-gtd"
     >
       <span

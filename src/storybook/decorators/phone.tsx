@@ -1,7 +1,10 @@
+import { BrowserRouter } from 'react-router-dom';
 import { AppContext } from '../../contexts/appContext';
 
 export const PhoneContext = (Story: any) => (
-  <AppContext>
-    <Story />
-  </AppContext>
+  <BrowserRouter>
+    <AppContext>
+      <Story />
+    </AppContext>
+  </BrowserRouter>
 );

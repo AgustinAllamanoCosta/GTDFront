@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faBoxes, faX } from '@fortawesome/free-solid-svg-icons';
 import { FONTS } from '../../constants /size';
 import { useState } from 'react';
+import { BLACK } from '../../constants /colors';
 
 export type ItemProps = {
   title: String;
@@ -51,7 +52,7 @@ const ItemContainer = styled.div``;
 
 const ItemContent = styled.div`
   border-bottom-style: solid;
-  border-bottom-color: black;
+  border-bottom-color: ${BLACK};
   border-bottom-width: 1px;
   display: flex;
   flex-direction: row;

@@ -1,16 +1,17 @@
 import React from 'react';
 import { ActiveTask } from './ActiveTask';
-import {
-  TaskContext,
-  mockTaskInContext,
-} from '../../storybook/decorators/tasks';
+import { mockTaskInContext } from '../../storybook/decorators/tasks';
+import { BrowserRouter } from 'react-router-dom';
+import ItemsContext from '../useItems/useItems';
 
 describe('Active Task List with active task', () => {
   it('render Active task with thre active task inside', () => {
     cy.mount(
-      <TaskContext>
-        <ActiveTask />
-      </TaskContext>,
+      <BrowserRouter>
+        <ItemsContext defaultActiveItems={mockTaskInContext}>
+          <ActiveTask />
+        </ItemsContext>
+      </BrowserRouter>,
     );
     cy.get('[data-cy="stick-note-text-0"]').should(
       'have.text',

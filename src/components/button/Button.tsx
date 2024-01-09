@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FONTS } from '../../constants /size';
+import { BLACK } from '../../constants /colors';
 
 export type ButtonProps = {
   text: string;
@@ -36,7 +37,7 @@ const ButtonContainer = styled.div`
   margin-right: 5px;
   margin-bottom: 5px;
   border-bottom-style: solid;
-  border-bottom-color: black;
+  border-bottom-color: ${BLACK};
   border-bottom-width: 1px;
   cursor: pointer;
   font-weight: bold;

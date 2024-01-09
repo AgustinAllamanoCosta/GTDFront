@@ -3,7 +3,7 @@
 exports[`Login View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-dBwcjI dCdbfO"
+    class="sc-dBwcjI dgtVNG"
     data-cy="Card-Contents"
     is_center="true"
     padding="true"
@@ -19,7 +19,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
       data-cy="Error-view-message"
     />
     <div
-      class="sc-hfDuwB iNQNqE"
+      class="sc-hfDuwB hZBRcw"
       data-cy="button-gtd"
     >
       <span

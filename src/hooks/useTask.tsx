@@ -79,5 +79,6 @@ export const useTask = (userTask: InboxTasks = []) => {
     items,
     setActiveItems,
     setItems,
+    setInboxTask,
   };
 };

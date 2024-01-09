@@ -4,6 +4,7 @@ import { CardTitle } from '../cardWithTile/CardWithTitle';
 import { StickyNote } from '../stickyNote/StickyNote';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { Task } from '../../types/types';
+import { BLACK } from '../../constants /colors';
 
 export const ActiveTask = (): JSX.Element => {
   const activeInformation = useContext(TaskInformationContext);
@@ -43,15 +44,19 @@ export const ActiveTask = (): JSX.Element => {
   );
 };
 
-//TODO: PIXELS AND % TO REMOVE
 const ActiveTaskContent = styled.div`
   display: flex;
-  width: 100%;
-  height: 100%;
   min-height: 139px;
   flex-direction: row;
-  justify-content: center;
+  justify-content: start;
   overflow-x: scroll;
+  &::-webkit-scrollbar {
+    height: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${BLACK};
+    border-radius: 10px;
+  }
 `;
 
 const ActiveTasksContainer = styled.div`

@@ -1,4 +1,5 @@
 import { styled } from 'styled-components';
+import { GREY } from '../../constants /colors';
 
 export type CardProps = {
   content_center?: boolean;
@@ -24,7 +25,7 @@ export const Card = ({
 
 //TODO: PIXEL AND %
 const MyCard = styled.div<{ is_center?: string; padding?: string }>`
-  background-color: #d9d9d9;
+  background-color: ${GREY};
   border-radius: 10px;
   width: 100%;
   height: 100%;
