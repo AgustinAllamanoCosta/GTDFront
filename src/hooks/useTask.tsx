@@ -1,13 +1,15 @@
 import { useEffect, useState, useContext } from 'react';
 import { ActiveTasks, InboxTasks, Task } from '../types/types';
-import { doc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import useFireBase from './useFirebase';
 import { FIRE_BASE_COLLECTION_NAME } from '../constants /keys';
 import { useLocalStorage } from './useLocalStorage';
 import { ErrorHandlerContext } from '../contexts/errorHandlerContext';
+import { UserInformationContext } from '../contexts/userContext';
 
 export const useTask = (userTask: InboxTasks = []) => {
   const errorContext = useContext(ErrorHandlerContext);
+  const userDataContext = useContext(UserInformationContext);
   const { getItem, saveItems } = useLocalStorage();
 
   const [activeItems, setActiveItems] = useState<ActiveTasks>([]);
@@ -30,9 +32,16 @@ export const useTask = (userTask: InboxTasks = []) => {
   };
 
   const saveIntoFirebase = async (items: InboxTasks) => {
-    const userTask = doc(useFireBase, FIRE_BASE_COLLECTION_NAME, 'user-id');
     try {
-      await setDoc(userTask, { items });
+      if (userDataContext.userData?.id) {
+        const userTask = doc(
+          useFireBase,
+          FIRE_BASE_COLLECTION_NAME,
+          userDataContext.userData?.id,
+        );
+
+        await setDoc(userTask, { items });
+      }
     } catch (error: any) {
       errorContext.setError(true);
       errorContext.setMessage(error.message);
@@ -42,6 +51,24 @@ export const useTask = (userTask: InboxTasks = []) => {
   const save = async (items: InboxTasks) => {
     saveItems(items);
     await saveIntoFirebase(items);
+  };
+
+  const getDataFromFirebaseOrLocalStorage = async () => {
+    if (userDataContext.userData?.id) {
+      const userTaskDoc = doc(
+        useFireBase,
+        FIRE_BASE_COLLECTION_NAME,
+        userDataContext.userData.id,
+      );
+      const itemsInFirebase = await getDoc(userTaskDoc);
+      const userData = itemsInFirebase.data();
+      if (userData) {
+        setItems(userData.items);
+      }
+    } else {
+      const dataFromLocalStorage = getItem();
+      if (dataFromLocalStorage) setItems(dataFromLocalStorage);
+    }
   };
 
   useEffect(() => {
@@ -60,10 +87,7 @@ export const useTask = (userTask: InboxTasks = []) => {
   useEffect(() => {
     try {
       if (items.length === 0) {
-        const items = getItem();
-        if (items) {
-          setItems(items);
-        }
+        getDataFromFirebaseOrLocalStorage();
       } else {
         save(items);
       }
