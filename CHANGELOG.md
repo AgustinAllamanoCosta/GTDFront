@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.61 (2024-01-09)
+
+
+### Features
+
+* 🎸 configura firebaes as SPA ([118effd](https://github.com/AgustinAllamanoCosta/GTDFront/commit/118effde666c05f4cf03d512584200cc761d6883))
+
 ### 0.0.60 (2024-01-09)
 
 
