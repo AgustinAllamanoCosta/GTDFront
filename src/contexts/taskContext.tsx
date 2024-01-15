@@ -7,10 +7,12 @@ export const TaskInformationContext = createContext<{
   items: Tasks;
   setActiveTask: (e: ActiveTasks) => void;
   setItems: (e: Tasks) => void;
+  refreshData: () => void;
 }>({
   activeTasks: [],
   inboxTasks: [],
   items: [],
   setActiveTask: (e) => {},
   setItems: (e) => {},
+  refreshData: () => {},
 });

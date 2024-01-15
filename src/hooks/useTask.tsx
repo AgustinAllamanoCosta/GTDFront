@@ -15,7 +15,7 @@ export const useTask = (userTask: InboxTasks = []) => {
   const [activeItems, setActiveItems] = useState<ActiveTasks>([]);
   const [inboxTask, setInboxTask] = useState<InboxTasks>([]);
 
-  const [items, setItems] = useState<InboxTasks>(userTask);
+  const [items, setItems] = useState<InboxTasks>([]);
 
   const getTheActiveTask = (taskToAnalize: InboxTasks) => {
     const newActiveTask: Array<Task> = taskToAnalize.filter((task: Task) => {
@@ -73,9 +73,11 @@ export const useTask = (userTask: InboxTasks = []) => {
 
   useEffect(() => {
     try {
-      getTheActiveTask(items);
-      getInboxTask(items);
-      if (items.length !== 0) {
+      if (items) {
+        getTheActiveTask(items);
+        getInboxTask(items);
+      }
+      if (items && items.length !== 0) {
         save(items);
       }
     } catch (error: any) {
@@ -86,10 +88,10 @@ export const useTask = (userTask: InboxTasks = []) => {
 
   useEffect(() => {
     try {
-      if (items.length === 0) {
+      if (userTask.length === 0) {
         getDataFromFirebaseOrLocalStorage();
       } else {
-        save(items);
+        save(userTask);
       }
     } catch (error: any) {
       errorContext.setError(true);
@@ -104,5 +106,6 @@ export const useTask = (userTask: InboxTasks = []) => {
     setActiveItems,
     setItems,
     setInboxTask,
+    refreshData: getDataFromFirebaseOrLocalStorage,
   };
 };

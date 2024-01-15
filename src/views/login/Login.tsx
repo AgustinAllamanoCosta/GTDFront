@@ -10,10 +10,12 @@ import { UserInformationContext } from '../../contexts/userContext';
 import { UserData } from '../../types/types';
 import { useNavigate } from 'react-router-dom';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
+import { TaskInformationContext } from '../../contexts/taskContext';
 
 const LoginView = () => {
   const userInformation = useContext(UserInformationContext);
   const errorContext = useContext(ErrorHandlerContext);
+  const taskContet = useContext(TaskInformationContext);
   const navigate = useNavigate();
 
   const login = useGoogleLogin({
@@ -56,6 +58,7 @@ const LoginView = () => {
         userInformation.setUserData({ ...newUser });
       }
     } else if (userId) {
+      taskContet.refreshData();
       navigate('task');
     }
   };

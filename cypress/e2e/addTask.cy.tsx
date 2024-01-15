@@ -1,3 +1,6 @@
+const USER_NAME: string = 'Test User';
+const URL: string = 'http://localhost:8080/';
+
 describe('Get The Things Done', () => {
   afterEach(() => {
     window.localStorage.clear();
@@ -9,16 +12,16 @@ describe('Get The Things Done', () => {
   });
 
   it('Should Login into the app with a gmail account', () => {
-    cy.visit('http://localhost:8080/');
+    cy.visit(URL);
     cy.get('[data-cy="Card-SubTitle"]').should(
       'have.text',
-      'Hi Agustin Allamano Costa !',
+      `Hi ${USER_NAME} !`,
     );
   });
 
   it('Should add a new task', () => {
     const taskContent: string = 'some task to do';
-    cy.visit('http://localhost:8080/');
+    cy.visit(URL);
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.get('[data-cy="task-some task to do"]').should('have.text', taskContent);
@@ -26,7 +29,7 @@ describe('Get The Things Done', () => {
 
   it('Should add a new task and active', () => {
     const taskContent: string = 'some task to do';
-    cy.visit('http://localhost:8080/');
+    cy.visit(URL);
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.get('[data-cy="task-some task to do"]').trigger('mouseover');
@@ -41,7 +44,7 @@ describe('Get The Things Done', () => {
 
   it('Should add a new task, active it and mark as complete', () => {
     const taskContent: string = 'some task to do';
-    cy.visit('http://localhost:8080/');
+    cy.visit(URL);
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.get('[data-cy="task-some task to do"]').trigger('mouseover');
@@ -52,7 +55,7 @@ describe('Get The Things Done', () => {
   });
 
   it('Should load a task from local storage', () => {
-    cy.visit('http://localhost:8080/');
+    cy.visit(URL);
     const taskContent = 'some task to do 1';
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
@@ -68,7 +71,7 @@ describe('Get The Things Done', () => {
     const taskContentTwo: string = 'some task to do 2';
     const taskContentThree: string = 'some task to do 3';
     const taskContentFour: string = 'some task to do 4';
-    cy.visit('http://localhost:8080/');
+    cy.visit(URL);
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentOne);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
@@ -115,7 +118,7 @@ describe('Get The Things Done', () => {
     const taskContentTwo: string = 'some task to do 2';
     const taskContentThree: string = 'some task to do 3';
     const taskContentFour: string = 'some task to do 4';
-    cy.visit('http://localhost:8080/');
+    cy.visit(URL);
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentOne);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
@@ -167,7 +170,7 @@ describe('Get The Things Done', () => {
 
   it('Should add a new task and them cancel it', () => {
     const taskContentOne: string = 'some task to do 1';
-    cy.visit('http://localhost:8080/');
+    cy.visit(URL);
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentOne);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
@@ -179,15 +182,16 @@ describe('Get The Things Done', () => {
   });
 
   it('Should logout', () => {
-    cy.visit('http://localhost:8080/');
+    cy.visit(URL);
     cy.get('[data-cy="button-text"]').click();
     cy.get('[data-cy="Card-SubTitle"]').should('not.exist');
+    cy.get('[data-cy="button-gtd"]').should('exist');
   });
 
   it('Should show the error view', () => {
-    cy.visit('http://localhost:8080/');
+    cy.visit(URL);
     cy.get('[data-cy="button-text"]').click();
-    cy.visit(`http://localhost:8080/task123132`);
+    cy.visit(`${URL}task123132`);
     cy.get('[data-cy="Error-view-message"]').should(
       'have.text',
       'Ups looks like this page does not exist :(',
@@ -195,7 +199,7 @@ describe('Get The Things Done', () => {
     cy.get('[data-cy="button-text"]').click();
     cy.get('[data-cy="Card-SubTitle"]').should(
       'have.text',
-      'Hi Agustin Allamano Costa !',
+      `Hi ${USER_NAME} !`,
     );
   });
 });

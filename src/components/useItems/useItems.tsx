@@ -19,6 +19,7 @@ const ItemsContext = ({
     setActiveItems,
     setItems,
     setInboxTask,
+    refreshData,
   } = useTask(defaultItems);
 
   useEffect(() => {
@@ -34,6 +35,7 @@ const ItemsContext = ({
         items,
         setActiveTask: setActiveItems,
         setItems,
+        refreshData,
       }}
     >
       {children}
