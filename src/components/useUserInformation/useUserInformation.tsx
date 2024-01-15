@@ -5,6 +5,7 @@ import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 import { configuration } from '../../config/appConfig';
 import { IS_END_TO_END } from '../../constants /environment';
+import { v4 as uuidv4 } from 'uuid';
 
 const UserContext = ({ children }: { children: ReactNode }) => {
   const errorContext = useContext(ErrorHandlerContext);
@@ -22,7 +23,7 @@ const UserContext = ({ children }: { children: ReactNode }) => {
       if (configuration.environment === IS_END_TO_END) {
         const userData = {
           accessToken: configuration.accessToken,
-          id: configuration.id,
+          id: `TEST-ID-${uuidv4()}`,
           name: configuration.name,
           photoURL: configuration.photoURL,
         };

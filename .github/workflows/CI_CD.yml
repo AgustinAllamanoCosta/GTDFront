@@ -101,6 +101,7 @@ jobs:
       - run: yarn cy-run-components
 
       - name: Archive cypress videos
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cypress-component-videos
@@ -297,6 +298,7 @@ jobs:
         run: yarn cy-run-e2e
 
       - name: Archive cypress videos
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cypress-videos
