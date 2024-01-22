@@ -6,9 +6,11 @@ import { TaskInformationContext } from '../../contexts/taskContext';
 import { Task } from '../../types/types';
 import { BLACK } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
+import { useViewport } from '../../hooks/useView';
 
 export const ActiveTask = (): JSX.Element => {
   const activeInformation = useContext(TaskInformationContext);
+  const { isMobile } = useViewport();
 
   const removeActiveTaks = (index: number) => {
     //TODO: improve this :D
@@ -21,13 +23,16 @@ export const ActiveTask = (): JSX.Element => {
   };
 
   return (
-    <ActiveTasksContainer>
+    <ActiveTasksContainer is_mobile={`${isMobile}`}>
       <CardTitle
         title="Active Task"
         label={`${activeInformation.activeTasks.length}/3`}
         data-cy="Active-task-title"
       >
-        <ActiveTaskContent data-cy="Active-task-list">
+        <ActiveTaskContent
+          data-cy="Active-task-list"
+          is_mobile={`${isMobile}`}
+        >
           {activeInformation.activeTasks.map((item: Task, index: number) => {
             return (
               <StickyNote
@@ -45,27 +50,45 @@ export const ActiveTask = (): JSX.Element => {
   );
 };
 
-const ActiveTaskContent = styled.div`
+const ActiveTaskContent = styled.div<{ is_mobile?: string }>`
   display: flex;
   min-height: 139px;
-  flex-direction: row;
-  justify-content: start;
-  overflow-x: scroll;
-  &::-webkit-scrollbar {
-    height: 5px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: ${BLACK};
-    border-radius: 10px;
-  }
+  ${(props) =>
+    props.is_mobile === 'true'
+      ? `
+      flex-direction: row;
+      justify-content: start;
+      overflow-x: scroll;
+      &::-webkit-scrollbar {
+        height: 5px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: ${BLACK};
+        border-radius: 10px;
+      }
+  `
+      : `
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  `};
 `;
 
-const ActiveTasksContainer = styled.div`
+const ActiveTasksContainer = styled.div<{ is_mobile?: string }>`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  width: ${SIZE.L};
-  margin-bottom: 8px;
-  min-width: 280px;
-  max-width: 380px;
+  flex-direction: column;
+  ${(props) =>
+    props.is_mobile === 'true'
+      ? `
+      width: ${SIZE.L};
+      margin-bottom: 8px;
+      min-width: 280px;
+      max-width: 380px;
+      max-height: 573px;
+  `
+      : `
+      height: 580px;
+      width: 210px;
+  `};
 `;

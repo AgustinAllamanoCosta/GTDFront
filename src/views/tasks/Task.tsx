@@ -9,6 +9,7 @@ import { googleLogout } from '@react-oauth/google';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 import { useNavigate } from 'react-router-dom';
+import { useViewport } from '../../hooks/useView';
 
 type TaskViewProps = {
   inboxTasks?: InboxTasks;
@@ -20,6 +21,7 @@ const TaskView = ({ inboxTasks = [], userData }: TaskViewProps) => {
   const userInformation = useContext(UserInformationContext);
   const itemContext = useContext(TaskInformationContext);
   const navigate = useNavigate();
+  const { isMobile } = useViewport();
 
   const logOut = () => {
     googleLogout();
@@ -48,8 +50,20 @@ const TaskView = ({ inboxTasks = [], userData }: TaskViewProps) => {
           logout={logOut}
         />
       )}
-      <ActiveTask />
-      <ItemList title="Inbox" />
+      <ContentContainer is_mobile={`${isMobile}`}>
+        {isMobile && (
+          <>
+            <ActiveTask />
+            <ItemList title="Inbox" />
+          </>
+        )}
+        {!isMobile && (
+          <>
+            <ItemList title="Inbox" />
+            <ActiveTask />
+          </>
+        )}
+      </ContentContainer>
     </Container>
   );
 };
@@ -59,6 +73,23 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   height: 90vh;
+`;
+
+const ContentContainer = styled.div<{ is_mobile?: string }>`
+  display: flex;
+  justify-content: space-between;
+  ${(props) =>
+    props.is_mobile === 'true'
+      ? `
+  flex-direction: column;
+  align-items: center;
+  `
+      : `
+  width: 100vh;
+  flex-direction: row;
+  align-items: center;
+  height: 820px;
+  `};
 `;
 
 export default TaskView;

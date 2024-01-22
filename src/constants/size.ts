@@ -3,7 +3,7 @@ export enum FONTS {
   SUB_TITLE = '20',
   TEXT = '16px',
 }
-
+export const breakpoint = 800;
 export enum SIZE {
   XS = '10vh',
   S = '18vh',

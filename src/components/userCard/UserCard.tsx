@@ -1,10 +1,10 @@
 import { styled } from 'styled-components';
-import { Card } from '../card/Card';
 import { FONTS } from '../../constants/size';
 import { Button } from '../button/Button';
-import { BLACK } from '../../constants/colors';
+import { BLACK, GREY } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
 import { REPO_URL } from '../../constants/routePaths';
+import { useViewport } from '../../hooks/useView';
 
 export type UserCardProps = {
   userName: string;
@@ -17,14 +17,36 @@ export const UserCard = ({
   userPhoto,
   logout,
 }: UserCardProps): JSX.Element => {
+  const { isMobile } = useViewport();
+
   return (
-    <UserCardContainer>
-      <AvatarImage
-        data-cy="Avatar-photo"
-        imageurl={userPhoto}
-      />
-      <Card padding={false}>
-        <MyCardHeader data-cy="User-Card-Header">
+    <UserCardContainer is_mobile={`${isMobile}`}>
+      {isMobile && (
+        <>
+          <AvatarImage
+            data-cy="Avatar-photo"
+            imageurl={userPhoto}
+          />
+          <Bar>
+            <MyAvatarDataHeader data-cy="User-Card-Header">
+              <MyTitle
+                href={REPO_URL}
+                target={'_blank'}
+                data-cy="Card-title"
+              >
+                Getting Things Done
+              </MyTitle>
+              <MySubTitle data-cy="Card-SubTitle">{`Hi ${userName} !`}</MySubTitle>
+              <Button
+                onClick={logout}
+                text="LogOut"
+              />
+            </MyAvatarDataHeader>
+          </Bar>
+        </>
+      )}
+      {!isMobile && (
+        <BarDesk>
           <MyTitle
             href={REPO_URL}
             target={'_blank'}
@@ -32,16 +54,54 @@ export const UserCard = ({
           >
             Getting Things Done
           </MyTitle>
-          <MySubTitle data-cy="Card-SubTitle">{`Hi ${userName} !`}</MySubTitle>
-          <Button
-            onClick={logout}
-            text="LogOut"
-          />
-        </MyCardHeader>
-      </Card>
+          <MyAvatarDataHeaderDesk>
+            <Button
+              onClick={logout}
+              text="LogOut"
+            />
+            <MySubTitle data-cy="Card-SubTitle">{`Hi ${userName} !`}</MySubTitle>
+            <AvatarImageDesk
+              data-cy="Avatar-photo"
+              imageurl={userPhoto}
+            />
+          </MyAvatarDataHeaderDesk>
+        </BarDesk>
+      )}
     </UserCardContainer>
   );
 };
+
+const Bar = styled.div`
+  background-color: ${GREY};
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  flex-direction: column;
+`;
+
+const BarDesk = styled.div`
+  background-color: ${GREY};
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  flex-direction: row;
+  padding-left: 8px;
+`;
+
+const AvatarImageDesk = styled.div<{ imageurl: string }>`
+  ${(props) => `background-image: url(${props.imageurl})`};
+  background-size: cover;
+  background-position: top center;
+  border-radius: 100px;
+  width: 34px;
+  height: 34px;
+  margin: 8px;
+`;
 
 const AvatarImage = styled.div<{ imageurl: string }>`
   ${(props) => `background-image: url(${props.imageurl})`};
@@ -54,11 +114,19 @@ const AvatarImage = styled.div<{ imageurl: string }>`
   height: 11vh;
   margin: 8px;
 `;
-const MyCardHeader = styled.div`
+
+const MyAvatarDataHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: scroll;
+`;
+
+const MyAvatarDataHeaderDesk = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  flex-direction: row;
 `;
 
 const MyTitle = styled.a`
@@ -72,17 +140,25 @@ const MySubTitle = styled.span`
   margin: 5px;
 `;
 
-const UserCardContainer = styled.div`
+const UserCardContainer = styled.div<{ is_mobile?: string }>`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: center;
   align-items: center;
   margin-bottom: 16px;
+  ${(props) =>
+    props.is_mobile === 'true'
+      ? `
   margin-top: 10px;
   min-height: 90px;
   min-width: 280px;
   max-width: 380px;
   width: ${SIZE.L};
   height: ${SIZE.XS};
+  `
+      : `
+  height: 50px;
+  width: 100%;
+  `};
 `;

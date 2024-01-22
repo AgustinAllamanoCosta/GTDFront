@@ -8,6 +8,7 @@ import { TaskInformationContext } from '../../contexts/taskContext';
 import { Task } from '../../types/types';
 import { BLACK } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
+import { useViewport } from '../../hooks/useView';
 
 export type ItemListProps = {
   title: string;
@@ -15,6 +16,7 @@ export type ItemListProps = {
 
 export const ItemList = ({ title }: ItemListProps): JSX.Element => {
   const itemsInformation = useContext(TaskInformationContext);
+  const { isMobile } = useViewport();
   const [value, setValue] = useState<string>('');
 
   const buttonAdd = (event: any) => {
@@ -61,7 +63,7 @@ export const ItemList = ({ title }: ItemListProps): JSX.Element => {
   };
 
   return (
-    <InboxTaskContainer>
+    <InboxTaskContainer is_mobile={`${isMobile}`}>
       <CardTitle
         title={title}
         label={`total ${itemsInformation.inboxTasks.length}`}
@@ -100,10 +102,18 @@ const InboxContainer = styled.div`
   }
 `;
 
-const InboxTaskContainer = styled.div`
-  height: ${SIZE.L};
-  width: ${SIZE.L};
-  min-width: 280px;
-  max-width: 380px;
-  min-height: 400px;
+const InboxTaskContainer = styled.div<{ is_mobile?: string }>`
+  ${(props) =>
+    props.is_mobile === 'true'
+      ? `
+      height: ${SIZE.L};
+      width: ${SIZE.L};
+      min-width: 280px;
+      max-width: 380px;
+      min-height: 400px;
+  `
+      : `
+      height: 580px;
+      width: 360px;
+  `};
 `;

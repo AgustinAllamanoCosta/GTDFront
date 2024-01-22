@@ -8,7 +8,7 @@ describe('Get The Things Done', () => {
 
   beforeEach(() => {
     cy.log('Logging in to Google');
-    cy.viewport(800, 800);
+    cy.viewport(790, 790);
   });
 
   it('Should Login into the app with a gmail account', () => {
