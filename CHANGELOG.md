@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.67 (2024-01-22)
+
+
+### Features
+
+* 🎸 add version tag ([2f32731](https://github.com/AgustinAllamanoCosta/GTDFront/commit/2f3273132fa91d6981d7261b493434894b307dce))
+
 ### 0.0.66 (2024-01-22)
 
 
