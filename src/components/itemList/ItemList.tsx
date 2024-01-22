@@ -103,4 +103,7 @@ const InboxContainer = styled.div`
 const InboxTaskContainer = styled.div`
   height: ${SIZE.L};
   width: ${SIZE.L};
+  min-width: 280px;
+  max-width: 380px;
+  min-height: 400px;
 `;

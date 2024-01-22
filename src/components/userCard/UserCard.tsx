@@ -52,11 +52,12 @@ const AvatarImage = styled.div<{ imageurl: string }>`
   background-size: cover;
   background-position: top center;
   border-radius: 100px;
+  min-width: 100px;
+  min-height: 100px;
   width: 15vh;
   height: 11vh;
   margin: 8px;
 `;
-
 const MyCardHeader = styled.div`
   display: flex;
   flex-direction: column;
@@ -95,6 +96,10 @@ const UserCardContainer = styled.div`
   align-content: center;
   align-items: center;
   margin-bottom: 16px;
+  margin-top: 10px;
+  min-height: 90px;
+  min-width: 280px;
+  max-width: 380px;
   width: ${SIZE.L};
   height: ${SIZE.XS};
 `;

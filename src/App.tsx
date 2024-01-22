@@ -49,7 +49,7 @@ const App = () => {
           <VersionTag
             href={REPO_URL}
             target={'_blank'}
-            data-cy="Card-title"
+            data-cy="Version-Tag"
           >
             V {pjson.version}
           </VersionTag>

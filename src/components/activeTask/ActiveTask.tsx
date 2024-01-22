@@ -66,4 +66,6 @@ const ActiveTasksContainer = styled.div`
   align-items: center;
   width: ${SIZE.L};
   margin-bottom: 8px;
+  min-width: 280px;
+  max-width: 380px;
 `;

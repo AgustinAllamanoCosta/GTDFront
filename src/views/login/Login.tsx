@@ -11,6 +11,8 @@ import { UserData } from '../../types/types';
 import { useNavigate } from 'react-router-dom';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 import { TaskInformationContext } from '../../contexts/taskContext';
+import { REPO_URL } from '../../constants/routePaths';
+import { BLACK } from '../../constants/colors';
 
 const LoginView = () => {
   const userInformation = useContext(UserInformationContext);
@@ -75,7 +77,13 @@ const LoginView = () => {
   return (
     <LoginCardContainer>
       <Card content_center={true}>
-        <Title>Get Things Done</Title>
+        <Title
+          href={REPO_URL}
+          target={'_blank'}
+          data-cy="Login-Title"
+        >
+          Get Things Done
+        </Title>
         <ButtonContent>
           <Button
             text="Login"
@@ -103,8 +111,10 @@ const ButtonContent = styled.div`
   height: 15vh;
 `;
 
-const Title = styled.span`
+const Title = styled.a`
   font-weight: bold;
+  text-decoration: none;
+  color: ${BLACK};
   font-size: ${FONTS.TITLE};
 `;
 
