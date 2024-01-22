@@ -1,6 +1,7 @@
 export enum FONTS {
-  TITLE = '20px',
-  TEXT = '12px',
+  TITLE = '24px',
+  SUB_TITLE = '20',
+  TEXT = '16px',
 }
 
 export enum SIZE {

@@ -45,5 +45,5 @@ const MyTitleContainer = styled.div<{ join_tag?: boolean }>`
 
 const TitleContent = styled.span`
   font-weight: bold;
-  font-size: ${FONTS.TITLE};
+  font-size: ${FONTS.SUB_TITLE};
 `;

@@ -78,7 +78,7 @@ const MyTitleAndLabelContaner = styled.div`
 `;
 
 const MyTitle = styled.a`
-  font-size: ${FONTS.TITLE};
+  font-size: 24px;
   text-decoration: none;
   color: ${BLACK};
 `;

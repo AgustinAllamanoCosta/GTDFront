@@ -3,31 +3,35 @@
 exports[`Login View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-dBwcjI dgtVNG"
-    data-cy="Card-Contents"
-    is_center="true"
-    padding="true"
+    class="sc-dMnqAs hELUOx"
   >
-    <span
-      class="sc-jlOLRj brXJtI"
-      data-cy="Error-view-title"
-    >
-      Something went wrong!
-    </span>
-    <span
-      class="sc-bXxmBy kpAIEI"
-      data-cy="Error-view-message"
-    />
     <div
-      class="sc-hfDuwB hZBRcw"
-      data-cy="button-gtd"
+      class="sc-dBwcjI fsysFb"
+      data-cy="Card-Contents"
+      is_center="true"
+      padding="true"
     >
       <span
-        class="sc-jCIOXC cfyTgc"
-        data-cy="button-text"
+        class="sc-eErDDp jsxjEn"
+        data-cy="Error-view-title"
       >
-        OK
+        Something went wrong!
       </span>
+      <span
+        class="sc-laEPQd jtyLJB"
+        data-cy="Error-view-message"
+      />
+      <div
+        class="sc-hfDuwB hZBRcw"
+        data-cy="button-gtd"
+      >
+        <span
+          class="sc-jCIOXC cfzUow"
+          data-cy="button-text"
+        >
+          OK
+        </span>
+      </div>
     </div>
   </div>
 </div>

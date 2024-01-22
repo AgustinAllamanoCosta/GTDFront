@@ -3,93 +3,89 @@
 exports[`Task View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-QdHZx jzQVxN"
+    class="sc-hbwYeq khCwHY"
   >
     <div
-      class="sc-hbwYeq khCwHY"
+      class="sc-hfDuwB jxWjQF"
+      data-cy="Card-Contents"
+      is_center="undefined"
+      padding="false"
     >
       <div
-        class="sc-hfDuwB knJVSM"
-        data-cy="Card-Contents"
-        is_center="undefined"
-        padding="false"
+        class="sc-hdxXtv ZVmEq"
       >
-        <div
-          class="sc-hdxXtv ZVmEq"
+        <span
+          class="sc-evVYyG jaXRxj"
+          data-cy="Card-title"
         >
-          <span
-            class="sc-evVYyG NaZUL"
-            data-cy="Card-title"
-          >
-            Active Task
-          </span>
-          <span
-            class="sc-evVYyG NaZUL"
-            data-cy="Card-label"
-          >
-            0/3
-          </span>
-        </div>
-        <div
-          class="sc-kbUMEY kHtItP"
-          data-cy="Active-task-list"
-        />
+          Active Task
+        </span>
+        <span
+          class="sc-evVYyG jaXRxj"
+          data-cy="Card-label"
+        >
+          0/3
+        </span>
       </div>
+      <div
+        class="sc-kbUMEY kHtItP"
+        data-cy="Active-task-list"
+      />
     </div>
+  </div>
+  <div
+    class="sc-lfmRZu edYoNA"
+  >
     <div
-      class="sc-lfmRZu edYoNA"
+      class="sc-hfDuwB jxWjQF"
+      data-cy="Card-Contents"
+      is_center="undefined"
+      padding="false"
     >
       <div
-        class="sc-hfDuwB knJVSM"
-        data-cy="Card-Contents"
-        is_center="undefined"
-        padding="false"
+        class="sc-hdxXtv ZVmEq"
       >
-        <div
-          class="sc-hdxXtv ZVmEq"
+        <span
+          class="sc-evVYyG jaXRxj"
+          data-cy="Card-title"
         >
-          <span
-            class="sc-evVYyG NaZUL"
-            data-cy="Card-title"
-          >
-            Task Inbox
-          </span>
-          <span
-            class="sc-evVYyG NaZUL"
-            data-cy="Card-label"
-          >
-            total 0
-          </span>
-        </div>
-        <div
-          class="sc-dasNVf VzWei"
-        />
-        <div
-          class="sc-cpKBeH sc-ZHFQk gSwfq UcFRe"
-          data-cy="task-add-button"
+          Inbox
+        </span>
+        <span
+          class="sc-evVYyG jaXRxj"
+          data-cy="Card-label"
         >
-          <svg
-            aria-hidden="true"
-            class="svg-inline--fa fa-plus sc-cYUugm gftMPA"
-            data-icon="plus"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
-              fill="currentColor"
-            />
-          </svg>
-          <input
-            class="sc-hDqSpx llnuzm"
-            data-cy="task-add-button-input"
-            placeholder="Add Task"
-            value=""
+          total 0
+        </span>
+      </div>
+      <div
+        class="sc-dasNVf VzWei"
+      />
+      <div
+        class="sc-cpKBeH sc-ZHFQk gSwfq UcFRe"
+        data-cy="task-add-button"
+      >
+        <svg
+          aria-hidden="true"
+          class="svg-inline--fa fa-plus sc-cYUugm gftMPA"
+          data-icon="plus"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          viewBox="0 0 448 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+            fill="currentColor"
           />
-        </div>
+        </svg>
+        <input
+          class="sc-hDqSpx llnuzm"
+          data-cy="task-add-button-input"
+          placeholder="Add Task"
+          value=""
+        />
       </div>
     </div>
   </div>

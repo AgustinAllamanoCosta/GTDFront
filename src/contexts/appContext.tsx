@@ -28,5 +28,6 @@ export const AppContext = ({ children }: AppContextProps) => {
 const GlobalStyles = createGlobalStyle`
   body {
     background-color: ${BLACK};
+    height: 100%;
   }
 `;

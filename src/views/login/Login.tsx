@@ -73,16 +73,35 @@ const LoginView = () => {
   }, [userInformation.userData]);
 
   return (
-    <Card content_center={true}>
-      <Title>Get Things Done</Title>
-      <Button
-        text="Login"
-        icon={faAddressCard}
-        onClick={login}
-      />
-    </Card>
+    <LoginCardContainer>
+      <Card content_center={true}>
+        <Title>Get Things Done</Title>
+        <ButtonContent>
+          <Button
+            text="Login"
+            icon={faAddressCard}
+            onClick={login}
+          />
+        </ButtonContent>
+      </Card>
+    </LoginCardContainer>
   );
 };
+
+const LoginCardContainer = styled.div`
+  width: 43vh;
+  height: 25vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ButtonContent = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
+`;
 
 const Title = styled.span`
   font-weight: bold;

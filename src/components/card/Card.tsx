@@ -32,5 +32,6 @@ const MyCard = styled.div<{ is_center?: string; padding?: string }>`
   display: inline-flex;
   flex-direction: column;
   ${(props) => (props.is_center === 'true' ? `align-items: center;` : ``)};
+  ${(props) => (props.is_center === 'true' ? `justify-content: center;` : ``)};
   ${(props) => (props.padding === 'true' ? `padding: 5px;` : ``)};
 `;
