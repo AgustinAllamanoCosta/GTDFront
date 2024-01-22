@@ -25,17 +25,13 @@ export const UserCard = ({
       />
       <Card padding={false}>
         <MyCardHeader data-cy="User-Card-Header">
-          <MyTitleAndLabelContaner data-cy="User-Card-Header-Container">
-            <MyTitleContainer data-cy="User-Card-Header-Container-title">
-              <MyTitle
-                href={REPO_URL}
-                target={'_blank'}
-                data-cy="Card-title"
-              >
-                Getting Things Done
-              </MyTitle>
-            </MyTitleContainer>
-          </MyTitleAndLabelContaner>
+          <MyTitle
+            href={REPO_URL}
+            target={'_blank'}
+            data-cy="Card-title"
+          >
+            Getting Things Done
+          </MyTitle>
           <MySubTitle data-cy="Card-SubTitle">{`Hi ${userName} !`}</MySubTitle>
           <Button
             onClick={logout}
@@ -62,20 +58,7 @@ const MyCardHeader = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-weight: bold;
-`;
-
-const MyTitleContainer = styled.div`
-  margin-top: 5px;
-  margin-left: 5px;
-  margin-right: 5px;
-`;
-
-const MyTitleAndLabelContaner = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  overflow-y: scroll;
 `;
 
 const MyTitle = styled.a`

@@ -58,9 +58,8 @@ const App = () => {
 };
 
 const TagContainer = styled.div`
-  margin-top: 20px;
   display: flex;
-  justify-content: end;
+  justify-content: center;
 `;
 
 const VersionTag = styled.a`

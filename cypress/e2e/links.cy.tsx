@@ -13,9 +13,7 @@ describe('Get The Things Done', () => {
 
   it('Should redicrect to the repo', () => {
     cy.visit(URL);
-    cy.get(
-      '[data-cy="User-Card-Header-Container-title"] > [data-cy="Card-title"]',
-    ).should(
+    cy.get('[data-cy="User-Card-Header"] > [data-cy="Card-title"]').should(
       'have.attr',
       'href',
       'https://github.com/AgustinAllamanoCosta/GTDFront',
