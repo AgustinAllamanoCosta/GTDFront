@@ -65,6 +65,7 @@ const TagContainer = styled.div`
 
 const VersionTag = styled.a`
   color: ${GREY};
+  font-family: 'InerNormal' !important;
 `;
 
 export default App;
