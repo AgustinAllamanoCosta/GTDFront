@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.66 (2024-01-22)
+
+
+### Features
+
+* 🎸 add link into user card to the GTDFront repo ([d7f3372](https://github.com/AgustinAllamanoCosta/GTDFront/commit/d7f3372374e67ddc5b96e09f93485e05c5a54a26))
+
 ### 0.0.65 (2024-01-15)
 
 ### 0.0.64 (2024-01-15)
