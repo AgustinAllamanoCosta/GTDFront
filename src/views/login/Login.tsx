@@ -75,26 +75,36 @@ const LoginView = () => {
   }, [userInformation.userData]);
 
   return (
-    <LoginCardContainer>
-      <Card content_center={true}>
-        <Title
-          href={REPO_URL}
-          target={'_blank'}
-          data-cy="Login-Title"
-        >
-          Get Things Done
-        </Title>
-        <ButtonContent>
-          <Button
-            text="Login"
-            icon={faAddressCard}
-            onClick={login}
-          />
-        </ButtonContent>
-      </Card>
-    </LoginCardContainer>
+    <Container>
+      <LoginCardContainer>
+        <Card content_center={true}>
+          <Title
+            href={REPO_URL}
+            target={'_blank'}
+            data-cy="Login-Title"
+          >
+            Get Things Done
+          </Title>
+          <ButtonContent>
+            <Button
+              text="Login"
+              icon={faAddressCard}
+              onClick={login}
+            />
+          </ButtonContent>
+        </Card>
+      </LoginCardContainer>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+`;
 
 const LoginCardContainer = styled.div`
   width: 43vh;

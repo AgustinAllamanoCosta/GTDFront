@@ -20,20 +20,30 @@ const ErrorView = ({ onClick, message }: ErrorViewProps) => {
   }, [errorContext.anErrorHappend]);
 
   return (
-    <ErrorCardContainer>
-      <Card content_center={true}>
-        <Title data-cy="Error-view-title">Something went wrong!</Title>
-        <ErrorMessage data-cy="Error-view-message">
-          {errorContext.errorMessage}
-        </ErrorMessage>
-        <Button
-          text="OK"
-          onClick={onClick}
-        />
-      </Card>
-    </ErrorCardContainer>
+    <Container>
+      <ErrorCardContainer>
+        <Card content_center={true}>
+          <Title data-cy="Error-view-title">Something went wrong!</Title>
+          <ErrorMessage data-cy="Error-view-message">
+            {errorContext.errorMessage}
+          </ErrorMessage>
+          <Button
+            text="OK"
+            onClick={onClick}
+          />
+        </Card>
+      </ErrorCardContainer>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+`;
 
 const ErrorCardContainer = styled.div`
   width: 43vh;

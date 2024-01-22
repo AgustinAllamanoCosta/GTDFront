@@ -21,51 +21,41 @@ const App = () => {
 
   return (
     <AppContext>
-      <Container>
-        <Routes>
-          <Route
-            path={INDEX}
-            element={<LoginView />}
-          />
-          <Route
-            path={TASK}
-            element={
-              <RequireAuth>
-                <TaskView />
-              </RequireAuth>
-            }
-          />
-          <Route
-            path={OTHER}
-            element={
-              <ErrorView
-                onClick={goToIndex}
-                message={defaultRouteMessage}
-              />
-            }
-          />
-        </Routes>
-        <TagContainer>
-          <VersionTag
-            href={REPO_URL}
-            target={'_blank'}
-            data-cy="Version-Tag"
-          >
-            V {pjson.version}
-          </VersionTag>
-        </TagContainer>
-      </Container>
+      <Routes>
+        <Route
+          path={INDEX}
+          element={<LoginView />}
+        />
+        <Route
+          path={TASK}
+          element={
+            <RequireAuth>
+              <TaskView />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path={OTHER}
+          element={
+            <ErrorView
+              onClick={goToIndex}
+              message={defaultRouteMessage}
+            />
+          }
+        />
+      </Routes>
+      <TagContainer>
+        <VersionTag
+          href={REPO_URL}
+          target={'_blank'}
+          data-cy="Version-Tag"
+        >
+          V {pjson.version}
+        </VersionTag>
+      </TagContainer>
     </AppContext>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 90vh;
-`;
 
 const TagContainer = styled.div`
   margin-top: 20px;

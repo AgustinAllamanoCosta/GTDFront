@@ -40,7 +40,7 @@ const TaskView = ({ inboxTasks = [], userData }: TaskViewProps) => {
   }, []);
 
   return (
-    <>
+    <Container>
       {userInformation.userData && (
         <UserCard
           userName={userInformation.userData.name}
@@ -50,8 +50,15 @@ const TaskView = ({ inboxTasks = [], userData }: TaskViewProps) => {
       )}
       <ActiveTask />
       <ItemList title="Inbox" />
-    </>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
+`;
 
 export default TaskView;
