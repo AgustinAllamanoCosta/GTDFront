@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { GREY } from '../../constants /colors';
+import { GREY } from '../../constants/colors';
 
 export type CardProps = {
   content_center?: boolean;

@@ -5,7 +5,7 @@ import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import { useGoogleLogin } from '@react-oauth/google';
 import { useContext, useEffect } from 'react';
 import axios from 'axios';
-import { FONTS } from '../../constants /size';
+import { FONTS } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
 import { UserData } from '../../types/types';
 import { useNavigate } from 'react-router-dom';

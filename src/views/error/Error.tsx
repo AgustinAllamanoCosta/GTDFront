@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { Card } from '../../components/card/Card';
 import { Button } from '../../components/button/Button';
-import { FONTS } from '../../constants /size';
+import { FONTS } from '../../constants/size';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 import { useContext, useEffect } from 'react';
 

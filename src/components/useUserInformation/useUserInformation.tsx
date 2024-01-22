@@ -4,7 +4,7 @@ import { UserData } from '../../types/types';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 import { configuration } from '../../config/appConfig';
-import { IS_END_TO_END } from '../../constants /environment';
+import { IS_END_TO_END } from '../../constants/environment';
 import { v4 as uuidv4 } from 'uuid';
 
 const UserContext = ({ children }: { children: ReactNode }) => {

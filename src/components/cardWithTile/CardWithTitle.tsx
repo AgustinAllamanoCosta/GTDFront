@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { Card } from '../card/Card';
-import { FONTS } from '../../constants /size';
-import { BLACK } from '../../constants /colors';
+import { FONTS } from '../../constants/size';
+import { BLACK } from '../../constants/colors';
 
 export type CardProps = {
   title?: string;

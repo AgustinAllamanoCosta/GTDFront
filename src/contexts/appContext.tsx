@@ -4,7 +4,7 @@ import ErrorContext from '../components/useError/useError';
 import ItemsContext from '../components/useItems/useItems';
 import UserContext from '../components/useUserInformation/useUserInformation';
 import GoogleAuthContext from '../components/useGoogleAuth/useGoogleAuth';
-import { BLACK } from '../constants /colors';
+import { BLACK } from '../constants/colors';
 
 type AppContextProps = {
   children: ReactNode;

@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import { ActiveTasks, InboxTasks, Task } from '../types/types';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import useFireBase from './useFirebase';
-import { FIRE_BASE_COLLECTION_NAME } from '../constants /keys';
+import { FIRE_BASE_COLLECTION_NAME } from '../constants/keys';
 import { useLocalStorage } from './useLocalStorage';
 import { ErrorHandlerContext } from '../contexts/errorHandlerContext';
 import { UserInformationContext } from '../contexts/userContext';

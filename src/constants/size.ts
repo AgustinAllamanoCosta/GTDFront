@@ -4,10 +4,10 @@ export enum FONTS {
 }
 
 export enum SIZE {
-  XS = '11vh',
+  XS = '10vh',
   S = '18vh',
   M = '30vh',
-  L = '',
+  L = '50vh',
   XL = '',
   XX = '',
 }

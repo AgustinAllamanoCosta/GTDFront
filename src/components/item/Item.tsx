@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faBoxes, faX } from '@fortawesome/free-solid-svg-icons';
-import { FONTS } from '../../constants /size';
+import { FONTS } from '../../constants/size';
 import { useState } from 'react';
-import { BLACK } from '../../constants /colors';
+import { BLACK } from '../../constants/colors';
 
 export type ItemProps = {
   title: String;

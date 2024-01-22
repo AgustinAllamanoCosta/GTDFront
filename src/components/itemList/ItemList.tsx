@@ -6,7 +6,8 @@ import { Item } from '../item/Item';
 import { v4 as uuidv4 } from 'uuid';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { Task } from '../../types/types';
-import { BLACK } from '../../constants /colors';
+import { BLACK } from '../../constants/colors';
+import { SIZE } from '../../constants/size';
 
 export type ItemListProps = {
   title: string;
@@ -100,6 +101,6 @@ const InboxContainer = styled.div`
 `;
 
 const InboxTaskContainer = styled.div`
-  height: 60vh;
-  width: 43vh;
+  height: ${SIZE.L};
+  width: ${SIZE.L};
 `;

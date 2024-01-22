@@ -6,7 +6,7 @@ exports[`Task View Should render a login view with singin and login buttons 1`] 
     class="sc-QdHZx jzQVxN"
   >
     <div
-      class="sc-hbwYeq ejWnqu"
+      class="sc-hbwYeq khCwHY"
     >
       <div
         class="sc-hfDuwB knJVSM"
@@ -37,7 +37,7 @@ exports[`Task View Should render a login view with singin and login buttons 1`] 
       </div>
     </div>
     <div
-      class="sc-lfmRZu fwEZKN"
+      class="sc-lfmRZu edYoNA"
     >
       <div
         class="sc-hfDuwB knJVSM"

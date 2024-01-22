@@ -4,7 +4,8 @@ import { CardTitle } from '../cardWithTile/CardWithTitle';
 import { StickyNote } from '../stickyNote/StickyNote';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { Task } from '../../types/types';
-import { BLACK } from '../../constants /colors';
+import { BLACK } from '../../constants/colors';
+import { SIZE } from '../../constants/size';
 
 export const ActiveTask = (): JSX.Element => {
   const activeInformation = useContext(TaskInformationContext);
@@ -63,6 +64,6 @@ const ActiveTasksContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 43vh;
+  width: ${SIZE.L};
   margin-bottom: 8px;
 `;

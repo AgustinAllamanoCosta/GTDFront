@@ -1,8 +1,10 @@
 import { styled } from 'styled-components';
 import { Card } from '../card/Card';
-import { FONTS } from '../../constants /size';
+import { FONTS } from '../../constants/size';
 import { Button } from '../button/Button';
-import { BLACK } from '../../constants /colors';
+import { BLACK } from '../../constants/colors';
+import { SIZE } from '../../constants/size';
+import { REPO_URL } from '../../constants/routePaths';
 
 export type UserCardProps = {
   userName: string;
@@ -21,12 +23,12 @@ export const UserCard = ({
         data-cy="Avatar-photo"
         imageurl={userPhoto}
       />
-      <Card>
+      <Card padding={false}>
         <MyCardHeader data-cy="User-Card-Header">
           <MyTitleAndLabelContaner data-cy="User-Card-Header-Container">
             <MyTitleContainer data-cy="User-Card-Header-Container-title">
               <MyTitle
-                href="https://github.com/AgustinAllamanoCosta/GTDFront"
+                href={REPO_URL}
                 target={'_blank'}
                 data-cy="Card-title"
               >
@@ -50,8 +52,8 @@ const AvatarImage = styled.div<{ imageurl: string }>`
   background-size: cover;
   background-position: top center;
   border-radius: 100px;
-  width: 110px;
-  height: 90px;
+  width: 15vh;
+  height: 11vh;
   margin: 8px;
 `;
 
@@ -60,7 +62,6 @@ const MyCardHeader = styled.div`
   flex-direction: column;
   align-items: center;
   font-weight: bold;
-  padding: 5px;
 `;
 
 const MyTitleContainer = styled.div`
@@ -94,6 +95,6 @@ const UserCardContainer = styled.div`
   align-content: center;
   align-items: center;
   margin-bottom: 16px;
-  width: 43vh;
-  height: 10vh;
+  width: ${SIZE.L};
+  height: ${SIZE.XS};
 `;

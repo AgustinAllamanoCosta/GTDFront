@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { UserInformationContext } from '../../contexts/userContext';
 import { useLocation, Navigate } from 'react-router-dom';
-import { INDEX } from '../../constants /routePaths';
+import { INDEX } from '../../constants/routePaths';
 
 const RequireAuth = ({ children }: { children: JSX.Element }) => {
   const userInformation = useContext(UserInformationContext);

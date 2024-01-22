@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { styled } from 'styled-components';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FONTS } from '../../constants /size';
-import { BLACK, GREEN, YELLOW } from '../../constants /colors';
+import { FONTS } from '../../constants/size';
+import { BLACK, GREEN, YELLOW } from '../../constants/colors';
 
 export type StickyNoteProps = {
   number: string;

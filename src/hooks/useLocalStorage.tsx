@@ -1,5 +1,5 @@
 import { Dict } from 'styled-components/dist/types';
-import { LOCAL_STORAGE_KEY } from '../constants /keys';
+import { LOCAL_STORAGE_KEY } from '../constants/keys';
 import { InboxTasks, UserData } from '../types/types';
 import secureLocalStorage from 'react-secure-storage';
 
