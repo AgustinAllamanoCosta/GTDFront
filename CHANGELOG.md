@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.69 (2024-01-22)
+
+
+### Bug Fixes
+
+* 🐛 style ([ed5ec90](https://github.com/AgustinAllamanoCosta/GTDFront/commit/ed5ec90d0dd86714d5c3f126397bf1a41214ae5b))
+
 ### 0.0.68 (2024-01-22)
 
 
