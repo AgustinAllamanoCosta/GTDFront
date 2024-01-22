@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.0.70 (2024-01-22)
+
+
+### Features
+
+* 🎸 add new fonst ([479a671](https://github.com/AgustinAllamanoCosta/GTDFront/commit/479a671c11e14fcbd7befac57d43efef74553b0c))
+
 ### 0.0.69 (2024-01-22)
 
 
