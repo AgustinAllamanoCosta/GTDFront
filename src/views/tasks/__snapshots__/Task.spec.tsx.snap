@@ -3,10 +3,10 @@
 exports[`Task View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-QdHZx cmGNfh"
+    class="sc-dasNVf hjdCS"
   >
     <div
-      class="sc-hbwYeq bGkLRT"
+      class="sc-bubcaR jeNatW"
     >
       <div
         class="sc-hfDuwB jxWjQF"
@@ -15,29 +15,29 @@ exports[`Task View Should render a login view with singin and login buttons 1`] 
         padding="false"
       >
         <div
-          class="sc-hdxXtv ZVmEq"
+          class="sc-eErDDp clYIRO"
         >
           <span
-            class="sc-evVYyG jaXRxj"
+            class="sc-bWPEIA jksPEN"
             data-cy="Card-title"
           >
             Active Task
           </span>
           <span
-            class="sc-evVYyG jaXRxj"
+            class="sc-bWPEIA jksPEN"
             data-cy="Card-label"
           >
             0/3
           </span>
         </div>
         <div
-          class="sc-kbUMEY kHtItP"
+          class="sc-ttuAC fgZKdJ"
           data-cy="Active-task-list"
         />
       </div>
     </div>
     <div
-      class="sc-lfmRZu fnKpZk"
+      class="sc-kuPJbf dURzTy"
     >
       <div
         class="sc-hfDuwB jxWjQF"
@@ -46,31 +46,31 @@ exports[`Task View Should render a login view with singin and login buttons 1`] 
         padding="false"
       >
         <div
-          class="sc-hdxXtv ZVmEq"
+          class="sc-eErDDp clYIRO"
         >
           <span
-            class="sc-evVYyG jaXRxj"
+            class="sc-bWPEIA jksPEN"
             data-cy="Card-title"
           >
             Inbox
           </span>
           <span
-            class="sc-evVYyG jaXRxj"
+            class="sc-bWPEIA jksPEN"
             data-cy="Card-label"
           >
             total 0
           </span>
         </div>
         <div
-          class="sc-dasNVf VzWei"
+          class="sc-dRgwBS frbktR"
         />
         <div
-          class="sc-cpKBeH sc-ZHFQk gSwfq UcFRe"
+          class="sc-kbUMEY sc-hbwYeq jUZCHA kPVeOU"
           data-cy="task-add-button"
         >
           <svg
             aria-hidden="true"
-            class="svg-inline--fa fa-plus sc-cYUugm gftMPA"
+            class="svg-inline--fa fa-plus sc-ZHFQk dHhnXS"
             data-icon="plus"
             data-prefix="fas"
             focusable="false"
@@ -84,7 +84,7 @@ exports[`Task View Should render a login view with singin and login buttons 1`] 
             />
           </svg>
           <input
-            class="sc-hDqSpx llnuzm"
+            class="sc-cpKBeH dULSKH"
             data-cy="task-add-button-input"
             placeholder="Add Task"
             value=""
