@@ -3,91 +3,99 @@
 exports[`Task View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-dasNVf hjdCS"
+    class="sc-knlTvX iLsrex"
   >
     <div
-      class="sc-bubcaR jeNatW"
+      class="sc-hcKobq eIDIbg"
+      is_mobile="false"
     >
       <div
-        class="sc-hfDuwB jxWjQF"
-        data-cy="Card-Contents"
-        is_center="undefined"
-        padding="false"
+        class="sc-iUXMdM gsDlxt"
+        is_mobile="false"
       >
         <div
-          class="sc-eErDDp clYIRO"
+          class="sc-evVYyG clOczl"
+          data-cy="Card-Contents"
+          is_center="undefined"
+          padding="false"
         >
-          <span
-            class="sc-bWPEIA jksPEN"
-            data-cy="Card-title"
+          <div
+            class="sc-BOZFl cAqylF"
           >
-            Active Task
-          </span>
-          <span
-            class="sc-bWPEIA jksPEN"
-            data-cy="Card-label"
+            <span
+              class="sc-jjIKjs fzOrFa"
+              data-cy="Card-title"
+            >
+              Inbox
+            </span>
+            <span
+              class="sc-jjIKjs fzOrFa"
+              data-cy="Card-label"
+            >
+              total 0
+            </span>
+          </div>
+          <div
+            class="sc-QdHZx jcCanR"
+          />
+          <div
+            class="sc-hDqSpx sc-cYUugm khVGVz dLcOAg"
+            data-cy="task-add-button"
           >
-            0/3
-          </span>
-        </div>
-        <div
-          class="sc-ttuAC fgZKdJ"
-          data-cy="Active-task-list"
-        />
-      </div>
-    </div>
-    <div
-      class="sc-kuPJbf dURzTy"
-    >
-      <div
-        class="sc-hfDuwB jxWjQF"
-        data-cy="Card-Contents"
-        is_center="undefined"
-        padding="false"
-      >
-        <div
-          class="sc-eErDDp clYIRO"
-        >
-          <span
-            class="sc-bWPEIA jksPEN"
-            data-cy="Card-title"
-          >
-            Inbox
-          </span>
-          <span
-            class="sc-bWPEIA jksPEN"
-            data-cy="Card-label"
-          >
-            total 0
-          </span>
-        </div>
-        <div
-          class="sc-dRgwBS frbktR"
-        />
-        <div
-          class="sc-kbUMEY sc-hbwYeq jUZCHA kPVeOU"
-          data-cy="task-add-button"
-        >
-          <svg
-            aria-hidden="true"
-            class="svg-inline--fa fa-plus sc-ZHFQk dHhnXS"
-            data-icon="plus"
-            data-prefix="fas"
-            focusable="false"
-            role="img"
-            viewBox="0 0 448 512"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
-              fill="currentColor"
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-plus sc-imALrc ezYxHc"
+              data-icon="plus"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"
+                fill="currentColor"
+              />
+            </svg>
+            <input
+              class="sc-jCDGFz bGisoy"
+              data-cy="task-add-button-input"
+              placeholder="Add Task"
+              value=""
             />
-          </svg>
-          <input
-            class="sc-cpKBeH dULSKH"
-            data-cy="task-add-button-input"
-            placeholder="Add Task"
-            value=""
+          </div>
+        </div>
+      </div>
+      <div
+        class="sc-ZHFQk kIQEyf"
+        is_mobile="false"
+      >
+        <div
+          class="sc-evVYyG clOczl"
+          data-cy="Card-Contents"
+          is_center="undefined"
+          padding="false"
+        >
+          <div
+            class="sc-BOZFl cAqylF"
+          >
+            <span
+              class="sc-jjIKjs fzOrFa"
+              data-cy="Card-title"
+            >
+              Active Task
+            </span>
+            <span
+              class="sc-jjIKjs fzOrFa"
+              data-cy="Card-label"
+            >
+              0/3
+            </span>
+          </div>
+          <div
+            class="sc-cpKBeH hqJDgz"
+            data-cy="Active-task-list"
+            is_mobile="false"
           />
         </div>
       </div>
