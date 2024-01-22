@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { Card } from '../card/Card';
 import { FONTS } from '../../constants /size';
 import { Button } from '../button/Button';
+import { BLACK } from '../../constants /colors';
 
 export type UserCardProps = {
   userName: string;
@@ -22,9 +23,15 @@ export const UserCard = ({
       />
       <Card>
         <MyCardHeader data-cy="User-Card-Header">
-          <MyTitleAndLabelContaner>
-            <MyTitleContainer>
-              <MyTitle data-cy="Card-title">Getting Things Done</MyTitle>
+          <MyTitleAndLabelContaner data-cy="User-Card-Header-Container">
+            <MyTitleContainer data-cy="User-Card-Header-Container-title">
+              <MyTitle
+                href="https://github.com/AgustinAllamanoCosta/GTDFront"
+                target={'_blank'}
+                data-cy="Card-title"
+              >
+                Getting Things Done
+              </MyTitle>
             </MyTitleContainer>
           </MyTitleAndLabelContaner>
           <MySubTitle data-cy="Card-SubTitle">{`Hi ${userName} !`}</MySubTitle>
@@ -69,8 +76,10 @@ const MyTitleAndLabelContaner = styled.div`
   align-items: center;
 `;
 
-const MyTitle = styled.span`
+const MyTitle = styled.a`
   font-size: ${FONTS.TITLE};
+  text-decoration: none;
+  color: ${BLACK};
 `;
 
 const MySubTitle = styled.span`
