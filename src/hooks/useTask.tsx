@@ -7,7 +7,7 @@ import { useLocalStorage } from './useLocalStorage';
 import { ErrorHandlerContext } from '../contexts/errorHandlerContext';
 import { UserInformationContext } from '../contexts/userContext';
 
-export const useTask = (userTask: InboxTasks = []) => {
+export const useTask = () => {
   const errorContext = useContext(ErrorHandlerContext);
   const userDataContext = useContext(UserInformationContext);
   const { getItem, saveItems } = useLocalStorage();
@@ -16,6 +16,7 @@ export const useTask = (userTask: InboxTasks = []) => {
   const [inboxTask, setInboxTask] = useState<InboxTasks>([]);
 
   const [items, setItems] = useState<InboxTasks>([]);
+  const [isOnline, setIsOnline] = useState<boolean>(true);
 
   const getTheActiveTask = (taskToAnalize: InboxTasks) => {
     const newActiveTask: Array<Task> = taskToAnalize.filter((task: Task) => {
@@ -50,10 +51,10 @@ export const useTask = (userTask: InboxTasks = []) => {
 
   const save = async (items: InboxTasks) => {
     saveItems(items);
-    await saveIntoFirebase(items);
+    if (isOnline) await saveIntoFirebase(items);
   };
 
-  const getDataFromFirebaseOrLocalStorage = async () => {
+  const getDataFromFirebase = async () => {
     if (userDataContext.userData?.id) {
       const userTaskDoc = doc(
         useFireBase,
@@ -62,12 +63,23 @@ export const useTask = (userTask: InboxTasks = []) => {
       );
       const itemsInFirebase = await getDoc(userTaskDoc);
       const userData = itemsInFirebase.data();
-      if (userData) {
-        setItems(userData.items);
-      }
-    } else {
+      if (userData) setItems(userData.items);
+    }
+  };
+
+  const loadTask = async () => {
+    try {
       const dataFromLocalStorage = getItem();
-      if (dataFromLocalStorage) setItems(dataFromLocalStorage);
+      if (isOnline) {
+        if (dataFromLocalStorage) setItems(dataFromLocalStorage);
+        else await getDataFromFirebase();
+      } else {
+        if (dataFromLocalStorage) setItems(dataFromLocalStorage);
+        else throw Error('No data in local storage');
+      }
+    } catch (error: any) {
+      errorContext.setError(true);
+      errorContext.setMessage(error.message);
     }
   };
 
@@ -77,9 +89,7 @@ export const useTask = (userTask: InboxTasks = []) => {
         getTheActiveTask(items);
         getInboxTask(items);
       }
-      if (items && items.length !== 0) {
-        save(items);
-      }
+      if (items && items.length !== 0) save(items);
     } catch (error: any) {
       errorContext.setError(true);
       errorContext.setMessage(error.message);
@@ -87,16 +97,14 @@ export const useTask = (userTask: InboxTasks = []) => {
   }, [items]);
 
   useEffect(() => {
-    try {
-      if (userTask.length === 0) {
-        getDataFromFirebaseOrLocalStorage();
-      } else {
-        save(userTask);
-      }
-    } catch (error: any) {
-      errorContext.setError(true);
-      errorContext.setMessage(error.message);
-    }
+    const handlerOffline = () => setIsOnline(false);
+    const handlerOnline = () => setIsOnline(false);
+    window.addEventListener('offline', handlerOffline);
+    window.addEventListener('online', handlerOnline);
+    return () => {
+      window.removeEventListener('offline', handlerOffline);
+      window.removeEventListener('online', handlerOnline);
+    };
   }, []);
 
   return {
@@ -106,6 +114,6 @@ export const useTask = (userTask: InboxTasks = []) => {
     setActiveItems,
     setItems,
     setInboxTask,
-    refreshData: getDataFromFirebaseOrLocalStorage,
+    refreshData: loadTask,
   };
 };

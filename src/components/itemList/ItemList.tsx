@@ -8,7 +8,7 @@ import { TaskInformationContext } from '../../contexts/taskContext';
 import { Task } from '../../types/types';
 import { BLACK } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
-import { useViewport } from '../../hooks/useView';
+import { UserInformationContext } from '../../contexts/userContext';
 
 export type ItemListProps = {
   title: string;
@@ -16,7 +16,7 @@ export type ItemListProps = {
 
 export const ItemList = ({ title }: ItemListProps): JSX.Element => {
   const itemsInformation = useContext(TaskInformationContext);
-  const { isMobile } = useViewport();
+  const userInformation = useContext(UserInformationContext);
   const [value, setValue] = useState<string>('');
 
   const buttonAdd = (event: any) => {
@@ -63,7 +63,7 @@ export const ItemList = ({ title }: ItemListProps): JSX.Element => {
   };
 
   return (
-    <InboxTaskContainer is_mobile={`${isMobile}`}>
+    <InboxTaskContainer is_mobile={`${userInformation.isMobile}`}>
       <CardTitle
         title={title}
         label={`total ${itemsInformation.inboxTasks.length}`}

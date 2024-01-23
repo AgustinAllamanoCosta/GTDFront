@@ -20,7 +20,7 @@ const ItemsContext = ({
     setItems,
     setInboxTask,
     refreshData,
-  } = useTask(defaultItems);
+  } = useTask();
 
   useEffect(() => {
     if (defaultActiveItems) setActiveItems(defaultActiveItems);

@@ -9,7 +9,6 @@ import { googleLogout } from '@react-oauth/google';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 import { useNavigate } from 'react-router-dom';
-import { useViewport } from '../../hooks/useView';
 
 type TaskViewProps = {
   inboxTasks?: InboxTasks;
@@ -21,7 +20,6 @@ const TaskView = ({ inboxTasks = [], userData }: TaskViewProps) => {
   const userInformation = useContext(UserInformationContext);
   const itemContext = useContext(TaskInformationContext);
   const navigate = useNavigate();
-  const { isMobile } = useViewport();
 
   const logOut = () => {
     googleLogout();
@@ -34,7 +32,11 @@ const TaskView = ({ inboxTasks = [], userData }: TaskViewProps) => {
       if (userData) {
         userInformation.setUserData(userData);
       }
-      if (inboxTasks.length > 0) itemContext.setItems(inboxTasks);
+      if (inboxTasks.length > 0) {
+        itemContext.setItems(inboxTasks);
+      } else {
+        itemContext.refreshData();
+      }
     } catch (error: any) {
       errorContext.setError(true);
       errorContext.setMessage(error.message);
@@ -50,14 +52,14 @@ const TaskView = ({ inboxTasks = [], userData }: TaskViewProps) => {
           logout={logOut}
         />
       )}
-      <ContentContainer is_mobile={`${isMobile}`}>
-        {isMobile && (
+      <ContentContainer is_mobile={`${userInformation.isMobile}`}>
+        {userInformation.isMobile && (
           <>
             <ActiveTask />
             <ItemList title="Inbox" />
           </>
         )}
-        {!isMobile && (
+        {!userInformation.isMobile && (
           <>
             <ItemList title="Inbox" />
             <ActiveTask />

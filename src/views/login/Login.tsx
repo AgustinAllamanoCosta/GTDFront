@@ -8,16 +8,14 @@ import axios from 'axios';
 import { FONTS } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
 import { UserData } from '../../types/types';
-import { useNavigate } from 'react-router-dom';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
-import { TaskInformationContext } from '../../contexts/taskContext';
 import { REPO_URL } from '../../constants/routePaths';
 import { BLACK } from '../../constants/colors';
+import { useNavigate } from 'react-router-dom';
 
 const LoginView = () => {
   const userInformation = useContext(UserInformationContext);
   const errorContext = useContext(ErrorHandlerContext);
-  const taskContet = useContext(TaskInformationContext);
   const navigate = useNavigate();
 
   const login = useGoogleLogin({
@@ -60,7 +58,6 @@ const LoginView = () => {
         userInformation.setUserData({ ...newUser });
       }
     } else if (userId) {
-      taskContet.refreshData();
       navigate('task');
     }
   };

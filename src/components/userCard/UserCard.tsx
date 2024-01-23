@@ -4,7 +4,8 @@ import { Button } from '../button/Button';
 import { BLACK, GREY } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
 import { REPO_URL } from '../../constants/routePaths';
-import { useViewport } from '../../hooks/useView';
+import { useContext } from 'react';
+import { UserInformationContext } from '../../contexts/userContext';
 
 export type UserCardProps = {
   userName: string;
@@ -17,11 +18,11 @@ export const UserCard = ({
   userPhoto,
   logout,
 }: UserCardProps): JSX.Element => {
-  const { isMobile } = useViewport();
+  const userInformation = useContext(UserInformationContext);
 
   return (
-    <UserCardContainer is_mobile={`${isMobile}`}>
-      {isMobile && (
+    <UserCardContainer is_mobile={`${userInformation.isMobile}`}>
+      {userInformation.isMobile && (
         <>
           <AvatarImage
             data-cy="Avatar-photo"
@@ -45,7 +46,7 @@ export const UserCard = ({
           </Bar>
         </>
       )}
-      {!isMobile && (
+      {!userInformation.isMobile && (
         <BarDesk>
           <MyTitle
             href={REPO_URL}

@@ -1,6 +1,4 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import TaskView from './views/tasks/Task';
-import LoginView from './views/login/Login';
 import RequireAuth from './components/auth/RequireAuth';
 import ErrorView from './views/error/Error';
 import { AppContext } from './contexts/appContext';
@@ -8,6 +6,10 @@ import { INDEX, OTHER, REPO_URL, TASK } from './constants/routePaths';
 import { GREY } from './constants/colors';
 import { styled } from 'styled-components';
 import pjson from '../package.json';
+import { Suspense, lazy } from 'react';
+
+const TaskViewLazy = lazy(() => import('./views/tasks/Task'));
+const LoginViewLazy = lazy(() => import('./views/login/Login'));
 
 const App = () => {
   const navigate = useNavigate();
@@ -24,13 +26,19 @@ const App = () => {
       <Routes>
         <Route
           path={INDEX}
-          element={<LoginView />}
+          element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <LoginViewLazy />
+            </Suspense>
+          }
         />
         <Route
           path={TASK}
           element={
             <RequireAuth>
-              <TaskView />
+              <Suspense fallback={<div>Loading...</div>}>
+                <TaskViewLazy />
+              </Suspense>
             </RequireAuth>
           }
         />

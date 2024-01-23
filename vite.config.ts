@@ -13,4 +13,14 @@ export default defineConfig({
     host: true,
     port: 8080,
   },
+  build: {
+    rollupOptions: {
+      output: {
+        sourcemap: false,
+        manualChunks: {
+          router: ['react-router-dom'],
+        },
+      },
+    },
+  },
 });

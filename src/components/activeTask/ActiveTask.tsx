@@ -6,11 +6,11 @@ import { TaskInformationContext } from '../../contexts/taskContext';
 import { Task } from '../../types/types';
 import { BLACK } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
-import { useViewport } from '../../hooks/useView';
+import { UserInformationContext } from '../../contexts/userContext';
 
 export const ActiveTask = (): JSX.Element => {
   const activeInformation = useContext(TaskInformationContext);
-  const { isMobile } = useViewport();
+  const userInformation = useContext(UserInformationContext);
 
   const removeActiveTaks = (index: number) => {
     //TODO: improve this :D
@@ -23,7 +23,7 @@ export const ActiveTask = (): JSX.Element => {
   };
 
   return (
-    <ActiveTasksContainer is_mobile={`${isMobile}`}>
+    <ActiveTasksContainer is_mobile={`${userInformation.isMobile}`}>
       <CardTitle
         title="Active Task"
         label={`${activeInformation.activeTasks.length}/3`}
@@ -31,7 +31,7 @@ export const ActiveTask = (): JSX.Element => {
       >
         <ActiveTaskContent
           data-cy="Active-task-list"
-          is_mobile={`${isMobile}`}
+          is_mobile={`${userInformation.isMobile}`}
         >
           {activeInformation.activeTasks.map((item: Task, index: number) => {
             return (
