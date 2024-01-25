@@ -11,6 +11,10 @@ describe('Get The Things Done', () => {
     cy.viewport(790, 790);
   });
 
+  afterEach(()=>{
+    
+  });
+
   it('Should Login into the app with a gmail account', () => {
     cy.visit(URL);
     cy.get('[data-cy="Card-SubTitle"]').should(
@@ -60,7 +64,7 @@ describe('Get The Things Done', () => {
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.reload();
-
+    cy.wait(5000);
     cy.get('[data-cy="task-some task to do 1"]').should(
       'have.text',
       taskContent,
