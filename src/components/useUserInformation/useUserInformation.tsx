@@ -24,7 +24,7 @@ const UserContext = ({ children }: { children: ReactNode }) => {
       if (configuration.environment === IS_END_TO_END) {
         const userData = {
           accessToken: configuration.accessToken,
-          id: `TEST-ID-123456`,
+          id: process.env.ID,
           name: configuration.name,
           photoURL: configuration.photoURL,
         };

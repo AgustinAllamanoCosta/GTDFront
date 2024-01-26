@@ -1,62 +1,15 @@
 import { useEffect, useState, useContext } from 'react';
 import { ActiveTasks, InboxTasks, Task } from '../types/types';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import useFireBase from './useFirebase';
-import { FIRE_BASE_COLLECTION_NAME } from '../constants/keys';
-import { useLocalStorage } from './useLocalStorage';
 import { ErrorHandlerContext } from '../contexts/errorHandlerContext';
 import { UserInformationContext } from '../contexts/userContext';
-
-const repository = () => {
-  const userDataContext = useContext(UserInformationContext);
-  const { getItem, saveItems } = useLocalStorage();
-
-  const saveIntoFirebase = async (items: InboxTasks) => {
-    if (userDataContext.userData?.id) {
-      const userTask = doc(
-        useFireBase,
-        FIRE_BASE_COLLECTION_NAME,
-        userDataContext.userData?.id,
-      );
-      await setDoc(userTask, { items });
-    }
-  };
-
-  const save = async (items: InboxTasks) => {
-    saveItems(items);
-    await saveIntoFirebase(items);
-  };
-
-  const getData = async () => {
-    let data = await getDataFromFirebase();
-    if (!data) data = getItem();
-    return data;
-  };
-
-  const getDataFromFirebase = async () => {
-    let items = [];
-    if (userDataContext.userData?.id) {
-      const userTaskDoc = doc(
-        useFireBase,
-        FIRE_BASE_COLLECTION_NAME,
-        userDataContext.userData.id,
-      );
-      const itemsInFirebase = await getDoc(userTaskDoc);
-      const userData = itemsInFirebase.data();
-      items = userData?.items ? userData?.items : [];
-    }
-    return items;
-  };
-
-  return {
-    save,
-    getData,
-  };
-};
+import { repository } from '../repository/repository';
 
 export const useTask = () => {
   const errorContext = useContext(ErrorHandlerContext);
-  const { getData, save } = repository();
+  const userInformation = useContext(UserInformationContext);
+  const { getData, save } = repository(
+    userInformation.userData?.id ? userInformation.userData?.id : '',
+  );
 
   const [activeItems, setActiveItems] = useState<ActiveTasks>([]);
   const [inboxTask, setInboxTask] = useState<InboxTasks>([]);
@@ -87,13 +40,17 @@ export const useTask = () => {
     }
   };
 
+  const processItems = async () => {
+    if (items) {
+      getTheActiveTask(items);
+      getInboxTask(items);
+    }
+    if (items && items.length !== 0) await save(items);
+  };
+
   useEffect(() => {
     try {
-      if (items) {
-        getTheActiveTask(items);
-        getInboxTask(items);
-      }
-      if (items && items.length !== 0) save(items);
+      processItems();
     } catch (error: any) {
       errorContext.setError(true);
       errorContext.setMessage(error.message);

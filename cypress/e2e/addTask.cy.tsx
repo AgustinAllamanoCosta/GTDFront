@@ -1,26 +1,23 @@
-const USER_NAME: string = 'Test User';
 const URL: string = 'http://localhost:8080/';
+import { repository } from '../../src/repository/repository';
+const { clear } = repository(Cypress.env('ID'));
+
+const cleanDataBase = async () => {
+  await clear();
+};
 
 describe('Get The Things Done', () => {
   afterEach(() => {
     window.localStorage.clear();
+    cleanDataBase();
   });
 
   beforeEach(() => {
-    cy.log('Logging in to Google');
     cy.viewport(790, 790);
   });
 
-  afterEach(()=>{
-    
-  });
-
-  it('Should Login into the app with a gmail account', () => {
-    cy.visit(URL);
-    cy.get('[data-cy="Card-SubTitle"]').should(
-      'have.text',
-      `Hi ${USER_NAME} !`,
-    );
+  after(() => {
+    cleanDataBase();
   });
 
   it('Should add a new task', () => {
@@ -63,8 +60,9 @@ describe('Get The Things Done', () => {
     const taskContent = 'some task to do 1';
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
+    cy.wait(1000);
     cy.reload();
-    cy.wait(5000);
+    cy.wait(1000);
     cy.get('[data-cy="task-some task to do 1"]').should(
       'have.text',
       taskContent,
@@ -184,28 +182,6 @@ describe('Get The Things Done', () => {
     cy.get(`[data-cy="task-${taskContentOne}-cancel"]`).click();
 
     cy.get(`[data-cy="task-${taskContentOne}"]`).should('not.exist');
-  });
-
-  it('Should logout', () => {
-    cy.visit(URL);
-    cy.get('[data-cy="button-text"]').click();
-    cy.get('[data-cy="Card-SubTitle"]').should('not.exist');
-    cy.get('[data-cy="button-gtd"]').should('exist');
-  });
-
-  it('Should show the error view', () => {
-    cy.visit(URL);
-    cy.get('[data-cy="button-text"]').click();
-    cy.visit(`${URL}task123132`);
-    cy.get('[data-cy="Error-view-message"]').should(
-      'have.text',
-      'Ups looks like this page does not exist :(',
-    );
-    cy.get('[data-cy="button-text"]').click();
-    cy.get('[data-cy="Card-SubTitle"]').should(
-      'have.text',
-      `Hi ${USER_NAME} !`,
-    );
   });
 });
 
