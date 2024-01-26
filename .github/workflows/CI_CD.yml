@@ -15,7 +15,7 @@ jobs:
 
       - name: Cache dependencies
         id: cache-dependencies
-        uses: actions/cache@v3.3.2
+        uses: actions/cache@v4
         with:
           path: |
             **/node_modules
@@ -39,7 +39,7 @@ jobs:
 
       - name: Cache dependencies
         id: cache-dependencies
-        uses: actions/cache@v3.3.2
+        uses: actions/cache@v4
         with:
           path: |
             **/node_modules
@@ -63,7 +63,7 @@ jobs:
 
       - name: Cache dependencies
         id: cache-dependencies
-        uses: actions/cache@v3.3.2
+        uses: actions/cache@v4
         with:
           path: |
             **/node_modules
@@ -87,7 +87,7 @@ jobs:
 
       - name: Cache dependencies
         id: cache-dependencies
-        uses: actions/cache@v3.3.2
+        uses: actions/cache@v4
         with:
           path: |
             **/node_modules
@@ -119,7 +119,7 @@ jobs:
 
       - name: Cache dependencies
         id: cache-dependencies
-        uses: actions/cache@v3.3.2
+        uses: actions/cache@v4
         with:
           path: |
             **/node_modules
@@ -187,7 +187,7 @@ jobs:
 
       - name: Cache dependencies
         id: cache-dependencies
-        uses: actions/cache@v3.3.2
+        uses: actions/cache@v4
         with:
           path: |
             **/node_modules
@@ -225,7 +225,7 @@ jobs:
 
       - name: Cache dependencies
         id: cache-dependencies
-        uses: actions/cache@v3.3.2
+        uses: actions/cache@v4
         with:
           path: |
             **/node_modules
@@ -281,7 +281,7 @@ jobs:
 
       - name: Cache dependencies
         id: cache-dependencies
-        uses: actions/cache@v3.3.2
+        uses: actions/cache@v4
         with:
           path: |
             **/node_modules
@@ -316,7 +316,7 @@ jobs:
 
       - name: Cache dependencies
         id: cache-dependencies
-        uses: actions/cache@v3.3.2
+        uses: actions/cache@v4
         with:
           path: |
             **/node_modules
