@@ -1,11 +1,15 @@
 /// <reference types="cypress" />
 
-//declare global {
-//  namespace Cypress {
-//    interface Chainable {
-//      clearDB(): Chainable<void>;
-//    }
-//  }
-//}
+Cypress.Commands.add('testCleanDb', () => {
+  cy.task('cleanDB');
+});
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      testCleanDb(): Chainable<void>;
+    }
+  }
+}
 
 export {};

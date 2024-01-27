@@ -1,23 +1,10 @@
 const URL: string = 'http://localhost:8080/';
-import { repository } from '../../src/repository/repository';
-const { clear } = repository(Cypress.env('ID'));
-
-const cleanDataBase = async () => {
-  await clear();
-};
 
 describe('Get The Things Done', () => {
-  afterEach(() => {
-    window.localStorage.clear();
-    cleanDataBase();
-  });
-
   beforeEach(() => {
+    cy.testCleanDb();
+    window.localStorage.clear();
     cy.viewport(790, 790);
-  });
-
-  after(() => {
-    cleanDataBase();
   });
 
   it('Should add a new task', () => {
