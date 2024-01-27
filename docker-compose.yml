@@ -1,7 +1,7 @@
 services:
   app_to_test:
     image: vite-example
-    env_file:
-      - ./env/.env
+    environment:
+      DOTENV_KEY: $DOTENV_KEY
     ports:
       - 8080:8080

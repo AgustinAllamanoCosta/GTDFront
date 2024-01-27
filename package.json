@@ -3,9 +3,9 @@
   "version": "0.0.75",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
+    "dev": "node -r dotenv/config ./node_modules/.bin/vite",
+    "build": "tsc && node -r dotenv/config ./node_modules/.bin/vite build",
+    "preview": "tsc && node -r dotenv/config ./node_modules/.bin/vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "cy": "npx cypress open",
@@ -21,7 +21,8 @@
     "add-vault": "npx dotenv-vault new",
     "vault-login": "npx dotenv-vault@latest login",
     "vault-open": "npx dotenv-vault@latest open",
-    "vault-build": "npx dotenv-vault@latest build"
+    "vault-build": "npx dotenv-vault@latest build",
+    "vault-keys": "npx dotenv-vault keys"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
