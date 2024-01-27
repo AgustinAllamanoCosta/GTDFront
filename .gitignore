@@ -27,3 +27,7 @@ coverage
 /cypress/videos
 /cypress/screenshots
 **/cypress.env.json
+.env*
+.flaskenv*
+!.env.project
+!.env.vault

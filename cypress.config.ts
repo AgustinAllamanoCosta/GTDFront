@@ -30,7 +30,7 @@ export default defineConfig({
           });
           const useFireBase = getFirestore(firebaseApp);
           const { clear } = repository(
-            'TEST-ID-123123123123123123',
+            process.env.ID ? process.env.ID : '',
             useFireBase,
           );
           await clear();

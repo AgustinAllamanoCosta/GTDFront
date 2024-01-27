@@ -15,3 +15,7 @@ cypress.env.json
 **/__snapshots__
 **/coverage
 .firebase
+.env*
+.flaskenv*
+!.env.project
+!.env.vault

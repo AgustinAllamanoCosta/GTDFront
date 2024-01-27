@@ -133,18 +133,7 @@ jobs:
 
       - name: Build with envs
         env:
-          VITE_CLEINT_ID: ${{ secrets.VITE_CLEINT_ID }}
-          API_KEY: ${{ secrets.API_KEY }}
-          AUTH_DOMAIN: ${{ secrets.AUTH_DOMAIN }}
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
-          STORAGE_BUCKET: ${{ secrets.STORAGE_BUCKET }}
-          MESSAGING_SENDER_ID: ${{ secrets.MESSAGING_SENDER_ID }}
-          APP_ID: ${{ secrets.APP_ID }}
-          MEASUREMENT_ID: ${{ secrets.MEASUREMENT_ID }}
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          ID: ${{ secrets.ID }}
-          NAME: ${{ secrets.NAME }}
-          PHOTO_URL: ${{ secrets.PHOTO_URL }}
+          DOTENV_KEY: ${{ secrets.DOTENV_KEY_PROD }}
         run: yarn build
 
       - name: Archive production artifacts
@@ -259,19 +248,7 @@ jobs:
         image: ghcr.io/agustinallamanocosta/gtdfront:master
         options: --name app_to_test
         env:
-          VITE_CLEINT_ID: ${{ secrets.VITE_CLEINT_ID }}
-          API_KEY: ${{ secrets.API_KEY }}
-          AUTH_DOMAIN: ${{ secrets.AUTH_DOMAIN }}
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
-          STORAGE_BUCKET: ${{ secrets.STORAGE_BUCKET }}
-          MESSAGING_SENDER_ID: ${{ secrets.MESSAGING_SENDER_ID }}
-          APP_ID: ${{ secrets.APP_ID }}
-          MEASUREMENT_ID: ${{ secrets.MEASUREMENT_ID }}
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          ID: ${{ secrets.ID }}
-          NAME: ${{ secrets.NAME }}
-          PHOTO_URL: ${{ secrets.PHOTO_URL }}
-          APP_ENV: 'E2E'
+          DOTENV_KEY: ${{ secrets.DOTENV_KEY_CI }}
         ports:
           - 8080:8080
 
@@ -295,6 +272,8 @@ jobs:
 
       - name: Run end to end testing
         shell: bash
+        env:
+          DOTENV_KEY: ${{ secrets.DOTENV_KEY_CI }}
         run: yarn cy-run-e2e
 
       - name: Archive cypress videos
