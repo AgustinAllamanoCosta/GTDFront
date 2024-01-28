@@ -1,6 +1,3 @@
-const USER_NAME: string = 'Test User';
-const URL: string = 'http://localhost:8080/';
-
 describe('Get The Things Done', () => {
   afterEach(() => {
     window.localStorage.clear();
@@ -12,7 +9,7 @@ describe('Get The Things Done', () => {
   });
 
   it('Should redicrect to the repo', () => {
-    cy.visit(URL);
+    cy.visit(Cypress.env('BASE_URL'));
     cy.get('[data-cy="User-Card-Header"] > [data-cy="Card-title"]').should(
       'have.attr',
       'href',

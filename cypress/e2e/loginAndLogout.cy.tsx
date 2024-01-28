@@ -1,5 +1,4 @@
 const USER_NAME: string = 'Test User';
-const URL: string = 'http://localhost:8080/';
 
 describe('Get The Things Done', () => {
   afterEach(() => {
@@ -12,7 +11,7 @@ describe('Get The Things Done', () => {
   });
 
   it('Should Login into the app with a gmail account', () => {
-    cy.visit(URL);
+    cy.visit(Cypress.env('BASE_URL'));
     cy.get('[data-cy="Card-SubTitle"]').should(
       'have.text',
       `Hi ${USER_NAME} !`,
@@ -20,16 +19,16 @@ describe('Get The Things Done', () => {
   });
 
   it('Should logout', () => {
-    cy.visit(URL);
+    cy.visit(Cypress.env('BASE_URL'));
     cy.get('[data-cy="button-text"]').click();
     cy.get('[data-cy="Card-SubTitle"]').should('not.exist');
     cy.get('[data-cy="button-gtd"]').should('exist');
   });
 
   it('Should show the error view', () => {
-    cy.visit(URL);
+    cy.visit(Cypress.env('BASE_URL'));
     cy.get('[data-cy="button-text"]').click();
-    cy.visit(`${URL}task123132`);
+    cy.visit(`${Cypress.env('BASE_URL')}task123132`);
     cy.get('[data-cy="Error-view-message"]').should(
       'have.text',
       'Ups looks like this page does not exist :(',

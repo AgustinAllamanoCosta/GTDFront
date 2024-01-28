@@ -1,5 +1,3 @@
-const URL: string = 'http://localhost:8080/';
-
 describe('Get The Things Done', () => {
   beforeEach(() => {
     cy.testCleanDb();
@@ -9,7 +7,7 @@ describe('Get The Things Done', () => {
 
   it('Should add a new task', () => {
     const taskContent: string = 'some task to do';
-    cy.visit(URL);
+    cy.visit(Cypress.env('BASE_URL'));
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.get('[data-cy="task-some task to do"]').should('have.text', taskContent);
@@ -17,7 +15,7 @@ describe('Get The Things Done', () => {
 
   it('Should add a new task and active', () => {
     const taskContent: string = 'some task to do';
-    cy.visit(URL);
+    cy.visit(Cypress.env('BASE_URL'));
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.get('[data-cy="task-some task to do"]').trigger('mouseover');
@@ -32,7 +30,7 @@ describe('Get The Things Done', () => {
 
   it('Should add a new task, active it and mark as complete', () => {
     const taskContent: string = 'some task to do';
-    cy.visit(URL);
+    cy.visit(Cypress.env('BASE_URL'));
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.get('[data-cy="task-some task to do"]').trigger('mouseover');
@@ -43,7 +41,7 @@ describe('Get The Things Done', () => {
   });
 
   it('Should load a task from local storage', () => {
-    cy.visit(URL);
+    cy.visit(Cypress.env('BASE_URL'));
     const taskContent = 'some task to do 1';
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
@@ -61,7 +59,7 @@ describe('Get The Things Done', () => {
     const taskContentTwo: string = 'some task to do 2';
     const taskContentThree: string = 'some task to do 3';
     const taskContentFour: string = 'some task to do 4';
-    cy.visit(URL);
+    cy.visit(Cypress.env('BASE_URL'));
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentOne);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
@@ -108,7 +106,7 @@ describe('Get The Things Done', () => {
     const taskContentTwo: string = 'some task to do 2';
     const taskContentThree: string = 'some task to do 3';
     const taskContentFour: string = 'some task to do 4';
-    cy.visit(URL);
+    cy.visit(Cypress.env('BASE_URL'));
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentOne);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
@@ -160,7 +158,7 @@ describe('Get The Things Done', () => {
 
   it('Should add a new task and them cancel it', () => {
     const taskContentOne: string = 'some task to do 1';
-    cy.visit(URL);
+    cy.visit(Cypress.env('BASE_URL'));
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentOne);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');

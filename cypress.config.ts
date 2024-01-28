@@ -4,7 +4,7 @@ import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: `./env/.env` });
+dotenv.config();
 
 export default defineConfig({
   component: {
@@ -14,6 +14,9 @@ export default defineConfig({
     },
     watchForFileChanges: true,
     specPattern: '**/*.cy.tsx',
+  },
+  env: {
+    BASE_URL: 'http://localhost:8080/',
   },
   e2e: {
     setupNodeEvents(on, config) {
