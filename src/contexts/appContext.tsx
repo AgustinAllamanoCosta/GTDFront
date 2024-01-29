@@ -4,6 +4,7 @@ import ErrorContext from '../components/useError/useError';
 import ItemsContext from '../components/useItems/useItems';
 import UserContext from '../components/useUserInformation/useUserInformation';
 import GoogleAuthContext from '../components/useGoogleAuth/useGoogleAuth';
+import { configuration } from '../config/appConfig';
 import { BLACK } from '../constants/colors';
 import InerFontBold from '../assets/fonts/Inter-Bold.ttf';
 import InerFontNormal from '../assets/fonts/Inter-Regular.ttf';
@@ -19,7 +20,9 @@ export const AppContext = ({ children }: AppContextProps) => {
       <ErrorContext>
         <UserContext>
           <ItemsContext>
-            <GoogleAuthContext>{children}</GoogleAuthContext>
+            <GoogleAuthContext clientId={configuration.clientId}>
+              {children}
+            </GoogleAuthContext>
           </ItemsContext>
         </UserContext>
       </ErrorContext>

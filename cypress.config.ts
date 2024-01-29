@@ -23,17 +23,17 @@ export default defineConfig({
       on('task', {
         async cleanDB() {
           const firebaseApp = initializeApp({
-            apiKey: process.env.API_KEY,
-            authDomain: process.env.AUTH_DOMAIN,
-            projectId: process.env.PROJECT_ID,
-            storageBucket: process.env.STORAGE_BUACKET,
-            messagingSenderId: process.env.MESSAGING_SENDER_ID,
-            appId: process.env.APP_ID,
-            measurementId: process.env.MEASUREMENT_ID,
+            apiKey: process.env.VITE_API_KEY,
+            authDomain: process.env.VITE_AUTH_DOMAIN,
+            projectId: process.env.VITE_PROJECT_ID,
+            storageBucket: process.env.VITE_STORAGE_BUACKET,
+            messagingSenderId: process.env.VITE_MESSAGING_SENDER_ID,
+            appId: process.env.VITE_APP_ID,
+            measurementId: process.env.VITE_MEASUREMENT_ID,
           });
           const useFireBase = getFirestore(firebaseApp);
           const { clear } = repository(
-            process.env.ID ? process.env.ID : '',
+            process.env.VITE_ID ? process.env.VITE_ID : '',
             useFireBase,
           );
           await clear();

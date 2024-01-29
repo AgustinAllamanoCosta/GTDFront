@@ -1,11 +1,9 @@
 import { defineConfig } from 'vite';
-import EnvironmentPlugin from 'vite-plugin-environment';
 import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(), EnvironmentPlugin('all')],
-  envDir: './env',
+  plugins: [react()],
   preview: {
     port: 8080,
   },
@@ -18,7 +16,13 @@ export default defineConfig({
       output: {
         sourcemap: false,
         manualChunks: {
-          router: ['react-router-dom'],
+          router: [
+            'react-router-dom',
+            'styled-components',
+            'axios',
+            'firebase/app',
+            'firebase/firestore',
+          ],
         },
       },
     },

@@ -284,6 +284,10 @@ jobs:
           path: |
             ./cypress/videos
 
+      - name: Retriving logs for the service
+        run: |
+          docker logs "${{ job.services.app_to_test.id }}"
+
   deploy_on_firebase:
     runs-on: ubuntu-latest
 

@@ -1,13 +1,18 @@
 import { ReactNode } from 'react';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import { configuration } from '../../config/appConfig';
 import ErrorView from '../../views/error/Error';
 
-const GoogleAuthContext = ({ children }: { children: ReactNode }) => {
+const GoogleAuthContext = ({
+  children,
+  clientId,
+}: {
+  children: ReactNode;
+  clientId: string | undefined;
+}) => {
   return (
     <>
-      {configuration.clientId ? (
-        <GoogleOAuthProvider clientId={configuration.clientId}>
+      {clientId ? (
+        <GoogleOAuthProvider clientId={clientId}>
           {children}
         </GoogleOAuthProvider>
       ) : (

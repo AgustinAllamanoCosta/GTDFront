@@ -1,9 +1,11 @@
+import { configuration } from '../../config/appConfig';
+
 export const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUACKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID,
-  measurementId: process.env.MEASUREMENT_ID,
+  apiKey: configuration.apiKey,
+  authDomain: configuration.authDomain,
+  projectId: configuration.projectId,
+  storageBucket: configuration.storageBucket,
+  messagingSenderId: configuration.messagingSenderId,
+  appId: configuration.appId,
+  measurementId: configuration.measurementId,
 };

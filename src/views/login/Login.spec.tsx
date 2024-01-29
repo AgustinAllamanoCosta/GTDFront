@@ -9,7 +9,7 @@ describe('Login View', () => {
   test('Should render a login view with singin and login buttons', async () => {
     const { container } = render(
       <BrowserRouter>
-        <GoogleAuthContext>
+        <GoogleAuthContext clientId="CLIENT-ID">
           <LoginView />
         </GoogleAuthContext>
       </BrowserRouter>,

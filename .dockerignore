@@ -17,3 +17,5 @@ cypress.env.json
 .firebase
 .env*
 .flaskenv*
+!.env.project
+!.env.vault
