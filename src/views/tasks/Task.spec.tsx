@@ -3,13 +3,16 @@ import { expect } from '@jest/globals';
 import { render } from '@testing-library/react';
 import TaskView from './Task';
 import { BrowserRouter } from 'react-router-dom';
+import MetricContext from '../../components/useEvent/useEvent';
 
 describe('Task View', () => {
   test('Should render a login view with singin and login buttons', async () => {
     const { container } = render(
-      <BrowserRouter>
-        <TaskView />
-      </BrowserRouter>,
+      <MetricContext analytics={undefined}>
+        <BrowserRouter>
+          <TaskView />
+        </BrowserRouter>
+      </MetricContext>,
     );
     expect(container).toMatchSnapshot();
   });

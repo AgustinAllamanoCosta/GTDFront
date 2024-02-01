@@ -2,12 +2,14 @@ import { createGlobalStyle } from 'styled-components';
 import { ReactNode } from 'react';
 import ErrorContext from '../components/useError/useError';
 import ItemsContext from '../components/useItems/useItems';
+import MetricContext from '../components/useEvent/useEvent';
 import UserContext from '../components/useUserInformation/useUserInformation';
 import GoogleAuthContext from '../components/useGoogleAuth/useGoogleAuth';
 import { configuration } from '../config/appConfig';
 import { BLACK } from '../constants/colors';
 import InerFontBold from '../assets/fonts/Inter-Bold.ttf';
 import InerFontNormal from '../assets/fonts/Inter-Regular.ttf';
+import { analytics } from '../hooks/useFirebase';
 
 type AppContextProps = {
   children: ReactNode;
@@ -15,7 +17,7 @@ type AppContextProps = {
 
 export const AppContext = ({ children }: AppContextProps) => {
   return (
-    <>
+    <MetricContext analytics={analytics}>
       <GlobalStyles />
       <ErrorContext>
         <UserContext>
@@ -26,7 +28,7 @@ export const AppContext = ({ children }: AppContextProps) => {
           </ItemsContext>
         </UserContext>
       </ErrorContext>
-    </>
+    </MetricContext>
   );
 };
 

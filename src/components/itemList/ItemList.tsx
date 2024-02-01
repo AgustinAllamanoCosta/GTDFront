@@ -9,6 +9,8 @@ import { Task } from '../../types/types';
 import { BLACK } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
+import { EventContext } from '../../contexts/eventContext';
+import { SUBSCRIBER_NAMES } from '../useEvent/useEvent';
 
 export type ItemListProps = {
   title: string;
@@ -17,6 +19,7 @@ export type ItemListProps = {
 export const ItemList = ({ title }: ItemListProps): JSX.Element => {
   const itemsInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
+  const { eventBus } = useContext(EventContext);
   const [value, setValue] = useState<string>('');
 
   const buttonAdd = (event: any) => {
@@ -31,6 +34,14 @@ export const ItemList = ({ title }: ItemListProps): JSX.Element => {
       });
       itemsInformation.setItems([...oldTask]);
       setValue('');
+      eventBus.publish({
+        name: SUBSCRIBER_NAMES.METRICS,
+        data: {
+          name: 'addItem',
+          userId: userInformation.userData?.id,
+          taskLenght: event.target.value.lenght,
+        },
+      });
     }
   };
 
@@ -42,6 +53,14 @@ export const ItemList = ({ title }: ItemListProps): JSX.Element => {
     if (taskToCancel) {
       taskToCancel.isCancele = true;
       itemsInformation.setItems([...oldTask]);
+      eventBus.publish({
+        name: SUBSCRIBER_NAMES.METRICS,
+        data: {
+          name: 'cancelItem',
+          userId: userInformation.userData?.id,
+          taskId: taskToCancel.id,
+        },
+      });
     }
   };
 
@@ -54,6 +73,14 @@ export const ItemList = ({ title }: ItemListProps): JSX.Element => {
       if (taskToCancel) {
         taskToCancel.isActive = true;
         itemsInformation.setItems([...oldTask]);
+        eventBus.publish({
+          name: SUBSCRIBER_NAMES.METRICS,
+          data: {
+            name: 'activeTask',
+            userId: userInformation.userData?.id,
+            taskId: taskToCancel.id,
+          },
+        });
       }
     }
   };
