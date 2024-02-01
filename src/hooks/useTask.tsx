@@ -3,14 +3,14 @@ import { ActiveTasks, InboxTasks, Task } from '../types/types';
 import { ErrorHandlerContext } from '../contexts/errorHandlerContext';
 import { UserInformationContext } from '../contexts/userContext';
 import { repository } from '../repository/repository';
-import useFireBase from '../hooks/useFirebase';
+import { firebaseData } from '../hooks/useFirebase';
 
 export const useTask = () => {
   const errorContext = useContext(ErrorHandlerContext);
   const userInformation = useContext(UserInformationContext);
   const { getData, save } = repository(
     userInformation.userData?.id ? userInformation.userData?.id : '',
-    useFireBase,
+    firebaseData.useFireBase,
   );
 
   const [activeItems, setActiveItems] = useState<ActiveTasks>([]);

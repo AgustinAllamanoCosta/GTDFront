@@ -9,7 +9,7 @@ import { configuration } from '../config/appConfig';
 import { BLACK } from '../constants/colors';
 import InerFontBold from '../assets/fonts/Inter-Bold.ttf';
 import InerFontNormal from '../assets/fonts/Inter-Regular.ttf';
-import { analytics } from '../hooks/useFirebase';
+import { firebaseData } from '../hooks/useFirebase';
 
 type AppContextProps = {
   children: ReactNode;
@@ -17,7 +17,7 @@ type AppContextProps = {
 
 export const AppContext = ({ children }: AppContextProps) => {
   return (
-    <MetricContext analytics={analytics}>
+    <MetricContext analytics={firebaseData.analytics}>
       <GlobalStyles />
       <ErrorContext>
         <UserContext>

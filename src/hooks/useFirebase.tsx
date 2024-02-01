@@ -1,9 +1,19 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { Firestore, getFirestore } from 'firebase/firestore';
 import { firebaseConfig } from '../assets/google/firebase';
-import { getAnalytics } from 'firebase/analytics';
-const firebaseApp = initializeApp(firebaseConfig);
-const useFireBase = getFirestore(firebaseApp);
-export const analytics = getAnalytics(firebaseApp);
+import { Analytics, getAnalytics } from 'firebase/analytics';
 
-export default useFireBase;
+type FirebaseData = {
+  useFireBase: Firestore;
+  analytics: Analytics | undefined;
+};
+const firebaseApp = initializeApp(firebaseConfig);
+
+export const firebaseData: FirebaseData = {
+  analytics: undefined,
+  useFireBase: getFirestore(firebaseApp),
+};
+
+if (firebaseConfig.projectId) {
+  firebaseData.analytics = getAnalytics(firebaseApp);
+}
