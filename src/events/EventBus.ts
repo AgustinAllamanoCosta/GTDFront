@@ -9,17 +9,13 @@ export interface Subscriber {
 }
 
 export class EventBus {
-  private topic: string;
   private subscribers: Subscriber[];
 
-  constructor(topic?: string) {
-    this.topic = topic ? topic : 'global';
+  constructor() {
     this.subscribers = [];
   }
 
   publish(event: BusEvent): void {
-    console.log('events ', event);
-    console.log('subcribers ', this.subscribers);
     this.subscribers?.forEach((sub) => sub.subscriberFunction(event));
   }
 
@@ -27,9 +23,7 @@ export class EventBus {
     subscriberName: string,
     subscriberFunction: (event: BusEvent) => void,
   ): void {
-    console.log('subcribe ', subscriberName);
     this.subscribers.push({ subscriberName, subscriberFunction });
-    console.log('subcribe ', this.subscribers);
   }
 
   unsubscribe(subscriberName: string): void {

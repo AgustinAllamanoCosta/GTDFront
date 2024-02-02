@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { ReactNode } from 'react';
 import ErrorContext from '../components/useError/useError';
 import ItemsContext from '../components/useItems/useItems';
@@ -17,20 +17,29 @@ type AppContextProps = {
 
 export const AppContext = ({ children }: AppContextProps) => {
   return (
-    <MetricContext analytics={firebaseData.analytics}>
-      <GlobalStyles />
-      <ErrorContext>
-        <UserContext>
-          <ItemsContext>
-            <GoogleAuthContext clientId={configuration.clientId}>
-              {children}
-            </GoogleAuthContext>
-          </ItemsContext>
-        </UserContext>
-      </ErrorContext>
-    </MetricContext>
+    <AppContainer>
+      <MetricContext analytics={firebaseData.analytics}>
+        <GlobalStyles />
+        <ErrorContext>
+          <UserContext>
+            <ItemsContext>
+              <GoogleAuthContext clientId={configuration.clientId}>
+                {children}
+              </GoogleAuthContext>
+            </ItemsContext>
+          </UserContext>
+        </ErrorContext>
+      </MetricContext>
+    </AppContainer>
   );
 };
+
+const AppContainer = styled.div`
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+`;
 
 const GlobalStyles = createGlobalStyle`
   @font-face {
@@ -52,7 +61,7 @@ const GlobalStyles = createGlobalStyle`
   }
   body {
     background-color: ${BLACK};
-    height: 100%;
     font-family: 'Iner';
   }
+
 `;
