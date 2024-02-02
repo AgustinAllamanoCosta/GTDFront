@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.8 (2024-02-02)
+
+
+### Bug Fixes
+
+* 🐛 CI mv command ([ccc9391](https://github.com/AgustinAllamanoCosta/GTDFront/commit/ccc9391bc50ee793c6028075714f148eaeebe5d8))
+
 ### 0.1.7 (2024-02-02)
 
 ### 0.1.6 (2024-02-02)
