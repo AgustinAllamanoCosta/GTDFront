@@ -152,13 +152,13 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+        uses: docker/metadata-action@v5.5.0
         with:
           images: |
             ghcr.io/${{ github.repository }}
 
       - name: Build and push Docker images to e2e test
-        uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        uses: docker/build-push-action@v5.1.0
         with:
           context: .
           push: true
