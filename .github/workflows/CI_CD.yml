@@ -321,7 +321,7 @@ jobs:
         shell: bash
         run: |
           yarn vault-pull production .env --dotenvMe='${{ secrets.DOTENV_ME }}' --yes
-          mv .env.production ./dist
+          mv .env ./dist
 
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0.7.1
