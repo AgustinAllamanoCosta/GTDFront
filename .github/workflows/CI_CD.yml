@@ -317,6 +317,12 @@ jobs:
           name: production-build
           path: ./dist
 
+      - name: Configure Envoironment
+        shell: bash
+        run: |
+          yarn vault-pull production
+          mv .env.production ./dist
+
       - name: Deploy to Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0.7.1
         with:
