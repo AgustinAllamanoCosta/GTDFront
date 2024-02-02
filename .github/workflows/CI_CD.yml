@@ -320,7 +320,7 @@ jobs:
       - name: Configure Envoironment
         shell: bash
         run: |
-          yarn vault-pull production -y
+          yarn vault-pull production -y --dotenvMe=${{ secrets.DOTENV_ME }}
           mv .env.production ./dist
 
       - name: Deploy to Firebase
