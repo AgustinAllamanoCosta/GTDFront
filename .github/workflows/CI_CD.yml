@@ -25,7 +25,7 @@ jobs:
       - name: Install dependencies with Node.js 18.x
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
       - run: yarn
 
   lint:
@@ -49,7 +49,7 @@ jobs:
       - name: Run Lint with Node.js 18.x
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
       - run: yarn lint-check
 
   test:
@@ -73,7 +73,7 @@ jobs:
       - name: Run Test with Node.js 18.x
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
       - run: yarn test
 
   component_testing:
@@ -97,7 +97,7 @@ jobs:
       - name: Cypress Component testing
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
       - run: yarn cy-run-components
 
       - name: Archive cypress videos
@@ -186,7 +186,7 @@ jobs:
       - name: Install Latest Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Configure commiter
         run: |
@@ -224,7 +224,7 @@ jobs:
       - name: Install Latest Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Get package.json version
         id: get_version
@@ -268,7 +268,7 @@ jobs:
       - name: Install Latest Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Run end to end testing
         shell: bash
@@ -308,7 +308,7 @@ jobs:
       - name: Install Latest Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Download production artifact
         uses: actions/download-artifact@v4.1.0
