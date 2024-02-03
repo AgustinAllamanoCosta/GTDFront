@@ -21,7 +21,7 @@ export const AppContext = ({ children }: AppContextProps) => {
       <MetricContext analytics={firebaseData.analytics}>
         <GlobalStyles />
         <ErrorContext>
-          <UserContext>
+          <UserContext configuration={configuration}>
             <ItemsContext>
               <GoogleAuthContext clientId={configuration.clientId}>
                 {children}

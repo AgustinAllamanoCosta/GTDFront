@@ -270,11 +270,17 @@ jobs:
         with:
           node-version: 20.x
 
-      - name: Run end to end testing
+      - name: Run end to end testing Desktop
         shell: bash
         env:
           DOTENV_KEY: ${{ secrets.DOTENV_KEY_CI }}
         run: yarn cy-run-e2e
+
+      - name: Run end to end testing Mobile
+        shell: bash
+        env:
+          DOTENV_KEY: ${{ secrets.DOTENV_KEY_CI }}
+        run: yarn cy-run-e2e-mobile
 
       - name: Archive cypress videos
         if: always()

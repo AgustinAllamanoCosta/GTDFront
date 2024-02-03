@@ -17,6 +17,7 @@ export default defineConfig({
   },
   env: {
     BASE_URL: 'http://localhost:8080/',
+    isMobile: false,
   },
   e2e: {
     setupNodeEvents(on, config) {

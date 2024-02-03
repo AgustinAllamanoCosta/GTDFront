@@ -3,8 +3,7 @@ import { useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { BLACK, GREY } from '../../constants/colors';
-
-const ENTER_KEY_COE = 13;
+import { ENTER_KEY_COE } from '../../constants/keys';
 
 type ItemAddButtonProps = {
   action: (event: any) => void;

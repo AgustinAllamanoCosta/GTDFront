@@ -11,6 +11,7 @@
     "build-storybook": "storybook build",
     "cy": "npx cypress open",
     "cy-run-components": "npx cypress run --component",
+    "cy-run-e2e-mobile": "npx cypress run --e2e --env isMobile=true ",
     "cy-run-e2e": "npx cypress run --e2e",
     "cy-ci": "npx cypress install && yarn dev",
     "test": "NODE_ENV=test jest --passWithNoTests",

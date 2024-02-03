@@ -4,8 +4,13 @@ describe('Get The Things Done', () => {
   });
 
   beforeEach(() => {
-    cy.log('Logging in to Google');
-    cy.viewport(790, 790);
+    if (Cypress.env('isMobile')) {
+      cy.viewport(790, 790);
+      cy.log('Mobile view');
+    } else {
+      cy.viewport(1000, 1000);
+      cy.log('Desktop view');
+    }
   });
 
   it('Should redicrect to the repo', () => {

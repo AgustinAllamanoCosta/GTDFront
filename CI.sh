@@ -7,4 +7,5 @@ yarn build
 docker build . -t "vite-example"
 docker-compose up -d
 yarn cy-run-e2e
+yarn cy-run-e2e-mobile
 docker-compose down

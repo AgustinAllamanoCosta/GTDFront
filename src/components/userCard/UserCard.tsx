@@ -47,7 +47,7 @@ export const UserCard = ({
         </>
       )}
       {!userInformation.isMobile && (
-        <BarDesk>
+        <BarDesk data-cy="User-Card-Header">
           <MyTitle
             href={REPO_URL}
             target={'_blank'}

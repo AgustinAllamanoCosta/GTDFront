@@ -3,11 +3,16 @@ import { UserInformationContext } from '../../contexts/userContext';
 import { UserData } from '../../types/types';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
-import { configuration } from '../../config/appConfig';
 import { IS_END_TO_END } from '../../constants/environment';
 import { useViewport } from '../../hooks/useView';
 
-const UserContext = ({ children }: { children: ReactNode }) => {
+const UserContext = ({
+  children,
+  configuration,
+}: {
+  children: ReactNode;
+  configuration: any;
+}) => {
   const errorContext = useContext(ErrorHandlerContext);
   const { getUserData, saveUserData } = useLocalStorage();
 
