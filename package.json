@@ -87,6 +87,12 @@
     "testMatch": [
       "<rootDir>/**/*.spec.tsx"
     ],
+    "coverageDirectory": "../testCov/",
+    "coverageThreshold": {
+      "global": {
+        "line": 40
+      }
+    },
     "collectCoverage": true,
     "cleanMocks": true,
     "transform": {

@@ -25,11 +25,4 @@ export class EventBus {
   ): void {
     this.subscribers.push({ subscriberName, subscriberFunction });
   }
-
-  unsubscribe(subscriberName: string): void {
-    const indexUnsuscribed = this.subscribers.findIndex(
-      (sub) => sub.subscriberName === subscriberName,
-    );
-    this.subscribers.splice(indexUnsuscribed, 1);
-  }
 }
