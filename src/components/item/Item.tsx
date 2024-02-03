@@ -4,6 +4,7 @@ import { faCheck, faBoxes, faX } from '@fortawesome/free-solid-svg-icons';
 import { FONTS } from '../../constants/size';
 import { useState } from 'react';
 import { BLACK } from '../../constants/colors';
+import { memo } from 'react';
 
 export type ItemProps = {
   title: String;
@@ -11,42 +12,44 @@ export type ItemProps = {
   onAcive: () => void;
 };
 
-export const Item = ({ title, onCancel, onAcive }: ItemProps): JSX.Element => {
-  const [showButton, setShowButton] = useState<boolean>(false);
+export const Item = memo(
+  ({ title, onCancel, onAcive }: ItemProps): JSX.Element => {
+    const [showButton, setShowButton] = useState<boolean>(false);
 
-  return (
-    <ItemContainer onMouseLeave={() => setShowButton(false)}>
-      <ItemContent
-        data-cy={`task-${title}`}
-        onMouseOver={() => setShowButton(true)}
-        onClick={() => setShowButton(!showButton)}
-      >
-        <Icon icon={faBoxes} />
-        <ItemText>{title}</ItemText>
-      </ItemContent>
-      {showButton && (
-        <ButtonContainer>
-          <Icon
-            data-cy={`task-${title}-active`}
-            icon={faCheck}
-            onClick={() => {
-              setShowButton(false);
-              onAcive();
-            }}
-          />
-          <Icon
-            data-cy={`task-${title}-cancel`}
-            icon={faX}
-            onClick={() => {
-              setShowButton(false);
-              onCancel();
-            }}
-          />
-        </ButtonContainer>
-      )}
-    </ItemContainer>
-  );
-};
+    return (
+      <ItemContainer onMouseLeave={() => setShowButton(false)}>
+        <ItemContent
+          data-cy={`task-${title}`}
+          onMouseOver={() => setShowButton(true)}
+          onClick={() => setShowButton(!showButton)}
+        >
+          <Icon icon={faBoxes} />
+          <ItemText>{title}</ItemText>
+        </ItemContent>
+        {showButton && (
+          <ButtonContainer>
+            <Icon
+              data-cy={`task-${title}-active`}
+              icon={faCheck}
+              onClick={() => {
+                setShowButton(false);
+                onAcive();
+              }}
+            />
+            <Icon
+              data-cy={`task-${title}-cancel`}
+              icon={faX}
+              onClick={() => {
+                setShowButton(false);
+                onCancel();
+              }}
+            />
+          </ButtonContainer>
+        )}
+      </ItemContainer>
+    );
+  },
+);
 
 const ItemContainer = styled.div``;
 

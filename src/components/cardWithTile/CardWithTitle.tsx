@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import { Card } from '../card/Card';
 import { FONTS } from '../../constants/size';
 import { BLACK } from '../../constants/colors';
+import { memo } from 'react';
 
 export type CardProps = {
   title?: string;
@@ -10,24 +11,20 @@ export type CardProps = {
   children?: string | JSX.Element | JSX.Element[];
 };
 
-export const CardTitle = ({
-  title,
-  children,
-  joinTag,
-  label,
-}: CardProps): JSX.Element => {
-  return (
-    <Card padding={false}>
-      <MyTitleContainer join_tag={joinTag}>
-        <TitleContent data-cy="Card-title">{title}</TitleContent>
-        <TitleContent data-cy="Card-label">{label}</TitleContent>
-      </MyTitleContainer>
-      <>{children}</>
-    </Card>
-  );
-};
+export const CardTitle = memo(
+  ({ title, children, joinTag, label }: CardProps): JSX.Element => {
+    return (
+      <Card padding={false}>
+        <MyTitleContainer join_tag={joinTag}>
+          <TitleContent data-cy="Card-title">{title}</TitleContent>
+          <TitleContent data-cy="Card-label">{label}</TitleContent>
+        </MyTitleContainer>
+        <>{children}</>
+      </Card>
+    );
+  },
+);
 
-//TODO: PIXEL
 const MyTitleContainer = styled.div<{ join_tag?: boolean }>`
   border-bottom-style: solid;
   border-bottom-color: ${BLACK};

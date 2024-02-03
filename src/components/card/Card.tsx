@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { styled } from 'styled-components';
 import { GREY } from '../../constants/colors';
 
@@ -7,21 +8,19 @@ export type CardProps = {
   children?: string | JSX.Element | JSX.Element[];
 };
 
-export const Card = ({
-  children,
-  content_center,
-  padding = true,
-}: CardProps): JSX.Element => {
-  return (
-    <MyCard
-      is_center={`${content_center}`}
-      padding={`${padding}`}
-      data-cy="Card-Contents"
-    >
-      {children}
-    </MyCard>
-  );
-};
+export const Card = memo(
+  ({ children, content_center, padding = true }: CardProps): JSX.Element => {
+    return (
+      <MyCard
+        is_center={`${content_center}`}
+        padding={`${padding}`}
+        data-cy="Card-Contents"
+      >
+        {children}
+      </MyCard>
+    );
+  },
+);
 
 //TODO: PIXEL AND %
 const MyCard = styled.div<{ is_center?: string; padding?: string }>`

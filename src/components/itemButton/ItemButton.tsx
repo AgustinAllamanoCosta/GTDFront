@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { useRef } from 'react';
+import { useRef, memo } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { BLACK, GREY } from '../../constants/colors';
@@ -11,45 +11,43 @@ type ItemAddButtonProps = {
   value: string;
 };
 
-export const ItemAddButton = ({
-  onChange,
-  action,
-  value,
-}: ItemAddButtonProps): JSX.Element => {
-  const newTaskInput = useRef<any>();
+export const ItemAddButton = memo(
+  ({ onChange, action, value }: ItemAddButtonProps): JSX.Element => {
+    const newTaskInput = useRef<any>();
 
-  const focusInput = (event: any) => {
-    if (newTaskInput.current) {
-      newTaskInput.current.focus();
-    }
-  };
+    const focusInput = (event: any) => {
+      if (newTaskInput.current) {
+        newTaskInput.current.focus();
+      }
+    };
 
-  const onInputKeyDown = (event: any) => {
-    const keyCode = event.keyCode;
-    if (keyCode === ENTER_KEY_COE) {
-      event.preventDefault();
-      action(event);
-    }
-  };
+    const onInputKeyDown = (event: any) => {
+      const keyCode = event.keyCode;
+      if (keyCode === ENTER_KEY_COE) {
+        event.preventDefault();
+        action(event);
+      }
+    };
 
-  return (
-    <AddItemContent data-cy={`task-add-button`}>
-      <Icon
-        icon={faPlus}
-        onClick={focusInput}
-      />
-      <AddItemInput
-        ref={newTaskInput}
-        data-cy={`task-add-button-input`}
-        placeholder={'Add Task'}
-        onBlur={action}
-        value={value}
-        onChange={onChange}
-        onKeyDown={onInputKeyDown}
-      />
-    </AddItemContent>
-  );
-};
+    return (
+      <AddItemContent data-cy={`task-add-button`}>
+        <Icon
+          icon={faPlus}
+          onClick={focusInput}
+        />
+        <AddItemInput
+          ref={newTaskInput}
+          data-cy={`task-add-button-input`}
+          placeholder={'Add Task'}
+          onBlur={action}
+          value={value}
+          onChange={onChange}
+          onKeyDown={onInputKeyDown}
+        />
+      </AddItemContent>
+    );
+  },
+);
 
 //TODO: PIXELS
 const ItemContent = styled.div`

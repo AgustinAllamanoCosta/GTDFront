@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { styled } from 'styled-components';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,38 +11,36 @@ export type StickyNoteProps = {
   onConfirm?: (event: any) => void;
 };
 
-export const StickyNote = ({
-  number,
-  text,
-  onConfirm,
-}: StickyNoteProps): JSX.Element => {
-  const [textNoteValue, setTextNoteValue] = useState<string>(
-    text.toUpperCase(),
-  );
+export const StickyNote = memo(
+  ({ number, text, onConfirm }: StickyNoteProps): JSX.Element => {
+    const [textNoteValue, setTextNoteValue] = useState<string>(
+      text.toUpperCase(),
+    );
 
-  return (
-    <ButtonAndNoteContainer data-cy={`stick-note-container-${number}`}>
-      <TextContainer data-cy={`stick-note-text-container-${number}`}>
-        <TextNote
-          data-cy={`stick-note-text-${number}`}
-          value={textNoteValue}
-          onChange={(e) => {
-            setTextNoteValue(e.target.value);
-          }}
-        />
-      </TextContainer>
-      <ButtonContainer
-        onClick={onConfirm}
-        data-cy={`stick-note-button-${number}`}
-      >
-        <Icon
-          icon={faCheck}
+    return (
+      <ButtonAndNoteContainer data-cy={`stick-note-container-${number}`}>
+        <TextContainer data-cy={`stick-note-text-container-${number}`}>
+          <TextNote
+            data-cy={`stick-note-text-${number}`}
+            value={textNoteValue}
+            onChange={(e) => {
+              setTextNoteValue(e.target.value);
+            }}
+          />
+        </TextContainer>
+        <ButtonContainer
           onClick={onConfirm}
-        />
-      </ButtonContainer>
-    </ButtonAndNoteContainer>
-  );
-};
+          data-cy={`stick-note-button-${number}`}
+        >
+          <Icon
+            icon={faCheck}
+            onClick={onConfirm}
+          />
+        </ButtonContainer>
+      </ButtonAndNoteContainer>
+    );
+  },
+);
 
 const TextNote = styled.textarea`
   font-size: ${FONTS.TEXT};
