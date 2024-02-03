@@ -76,13 +76,6 @@ jobs:
           node-version: 20.x
       - run: yarn test
 
-      - name: Generating coverage badge
-        uses: pooi/coverage-badge@1.0.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          xml-test-report-path: ./testCov/clover.xml
-          html-test-report-path: ./testCov/lcov-report
-
   component_testing:
     runs-on: ubuntu-latest
 
