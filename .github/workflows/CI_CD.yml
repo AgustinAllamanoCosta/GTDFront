@@ -79,9 +79,9 @@ jobs:
       - name: Generating coverage badge
         uses: pooi/coverage-badge@1.0.0
         with:
-          token: ${{ secrets.GITHUB_ACCESS_TOKEN }}
-          xml-test-report-path: ${SOURCE_PATH}/testCov/clover.xml
-          html-test-report-path: ${SOURCE_PATH}/testCov/lcov-report
+          token: ${{ secrets.GITHUB_TOKEN }}
+          xml-test-report-path: ./testCov/clover.xml
+          html-test-report-path: ./testCov/lcov-report
 
   component_testing:
     runs-on: ubuntu-latest
