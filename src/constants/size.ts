@@ -9,6 +9,4 @@ export enum SIZE {
   S = '18vh',
   M = '30vh',
   L = '50vh',
-  XL = '',
-  XX = '',
 }

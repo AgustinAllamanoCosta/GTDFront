@@ -2,12 +2,11 @@ import { styled } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faBoxes, faX } from '@fortawesome/free-solid-svg-icons';
 import { FONTS } from '../../constants/size';
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { BLACK } from '../../constants/colors';
-import { memo } from 'react';
 
 export type ItemProps = {
-  title: String;
+  title: string;
   onCancel: () => void;
   onAcive: () => void;
 };

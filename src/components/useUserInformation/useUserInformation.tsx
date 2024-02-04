@@ -1,4 +1,4 @@
-import { useState, useEffect, ReactNode, useContext } from 'react';
+import { useState, useEffect, ReactNode, useContext, useMemo } from 'react';
 import { UserInformationContext } from '../../contexts/userContext';
 import { UserData } from '../../types/types';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
@@ -24,6 +24,15 @@ const UserContext = ({
     setUserData(userData);
   };
 
+  const userInformationContextValue = useMemo(
+    () => ({
+      userData,
+      isMobile,
+      setUserData: saveUserDataInApp,
+    }),
+    [userData, isMobile],
+  );
+
   useEffect(() => {
     try {
       if (configuration.environment === IS_END_TO_END) {
@@ -47,13 +56,7 @@ const UserContext = ({
   }, []);
 
   return (
-    <UserInformationContext.Provider
-      value={{
-        userData,
-        isMobile,
-        setUserData: saveUserDataInApp,
-      }}
-    >
+    <UserInformationContext.Provider value={userInformationContextValue}>
       {children}
     </UserInformationContext.Provider>
   );

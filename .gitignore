@@ -15,6 +15,8 @@ dist-ssr
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+sonar-project.properties
+.scannerwork
 .idea
 .DS_Store
 *.suo

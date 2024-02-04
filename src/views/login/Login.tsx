@@ -63,12 +63,10 @@ const LoginView = () => {
   };
 
   useEffect(() => {
-    try {
-      processLoginInfo();
-    } catch (error: any) {
+    processLoginInfo().catch((error: any) => {
       errorContext.setError(true);
       errorContext.setMessage(error.message);
-    }
+    });
   }, [userInformation.userData]);
 
   return (

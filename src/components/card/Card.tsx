@@ -22,7 +22,6 @@ export const Card = memo(
   },
 );
 
-//TODO: PIXEL AND %
 const MyCard = styled.div<{ is_center?: string; padding?: string }>`
   background-color: ${GREY};
   border-radius: 10px;

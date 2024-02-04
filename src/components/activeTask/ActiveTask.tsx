@@ -13,7 +13,6 @@ export const ActiveTask = (): JSX.Element => {
   const userInformation = useContext(UserInformationContext);
 
   const removeActiveTaks = (index: number) => {
-    //TODO: improve this :D
     activeInformation.items.forEach((task: Task) => {
       if (task.id === activeInformation.activeTasks[index].id) {
         task.isComplete = true;

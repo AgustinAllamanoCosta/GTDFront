@@ -1,5 +1,9 @@
 yarn install
 yarn lint-format
+docker run \
+    --rm \
+    -v "./:/usr/src" \
+    sonarsource/sonar-scanner-cli
 yarn test
 yarn cy-run-components
 docker-compose down

@@ -49,7 +49,6 @@ export const ItemAddButton = memo(
   },
 );
 
-//TODO: PIXELS
 const ItemContent = styled.div`
   border-bottom-style: solid;
   border-bottom-color: ${BLACK};

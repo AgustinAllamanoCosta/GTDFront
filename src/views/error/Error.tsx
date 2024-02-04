@@ -7,7 +7,7 @@ import { useContext, useEffect } from 'react';
 
 type ErrorViewProps = {
   onClick: (e: any) => void;
-  message?: string | undefined;
+  message?: string;
 };
 
 const ErrorView = ({ onClick, message }: ErrorViewProps) => {

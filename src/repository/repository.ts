@@ -26,7 +26,7 @@ export const repository = (userId: string, useFireBase: Firestore) => {
     const userTaskDoc = doc(useFireBase, FIRE_BASE_COLLECTION_NAME, userId);
     const itemsInFirebase = await getDoc(userTaskDoc);
     const userData = itemsInFirebase.data();
-    if (userData && userData.items) return userData.items;
+    if (userData?.items) return userData.items;
     return [];
   };
 

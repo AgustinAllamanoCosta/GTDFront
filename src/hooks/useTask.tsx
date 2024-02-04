@@ -51,12 +51,10 @@ export const useTask = () => {
   };
 
   useEffect(() => {
-    try {
-      processItems();
-    } catch (error: any) {
+    processItems().catch((error: any) => {
       errorContext.setError(true);
       errorContext.setMessage(error.message);
-    }
+    });
   }, [items]);
 
   return {

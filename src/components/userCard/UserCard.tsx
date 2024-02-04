@@ -1,8 +1,7 @@
 import { styled } from 'styled-components';
-import { FONTS } from '../../constants/size';
+import { FONTS, SIZE } from '../../constants/size';
 import { Button } from '../button/Button';
 import { BLACK, GREY } from '../../constants/colors';
-import { SIZE } from '../../constants/size';
 import { REPO_URL } from '../../constants/routePaths';
 import { useContext } from 'react';
 import { UserInformationContext } from '../../contexts/userContext';
