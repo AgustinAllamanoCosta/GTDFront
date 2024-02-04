@@ -276,6 +276,14 @@ jobs:
           DOTENV_KEY: ${{ secrets.DOTENV_KEY_CI }}
         run: yarn cy-run-e2e
 
+      - name: Archive cypress videos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: |
+            ./cypress/videos
+
       - name: Run end to end testing Mobile
         shell: bash
         env:
@@ -286,7 +294,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-videos
+          name: cypress-videos-mobile
           path: |
             ./cypress/videos
 
