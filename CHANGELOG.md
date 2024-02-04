@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.12 (2024-02-04)
+
+
+### Features
+
+* 🎸 add timer to pull taks information from backend ([b75882a](https://github.com/AgustinAllamanoCosta/GTDFront/commit/b75882a5f8acc63e363418eab1e1ca499ef7bf4e))
+
 ### 0.1.11 (2024-02-03)
 
 ### 0.1.10 (2024-02-03)
