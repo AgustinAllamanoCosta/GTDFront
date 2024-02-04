@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.14 (2024-02-04)
+
+
+### Bug Fixes
+
+* 🐛 e2e testing ([afc0717](https://github.com/AgustinAllamanoCosta/GTDFront/commit/afc0717e5e44a2ad3dda83ae3032dc873ca11afb))
+
 ### 0.1.13 (2024-02-04)
 
 ### 0.1.12 (2024-02-04)
