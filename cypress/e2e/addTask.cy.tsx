@@ -12,6 +12,7 @@ describe('Get The Things Done', () => {
   });
 
   afterEach(() => {
+    cy.testCleanDb();
     window.localStorage.clear();
   });
 
