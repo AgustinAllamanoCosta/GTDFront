@@ -15,6 +15,7 @@ type Story = StoryObj<typeof meta>;
 
 export const FullTaskView: Story = {
   args: {
+    refreshTaskInterval: 900000,
     userData: {
       id: 'some user id',
       name: 'Test in storybook',

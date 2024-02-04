@@ -13,9 +13,14 @@ import { useNavigate } from 'react-router-dom';
 type TaskViewProps = {
   inboxTasks?: InboxTasks;
   userData?: UserData;
+  refreshTaskInterval?: number;
 };
 
-const TaskView = ({ inboxTasks = [], userData }: TaskViewProps) => {
+const TaskView = ({
+  inboxTasks = [],
+  userData,
+  refreshTaskInterval,
+}: TaskViewProps) => {
   const errorContext = useContext(ErrorHandlerContext);
   const userInformation = useContext(UserInformationContext);
   const itemContext = useContext(TaskInformationContext);
@@ -36,6 +41,12 @@ const TaskView = ({ inboxTasks = [], userData }: TaskViewProps) => {
         itemContext.setItems(inboxTasks);
       } else {
         itemContext.refreshData();
+      }
+      if (refreshTaskInterval) {
+        const interval = setInterval(() => {
+          itemContext.refreshData();
+        }, refreshTaskInterval);
+        return () => clearInterval(interval);
       }
     } catch (error: any) {
       errorContext.setError(true);

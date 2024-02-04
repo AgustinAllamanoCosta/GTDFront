@@ -5,6 +5,7 @@ import { AppContext } from './contexts/appContext';
 import { INDEX, OTHER, TASK } from './constants/routePaths';
 import { Suspense, lazy } from 'react';
 import VersionNumberTag from './components/versionTag/VersionTag';
+import { configuration } from './config/appConfig';
 
 const TaskViewLazy = lazy(() => import('./views/tasks/Task'));
 const LoginViewLazy = lazy(() => import('./views/login/Login'));
@@ -36,7 +37,9 @@ const App = () => {
             element={
               <RequireAuth>
                 <Suspense fallback={<div>Loading...</div>}>
-                  <TaskViewLazy />
+                  <TaskViewLazy
+                    refreshTaskInterval={configuration.refreshTimeOut}
+                  />
                 </Suspense>
               </RequireAuth>
             }
