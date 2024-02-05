@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.15 (2024-02-05)
+
+
+### Bug Fixes
+
+* 🐛 docker file ([78e574e](https://github.com/AgustinAllamanoCosta/GTDFront/commit/78e574eb8b94df398d76341ab18c040eb0812310))
+
 ### 0.1.14 (2024-02-04)
 
 
