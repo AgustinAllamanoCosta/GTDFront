@@ -26,7 +26,7 @@ describe('Button with text', () => {
         />
       </div>,
     );
-    cy.get('[data-cy="button-gtd"]').click();
+    cy.get(`[data-cy="button-${buttonText}"]`).click();
 
     cy.get('[data-cy="button-text"]').should('have.text', buttonText);
     cy.get('@onClickSpy').should('be.called');
@@ -45,7 +45,7 @@ describe('Button with text', () => {
         />
       </div>,
     );
-    cy.get('[data-cy="button-gtd"]').click();
+    cy.get(`[data-cy="button-${buttonText}"]`).click();
 
     cy.get('[data-cy="button-text"]').should('have.text', buttonText);
     cy.get('@onClickSpy').should('be.called');

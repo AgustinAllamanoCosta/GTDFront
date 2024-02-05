@@ -7,6 +7,7 @@ import { Task } from '../../types/types';
 import { BLACK } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
+import { v4 as uuidv4 } from 'uuid';
 
 export const ActiveTask = (): JSX.Element => {
   const activeInformation = useContext(TaskInformationContext);
@@ -36,8 +37,8 @@ export const ActiveTask = (): JSX.Element => {
             return (
               <StickyNote
                 number={index.toString()}
-                data-cy={`task-number-${index}`}
-                key={`${index}-${item.title}`}
+                data-cy={`task-number-${uuidv4()}`}
+                key={`${uuidv4()}-${item.title}`}
                 text={item.title}
                 onConfirm={(e) => removeActiveTaks(index)}
               />

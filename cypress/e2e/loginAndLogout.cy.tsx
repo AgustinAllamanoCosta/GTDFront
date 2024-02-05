@@ -27,7 +27,7 @@ describe('Get The Things Done', () => {
     cy.visit(Cypress.env('BASE_URL'));
     cy.get('[data-cy="button-text"]').click();
     cy.get('[data-cy="Card-SubTitle"]').should('not.exist');
-    cy.get('[data-cy="button-gtd"]').should('exist');
+    cy.get('[data-cy="button-Login"]').should('exist');
   });
 
   it('Should show the error view', () => {

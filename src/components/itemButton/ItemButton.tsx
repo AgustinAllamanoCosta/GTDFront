@@ -9,10 +9,11 @@ type ItemAddButtonProps = {
   action: (event: any) => void;
   onChange: (event: any) => void;
   value: string;
+  dataTest?: string;
 };
 
 export const ItemAddButton = memo(
-  ({ onChange, action, value }: ItemAddButtonProps): JSX.Element => {
+  ({ onChange, action, value, dataTest }: ItemAddButtonProps): JSX.Element => {
     const newTaskInput = useRef<any>();
 
     const focusInput = (event: any) => {
@@ -30,8 +31,9 @@ export const ItemAddButton = memo(
     };
 
     return (
-      <AddItemContent data-cy={`task-add-button`}>
+      <ItemContent data-cy={`task-add-button-${dataTest}`}>
         <Icon
+          data-cy={`task-add-button-icon`}
           icon={faPlus}
           onClick={focusInput}
         />
@@ -44,7 +46,7 @@ export const ItemAddButton = memo(
           onChange={onChange}
           onKeyDown={onInputKeyDown}
         />
-      </AddItemContent>
+      </ItemContent>
     );
   },
 );
@@ -58,10 +60,6 @@ const ItemContent = styled.div`
   padding-left: 9px;
   padding-top: 5px;
   padding-bottom: 5px;
-`;
-
-const AddItemContent = styled(ItemContent)`
-  margin-bottom: 15px;
 `;
 
 const AddItemInput = styled.input`

@@ -30,7 +30,7 @@ describe('Get The Things Done', () => {
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.get('[data-cy="task-some task to do"]').trigger('mouseover');
-    cy.get('[data-cy="task-some task to do-active"]').click();
+    cy.get('[data-cy="button-active"]').click();
 
     cy.get('[data-cy="stick-note-button-0"]').should('be.visible');
     cy.get('[data-cy="stick-note-text-0"]').should(
@@ -45,7 +45,7 @@ describe('Get The Things Done', () => {
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.get('[data-cy="task-some task to do"]').trigger('mouseover');
-    cy.get('[data-cy="task-some task to do-active"]').click();
+    cy.get('[data-cy="button-active"]').click();
 
     cy.get('[data-cy="stick-note-button-0"]').click();
     cy.get('[data-cy="stick-note-text-0"]').should('not.exist');
@@ -76,19 +76,19 @@ describe('Get The Things Done', () => {
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
 
     cy.get(`[data-cy="task-${taskContentOne}"]`).trigger('mouseover');
-    cy.get(`[data-cy="task-${taskContentOne}-active"]`).click();
+    cy.get(`[data-cy="button-active"]`).click();
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentTwo);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
 
     cy.get(`[data-cy="task-${taskContentTwo}"]`).trigger('mouseover');
-    cy.get(`[data-cy="task-${taskContentTwo}-active"]`).click();
+    cy.get(`[data-cy="button-active"]`).click();
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentThree);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
 
     cy.get(`[data-cy="task-${taskContentThree}"]`).trigger('mouseover');
-    cy.get(`[data-cy="task-${taskContentThree}-active"]`).click();
+    cy.get(`[data-cy="button-active"]`).click();
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentFour);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
@@ -123,25 +123,25 @@ describe('Get The Things Done', () => {
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
 
     cy.get(`[data-cy="task-${taskContentOne}"]`).trigger('mouseover');
-    cy.get(`[data-cy="task-${taskContentOne}-active"]`).click();
+    cy.get(`[data-cy="button-active"]`).click();
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentTwo);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
 
     cy.get(`[data-cy="task-${taskContentTwo}"]`).trigger('mouseover');
-    cy.get(`[data-cy="task-${taskContentTwo}-active"]`).click();
+    cy.get(`[data-cy="button-active"]`).click();
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentThree);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
 
     cy.get(`[data-cy="task-${taskContentThree}"]`).trigger('mouseover');
-    cy.get(`[data-cy="task-${taskContentThree}-active"]`).click();
+    cy.get(`[data-cy="button-active"]`).click();
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentFour);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
 
     cy.get(`[data-cy="task-${taskContentFour}"]`).trigger('mouseover');
-    cy.get(`[data-cy="task-${taskContentFour}-active"]`).click();
+    cy.get(`[data-cy="button-active"]`).click();
 
     cy.get('[data-cy="stick-note-button-0"]').should('be.visible');
     cy.get('[data-cy="stick-note-text-0"]').should(
@@ -175,7 +175,7 @@ describe('Get The Things Done', () => {
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
 
     cy.get(`[data-cy="task-${taskContentOne}"]`).trigger('mouseover');
-    cy.get(`[data-cy="task-${taskContentOne}-cancel"]`).click();
+    cy.get(`[data-cy="button-cancel"]`).click();
 
     cy.get(`[data-cy="task-${taskContentOne}"]`).should('not.exist');
   });

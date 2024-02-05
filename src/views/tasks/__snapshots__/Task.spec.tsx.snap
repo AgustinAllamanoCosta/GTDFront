@@ -3,14 +3,14 @@
 exports[`Task View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-knlTvX iLsrex"
+    class="sc-hcKobq EHVlm"
   >
     <div
-      class="sc-hcKobq eIDIbg"
+      class="sc-icWNAp iwiUjq"
       is_mobile="false"
     >
       <div
-        class="sc-iUXMdM gsDlxt"
+        class="sc-knlTvX dYvlLO"
         is_mobile="false"
       >
         <div
@@ -36,15 +36,16 @@ exports[`Task View Should render a login view with singin and login buttons 1`] 
             </span>
           </div>
           <div
-            class="sc-QdHZx jcCanR"
+            class="sc-iUXMdM cGwGxK"
           />
           <div
-            class="sc-hDqSpx sc-cYUugm khVGVz dLcOAg"
-            data-cy="task-add-button"
+            class="sc-hDqSpx khVGVz"
+            data-cy="task-add-button-undefined"
           >
             <svg
               aria-hidden="true"
-              class="svg-inline--fa fa-plus sc-imALrc ezYxHc"
+              class="svg-inline--fa fa-plus sc-jCDGFz hVrBsq"
+              data-cy="task-add-button-icon"
               data-icon="plus"
               data-prefix="fas"
               focusable="false"
@@ -58,7 +59,7 @@ exports[`Task View Should render a login view with singin and login buttons 1`] 
               />
             </svg>
             <input
-              class="sc-jCDGFz bGisoy"
+              class="sc-cYUugm eTNJBk"
               data-cy="task-add-button-input"
               placeholder="Add Task"
               value=""

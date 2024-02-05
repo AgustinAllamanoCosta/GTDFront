@@ -15,7 +15,7 @@ export const Button = memo(
   ({ text, icon, onClick }: ButtonProps): JSX.Element => {
     return (
       <ButtonContainer
-        data-cy="button-gtd"
+        data-cy={`button-${text}`}
         onClick={onClick}
       >
         <ButtonText data-cy="button-text">{text}</ButtonText>

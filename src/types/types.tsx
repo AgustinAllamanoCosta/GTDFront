@@ -11,6 +11,11 @@ export type Task = {
   isComplete: boolean;
   isCancele: boolean;
   isActive: boolean;
+  parentTask?: string;
+  childTask?: {
+    taksOne: string;
+    taksTwo: string;
+  };
 };
 
 export type ActiveTasks = Array<Task>;

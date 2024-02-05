@@ -45,6 +45,53 @@ export const ItemList = ({ title }: ItemListProps): JSX.Element => {
     }
   };
 
+  const buttonAddSplitTask = (
+    newTaskOne: string,
+    newTaskTwo: string,
+    parentTaskId: string,
+  ) => {
+    const oldTask = itemsInformation.items;
+    const newTaskToAddOne: Task = {
+      id: uuidv4(),
+      title: newTaskOne,
+      isComplete: false,
+      isCancele: false,
+      isActive: false,
+      parentTask: parentTaskId,
+    };
+    const newTaskToAddTwo: Task = {
+      id: uuidv4(),
+      title: newTaskTwo,
+      isComplete: false,
+      isCancele: false,
+      isActive: false,
+      parentTask: parentTaskId,
+    };
+    const parentTask: Task | undefined = oldTask.find((item: Task) => {
+      return item.id === parentTaskId;
+    });
+    if (parentTask) {
+      parentTask.childTask = {
+        taksOne: newTaskToAddOne.id,
+        taksTwo: newTaskToAddTwo.id,
+      };
+      parentTask.isCancele = true;
+    }
+    oldTask.push(newTaskToAddOne);
+    oldTask.push(newTaskToAddTwo);
+
+    itemsInformation.setItems([...oldTask]);
+
+    eventBus.publish({
+      name: SUBSCRIBER_NAMES.METRICS,
+      data: {
+        name: 'splitTask',
+        userId: userInformation.userData?.id,
+        taskId: parentTaskId,
+      },
+    });
+  };
+
   const onCancelTask = (taskId: string) => {
     const oldTask = itemsInformation.items;
     const taskToCancel: Task | undefined = oldTask.find((item: Task) => {
@@ -99,15 +146,18 @@ export const ItemList = ({ title }: ItemListProps): JSX.Element => {
           {itemsInformation.inboxTasks.map((item, index) => {
             return (
               <Item
-                key={`${index}-${item.title}`}
+                key={`${uuidv4()}-${item.title}`}
                 title={item.title}
                 onAcive={() => onActiveTask(item.id)}
                 onCancel={() => onCancelTask(item.id)}
+                onSplit={(taskOne: string, taskTwo: string) =>
+                  buttonAddSplitTask(taskOne, taskTwo, item.id)
+                }
               />
             );
           })}
         </InboxContainer>
-        <ItemAddButton
+        <AddItemContent
           onChange={onChangeButton}
           value={value}
           action={buttonAdd}
@@ -116,6 +166,10 @@ export const ItemList = ({ title }: ItemListProps): JSX.Element => {
     </InboxTaskContainer>
   );
 };
+
+const AddItemContent = styled(ItemAddButton)`
+  margin-bottom: 15px;
+`;
 
 const InboxContainer = styled.div`
   width: 100%;

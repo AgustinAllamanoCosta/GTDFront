@@ -14,7 +14,7 @@ const MetricContext = ({
   children: ReactNode;
   analytics: Analytics | undefined;
 }) => {
-  const [eventBus, setEventBus] = useState<EventBus>(new EventBus());
+  const [eventBus] = useState<EventBus>(new EventBus());
   const eventContextValue = useMemo(
     () => ({
       eventBus,
