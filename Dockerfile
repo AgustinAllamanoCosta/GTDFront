@@ -1,6 +1,9 @@
 FROM node:18-alpine AS build
 
-USER nonroot
+RUN addgroup --system nonrootgroup
+RUN adduser --system nonroot --ingroup nonrootgroup
+
+USER nonroot:nonrootgroup
 
 WORKDIR /app
 
