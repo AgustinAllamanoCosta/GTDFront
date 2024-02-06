@@ -5,11 +5,15 @@ import { GREY } from '../../constants/colors';
 export type CardProps = {
   content_center?: boolean;
   padding?: boolean;
-  children?: string | JSX.Element | JSX.Element[];
+  children?: string | React.JSX.Element | React.JSX.Element[];
 };
 
 export const Card = memo(
-  ({ children, content_center, padding = true }: CardProps): JSX.Element => {
+  ({
+    children,
+    content_center,
+    padding = true,
+  }: CardProps): React.JSX.Element => {
     return (
       <MyCard
         is_center={`${content_center}`}

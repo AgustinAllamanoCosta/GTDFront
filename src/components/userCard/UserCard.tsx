@@ -16,7 +16,7 @@ export const UserCard = ({
   userName,
   userPhoto,
   logout,
-}: UserCardProps): JSX.Element => {
+}: UserCardProps): React.JSX.Element => {
   const userInformation = useContext(UserInformationContext);
 
   return (

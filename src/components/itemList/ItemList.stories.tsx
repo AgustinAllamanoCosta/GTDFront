@@ -13,7 +13,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const ItemListInTheVoid: Story = {
-  args: {
-    title: 'Some title',
-  },
+  args: {},
 };

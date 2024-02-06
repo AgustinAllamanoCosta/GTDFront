@@ -13,7 +13,12 @@ type ItemAddButtonProps = {
 };
 
 export const ItemAddButton = memo(
-  ({ onChange, action, value, dataTest }: ItemAddButtonProps): JSX.Element => {
+  ({
+    onChange,
+    action,
+    value,
+    dataTest,
+  }: ItemAddButtonProps): React.JSX.Element => {
     const newTaskInput = useRef<any>();
 
     const focusInput = (event: any) => {

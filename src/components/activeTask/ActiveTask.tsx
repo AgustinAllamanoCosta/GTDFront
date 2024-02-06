@@ -9,7 +9,7 @@ import { SIZE } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
 import { v4 as uuidv4 } from 'uuid';
 
-export const ActiveTask = (): JSX.Element => {
+export const ActiveTask = (): React.JSX.Element => {
   const activeInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
 

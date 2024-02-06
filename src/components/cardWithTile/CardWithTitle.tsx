@@ -8,11 +8,11 @@ export type CardProps = {
   title?: string;
   label?: string;
   joinTag?: boolean;
-  children?: string | JSX.Element | JSX.Element[];
+  children?: string | React.JSX.Element | React.JSX.Element[];
 };
 
 export const CardTitle = memo(
-  ({ title, children, joinTag, label }: CardProps): JSX.Element => {
+  ({ title, children, joinTag, label }: CardProps): React.JSX.Element => {
     return (
       <Card padding={false}>
         <MyTitleContainer join_tag={joinTag}>

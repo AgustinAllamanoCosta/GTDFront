@@ -11,9 +11,9 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const postItOne: JSX.Element = <span>post it one</span>;
-const postItTwo: JSX.Element = <span>post it two</span>;
-const postItThree: JSX.Element = <span>post it three</span>;
+const postItOne: React.JSX.Element = <span>post it one</span>;
+const postItTwo: React.JSX.Element = <span>post it two</span>;
+const postItThree: React.JSX.Element = <span>post it three</span>;
 
 export const CardSecondaryWithChilds: Story = {
   args: {

@@ -12,7 +12,7 @@ export type StickyNoteProps = {
 };
 
 export const StickyNote = memo(
-  ({ number, text, onConfirm }: StickyNoteProps): JSX.Element => {
+  ({ number, text, onConfirm }: StickyNoteProps): React.JSX.Element => {
     const [textNoteValue, setTextNoteValue] = useState<string>(
       text.toUpperCase(),
     );

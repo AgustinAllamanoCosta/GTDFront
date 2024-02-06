@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
 import { useContext, useState } from 'react';
 import { ItemAddButton } from '../itemButton/ItemButton';
-import { Item } from '../item/Item';
+import { ItemWithActions } from '../itemWithActoins/ItemWithActions';
 import { v4 as uuidv4 } from 'uuid';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { Task } from '../../types/types';
@@ -12,11 +12,7 @@ import { UserInformationContext } from '../../contexts/userContext';
 import { EventContext } from '../../contexts/eventContext';
 import { SUBSCRIBER_NAMES } from '../useEvent/useEvent';
 
-export type ItemListProps = {
-  title: string;
-};
-
-export const ItemList = ({ title }: ItemListProps): JSX.Element => {
+export const ItemList = (): React.JSX.Element => {
   const itemsInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
   const { eventBus } = useContext(EventContext);
@@ -139,13 +135,13 @@ export const ItemList = ({ title }: ItemListProps): JSX.Element => {
   return (
     <InboxTaskContainer is_mobile={`${userInformation.isMobile}`}>
       <CardTitle
-        title={title}
+        title={'Inbox'}
         label={`total ${itemsInformation.inboxTasks.length}`}
       >
         <InboxContainer>
-          {itemsInformation.inboxTasks.map((item, index) => {
+          {itemsInformation.inboxTasks.map((item) => {
             return (
-              <Item
+              <ItemWithActions
                 key={`${uuidv4()}-${item.title}`}
                 title={item.title}
                 onAcive={() => onActiveTask(item.id)}

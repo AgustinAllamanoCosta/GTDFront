@@ -6,12 +6,12 @@ import { BrowserRouter } from 'react-router-dom';
 
 describe('Item List', () => {
   it('render a list of item with a add button at the end', () => {
-    const listTitle: string = 'Some list title';
+    const listTitle: string = 'Inbox';
     const buttonText: string = 'Add Task';
     cy.mount(
       <BrowserRouter>
         <ItemsContext defaultItems={mockTaskInContext}>
-          <ItemList title={listTitle} />
+          <ItemList />
         </ItemsContext>
       </BrowserRouter>,
     );

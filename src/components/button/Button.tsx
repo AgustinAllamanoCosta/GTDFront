@@ -12,7 +12,7 @@ export type ButtonProps = {
 };
 
 export const Button = memo(
-  ({ text, icon, onClick }: ButtonProps): JSX.Element => {
+  ({ text, icon, onClick }: ButtonProps): React.JSX.Element => {
     return (
       <ButtonContainer
         data-cy={`button-${text}`}
