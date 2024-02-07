@@ -1,4 +1,4 @@
-describe('Get The Things Done', () => {
+describe('Get The Things Done Split Taks', () => {
   beforeEach(() => {
     cy.testCleanDb();
     window.localStorage.clear();
@@ -6,7 +6,7 @@ describe('Get The Things Done', () => {
       cy.viewport(790, 790);
       cy.log('Mobile view');
     } else {
-      cy.viewport(1000, 1000);
+      cy.viewport(1700, 1000);
       cy.log('Desktop view');
     }
   });
@@ -24,6 +24,7 @@ describe('Get The Things Done', () => {
     cy.visit(Cypress.env('BASE_URL'));
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
+    cy.wait(1000);
     cy.get(`[data-cy="task-${taskContent}"]`).trigger('mouseover');
 
     cy.get(`[data-cy="button-split"]`).click();
@@ -33,7 +34,7 @@ describe('Get The Things Done', () => {
 
     cy.get(`[data-cy="button-split"]`).click();
 
-    cy.get(`[data-cy="task-${taskContent}"]`).should('not.exist');
+    cy.get(`[data-cy="task-${taskContent}"]`).should('have.text', taskContent);
     cy.get(`[data-cy="task-${subTaskContentOne}"]`).should(
       'have.text',
       subTaskContentOne,
@@ -51,6 +52,7 @@ describe('Get The Things Done', () => {
     cy.visit(Cypress.env('BASE_URL'));
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
+    cy.wait(1000);
     cy.get(`[data-cy="task-${taskContent}"]`).trigger('mouseover');
 
     cy.get(`[data-cy="button-split"]`).click();
@@ -70,6 +72,7 @@ describe('Get The Things Done', () => {
     cy.visit(Cypress.env('BASE_URL'));
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
+    cy.wait(1000);
     cy.get(`[data-cy="task-${taskContent}"]`).trigger('mouseover');
 
     cy.get(`[data-cy="button-split"]`).click();

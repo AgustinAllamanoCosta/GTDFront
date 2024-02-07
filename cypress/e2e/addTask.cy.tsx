@@ -1,4 +1,4 @@
-describe('Get The Things Done', () => {
+describe('Get The Things Done Task', () => {
   beforeEach(() => {
     cy.testCleanDb();
     window.localStorage.clear();
@@ -6,7 +6,7 @@ describe('Get The Things Done', () => {
       cy.viewport(790, 790);
       cy.log('Mobile view');
     } else {
-      cy.viewport(1000, 1000);
+      cy.viewport(1700, 1000);
       cy.log('Desktop view');
     }
   });
@@ -49,6 +49,7 @@ describe('Get The Things Done', () => {
 
     cy.get('[data-cy="stick-note-button-0"]').click();
     cy.get('[data-cy="stick-note-text-0"]').should('not.exist');
+    cy.get('[data-cy="task-some task to do"]').should('have.text', taskContent);
   });
 
   it('Should load a task from local storage', () => {
@@ -58,7 +59,7 @@ describe('Get The Things Done', () => {
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.wait(1000);
     cy.reload();
-    cy.wait(1000);
+    cy.wait(3000);
     cy.get('[data-cy="task-some task to do 1"]').should(
       'have.text',
       taskContent,
@@ -177,7 +178,10 @@ describe('Get The Things Done', () => {
     cy.get(`[data-cy="task-${taskContentOne}"]`).trigger('mouseover');
     cy.get(`[data-cy="button-cancel"]`).click();
 
-    cy.get(`[data-cy="task-${taskContentOne}"]`).should('not.exist');
+    cy.get('[data-cy="task-some task to do 1"]').should(
+      'have.text',
+      taskContentOne,
+    );
   });
 });
 

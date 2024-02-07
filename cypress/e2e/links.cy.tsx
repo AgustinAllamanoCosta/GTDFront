@@ -1,4 +1,4 @@
-describe('Get The Things Done', () => {
+describe('Get The Things Done Links', () => {
   afterEach(() => {
     window.localStorage.clear();
   });
@@ -8,7 +8,7 @@ describe('Get The Things Done', () => {
       cy.viewport(790, 790);
       cy.log('Mobile view');
     } else {
-      cy.viewport(1000, 1000);
+      cy.viewport(1700, 1000);
       cy.log('Desktop view');
     }
   });
