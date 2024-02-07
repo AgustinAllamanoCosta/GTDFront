@@ -24,7 +24,6 @@ sonar-project.properties
 *.njsproj
 *.sln
 *.sw?
-/testCov
 coverage
 /cypress/videos
 /cypress/screenshots
