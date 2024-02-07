@@ -55,8 +55,10 @@ describe('Get The Things Done Task', () => {
   it('Should load a task from local storage', () => {
     cy.visit(Cypress.env('BASE_URL'));
     const taskContent = 'some task to do 1';
-    cy.get('[data-cy="task-add-button-input"]').type(taskContent, { delay: 30 });
-    cy.get('[data-cy="task-add-button-input"]').type('{enter}',{ delay: 30 });
+    cy.get('[data-cy="task-add-button-input"]').type(taskContent, {
+      delay: 30,
+    });
+    cy.get('[data-cy="task-add-button-input"]').type('{enter}', { delay: 30 });
     cy.wait(3000);
     cy.reload();
     cy.wait(3000);
