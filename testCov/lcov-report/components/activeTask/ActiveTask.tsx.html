@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>19/25</span>
+                <span class='fraction'>18/21</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/5</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.85% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/7</span>
+                <span class='fraction'>3/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">85% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>18/24</span>
+                <span class='fraction'>17/20</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -153,17 +153,12 @@
 <a name='L88'></a><a href='#L88'>88</a>
 <a name='L89'></a><a href='#L89'>89</a>
 <a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a>
-<a name='L92'></a><a href='#L92'>92</a>
-<a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a>
-<a name='L95'></a><a href='#L95'>95</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -174,14 +169,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -260,43 +252,39 @@ import { Task } from '../../types/types';
 import { BLACK } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
-import { v4 as uuidv4 } from 'uuid';
 &nbsp;
 export const ActiveTask = (): React.JSX.Element =&gt; {
   const activeInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
 &nbsp;
-  const removeActiveTaks = <span class="fstat-no" title="function not covered" >(i</span>ndex: number) =&gt; {
-<span class="cstat-no" title="statement not covered" >    activeInformation.items.forEach(<span class="fstat-no" title="function not covered" >(t</span>ask: Task) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (task.id === activeInformation.activeTasks[index].id) {</span>
-<span class="cstat-no" title="statement not covered" >        task.isComplete = true;</span>
-      }
-    });
-<span class="cstat-no" title="statement not covered" >    activeInformation.setItems([...activeInformation.items]);</span>
+  const removeActiveTaks = <span class="fstat-no" title="function not covered" >(i</span>d: string) =&gt; {
+<span class="cstat-no" title="statement not covered" >    activeInformation.doneTask(id);</span>
   };
 &nbsp;
   return (
     &lt;ActiveTasksContainer is_mobile={`${userInformation.isMobile}`}&gt;
       &lt;CardTitle
         title="Active Task"
-        label={`${activeInformation.activeTasks.length}/3`}
+        label={`${activeInformation.getActiveTaskToMap().length}/3`}
         data-cy="Active-task-title"
       &gt;
         &lt;ActiveTaskContent
           data-cy="Active-task-list"
           is_mobile={`${userInformation.isMobile}`}
         &gt;
-          {activeInformation.activeTasks.map(<span class="fstat-no" title="function not covered" >(i</span>tem: Task, index: number) =&gt; {
-<span class="cstat-no" title="statement not covered" >            return (</span>
-              &lt;StickyNote
-                number={index.toString()}
-                data-cy={`task-number-${uuidv4()}`}
-                key={`${uuidv4()}-${item.title}`}
-                text={item.title}
-                onConfirm={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >removeActiveTaks(index)}</span>
-              /&gt;
-            );
-          })}
+          {activeInformation
+            .getActiveTaskToMap()
+            .map(<span class="fstat-no" title="function not covered" >(i</span>tem: Task, index: number) =&gt; {
+<span class="cstat-no" title="statement not covered" >              return (</span>
+                &lt;StickyNote
+                  number={index.toString()}
+                  data-cy={`task-number-${index}`}
+                  key={`${item.id}-${item.title}`}
+                  text={item.title}
+                  onConfirm={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; <span class="cstat-no" title="statement not covered" >removeActiveTaks(item.id)}</span>
+                /&gt;
+              );
+            })}
         &lt;/ActiveTaskContent&gt;
       &lt;/CardTitle&gt;
     &lt;/ActiveTasksContainer&gt;
@@ -352,7 +340,7 @@ const ActiveTasksContainer = styled.div&lt;{ is_mobile?: string }&gt;`
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-06T07:58:46.255Z
+                at 2024-02-07T04:04:54.481Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
