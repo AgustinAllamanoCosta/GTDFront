@@ -7,43 +7,39 @@ import { Task } from '../../types/types';
 import { BLACK } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
-import { v4 as uuidv4 } from 'uuid';
 
 export const ActiveTask = (): React.JSX.Element => {
   const activeInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
 
-  const removeActiveTaks = (index: number) => {
-    activeInformation.items.forEach((task: Task) => {
-      if (task.id === activeInformation.activeTasks[index].id) {
-        task.isComplete = true;
-      }
-    });
-    activeInformation.setItems([...activeInformation.items]);
+  const removeActiveTaks = (id: string) => {
+    activeInformation.doneTask(id);
   };
 
   return (
     <ActiveTasksContainer is_mobile={`${userInformation.isMobile}`}>
       <CardTitle
         title="Active Task"
-        label={`${activeInformation.activeTasks.length}/3`}
+        label={`${activeInformation.getActiveTaskToMap().length}/3`}
         data-cy="Active-task-title"
       >
         <ActiveTaskContent
           data-cy="Active-task-list"
           is_mobile={`${userInformation.isMobile}`}
         >
-          {activeInformation.activeTasks.map((item: Task, index: number) => {
-            return (
-              <StickyNote
-                number={index.toString()}
-                data-cy={`task-number-${uuidv4()}`}
-                key={`${uuidv4()}-${item.title}`}
-                text={item.title}
-                onConfirm={(e) => removeActiveTaks(index)}
-              />
-            );
-          })}
+          {activeInformation
+            .getActiveTaskToMap()
+            .map((item: Task, index: number) => {
+              return (
+                <StickyNote
+                  number={index.toString()}
+                  data-cy={`task-number-${index}`}
+                  key={`${item.id}-${item.title}`}
+                  text={item.title}
+                  onConfirm={(e) => removeActiveTaks(item.id)}
+                />
+              );
+            })}
         </ActiveTaskContent>
       </CardTitle>
     </ActiveTasksContainer>

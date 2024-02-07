@@ -8,9 +8,6 @@ export type UserData = {
 export type Task = {
   id: string;
   title: string;
-  isComplete: boolean;
-  isCancele: boolean;
-  isActive: boolean;
   parentTask?: string;
   childTask?: {
     taksOne: string;
@@ -18,6 +15,14 @@ export type Task = {
   };
 };
 
-export type ActiveTasks = Array<Task>;
-export type InboxTasks = Array<Task>;
-export type Tasks = Array<Task>;
+export type ActiveTasks = Map<string, Task>;
+export type CancelTasks = Map<string, Task>;
+export type DoneTasks = Map<string, Task>;
+export type InboxTasks = Map<string, Task>;
+
+export type UserTaskData = {
+  activeItems: ActiveTasks;
+  cancelItems: CancelTasks;
+  doneItems: DoneTasks;
+  inboxItems: InboxTasks;
+};

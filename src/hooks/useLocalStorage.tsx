@@ -1,13 +1,13 @@
 import { Dict } from 'styled-components/dist/types';
 import { LOCAL_STORAGE_KEY } from '../constants/keys';
-import { InboxTasks, UserData } from '../types/types';
+import { UserData, UserTaskData } from '../types/types';
 import secureLocalStorage from 'react-secure-storage';
 
 export const useLocalStorage = () => {
   const ITEMS_KEY: string = 'items';
   const USER_DATA_KEY: string = 'userData';
 
-  const saveItems = (items: InboxTasks) => {
+  const saveItems = (items: UserTaskData) => {
     save(ITEMS_KEY, items);
   };
 

@@ -2,12 +2,12 @@ import { createContext } from 'react';
 
 export const ErrorHandlerContext = createContext<{
   anErrorHappend: boolean;
-  errorMessage: string;
-  setError: (e: boolean) => void;
-  setMessage: (e: string) => void;
+  error: any;
+  setFlagError: (e: boolean) => void;
+  setError: (e: any) => void;
 }>({
   anErrorHappend: false,
-  errorMessage: '',
+  error: undefined,
+  setFlagError: (e) => {},
   setError: (e) => {},
-  setMessage: (e) => {},
 });

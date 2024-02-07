@@ -2,8 +2,7 @@ import { styled } from 'styled-components';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
 import { useContext, useState } from 'react';
 import { ItemAddButton } from '../itemButton/ItemButton';
-import { ItemWithActions } from '../itemWithActoins/ItemWithActions';
-import { v4 as uuidv4 } from 'uuid';
+import { ItemWithActions } from '../itemWithActions/ItemWithActions';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { Task } from '../../types/types';
 import { BLACK } from '../../constants/colors';
@@ -20,15 +19,7 @@ export const ItemList = (): React.JSX.Element => {
 
   const buttonAdd = (event: any) => {
     if (event.target.value !== '') {
-      const oldTask = itemsInformation.items;
-      oldTask.push({
-        id: uuidv4(),
-        title: event.target.value,
-        isComplete: false,
-        isCancele: false,
-        isActive: false,
-      });
-      itemsInformation.setItems([...oldTask]);
+      itemsInformation.addNewTask(event.target.value, '');
       setValue('');
       eventBus.publish({
         name: SUBSCRIBER_NAMES.METRICS,
@@ -46,85 +37,50 @@ export const ItemList = (): React.JSX.Element => {
     newTaskTwo: string,
     parentTaskId: string,
   ) => {
-    const oldTask = itemsInformation.items;
-    const newTaskToAddOne: Task = {
-      id: uuidv4(),
-      title: newTaskOne,
-      isComplete: false,
-      isCancele: false,
-      isActive: false,
-      parentTask: parentTaskId,
-    };
-    const newTaskToAddTwo: Task = {
-      id: uuidv4(),
-      title: newTaskTwo,
-      isComplete: false,
-      isCancele: false,
-      isActive: false,
-      parentTask: parentTaskId,
-    };
-    const parentTask: Task | undefined = oldTask.find((item: Task) => {
-      return item.id === parentTaskId;
-    });
+    const parentTask: Task | undefined =
+      itemsInformation.getInboxTask(parentTaskId);
+
     if (parentTask) {
       parentTask.childTask = {
-        taksOne: newTaskToAddOne.id,
-        taksTwo: newTaskToAddTwo.id,
+        taksOne: itemsInformation.addNewTask(newTaskOne, parentTaskId),
+        taksTwo: itemsInformation.addNewTask(newTaskTwo, parentTaskId),
       };
-      parentTask.isCancele = true;
-    }
-    oldTask.push(newTaskToAddOne);
-    oldTask.push(newTaskToAddTwo);
+      itemsInformation.cancelTask(parentTask.id);
 
-    itemsInformation.setItems([...oldTask]);
-
-    eventBus.publish({
-      name: SUBSCRIBER_NAMES.METRICS,
-      data: {
-        name: 'splitTask',
-        userId: userInformation.userData?.id,
-        taskId: parentTaskId,
-      },
-    });
-  };
-
-  const onCancelTask = (taskId: string) => {
-    const oldTask = itemsInformation.items;
-    const taskToCancel: Task | undefined = oldTask.find((item: Task) => {
-      return item.id === taskId;
-    });
-    if (taskToCancel) {
-      taskToCancel.isCancele = true;
-      itemsInformation.setItems([...oldTask]);
       eventBus.publish({
         name: SUBSCRIBER_NAMES.METRICS,
         data: {
-          name: 'cancelItem',
+          name: 'splitTask',
           userId: userInformation.userData?.id,
-          taskId: taskToCancel.id,
+          taskId: parentTaskId,
         },
       });
     }
   };
 
+  const onCancelTask = (taskId: string) => {
+    itemsInformation.cancelTask(taskId);
+    eventBus.publish({
+      name: SUBSCRIBER_NAMES.METRICS,
+      data: {
+        name: 'cancelItem',
+        userId: userInformation.userData?.id,
+        taskId,
+      },
+    });
+  };
+
   const onActiveTask = (taskId: string) => {
-    if (itemsInformation.activeTasks.length < 3) {
-      const oldTask = itemsInformation.items;
-      const taskToCancel: Task | undefined = oldTask.find((item: Task) => {
-        return item.id === taskId;
+    if (itemsInformation.getActiveTaskToMap().length < 3) {
+      itemsInformation.activeTask(taskId);
+      eventBus.publish({
+        name: SUBSCRIBER_NAMES.METRICS,
+        data: {
+          name: 'activeTask',
+          userId: userInformation.userData?.id,
+          taskId,
+        },
       });
-      if (taskToCancel) {
-        taskToCancel.isActive = true;
-        itemsInformation.setItems([...oldTask]);
-        eventBus.publish({
-          name: SUBSCRIBER_NAMES.METRICS,
-          data: {
-            name: 'activeTask',
-            userId: userInformation.userData?.id,
-            taskId: taskToCancel.id,
-          },
-        });
-      }
     }
   };
 
@@ -136,13 +92,13 @@ export const ItemList = (): React.JSX.Element => {
     <InboxTaskContainer is_mobile={`${userInformation.isMobile}`}>
       <CardTitle
         title={'Inbox'}
-        label={`total ${itemsInformation.inboxTasks.length}`}
+        label={`total ${itemsInformation.getInboxTaskToMap().length}`}
       >
         <InboxContainer>
-          {itemsInformation.inboxTasks.map((item) => {
+          {itemsInformation.getInboxTaskToMap().map((item: Task) => {
             return (
               <ItemWithActions
-                key={`${uuidv4()}-${item.title}`}
+                key={`${item.id}-${item.title}`}
                 title={item.title}
                 onAcive={() => onActiveTask(item.id)}
                 onCancel={() => onCancelTask(item.id)}

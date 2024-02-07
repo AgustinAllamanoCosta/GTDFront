@@ -9,6 +9,9 @@ import { googleLogout } from '@react-oauth/google';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 import { useNavigate } from 'react-router-dom';
+import { CancelList } from '../../components/cancelList/CancelList';
+import { DoneList } from '../../components/doneList/DoneList';
+import { Carrusel } from '../../components/carrusel/Carrusel';
 
 type TaskViewProps = {
   inboxTasks?: InboxTasks;
@@ -17,7 +20,7 @@ type TaskViewProps = {
 };
 
 const TaskView = ({
-  inboxTasks = [],
+  inboxTasks = undefined,
   userData,
   refreshTaskInterval,
 }: TaskViewProps) => {
@@ -37,8 +40,8 @@ const TaskView = ({
       if (userData) {
         userInformation.setUserData(userData);
       }
-      if (inboxTasks.length > 0) {
-        itemContext.setItems(inboxTasks);
+      if (inboxTasks) {
+        itemContext.setInboxTask(inboxTasks);
       } else {
         itemContext.refreshData();
       }
@@ -49,8 +52,8 @@ const TaskView = ({
         return () => clearInterval(interval);
       }
     } catch (error: any) {
-      errorContext.setError(true);
-      errorContext.setMessage(error.message);
+      errorContext.setFlagError(true);
+      errorContext.setError(error.message);
     }
   }, []);
 
@@ -67,13 +70,19 @@ const TaskView = ({
         {userInformation.isMobile && (
           <>
             <ActiveTask />
-            <ItemList title="Inbox" />
+            <Carrusel>
+              <ItemList />
+              <DoneList />
+              <CancelList />
+            </Carrusel>
           </>
         )}
         {!userInformation.isMobile && (
           <>
-            <ItemList title="Inbox" />
+            <CancelList />
+            <ItemList />
             <ActiveTask />
+            <DoneList />
           </>
         )}
       </ContentContainer>
@@ -90,7 +99,6 @@ const Container = styled.div`
 
 const ContentContainer = styled.div<{ is_mobile?: string }>`
   display: flex;
-  justify-content: space-between;
   ${(props) =>
     props.is_mobile === 'true'
       ? `
@@ -98,7 +106,8 @@ const ContentContainer = styled.div<{ is_mobile?: string }>`
   align-items: center;
   `
       : `
-  width: 100vh;
+  justify-content: space-between;
+  width: 150vh;
   flex-direction: row;
   align-items: center;
   height: 820px;

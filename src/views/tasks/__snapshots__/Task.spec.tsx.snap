@@ -3,14 +3,45 @@
 exports[`Task View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-hcKobq EHVlm"
+    class="sc-SJcLE imJarJ"
   >
     <div
-      class="sc-icWNAp iwiUjq"
+      class="sc-krvnhN kiUOeu"
       is_mobile="false"
     >
       <div
-        class="sc-knlTvX dYvlLO"
+        class="sc-eSvifI dcKHAr"
+        is_mobile="false"
+      >
+        <div
+          class="sc-evVYyG clOczl"
+          data-cy="Card-Contents"
+          is_center="undefined"
+          padding="false"
+        >
+          <div
+            class="sc-BOZFl cAqylF"
+          >
+            <span
+              class="sc-jjIKjs fzOrFa"
+              data-cy="Card-title"
+            >
+              Cancel
+            </span>
+            <span
+              class="sc-jjIKjs fzOrFa"
+              data-cy="Card-label"
+            >
+              total 0
+            </span>
+          </div>
+          <div
+            class="sc-icWNAp fSGdsA"
+          />
+        </div>
+      </div>
+      <div
+        class="sc-hcKobq ifJEFN"
         is_mobile="false"
       >
         <div
@@ -36,7 +67,7 @@ exports[`Task View Should render a login view with singin and login buttons 1`] 
             </span>
           </div>
           <div
-            class="sc-iUXMdM cGwGxK"
+            class="sc-knlTvX iBqPpN"
           />
           <div
             class="sc-hDqSpx khVGVz"
@@ -97,6 +128,37 @@ exports[`Task View Should render a login view with singin and login buttons 1`] 
             class="sc-cpKBeH hqJDgz"
             data-cy="Active-task-list"
             is_mobile="false"
+          />
+        </div>
+      </div>
+      <div
+        class="sc-hUWqwW MFHxy"
+        is_mobile="false"
+      >
+        <div
+          class="sc-evVYyG clOczl"
+          data-cy="Card-Contents"
+          is_center="undefined"
+          padding="false"
+        >
+          <div
+            class="sc-BOZFl cAqylF"
+          >
+            <span
+              class="sc-jjIKjs fzOrFa"
+              data-cy="Card-title"
+            >
+              Done
+            </span>
+            <span
+              class="sc-jjIKjs fzOrFa"
+              data-cy="Card-label"
+            >
+              total 0
+            </span>
+          </div>
+          <div
+            class="sc-lfxVRD kwunJw"
           />
         </div>
       </div>

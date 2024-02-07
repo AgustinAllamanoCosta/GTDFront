@@ -50,8 +50,8 @@ const UserContext = ({
         }
       }
     } catch (error: any) {
-      errorContext.setError(true);
-      errorContext.setMessage(error.message);
+      errorContext.setFlagError(true);
+      errorContext.setError(error);
     }
   }, []);
 

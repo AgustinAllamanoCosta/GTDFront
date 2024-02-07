@@ -64,8 +64,8 @@ const LoginView = () => {
 
   useEffect(() => {
     processLoginInfo().catch((error: any) => {
-      errorContext.setError(true);
-      errorContext.setMessage(error.message);
+      errorContext.setFlagError(true);
+      errorContext.setError(error.message);
     });
   }, [userInformation.userData]);
 

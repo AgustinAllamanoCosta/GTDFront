@@ -15,7 +15,7 @@ const ErrorView = ({ onClick, message }: ErrorViewProps) => {
 
   useEffect(() => {
     if (message) {
-      errorContext.setMessage(message);
+      errorContext.setError({ message });
     }
   }, [errorContext.anErrorHappend]);
 
@@ -25,7 +25,7 @@ const ErrorView = ({ onClick, message }: ErrorViewProps) => {
         <Card content_center={true}>
           <Title data-cy="Error-view-title">Something went wrong!</Title>
           <ErrorMessage data-cy="Error-view-message">
-            {errorContext.errorMessage}
+            {errorContext?.error?.message}
           </ErrorMessage>
           <Button
             text="OK"
