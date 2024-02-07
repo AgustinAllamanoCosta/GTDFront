@@ -57,9 +57,8 @@ describe('Get The Things Done Task', () => {
     const taskContent = 'some task to do 1';
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
-    cy.wait(1000);
-    cy.reload();
     cy.wait(3000);
+    cy.reload();
     cy.get('[data-cy="task-some task to do 1"]').should(
       'have.text',
       taskContent,

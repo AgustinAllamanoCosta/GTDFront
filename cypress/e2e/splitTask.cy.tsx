@@ -24,7 +24,6 @@ describe('Get The Things Done Split Taks', () => {
     cy.visit(Cypress.env('BASE_URL'));
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
-    cy.wait(1000);
     cy.get(`[data-cy="task-${taskContent}"]`).trigger('mouseover');
 
     cy.get(`[data-cy="button-split"]`).click();
@@ -52,7 +51,6 @@ describe('Get The Things Done Split Taks', () => {
     cy.visit(Cypress.env('BASE_URL'));
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
-    cy.wait(1000);
     cy.get(`[data-cy="task-${taskContent}"]`).trigger('mouseover');
 
     cy.get(`[data-cy="button-split"]`).click();
@@ -72,7 +70,6 @@ describe('Get The Things Done Split Taks', () => {
     cy.visit(Cypress.env('BASE_URL'));
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
-    cy.wait(1000);
     cy.get(`[data-cy="task-${taskContent}"]`).trigger('mouseover');
 
     cy.get(`[data-cy="button-split"]`).click();
