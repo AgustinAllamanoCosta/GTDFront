@@ -76,7 +76,9 @@ export const useTask = () => {
     const taskToActive: Task | undefined = inboxItems.get(taskId);
     if (taskToActive) {
       activeItems.set(taskId, taskToActive);
+      inboxItems.delete(taskId);
       setActiveItems(new Map(activeItems));
+      setInboxItems(new Map(inboxItems));
     }
   };
 
@@ -84,7 +86,9 @@ export const useTask = () => {
     const taskToDone: Task | undefined = activeItems.get(taskId);
     if (taskToDone) {
       doneItems.set(taskId, taskToDone);
+      activeItems.delete(taskId);
       setDoneItems(new Map(doneItems));
+      setActiveItems(new Map(activeItems));
     }
   };
 

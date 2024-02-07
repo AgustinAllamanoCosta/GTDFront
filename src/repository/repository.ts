@@ -3,6 +3,14 @@ import { FIRE_BASE_COLLECTION_NAME } from '../constants/keys';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { UserTaskData } from '../types/types';
 
+type OldTask = {
+  id: string;
+  isActive: boolean;
+  isCancele: boolean;
+  isComplete: boolean;
+  title: string;
+};
+
 export const repository = (userId: string, useFireBase: Firestore) => {
   const { getItem, saveItems } = useLocalStorage();
 
@@ -31,6 +39,7 @@ export const repository = (userId: string, useFireBase: Firestore) => {
     const userTaskDoc = doc(useFireBase, FIRE_BASE_COLLECTION_NAME, userId);
     const itemsInFirebase = await getDoc(userTaskDoc);
     const userData = itemsInFirebase.data();
+    if (userData?.items) return parseItemsIntoUserData(userData.items);
     if (userData)
       return {
         activeItems: new Map(Object.entries(userData.activeItems)),
@@ -43,6 +52,25 @@ export const repository = (userId: string, useFireBase: Firestore) => {
       cancelItems: new Map(),
       doneItems: new Map(),
       inboxItems: new Map(),
+    };
+  };
+
+  const parseItemsIntoUserData = (items: Array<OldTask>): UserTaskData => {
+    const activeItems = new Map();
+    const cancelItems = new Map();
+    const doneItems = new Map();
+    const inboxItems = new Map();
+    items.forEach((item) => {
+      if (item.isActive && !item.isComplete) activeItems.set(item.id, item);
+      if (item.isCancele) cancelItems.set(item.id, item);
+      if (item.isActive && item.isComplete) doneItems.set(item.id, item);
+      else inboxItems.set(item.id, item);
+    });
+    return {
+      activeItems,
+      cancelItems,
+      doneItems,
+      inboxItems,
     };
   };
 
