@@ -1,6 +1,11 @@
 import React from 'react';
 import { ActiveTask } from './ActiveTask';
-import { mockTaskInContext } from '../../storybook/decorators/tasks';
+import {
+  mockTaskInContext,
+  task1,
+  task2,
+  task3,
+} from '../../storybook/decorators/tasks';
 import { BrowserRouter } from 'react-router-dom';
 import ItemsContext from '../useItems/useItems';
 
@@ -15,15 +20,15 @@ describe('Active Task List with active task', () => {
     );
     cy.get('[data-cy="stick-note-text-0"]').should(
       'have.text',
-      mockTaskInContext[0].title.toUpperCase(),
+      task1.title.toUpperCase(),
     );
     cy.get('[data-cy="stick-note-text-1"]').should(
       'have.text',
-      mockTaskInContext[1].title.toUpperCase(),
+      task2.title.toUpperCase(),
     );
     cy.get('[data-cy="stick-note-text-2"]').should(
       'have.text',
-      mockTaskInContext[2].title.toUpperCase(),
+      task3.title.toUpperCase(),
     );
   });
 });

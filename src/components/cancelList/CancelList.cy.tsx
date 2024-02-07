@@ -1,5 +1,8 @@
 import React from 'react';
-import { mockCancelTaskInContext } from '../../storybook/decorators/tasks';
+import {
+  mockCancelTaskInContext,
+  task4,
+} from '../../storybook/decorators/tasks';
 import { CancelList } from './CancelList';
 import ItemsContext from '../useItems/useItems';
 import { BrowserRouter } from 'react-router-dom';
@@ -15,9 +18,6 @@ describe('Cancel List', () => {
       </BrowserRouter>,
     );
     cy.get('[data-cy="Card-title"]').should('have.text', listTitle);
-    cy.get('[data-cy="task-some task 4"]').should(
-      'have.text',
-      mockCancelTaskInContext[0].title,
-    );
+    cy.get('[data-cy="task-some task 4"]').should('have.text', task4.title);
   });
 });

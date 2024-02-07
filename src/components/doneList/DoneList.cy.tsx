@@ -1,5 +1,5 @@
 import React from 'react';
-import { mockDoneTaskInContext } from '../../storybook/decorators/tasks';
+import { mockDoneTaskInContext, task5 } from '../../storybook/decorators/tasks';
 import { DoneList } from './DoneList';
 import ItemsContext from '../useItems/useItems';
 import { BrowserRouter } from 'react-router-dom';
@@ -15,9 +15,6 @@ describe('Done List', () => {
       </BrowserRouter>,
     );
     cy.get('[data-cy="Card-title"]').should('have.text', listTitle);
-    cy.get('[data-cy="task-some task 5"]').should(
-      'have.text',
-      mockDoneTaskInContext[0].title,
-    );
+    cy.get('[data-cy="task-some task 5"]').should('have.text', task5.title);
   });
 });

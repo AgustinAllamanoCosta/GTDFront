@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import TaskView from './Task';
-import { v4 as uuidv4 } from 'uuid';
 import { PhoneContext } from '../../storybook/decorators/phone';
+import { mockTaskInContext } from '../../storybook/decorators/tasks';
 
 const meta = {
   title: 'Views/Task',
@@ -22,42 +22,6 @@ export const FullTaskView: Story = {
       photoURL: 'https://www.pngall.com/wp-content/uploads/5/Profile.png',
       accessToken: 'some access token',
     },
-    inboxTasks: [
-      {
-        id: uuidv4(),
-        title: 'Some task 1',
-        isComplete: false,
-        isActive: false,
-        isCancele: false,
-      },
-      {
-        id: uuidv4(),
-        title: 'Some task 2',
-        isComplete: false,
-        isActive: false,
-        isCancele: false,
-      },
-      {
-        id: uuidv4(),
-        title: 'Some task 3',
-        isComplete: false,
-        isActive: false,
-        isCancele: false,
-      },
-      {
-        id: uuidv4(),
-        title: 'Some task 4',
-        isComplete: false,
-        isActive: false,
-        isCancele: false,
-      },
-      {
-        id: uuidv4(),
-        title: 'Some task 5',
-        isComplete: false,
-        isActive: false,
-        isCancele: false,
-      },
-    ],
+    inboxTasks: mockTaskInContext,
   },
 };
