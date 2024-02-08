@@ -1,5 +1,7 @@
 import { styled } from 'styled-components';
-import { faCheck, faX, faPercent } from '@fortawesome/free-solid-svg-icons';
+import check from '../../assets/icons/check.svg';
+import percent from '../../assets/icons/percent.svg';
+import X from '../../assets/icons/x.svg';
 import { useState, memo } from 'react';
 import { Button } from '../button/Button';
 import { ItemAddButton } from '../itemButton/ItemButton';
@@ -55,10 +57,10 @@ const SplitForm = ({ onCancel, onSplit }: ItemSplitProps) => {
             onSplit(newTaskOne, newTaskTwo);
           }}
           text="split"
-          icon={faCheck}
+          icon={check}
         />
         <Button
-          icon={faX}
+          icon={X}
           onClick={onCancel}
           text="cancel"
         />
@@ -109,12 +111,12 @@ export const ItemWithActions = memo(
                 onAcive();
               }}
               text="active"
-              icon={faCheck}
+              icon={check}
             />
             <Button
               text="split"
               data-cy={`task-${title}-split`}
-              icon={faPercent}
+              icon={percent}
               onClick={() => {
                 setShowButton(false);
                 setShowSplit(true);
@@ -122,7 +124,7 @@ export const ItemWithActions = memo(
             />
             <Button
               data-cy={`task-${title}-cancel`}
-              icon={faX}
+              icon={X}
               onClick={() => {
                 setShowButton(false);
                 onCancel();

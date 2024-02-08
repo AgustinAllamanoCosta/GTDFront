@@ -16,6 +16,7 @@ import { v4 as uuidv4 } from 'uuid';
 export const useTask = () => {
   const errorContext = useContext(ErrorHandlerContext);
   const userInformation = useContext(UserInformationContext);
+
   const { getData, save } = repository(
     userInformation.userData?.id ? userInformation.userData?.id : '',
     firebaseData.useFireBase,
@@ -97,23 +98,19 @@ export const useTask = () => {
   };
 
   const getInboxTaskToMap = (): Array<Task> => {
-    if (inboxItems.size > 0) return [...inboxItems.values()];
-    else return [];
+    return [...inboxItems.values()];
   };
 
   const getActiveTaskToMap = (): Array<Task> => {
-    if (activeItems.size > 0) return [...activeItems.values()];
-    else return [];
+    return [...activeItems.values()];
   };
 
   const getCancelTaskToMap = (): Array<Task> => {
-    if (cancelItems.size > 0) return [...cancelItems.values()];
-    else return [];
+    return [...cancelItems.values()];
   };
 
   const getDoneTaskToMap = (): Array<Task> => {
-    if (doneItems.size > 0) return [...doneItems.values()];
-    else return [];
+    return [...doneItems.values()];
   };
 
   useEffect(() => {

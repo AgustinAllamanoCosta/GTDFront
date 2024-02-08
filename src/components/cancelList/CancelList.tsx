@@ -8,7 +8,7 @@ import { SIZE } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
 import { Task } from '../../types/types';
 
-export const CancelList = (): React.JSX.Element => {
+const CancelList = (): React.JSX.Element => {
   const itemsInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
 
@@ -60,3 +60,5 @@ const InboxTaskContainer = styled.div<{ is_mobile?: string }>`
       width: 360px;
   `};
 `;
+
+export default CancelList;

@@ -1,7 +1,6 @@
 import { useState, memo } from 'react';
 import { styled } from 'styled-components';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import faCheck from '../../assets/icons/check.svg';
 import { FONTS } from '../../constants/size';
 import { BLACK, GREEN, YELLOW } from '../../constants/colors';
 
@@ -33,7 +32,7 @@ export const StickyNote = memo(
           data-cy={`stick-note-button-${number}`}
         >
           <Icon
-            icon={faCheck}
+            src={faCheck}
             onClick={onConfirm}
           />
         </ButtonContainer>
@@ -89,7 +88,7 @@ const ButtonAndNoteContainer = styled.div`
   margin: 6px;
 `;
 
-const Icon = styled(FontAwesomeIcon)`
-  padding-left: 5px;
-  padding-right: 5px;
+const Icon = styled.img`
+  width: 14px;
+  height: 15px;
 `;

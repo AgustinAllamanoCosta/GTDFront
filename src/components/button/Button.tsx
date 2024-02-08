@@ -1,13 +1,11 @@
 import { memo } from 'react';
 import { styled } from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FONTS } from '../../constants/size';
 import { BLACK } from '../../constants/colors';
 
 export type ButtonProps = {
   text: string;
-  icon?: IconDefinition;
+  icon?: string;
   onClick: (e: any) => void;
 };
 
@@ -22,7 +20,7 @@ export const Button = memo(
         {icon && (
           <Icon
             data-cy="button-icon"
-            icon={icon}
+            src={icon}
           />
         )}
       </ButtonContainer>
@@ -51,7 +49,8 @@ const ButtonText = styled.span`
   font-size: ${FONTS.TEXT};
 `;
 
-const Icon = styled(FontAwesomeIcon)`
+const Icon = styled.img`
+  width: 14px;
+  height: 14px;
   padding-left: 5px;
-  padding-right: 5px;
 `;

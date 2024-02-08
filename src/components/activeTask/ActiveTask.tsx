@@ -8,7 +8,7 @@ import { BLACK } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
 
-export const ActiveTask = (): React.JSX.Element => {
+const ActiveTask = (): React.JSX.Element => {
   const activeInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
 
@@ -88,3 +88,5 @@ const ActiveTasksContainer = styled.div<{ is_mobile?: string }>`
       width: 210px;
   `};
 `;
+
+export default ActiveTask;

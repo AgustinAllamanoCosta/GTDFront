@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 import { useRef, memo } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import faPlus from '../../assets/icons/faPlus.svg';
 import { BLACK, GREY } from '../../constants/colors';
 import { ENTER_KEY_COE } from '../../constants/keys';
 
@@ -39,8 +38,8 @@ export const ItemAddButton = memo(
       <ItemContent data-cy={`task-add-button-${dataTest}`}>
         <Icon
           data-cy={`task-add-button-icon`}
-          icon={faPlus}
           onClick={focusInput}
+          src={faPlus}
         />
         <AddItemInput
           ref={newTaskInput}
@@ -62,6 +61,7 @@ const ItemContent = styled.div`
   border-bottom-width: 1px;
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding-left: 9px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -80,7 +80,7 @@ const AddItemInput = styled.input`
   }
 `;
 
-const Icon = styled(FontAwesomeIcon)`
-  padding-left: 5px;
-  padding-right: 5px;
+const Icon = styled.img`
+  width: 14px;
+  height: 14px;
 `;

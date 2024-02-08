@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 import { Button } from '../../components/button/Button';
 import { Card } from '../../components/card/Card';
-import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
+import faAddressCard from '../../assets/icons/addressCard.svg';
 import { useGoogleLogin } from '@react-oauth/google';
-import { useContext, useEffect } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { FONTS } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
@@ -18,23 +18,26 @@ const LoginView = () => {
   const errorContext = useContext(ErrorHandlerContext);
   const navigate = useNavigate();
 
-  const login = useGoogleLogin({
-    onSuccess: (codeResponse: any) => {
-      const newUser: UserData = {
-        id: undefined,
-        name: '',
-        photoURL: '',
-        accessToken: codeResponse.access_token,
-      };
-      userInformation.setUserData({ ...newUser });
-    },
-    onError: (error) => {
-      console.group('Login Error');
-      console.error('Login Failed:', error);
-      console.groupEnd();
-      userInformation.setUserData(undefined);
-    },
-  });
+  const loginGoogle = useCallback(
+    useGoogleLogin({
+      onSuccess: (codeResponse: any) => {
+        const newUser: UserData = {
+          id: undefined,
+          name: '',
+          photoURL: '',
+          accessToken: codeResponse.access_token,
+        };
+        userInformation.setUserData({ ...newUser });
+      },
+      onError: (error) => {
+        console.group('Login Error');
+        console.error('Login Failed:', error);
+        console.groupEnd();
+        userInformation.setUserData(undefined);
+      },
+    }),
+    [userInformation.userData],
+  );
 
   const processLoginInfo = async () => {
     const userId: string | undefined = userInformation.userData?.id;
@@ -84,7 +87,7 @@ const LoginView = () => {
             <Button
               text="Login"
               icon={faAddressCard}
-              onClick={login}
+              onClick={loginGoogle}
             />
           </ButtonContent>
         </Card>

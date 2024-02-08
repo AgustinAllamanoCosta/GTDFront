@@ -11,7 +11,7 @@ import { UserInformationContext } from '../../contexts/userContext';
 import { EventContext } from '../../contexts/eventContext';
 import { SUBSCRIBER_NAMES } from '../useEvent/useEvent';
 
-export const ItemList = (): React.JSX.Element => {
+const ItemList = (): React.JSX.Element => {
   const itemsInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
   const { eventBus } = useContext(EventContext);
@@ -150,3 +150,5 @@ const InboxTaskContainer = styled.div<{ is_mobile?: string }>`
       width: 360px;
   `};
 `;
+
+export default ItemList;

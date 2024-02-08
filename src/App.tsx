@@ -3,7 +3,7 @@ import RequireAuth from './components/auth/RequireAuth';
 import ErrorView from './views/error/Error';
 import { AppContext } from './contexts/appContext';
 import { INDEX, OTHER, TASK } from './constants/routePaths';
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useCallback } from 'react';
 import VersionNumberTag from './components/versionTag/VersionTag';
 import { configuration } from './config/appConfig';
 
@@ -16,9 +16,9 @@ const App = () => {
   const defaultRouteMessage: string =
     'Ups looks like this page does not exist :(';
 
-  const goToIndex = () => {
+  const goToIndex = useCallback(() => {
     navigate(INDEX);
-  };
+  }, []);
 
   return (
     <>

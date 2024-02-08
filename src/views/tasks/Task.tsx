@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 import { UserCard } from '../../components/userCard/UserCard';
-import { useContext, useEffect } from 'react';
-import { ActiveTask } from '../../components/activeTask/ActiveTask';
-import { ItemList } from '../../components/itemList/ItemList';
+import { Suspense, useCallback, useContext, useEffect, lazy } from 'react';
 import { InboxTasks, UserData } from '../../types/types';
 import { UserInformationContext } from '../../contexts/userContext';
 import { googleLogout } from '@react-oauth/google';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 import { useNavigate } from 'react-router-dom';
-import { CancelList } from '../../components/cancelList/CancelList';
-import { DoneList } from '../../components/doneList/DoneList';
 import { Carrusel } from '../../components/carrusel/Carrusel';
+
+const ActiveTask = lazy(() => import('../../components/activeTask/ActiveTask'));
+const ItemList = lazy(() => import('../../components/itemList/ItemList'));
+const CancelList = lazy(() => import('../../components/cancelList/CancelList'));
+const DoneList = lazy(() => import('../../components/doneList/DoneList'));
 
 type TaskViewProps = {
   inboxTasks?: InboxTasks;
@@ -29,11 +30,11 @@ const TaskView = ({
   const itemContext = useContext(TaskInformationContext);
   const navigate = useNavigate();
 
-  const logOut = () => {
+  const logOut = useCallback(() => {
     googleLogout();
     userInformation.setUserData(undefined);
     navigate('/');
-  };
+  }, [userInformation.userData]);
 
   useEffect(() => {
     try {
@@ -71,18 +72,32 @@ const TaskView = ({
           <>
             <ActiveTask />
             <Carrusel>
-              <ItemList />
-              <DoneList />
-              <CancelList />
+              <Suspense fallback={<div>Loading...</div>}>
+                <ItemList />
+              </Suspense>
+              <Suspense fallback={<div>Loading...</div>}>
+                <DoneList />
+              </Suspense>
+              <Suspense fallback={<div>Loading...</div>}>
+                <CancelList />
+              </Suspense>
             </Carrusel>
           </>
         )}
         {!userInformation.isMobile && (
           <>
-            <CancelList />
-            <ItemList />
-            <ActiveTask />
-            <DoneList />
+            <Suspense fallback={<div>Loading...</div>}>
+              <CancelList />
+            </Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
+              <ItemList />
+            </Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
+              <ActiveTask />
+            </Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
+              <DoneList />
+            </Suspense>
           </>
         )}
       </ContentContainer>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from './Button';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import faPlus from '../../assets/icons/faPlus.svg';
 
 describe('Button with text', () => {
   it('render a button with only text', () => {

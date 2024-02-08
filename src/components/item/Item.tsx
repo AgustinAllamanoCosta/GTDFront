@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBoxes } from '@fortawesome/free-solid-svg-icons';
+import faBoxes from '../../assets/icons/boxes.svg';
 import { FONTS } from '../../constants/size';
 import { memo } from 'react';
 import { BLACK } from '../../constants/colors';
@@ -20,7 +19,7 @@ export const Item = memo(
           onMouseOver={onMouseOver}
           onClick={onClick}
         >
-          <Icon icon={faBoxes} />
+          <Icon src={faBoxes} />
           <ItemText>{title}</ItemText>
         </ItemContent>
       </ItemContainer>
@@ -35,6 +34,7 @@ const ItemContent = styled.div`
   border-bottom-width: 1px;
   display: flex;
   flex-direction: row;
+  align-items: center;
   padding-left: 9px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -46,7 +46,8 @@ const ItemText = styled.span`
   height: 20px;
 `;
 
-const Icon = styled(FontAwesomeIcon)`
-  padding-left: 5px;
+const Icon = styled.img`
+  width: 14px;
+  height: 14px;
   padding-right: 5px;
 `;

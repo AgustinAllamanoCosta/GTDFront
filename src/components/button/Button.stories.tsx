@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import faPlus from '../../assets/icons/faPlus.svg';
 
 import { Button } from './Button';
 
