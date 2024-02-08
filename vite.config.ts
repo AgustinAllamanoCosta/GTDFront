@@ -16,13 +16,9 @@ export default defineConfig({
       output: {
         sourcemap: false,
         manualChunks: {
-          router: [
-            'react-router-dom',
-            'styled-components',
-            'axios',
-            'firebase/app',
-            'firebase/firestore',
-          ],
+          router: ['react-router-dom', 'axios'],
+          css: ['styled-components'],
+          firebae: ['firebase/app', 'firebase/firestore'],
         },
       },
     },
