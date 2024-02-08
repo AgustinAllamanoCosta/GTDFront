@@ -189,7 +189,10 @@
 <a name='L124'></a><a href='#L124'>124</a>
 <a name='L125'></a><a href='#L125'>125</a>
 <a name='L126'></a><a href='#L126'>126</a>
-<a name='L127'></a><a href='#L127'>127</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -210,20 +213,23 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -318,9 +324,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { styled } from 'styled-components';
 import { Button } from '../../components/button/Button';
 import { Card } from '../../components/card/Card';
-import { faAddressCard } from '@fortawesome/free-solid-svg-icons';
+import faAddressCard from '../../assets/icons/addressCard.svg';
 import { useGoogleLogin } from '@react-oauth/google';
-import { useContext, useEffect } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 import axios from 'axios';
 import { FONTS } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
@@ -335,23 +341,26 @@ const LoginView = () =&gt; {
   const errorContext = useContext(ErrorHandlerContext);
   const navigate = useNavigate();
 &nbsp;
-  const login = useGoogleLogin({
-    onSuccess: <span class="fstat-no" title="function not covered" >(c</span>odeResponse: any) =&gt; {
-      const newUser: UserData = <span class="cstat-no" title="statement not covered" >{</span>
-        id: undefined,
-        name: '',
-        photoURL: '',
-        accessToken: codeResponse.access_token,
-      };
-<span class="cstat-no" title="statement not covered" >      userInformation.setUserData({ ...newUser });</span>
-    },
-    onError: <span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; {
-<span class="cstat-no" title="statement not covered" >      console.group('Login Error');</span>
-<span class="cstat-no" title="statement not covered" >      console.error('Login Failed:', error);</span>
-<span class="cstat-no" title="statement not covered" >      console.groupEnd();</span>
-<span class="cstat-no" title="statement not covered" >      userInformation.setUserData(undefined);</span>
-    },
-  });
+  const loginGoogle = useCallback(
+    useGoogleLogin({
+      onSuccess: <span class="fstat-no" title="function not covered" >(c</span>odeResponse: any) =&gt; {
+        const newUser: UserData = <span class="cstat-no" title="statement not covered" >{</span>
+          id: undefined,
+          name: '',
+          photoURL: '',
+          accessToken: codeResponse.access_token,
+        };
+<span class="cstat-no" title="statement not covered" >        userInformation.setUserData({ ...newUser });</span>
+      },
+      onError: <span class="fstat-no" title="function not covered" >(e</span>rror) =&gt; {
+<span class="cstat-no" title="statement not covered" >        console.group('Login Error');</span>
+<span class="cstat-no" title="statement not covered" >        console.error('Login Failed:', error);</span>
+<span class="cstat-no" title="statement not covered" >        console.groupEnd();</span>
+<span class="cstat-no" title="statement not covered" >        userInformation.setUserData(undefined);</span>
+      },
+    }),
+    [userInformation.userData],
+  );
 &nbsp;
   const processLoginInfo = async () =&gt; {
     const userId: string | undefined = userInformation.userData?.id;
@@ -401,7 +410,7 @@ const LoginView = () =&gt; {
             &lt;Button
               text="Login"
               icon={faAddressCard}
-              onClick={login}
+              onClick={loginGoogle}
             /&gt;
           &lt;/ButtonContent&gt;
         &lt;/Card&gt;
@@ -448,7 +457,7 @@ export default LoginView;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-07T04:04:54.481Z
+                at 2024-02-08T08:30:53.577Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
