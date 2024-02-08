@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TaskContextDecorator } from '../../storybook/decorators/tasks';
-import { CancelList } from './CancelList';
+import CancelList from './CancelList';
 
 const meta = {
   title: 'Components/ItemList',

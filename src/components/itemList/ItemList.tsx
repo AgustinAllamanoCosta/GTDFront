@@ -15,7 +15,10 @@ const ItemList = (): React.JSX.Element => {
   const itemsInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
   const { eventBus } = useContext(EventContext);
+
   const [value, setValue] = useState<string>('');
+  const activeTask = itemsInformation.getActiveTaskToMap();
+  const inboxToMap = itemsInformation.getInboxTaskToMap();
 
   const buttonAdd = (event: any) => {
     if (event.target.value !== '') {
@@ -71,7 +74,7 @@ const ItemList = (): React.JSX.Element => {
   };
 
   const onActiveTask = (taskId: string) => {
-    if (itemsInformation.getActiveTaskToMap().length < 3) {
+    if (activeTask.length < 3) {
       itemsInformation.activeTask(taskId);
       eventBus.publish({
         name: SUBSCRIBER_NAMES.METRICS,
@@ -88,27 +91,27 @@ const ItemList = (): React.JSX.Element => {
     setValue(event.target.value);
   };
 
+  const itemComponentsList: React.JSX.Element[] = inboxToMap.map(
+    (item: Task) => (
+      <ItemWithActions
+        key={`${item.id}-${item.title}`}
+        title={item.title}
+        onAcive={() => onActiveTask(item.id)}
+        onCancel={() => onCancelTask(item.id)}
+        onSplit={(taskOne: string, taskTwo: string) =>
+          buttonAddSplitTask(taskOne, taskTwo, item.id)
+        }
+      />
+    ),
+  );
+
   return (
     <InboxTaskContainer is_mobile={`${userInformation.isMobile}`}>
       <CardTitle
         title={'Inbox'}
-        label={`total ${itemsInformation.getInboxTaskToMap().length}`}
+        label={`total ${inboxToMap.length}`}
       >
-        <InboxContainer>
-          {itemsInformation.getInboxTaskToMap().map((item: Task) => {
-            return (
-              <ItemWithActions
-                key={`${item.id}-${item.title}`}
-                title={item.title}
-                onAcive={() => onActiveTask(item.id)}
-                onCancel={() => onCancelTask(item.id)}
-                onSplit={(taskOne: string, taskTwo: string) =>
-                  buttonAddSplitTask(taskOne, taskTwo, item.id)
-                }
-              />
-            );
-          })}
-        </InboxContainer>
+        <InboxContainer>{itemComponentsList}</InboxContainer>
         <AddItemContent
           onChange={onChangeButton}
           value={value}

@@ -43,8 +43,6 @@ const TaskView = ({
       }
       if (inboxTasks) {
         itemContext.setInboxTask(inboxTasks);
-      } else {
-        itemContext.refreshData();
       }
       if (refreshTaskInterval) {
         const interval = setInterval(() => {

@@ -16,30 +16,31 @@ const ActiveTask = (): React.JSX.Element => {
     activeInformation.doneTask(id);
   };
 
+  const activeTasks = activeInformation.getActiveTaskToMap();
+  const activeComponentsList: React.JSX.Element[] = activeTasks.map(
+    (item: Task, index: number) => (
+      <StickyNote
+        number={index.toString()}
+        data-cy={`task-number-${index}`}
+        key={`${item.id}-${item.title}`}
+        text={item.title}
+        onConfirm={(e) => removeActiveTaks(item.id)}
+      />
+    ),
+  );
+
   return (
     <ActiveTasksContainer is_mobile={`${userInformation.isMobile}`}>
       <CardTitle
         title="Active Task"
-        label={`${activeInformation.getActiveTaskToMap().length}/3`}
+        label={`${activeTasks.length}/3`}
         data-cy="Active-task-title"
       >
         <ActiveTaskContent
           data-cy="Active-task-list"
           is_mobile={`${userInformation.isMobile}`}
         >
-          {activeInformation
-            .getActiveTaskToMap()
-            .map((item: Task, index: number) => {
-              return (
-                <StickyNote
-                  number={index.toString()}
-                  data-cy={`task-number-${index}`}
-                  key={`${item.id}-${item.title}`}
-                  text={item.title}
-                  onConfirm={(e) => removeActiveTaks(item.id)}
-                />
-              );
-            })}
+          {activeComponentsList}
         </ActiveTaskContent>
       </CardTitle>
     </ActiveTasksContainer>

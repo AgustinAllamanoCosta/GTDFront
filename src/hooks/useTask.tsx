@@ -26,6 +26,7 @@ export const useTask = () => {
   const [cancelItems, setCancelItems] = useState<CancelTasks>(new Map());
   const [inboxItems, setInboxItems] = useState<InboxTasks>(new Map());
   const [doneItems, setDoneItems] = useState<DoneTasks>(new Map());
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const loadTask = async () => {
     try {
@@ -42,7 +43,7 @@ export const useTask = () => {
     }
   };
 
-  const processItems = async () => {
+  const saveTask = async () => {
     const taskToSave: UserTaskData = {
       activeItems,
       cancelItems,
@@ -114,12 +115,23 @@ export const useTask = () => {
   };
 
   useEffect(() => {
-    if (userInformation?.userData?.id)
-      processItems().catch((error: any) => {
+    if (userInformation?.userData?.id && isLoading)
+      loadTask()
+        .then(() => setIsLoading(false))
+        .catch((error: any) => {
+          errorContext.setFlagError(true);
+          errorContext.setError(error);
+        });
+  }, [isLoading, userInformation?.userData?.id]);
+
+  useEffect(() => {
+    if (userInformation?.userData?.id && !isLoading)
+      saveTask().catch((error: any) => {
         errorContext.setFlagError(true);
         errorContext.setError(error);
       });
   }, [
+    isLoading,
     userInformation.userData?.id,
     activeItems,
     doneItems,

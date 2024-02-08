@@ -12,22 +12,23 @@ const CancelList = (): React.JSX.Element => {
   const itemsInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
 
+  const cancelTask = itemsInformation.getCancelTaskToMap();
+  const cancelComponentsLis: React.JSX.Element[] = cancelTask.map(
+    (item: Task) => (
+      <Item
+        key={`${item.id}-${item.title}`}
+        title={item.title}
+      />
+    ),
+  );
+
   return (
     <InboxTaskContainer is_mobile={`${userInformation.isMobile}`}>
       <CardTitle
         title={'Cancel'}
-        label={`total ${itemsInformation.getCancelTaskToMap().length}`}
+        label={`total ${cancelTask.length}`}
       >
-        <InboxContainer>
-          {itemsInformation.getCancelTaskToMap().map((item: Task) => {
-            return (
-              <Item
-                key={`${item.id}-${item.title}`}
-                title={item.title}
-              />
-            );
-          })}
-        </InboxContainer>
+        <InboxContainer>{cancelComponentsLis}</InboxContainer>
       </CardTitle>
     </InboxTaskContainer>
   );

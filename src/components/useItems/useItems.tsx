@@ -54,7 +54,7 @@ const ItemsContext = ({
     setInboxTask,
     setCancelItems,
     setDoneItems,
-    refreshData: refreshData,
+    refreshData,
   };
 
   useEffect(() => {

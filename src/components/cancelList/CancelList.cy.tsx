@@ -3,7 +3,7 @@ import {
   mockCancelTaskInContext,
   task4,
 } from '../../storybook/decorators/tasks';
-import { CancelList } from './CancelList';
+import CancelList from './CancelList';
 import ItemsContext from '../useItems/useItems';
 import { BrowserRouter } from 'react-router-dom';
 

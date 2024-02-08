@@ -13,22 +13,23 @@ const DoneList = (): React.JSX.Element => {
   const itemsInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
 
+  const doneTasks = itemsInformation.getDoneTaskToMap();
+  const doneComponentsList: React.JSX.Element[] = doneTasks.map(
+    (item: Task) => (
+      <Item
+        key={`${uuidv4()}-${item.title}`}
+        title={item.title}
+      />
+    ),
+  );
+
   return (
     <InboxTaskContainer is_mobile={`${userInformation.isMobile}`}>
       <CardTitle
         title={'Done'}
-        label={`total ${itemsInformation.getDoneTaskToMap().length}`}
+        label={`total ${doneTasks.length}`}
       >
-        <InboxContainer>
-          {itemsInformation.getDoneTaskToMap().map((item: Task) => {
-            return (
-              <Item
-                key={`${uuidv4()}-${item.title}`}
-                title={item.title}
-              />
-            );
-          })}
-        </InboxContainer>
+        <InboxContainer>{doneComponentsList}</InboxContainer>
       </CardTitle>
     </InboxTaskContainer>
   );

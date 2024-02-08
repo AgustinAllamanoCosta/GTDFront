@@ -1,6 +1,6 @@
 import React from 'react';
 import { mockDoneTaskInContext, task5 } from '../../storybook/decorators/tasks';
-import { DoneList } from './DoneList';
+import DoneList from './DoneList';
 import ItemsContext from '../useItems/useItems';
 import { BrowserRouter } from 'react-router-dom';
 

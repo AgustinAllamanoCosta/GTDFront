@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ActiveTask } from './ActiveTask';
+import ActiveTask from './ActiveTask';
 import { TaskContextDecorator } from '../../storybook/decorators/tasks';
 
 const meta = {

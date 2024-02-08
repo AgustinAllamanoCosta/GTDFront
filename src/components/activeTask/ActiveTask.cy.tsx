@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActiveTask } from './ActiveTask';
+import ActiveTask from './ActiveTask';
 import {
   mockTaskInContext,
   task1,
