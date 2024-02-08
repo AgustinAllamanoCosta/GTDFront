@@ -13,6 +13,7 @@ type ItemsContextPorps = {
   defaultCancelItems?: CancelTasks;
   defaultDoneItems?: DoneTasks;
   defaultActiveItems?: ActiveTasks;
+  loading?: boolean;
   children: ReactNode;
 };
 
@@ -21,9 +22,11 @@ const ItemsContext = ({
   defaultCancelItems,
   defaultDoneItems,
   defaultActiveItems,
+  loading,
   children,
 }: ItemsContextPorps) => {
   const {
+    getIsLoading,
     getActiveTaskToMap,
     getCancelTaskToMap,
     getDoneTaskToMap,
@@ -41,6 +44,7 @@ const ItemsContext = ({
   } = useTask();
 
   const taskInfoContextValue = {
+    getIsLoading: loading != undefined ? () => loading : getIsLoading,
     getActiveTaskToMap,
     getCancelTaskToMap,
     getDoneTaskToMap,

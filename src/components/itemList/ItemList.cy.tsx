@@ -10,7 +10,10 @@ describe('Item List', () => {
     const buttonText: string = 'Add Task';
     cy.mount(
       <BrowserRouter>
-        <ItemsContext defaultItems={mockTaskInContext}>
+        <ItemsContext
+          defaultItems={mockTaskInContext}
+          loading={false}
+        >
           <ItemList />
         </ItemsContext>
       </BrowserRouter>,

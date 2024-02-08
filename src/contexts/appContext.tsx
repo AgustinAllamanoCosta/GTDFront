@@ -15,7 +15,7 @@ type AppContextProps = {
   children: ReactNode;
 };
 
-export const AppContext = ({ children }: AppContextProps) => {
+const AppContext = ({ children }: AppContextProps) => {
   return (
     <AppContainer>
       <MetricContext analytics={firebaseData.analytics}>
@@ -65,3 +65,5 @@ const GlobalStyles = createGlobalStyle`
   }
 
 `;
+
+export default AppContext;

@@ -8,6 +8,7 @@ import { TaskInformationContext } from '../../contexts/taskContext';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 import { useNavigate } from 'react-router-dom';
 import { Carrusel } from '../../components/carrusel/Carrusel';
+import { Spiner } from '../../components/loadingSpiner/Spiner';
 
 const ActiveTask = lazy(() => import('../../components/activeTask/ActiveTask'));
 const ItemList = lazy(() => import('../../components/itemList/ItemList'));
@@ -70,13 +71,13 @@ const TaskView = ({
           <>
             <ActiveTask />
             <Carrusel>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<Spiner />}>
                 <ItemList />
               </Suspense>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<Spiner />}>
                 <DoneList />
               </Suspense>
-              <Suspense fallback={<div>Loading...</div>}>
+              <Suspense fallback={<Spiner />}>
                 <CancelList />
               </Suspense>
             </Carrusel>
@@ -84,16 +85,16 @@ const TaskView = ({
         )}
         {!userInformation.isMobile && (
           <>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Spiner />}>
               <CancelList />
             </Suspense>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Spiner />}>
               <ItemList />
             </Suspense>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Spiner />}>
               <ActiveTask />
             </Suspense>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Spiner />}>
               <DoneList />
             </Suspense>
           </>

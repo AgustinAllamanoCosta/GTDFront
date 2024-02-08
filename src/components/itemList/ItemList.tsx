@@ -111,12 +111,19 @@ const ItemList = (): React.JSX.Element => {
         title={'Inbox'}
         label={`total ${inboxToMap.length}`}
       >
-        <InboxContainer>{itemComponentsList}</InboxContainer>
-        <AddItemContent
-          onChange={onChangeButton}
-          value={value}
-          action={buttonAdd}
-        />
+        {itemsInformation.getIsLoading() ? (
+          <></>
+        ) : (
+          <>
+            <InboxContainer>{itemComponentsList}</InboxContainer>
+            <AddItemContent
+              onChange={onChangeButton}
+              value={value}
+              action={buttonAdd}
+              disable={itemsInformation.getIsLoading()}
+            />
+          </>
+        )}
       </CardTitle>
     </InboxTaskContainer>
   );

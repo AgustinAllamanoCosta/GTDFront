@@ -1,5 +1,5 @@
 import { BrowserRouter } from 'react-router-dom';
-import { AppContext } from '../../contexts/appContext';
+import AppContext from '../../contexts/appContext';
 
 export const PhoneContext = (Story: any) => (
   <BrowserRouter>

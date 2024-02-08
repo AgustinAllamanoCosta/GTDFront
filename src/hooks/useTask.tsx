@@ -114,6 +114,8 @@ export const useTask = () => {
     return [...doneItems.values()];
   };
 
+  const getIsLoading = (): boolean => isLoading;
+
   useEffect(() => {
     if (userInformation?.userData?.id && isLoading)
       loadTask()
@@ -140,6 +142,7 @@ export const useTask = () => {
   ]);
 
   return {
+    getIsLoading,
     getDoneTaskToMap,
     getCancelTaskToMap,
     getActiveTaskToMap,

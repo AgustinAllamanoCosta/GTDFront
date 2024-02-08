@@ -2,6 +2,7 @@ import { createContext } from 'react';
 import { Task } from '../types/types';
 
 export const TaskInformationContext = createContext<{
+  getIsLoading: () => boolean;
   getActiveTaskToMap: () => Array<Task>;
   getCancelTaskToMap: () => Array<Task>;
   getDoneTaskToMap: () => Array<Task>;
@@ -17,6 +18,7 @@ export const TaskInformationContext = createContext<{
   setCancelItems: (a: any) => void;
   setDoneItems: (a: any) => void;
 }>({
+  getIsLoading: () => true,
   getActiveTaskToMap: () => {
     return [];
   },

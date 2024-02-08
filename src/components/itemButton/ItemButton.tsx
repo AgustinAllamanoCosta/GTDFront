@@ -9,6 +9,7 @@ type ItemAddButtonProps = {
   onChange: (event: any) => void;
   value: string;
   dataTest?: string;
+  disable?: boolean;
 };
 
 export const ItemAddButton = memo(
@@ -17,6 +18,7 @@ export const ItemAddButton = memo(
     action,
     value,
     dataTest,
+    disable = false,
   }: ItemAddButtonProps): React.JSX.Element => {
     const newTaskInput = useRef<any>();
 
@@ -44,6 +46,7 @@ export const ItemAddButton = memo(
         />
         <AddItemInput
           ref={newTaskInput}
+          disabled={disable}
           data-cy={`task-add-button-input`}
           placeholder={'Add Task'}
           onBlur={action}
