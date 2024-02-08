@@ -19,7 +19,10 @@ export const Item = memo(
           onMouseOver={onMouseOver}
           onClick={onClick}
         >
-          <Icon src={faBoxes} />
+          <Icon
+            src={faBoxes}
+            alt={'Box'}
+          />
           <ItemText>{title}</ItemText>
         </ItemContent>
       </ItemContainer>

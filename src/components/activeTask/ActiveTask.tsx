@@ -24,7 +24,7 @@ const ActiveTask = (): React.JSX.Element => {
         data-cy={`task-number-${index}`}
         key={`${item.id}-${item.title}`}
         text={item.title}
-        onConfirm={(e) => removeActiveTaks(item.id)}
+        onConfirm={() => removeActiveTaks(item.id)}
       />
     ),
   );

@@ -20,6 +20,7 @@ export const Button = memo(
         {icon && (
           <Icon
             data-cy="button-icon"
+            alt={'Button Icon'}
             src={icon}
           />
         )}

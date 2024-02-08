@@ -39,7 +39,7 @@ const LoginView = () => {
     [userInformation.userData],
   );
 
-  const processLoginInfo = async () => {
+  const processLoginInfo = useCallback(async () => {
     const userId: string | undefined = userInformation.userData?.id;
     if (!userId && userInformation.userData) {
       const googleResponse = await axios.get(
@@ -63,7 +63,7 @@ const LoginView = () => {
     } else if (userId) {
       navigate('task');
     }
-  };
+  }, [userInformation.userData]);
 
   useEffect(() => {
     processLoginInfo().catch((error: any) => {

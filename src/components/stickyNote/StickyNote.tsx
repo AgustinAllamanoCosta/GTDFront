@@ -16,15 +16,17 @@ export const StickyNote = memo(
       text.toUpperCase(),
     );
 
+    const onChange = (event: any) => {
+      setTextNoteValue(event.target.value);
+    };
+
     return (
       <ButtonAndNoteContainer data-cy={`stick-note-container-${number}`}>
         <TextContainer data-cy={`stick-note-text-container-${number}`}>
           <TextNote
             data-cy={`stick-note-text-${number}`}
             value={textNoteValue}
-            onChange={(e) => {
-              setTextNoteValue(e.target.value);
-            }}
+            onChange={onChange}
           />
         </TextContainer>
         <ButtonContainer
@@ -34,6 +36,7 @@ export const StickyNote = memo(
           <Icon
             src={faCheck}
             onClick={onConfirm}
+            alt={'Check'}
           />
         </ButtonContainer>
       </ButtonAndNoteContainer>

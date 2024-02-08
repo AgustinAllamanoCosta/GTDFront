@@ -40,6 +40,7 @@ export const ItemAddButton = memo(
           data-cy={`task-add-button-icon`}
           onClick={focusInput}
           src={faPlus}
+          alt={'Plus'}
         />
         <AddItemInput
           ref={newTaskInput}
