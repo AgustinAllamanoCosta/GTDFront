@@ -56,12 +56,10 @@ describe('Get The Things Done Task', () => {
     cy.visit(Cypress.env('BASE_URL'));
     const taskContent = 'some task to do 1';
     cy.get('[data-cy="task-add-button-input"]').type(taskContent, {
-      delay: 30,
+      delay: 40,
     });
-    cy.get('[data-cy="task-add-button-input"]').type('{enter}', { delay: 30 });
-    cy.wait(3000);
+    cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.reload();
-    cy.wait(3000);
     cy.get('[data-cy="task-some task to do 1"]').should(
       'have.text',
       taskContent,
