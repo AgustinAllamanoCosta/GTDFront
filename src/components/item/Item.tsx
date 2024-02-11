@@ -39,14 +39,12 @@ const ItemContent = styled.div`
   flex-direction: row;
   align-items: center;
   padding-left: 9px;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  height: 20px;
 `;
 
 const ItemText = styled.span`
   font-weight: bold;
   font-size: ${FONTS.TEXT};
-  height: 20px;
 `;
 
 const Icon = styled.img`

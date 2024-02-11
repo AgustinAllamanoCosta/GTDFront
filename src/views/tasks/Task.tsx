@@ -7,7 +7,7 @@ import { googleLogout } from '@react-oauth/google';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 import { useNavigate } from 'react-router-dom';
-import { Carrusel } from '../../components/carrusel/Carrusel';
+import { Carousel } from '../../components/carousel/Carousel';
 import { Spiner } from '../../components/loadingSpiner/Spiner';
 
 const ActiveTask = lazy(() => import('../../components/activeTask/ActiveTask'));
@@ -70,7 +70,7 @@ const TaskView = ({
         {userInformation.isMobile && (
           <>
             <ActiveTask />
-            <Carrusel>
+            <Carousel>
               <Suspense fallback={<Spiner />}>
                 <ItemList />
               </Suspense>
@@ -80,7 +80,7 @@ const TaskView = ({
               <Suspense fallback={<Spiner />}>
                 <CancelList />
               </Suspense>
-            </Carrusel>
+            </Carousel>
           </>
         )}
         {!userInformation.isMobile && (

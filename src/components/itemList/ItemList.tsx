@@ -135,7 +135,7 @@ const AddItemContent = styled(ItemAddButton)`
 
 const InboxContainer = styled.div`
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   &::-webkit-scrollbar {
     width: 5px;
   }
@@ -154,9 +154,9 @@ const InboxTaskContainer = styled.div<{ is_mobile?: string }>`
       min-width: 280px;
       max-width: 380px;
       min-height: 400px;
-  `
+    `
       : `
-      height: 580px;
+      height: 600px;
       width: 360px;
   `};
 `;

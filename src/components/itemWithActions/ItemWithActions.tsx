@@ -150,6 +150,4 @@ const ButtonContainer = styled.div`
   align-content: center;
   justify-content: space-evenly;
   padding-left: 9px;
-  padding-top: 5px;
-  padding-bottom: 5px;
 `;
