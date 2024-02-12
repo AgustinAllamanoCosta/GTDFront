@@ -7,7 +7,7 @@ describe('Get The Things Done Login and Logout', () => {
 
   beforeEach(() => {
     if (Cypress.env('isMobile')) {
-      cy.viewport(790, 790);
+      cy.viewport(400, 790);
       cy.log('Mobile view');
     } else {
       cy.viewport(1700, 1000);

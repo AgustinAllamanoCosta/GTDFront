@@ -8,19 +8,19 @@ export type CarouselProps = {
 export const Carousel = memo(
   ({ children }: CarouselProps): React.JSX.Element => {
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [length, setLength] = useState(children.length);
+    const [lasIndex, setLastIndex] = useState(children.length - 1);
     const [touchPosition, setTouchPosition] = useState(null);
+    const [elementWidth, setElementWidth] = useState<number>(380);
 
     const next = () => {
-      if (currentIndex < length - 1)
+      if (currentIndex < lasIndex)
         setCurrentIndex((prevState) => prevState + 1);
       else setCurrentIndex(0);
     };
 
     const prev = () => {
-      if (currentIndex > 0) {
-        setCurrentIndex((prevState) => prevState - 1);
-      }
+      if (currentIndex > 0) setCurrentIndex((prevState) => prevState - 1);
+      else setCurrentIndex(lasIndex);
     };
 
     const handleTouchStart = (e: any) => {
@@ -31,27 +31,26 @@ export const Carousel = memo(
     const handleTouchMove = (e: any) => {
       const touchDown = touchPosition;
 
-      if (touchDown === null) {
-        return;
-      }
+      if (touchDown === null) return;
 
       const currentTouch = e.touches[0].clientX;
       const diff = touchDown - currentTouch;
 
-      if (diff > 5) {
-        next();
-      }
+      if (diff > 5) next();
 
-      if (diff < -5) {
-        prev();
-      }
+      if (diff < -5) prev();
 
       setTouchPosition(null);
     };
 
     useEffect(() => {
-      setLength(children.length);
-    }, [children]);
+      setLastIndex(children.length - 1);
+      if (children) {
+        const divElement = document.getElementById(`item-${currentIndex}`);
+        if (divElement)
+          setElementWidth(divElement.getBoundingClientRect().width);
+      }
+    }, [children, currentIndex]);
 
     return (
       <CarouselContainer>
@@ -60,7 +59,10 @@ export const Carousel = memo(
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
           >
-            <CarouselContent current_index={currentIndex}>
+            <CarouselContent
+              current_index={currentIndex}
+              current_width={elementWidth}
+            >
               {children}
             </CarouselContent>
           </CarouselContentWrapper>
@@ -88,11 +90,15 @@ const CarouselContentWrapper = styled.div`
   overflow: hidden;
 `;
 
-const CarouselContent = styled.div<{ current_index: number }>`
+const CarouselContent = styled.div<{
+  current_index: number;
+  current_width: number;
+}>`
   display: flex;
-  transform: translateX(-${(props) => props.current_index * 50}vh);
-  @media screen and (min-width: 380px) {
-    transform: translateX(-${(props) => props.current_index * 380}px);
+  @media screen and (max-width: 800px) and (min-width: 100px) {
+    transform: translateX(
+      -${(props) => props.current_index * props.current_width}px
+    );
   }
   transition: all 250ms linear;
   -ms-overflow-style: none;

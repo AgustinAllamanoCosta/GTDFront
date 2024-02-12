@@ -72,13 +72,13 @@ const TaskView = ({
             <ActiveTask />
             <Carousel>
               <Suspense fallback={<Spiner />}>
-                <ItemList />
+                <ItemList id={'item-0'} />
               </Suspense>
               <Suspense fallback={<Spiner />}>
-                <DoneList />
+                <DoneList id={'item-1'} />
               </Suspense>
               <Suspense fallback={<Spiner />}>
-                <CancelList />
+                <CancelList id={'item-2'} />
               </Suspense>
             </Carousel>
           </>

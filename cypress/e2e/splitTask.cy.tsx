@@ -3,7 +3,7 @@ describe('Get The Things Done Split Taks', () => {
     cy.testCleanDb();
     window.localStorage.clear();
     if (Cypress.env('isMobile')) {
-      cy.viewport(790, 790);
+      cy.viewport(400, 790);
       cy.log('Mobile view');
     } else {
       cy.viewport(1700, 1000);

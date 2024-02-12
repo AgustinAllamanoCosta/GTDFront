@@ -27,13 +27,13 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
         >
           <div
             class="sc-hfDuwB hZBRcw"
-            data-cy="button-Login"
+            data-cy="button-Login With Google"
           >
             <span
               class="sc-jCIOXC cfzUow"
               data-cy="button-text"
             >
-              Login
+              Login With Google
             </span>
           </div>
         </div>

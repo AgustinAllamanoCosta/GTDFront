@@ -85,7 +85,7 @@ const ActiveTasksContainer = styled.div<{ is_mobile?: string }>`
       max-height: 573px;
   `
       : `
-      height: 580px;
+      height: 600px;
       width: 210px;
   `};
 `;

@@ -11,7 +11,11 @@ import { UserInformationContext } from '../../contexts/userContext';
 import { EventContext } from '../../contexts/eventContext';
 import { SUBSCRIBER_NAMES } from '../useEvent/useEvent';
 
-const ItemList = (): React.JSX.Element => {
+type ItemListProps = {
+  id?: string;
+};
+
+const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
   const itemsInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
   const { eventBus } = useContext(EventContext);
@@ -106,7 +110,10 @@ const ItemList = (): React.JSX.Element => {
   );
 
   return (
-    <InboxTaskContainer is_mobile={`${userInformation.isMobile}`}>
+    <InboxTaskContainer
+      is_mobile={`${userInformation.isMobile}`}
+      id={id}
+    >
       <CardTitle
         title={'Inbox'}
         label={`total ${inboxToMap.length}`}

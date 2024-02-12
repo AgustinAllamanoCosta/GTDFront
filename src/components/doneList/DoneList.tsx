@@ -9,7 +9,11 @@ import { SIZE } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
 import { Task } from '../../types/types';
 
-const DoneList = (): React.JSX.Element => {
+type DoneListProps = {
+  id?: string;
+};
+
+const DoneList = ({ id }: DoneListProps): React.JSX.Element => {
   const itemsInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
 
@@ -24,7 +28,10 @@ const DoneList = (): React.JSX.Element => {
   );
 
   return (
-    <InboxTaskContainer is_mobile={`${userInformation.isMobile}`}>
+    <InboxTaskContainer
+      is_mobile={`${userInformation.isMobile}`}
+      id={id}
+    >
       <CardTitle
         title={'Done'}
         label={`total ${doneTasks.length}`}
@@ -58,7 +65,7 @@ const InboxTaskContainer = styled.div<{ is_mobile?: string }>`
       min-height: 400px;
   `
       : `
-      height: 580px;
+      height: 600px;
       width: 360px;
   `};
 `;
