@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.22 (2024-02-12)
+
+
+### Bug Fixes
+
+* 🐛 carousel issue slice ([5084b9e](https://github.com/AgustinAllamanoCosta/GTDFront/commit/5084b9eb3d0b779730cba6282e21221f24f1a789))
+
 ### 0.1.21 (2024-02-11)
 
 ### 0.1.20 (2024-02-08)
