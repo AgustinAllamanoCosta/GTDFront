@@ -58,6 +58,8 @@ export const useTask = () => {
       id: uuidv4(),
       title: newTaskTitle,
       parentTask: parentId,
+      creationDate: new Date().toISOString(),
+      points: 0,
     };
     inboxItems.set(newTask.id, newTask);
     setInboxItems(new Map(inboxItems));

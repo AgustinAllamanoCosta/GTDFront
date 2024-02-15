@@ -37,6 +37,7 @@
     "dotenv-vault": "1.26.0",
     "firebase": "^10.7.1",
     "fortawesome": "^0.0.1-security",
+    "openai": "^4.27.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.21.1",
