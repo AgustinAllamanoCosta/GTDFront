@@ -1,37 +1,38 @@
-import { styled } from 'styled-components';
-import { CardTitle } from '../cardWithTile/CardWithTitle';
-import { useContext, useState } from 'react';
-import { ItemAddButton } from '../itemButton/ItemButton';
-import { ItemWithActions } from '../itemWithActions/ItemWithActions';
-import { TaskInformationContext } from '../../contexts/taskContext';
-import { Task } from '../../types/types';
-import { BLACK } from '../../constants/colors';
-import { SIZE } from '../../constants/size';
-import { UserInformationContext } from '../../contexts/userContext';
-import { EventContext } from '../../contexts/eventContext';
-import { SUBSCRIBER_NAMES } from '../useEvent/useEvent';
+import { styled } from "styled-components";
+import { CardTitle } from "../cardWithTile/CardWithTitle";
+import { useContext, useState } from "react";
+import { ItemAddButton } from "../itemButton/ItemButton";
+import { ItemWithActions } from "../itemWithActions/ItemWithActions";
+import { TaskInformationContext } from "../../contexts/taskContext";
+import { Task } from "../../types/types";
+import { THEME_ONE } from "../../constants/colors";
+import { SIZE } from "../../constants/size";
+import { UserInformationContext } from "../../contexts/userContext";
+import { EventContext } from "../../contexts/eventContext";
+import { SUBSCRIBER_NAMES } from "../useEvent/useEvent";
 
 type ItemListProps = {
   id?: string;
 };
 
 const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
+  const CHARACTER_LIMIT: number = 43;
   const itemsInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
   const { eventBus } = useContext(EventContext);
 
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useState<string>("");
   const activeTask = itemsInformation.getActiveTaskToMap();
   const inboxToMap = itemsInformation.getInboxTaskToMap();
 
   const buttonAdd = (event: any) => {
-    if (event.target.value !== '') {
-      itemsInformation.addNewTask(event.target.value, '');
-      setValue('');
+    if (event.target.value !== "") {
+      itemsInformation.addNewTask(event.target.value, "");
+      setValue("");
       eventBus.publish({
         name: SUBSCRIBER_NAMES.METRICS,
         data: {
-          name: 'addItem',
+          name: "addItem",
           userId: userInformation.userData?.id,
           taskLenght: event.target.value.lenght,
         },
@@ -42,7 +43,7 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
   const buttonAddSplitTask = (
     newTaskOne: string,
     newTaskTwo: string,
-    parentTaskId: string,
+    parentTaskId: string
   ) => {
     const parentTask: Task | undefined =
       itemsInformation.getInboxTask(parentTaskId);
@@ -57,7 +58,7 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
       eventBus.publish({
         name: SUBSCRIBER_NAMES.METRICS,
         data: {
-          name: 'splitTask',
+          name: "splitTask",
           userId: userInformation.userData?.id,
           taskId: parentTaskId,
         },
@@ -70,7 +71,7 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
     eventBus.publish({
       name: SUBSCRIBER_NAMES.METRICS,
       data: {
-        name: 'cancelItem',
+        name: "cancelItem",
         userId: userInformation.userData?.id,
         taskId,
       },
@@ -83,7 +84,7 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
       eventBus.publish({
         name: SUBSCRIBER_NAMES.METRICS,
         data: {
-          name: 'activeTask',
+          name: "activeTask",
           userId: userInformation.userData?.id,
           taskId,
         },
@@ -92,7 +93,10 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
   };
 
   const onChangeButton = (event: any) => {
-    setValue(event.target.value);
+    const value: string = event.target.value;
+    if (value.length <= CHARACTER_LIMIT) {
+      setValue(value);
+    }
   };
 
   const itemComponentsList: React.JSX.Element[] = inboxToMap.map(
@@ -106,29 +110,26 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
           buttonAddSplitTask(taskOne, taskTwo, item.id)
         }
       />
-    ),
+    )
   );
 
   return (
-    <InboxTaskContainer
-      is_mobile={`${userInformation.isMobile}`}
-      id={id}
-    >
-      <CardTitle
-        title={'Inbox'}
-        label={`total ${inboxToMap.length}`}
-      >
+    <InboxTaskContainer is_mobile={`${userInformation.isMobile}`} id={id}>
+      <CardTitle title={"Inbox"} label={`total ${inboxToMap.length}`}>
         {itemsInformation.getIsLoading() ? (
           <></>
         ) : (
           <>
             <InboxContainer>{itemComponentsList}</InboxContainer>
-            <AddItemContent
-              onChange={onChangeButton}
-              value={value}
-              action={buttonAdd}
-              disable={itemsInformation.getIsLoading()}
-            />
+            <AddItemContent>
+              <ItemAddButton
+                onChange={onChangeButton}
+                value={value}
+                action={buttonAdd}
+                disable={itemsInformation.getIsLoading()}
+                characterLimit={CHARACTER_LIMIT}
+              />
+            </AddItemContent>
           </>
         )}
       </CardTitle>
@@ -136,7 +137,7 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
   );
 };
 
-const AddItemContent = styled(ItemAddButton)`
+const AddItemContent = styled.div`
   margin-bottom: 15px;
 `;
 
@@ -147,14 +148,14 @@ const InboxContainer = styled.div`
     width: 5px;
   }
   &::-webkit-scrollbar-thumb {
-    background: ${BLACK};
+    background: ${THEME_ONE.backgorund};
     border-radius: 10px;
   }
 `;
 
 const InboxTaskContainer = styled.div<{ is_mobile?: string }>`
   ${(props) =>
-    props.is_mobile === 'true'
+    props.is_mobile === "true"
       ? `
       height: ${SIZE.L};
       width: ${SIZE.L};

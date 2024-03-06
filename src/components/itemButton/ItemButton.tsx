@@ -1,8 +1,8 @@
-import { styled } from 'styled-components';
-import { useRef, memo } from 'react';
-import faPlus from '../../assets/icons/faPlus.svg';
-import { BLACK, GREY } from '../../constants/colors';
-import { ENTER_KEY_COE } from '../../constants/keys';
+import { styled } from "styled-components";
+import { useRef, memo, useState } from "react";
+import faPlus from "../../assets/icons/faPlus.svg";
+import { BLACK, GREY } from "../../constants/colors";
+import { ENTER_KEY_COE } from "../../constants/keys";
 
 type ItemAddButtonProps = {
   action: (event: any) => void;
@@ -10,6 +10,7 @@ type ItemAddButtonProps = {
   value: string;
   dataTest?: string;
   disable?: boolean;
+  characterLimit?: number;
 };
 
 export const ItemAddButton = memo(
@@ -19,8 +20,10 @@ export const ItemAddButton = memo(
     value,
     dataTest,
     disable = false,
+    characterLimit,
   }: ItemAddButtonProps): React.JSX.Element => {
     const newTaskInput = useRef<any>();
+    const [showCharacterLimit, setShowCharacterLimit] = useState(false);
 
     const focusInput = (event: any) => {
       if (newTaskInput.current) {
@@ -36,28 +39,47 @@ export const ItemAddButton = memo(
       }
     };
 
+    const displayCharacterLimit = (): boolean => {
+      return characterLimit != undefined && showCharacterLimit;
+    };
+
     return (
       <ItemContent data-cy={`task-add-button-${dataTest}`}>
         <Icon
           data-cy={`task-add-button-icon`}
           onClick={focusInput}
           src={faPlus}
-          alt={'Plus'}
+          alt={"Plus"}
         />
         <AddItemInput
           ref={newTaskInput}
           disabled={disable}
           data-cy={`task-add-button-input`}
-          placeholder={'Add Task'}
-          onBlur={action}
+          placeholder={"Add Task"}
+          onBlur={(e) => {
+            action(e);
+            setShowCharacterLimit(false);
+          }}
+          onFocus={(e) => {
+            setShowCharacterLimit(true);
+          }}
           value={value}
           onChange={onChange}
           onKeyDown={onInputKeyDown}
         />
+        {displayCharacterLimit() && (
+          <CharacterCount>{characterLimit - value.length}</CharacterCount>
+        )}
       </ItemContent>
     );
-  },
+  }
 );
+
+const CharacterCount = styled.span`
+  font-family: "Inner Normal";
+  margin-left: 10px;
+  font-weight: 550;
+`;
 
 const ItemContent = styled.div`
   border-bottom-style: solid;

@@ -43,6 +43,7 @@ const ItemContent = styled.div`
 `;
 
 const ItemText = styled.span`
+  font-family: 'Inner Normal';
   font-size: ${FONTS.TEXT};
 `;
 
