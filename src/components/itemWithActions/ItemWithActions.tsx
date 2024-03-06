@@ -2,24 +2,17 @@ import { styled } from 'styled-components';
 import check from '../../assets/icons/check.svg';
 import percent from '../../assets/icons/percent.svg';
 import X from '../../assets/icons/x.svg';
-import { useState, memo } from 'react';
+import { useState, memo, useEffect } from 'react';
 import { Button } from '../button/Button';
 import { ItemAddButton } from '../itemButton/ItemButton';
+import { ItemProps, ItemSplitProps } from '../../types/types';
 import { Item } from '../item/Item';
 
-export type ItemProps = {
-  title: string;
-  onCancel: () => void;
-  onAcive: () => void;
-  onSplit: (taskOne: string, taskTwo: string) => void;
-};
-
-type ItemSplitProps = {
-  onCancel: () => void;
-  onSplit: (taskOne: string, taskTwo: string) => void;
-};
-
-const SplitForm = ({ onCancel, onSplit }: ItemSplitProps) => {
+const SplitForm = ({
+  taskToSplit,
+  onCancel,
+  onSplit,
+}: ItemSplitProps): React.JSX.Element => {
   const [newTaskOne, setNewTaskOne] = useState('');
   const [newTaskTwo, setNewTaskTwo] = useState('');
 
@@ -30,6 +23,14 @@ const SplitForm = ({ onCancel, onSplit }: ItemSplitProps) => {
   const onChangeTaskTwo = (event: any) => {
     setNewTaskTwo(event.target.value);
   };
+
+  const getSugesstionFromAssistance = async () => {
+    console.log('message from assistance: Implement');
+  };
+
+  useEffect(() => {
+    getSugesstionFromAssistance();
+  }, []);
 
   return (
     <>
@@ -97,6 +98,7 @@ export const ItemWithActions = memo(
         />
         {showSplit && (
           <SplitForm
+            taskToSplit={title}
             onCancel={onCancelSplit}
             onSplit={onCreateNewTaks}
             data-cy={`task-split-${title}`}

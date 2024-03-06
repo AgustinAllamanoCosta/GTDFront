@@ -1,18 +1,12 @@
-import { useEffect, useState, useContext } from "react";
-import { openAIPort } from "../port/openAIPort";
-import { Configuration } from "../types/types";
+import { Configuration, Task } from '../types/types';
+import { GTDBackPort } from '../port/GTDBackPort';
 
 export const useAIAssistance = (configuration: Configuration) => {
-  const { queryAsUser } = openAIPort(configuration);
-  const EMPTY_RESPONSE: string = '';
+  const { queryEstimateTask } = GTDBackPort(configuration);
 
-  const queryAboutSplitATask = async (taskToSplit: string): Promise<string> => {
-    const promt: string = `Hi chat, how you split this task in tow sub task ? task to split: ${taskToSplit}`;
-    const response = await queryAsUser(promt);
-    if(response)
-      return response;
-    return EMPTY_RESPONSE;
+  const estimateTask = (taskToEstimate: Task): Promise<Task> => {
+    return queryEstimateTask(taskToEstimate);
   };
 
-  return { queryAboutSplitATask };
+  return { estimateTask };
 };

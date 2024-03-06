@@ -1,4 +1,4 @@
-import { Configuration } from "../types/types";
+import { Configuration } from '../types/types';
 
 export const configuration: Configuration = {
   clientId: import.meta.env.VITE_CLIENT_ID
@@ -24,6 +24,5 @@ export const configuration: Configuration = {
   refreshTimeOut: import.meta.env.VITE_REFRESH_TIMEOUT
     ? +import.meta.env.VITE_REFRESH_TIMEOUT
     : undefined,
-  openAIAPIKey: import.meta.env.VITE_OPEN_AI_API_KEY,
-  openAIModel: import.meta.env.VITE_OPEN_AI_MODE
+  backendURL: import.meta.env.VITE_BACKEND_URL,
 };

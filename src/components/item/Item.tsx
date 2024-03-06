@@ -43,7 +43,6 @@ const ItemContent = styled.div`
 `;
 
 const ItemText = styled.span`
-  font-weight: bold;
   font-size: ${FONTS.TEXT};
 `;
 

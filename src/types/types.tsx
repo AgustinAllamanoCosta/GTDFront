@@ -1,5 +1,3 @@
-import { type } from "cypress/types/jquery";
-
 export type UserData = {
   id: string | undefined;
   name: string;
@@ -17,6 +15,19 @@ export type Task = {
     taksOne: string;
     taksTwo: string;
   };
+};
+
+export type ItemProps = {
+  title: string;
+  onCancel: () => void;
+  onAcive: () => void;
+  onSplit: (taskOne: string, taskTwo: string) => void;
+};
+
+export type ItemSplitProps = {
+  taskToSplit: string;
+  onCancel: () => void;
+  onSplit: (taskOne: string, taskTwo: string) => void;
 };
 
 export type ActiveTasks = Map<string, Task>;
@@ -47,6 +58,5 @@ export type Configuration = {
   appId: string;
   measurementId: string;
   refreshTimeOut: number | undefined;
-  openAIAPIKey: string;
-  openAIModel: string;
+  backendURL: string;
 };

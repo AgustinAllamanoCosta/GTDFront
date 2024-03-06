@@ -6,22 +6,27 @@ import ItemsContext from '../../components/useItems/useItems';
 export const task1: Task = {
   title: 'some task 1',
   id: uuidv4(),
+  creationDate: '',
 };
 export const task2: Task = {
   title: 'some task 2',
   id: uuidv4(),
+  creationDate: '',
 };
 export const task3: Task = {
   title: 'some task 3',
   id: uuidv4(),
+  creationDate: '',
 };
 export const task4: Task = {
   title: 'some task 4',
   id: uuidv4(),
+  creationDate: '',
 };
 export const task5: Task = {
   title: 'some task 5',
   id: uuidv4(),
+  creationDate: '',
 };
 
 export const mockTaskInContext: Map<string, Task> = new Map();

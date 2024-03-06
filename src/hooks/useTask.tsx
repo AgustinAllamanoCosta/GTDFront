@@ -12,10 +12,13 @@ import { UserInformationContext } from '../contexts/userContext';
 import { repository } from '../repository/repository';
 import { firebaseData } from '../hooks/useFirebase';
 import { v4 as uuidv4 } from 'uuid';
+import { useAIAssistance } from './useAIAssistance';
+import { configuration } from '../config/appConfig';
 
 export const useTask = () => {
   const errorContext = useContext(ErrorHandlerContext);
   const userInformation = useContext(UserInformationContext);
+  const { estimateTask } = useAIAssistance(configuration);
 
   const { getData, save } = repository(
     userInformation.userData?.id ? userInformation.userData?.id : '',
@@ -61,8 +64,15 @@ export const useTask = () => {
       creationDate: new Date().toISOString(),
       points: 0,
     };
-    inboxItems.set(newTask.id, newTask);
-    setInboxItems(new Map(inboxItems));
+    estimateTask(newTask)
+      .then((taksWithEstimation: Task) => {
+        inboxItems.set(taksWithEstimation.id, taksWithEstimation);
+        setInboxItems(new Map(inboxItems));
+      })
+      .catch((error: any) => {
+        inboxItems.set(newTask.id, newTask);
+        setInboxItems(new Map(inboxItems));
+      });
     return newTask.id;
   };
 
