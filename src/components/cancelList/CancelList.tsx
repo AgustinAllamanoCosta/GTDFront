@@ -43,14 +43,6 @@ const CancelList = ({ id }: CancelListProps): React.JSX.Element => {
 
 const InboxContainer = styled.div`
   width: 100%;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    width: 5px;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: ${BLACK};
-    border-radius: 10px;
-  }
 `;
 
 const InboxTaskContainer = styled.div<{ is_mobile?: string }>`

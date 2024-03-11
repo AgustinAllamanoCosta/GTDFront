@@ -35,6 +35,8 @@ const ItemContent = styled.div`
   border-bottom-style: solid;
   border-bottom-color: ${BLACK};
   border-bottom-width: 1px;
+  padding-bottom: 3px;
+  padding-top: 3px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -45,6 +47,16 @@ const ItemContent = styled.div`
 const ItemText = styled.span`
   font-family: 'Inner Normal';
   font-size: ${FONTS.TEXT};
+  font-weight: bold;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${BLACK};
+    border-radius: 10px;
+  }
 `;
 
 const Icon = styled.img`
