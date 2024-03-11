@@ -121,7 +121,7 @@ const ContentContainer = styled.div<{ is_mobile?: string }>`
   `
       : `
   justify-content: space-between;
-  width: 150vh;
+  width: 170vh;
   flex-direction: row;
   align-items: center;
   height: 820px;

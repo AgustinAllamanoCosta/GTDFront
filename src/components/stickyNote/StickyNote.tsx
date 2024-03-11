@@ -1,8 +1,9 @@
-import { useState, memo } from 'react';
+import { useState, memo, useContext } from 'react';
 import { styled } from 'styled-components';
 import faCheck from '../../assets/icons/check.svg';
 import { FONTS } from '../../constants/size';
 import { BLACK, GREEN, YELLOW } from '../../constants/colors';
+import { UserInformationContext } from '../../contexts/userContext';
 
 export type StickyNoteProps = {
   number: string;
@@ -12,6 +13,8 @@ export type StickyNoteProps = {
 
 export const StickyNote = memo(
   ({ number, text, onConfirm }: StickyNoteProps): React.JSX.Element => {
+    const userInformation = useContext(UserInformationContext);
+
     const [textNoteValue, setTextNoteValue] = useState<string>(
       text.toUpperCase(),
     );
@@ -21,7 +24,10 @@ export const StickyNote = memo(
     };
 
     return (
-      <ButtonAndNoteContainer data-cy={`stick-note-container-${number}`}>
+      <ButtonAndNoteContainer
+        data-cy={`stick-note-container-${number}`}
+        is_mobile={`${userInformation.isMobile}`}
+      >
         <TextContainer data-cy={`stick-note-text-container-${number}`}>
           <TextNote
             data-cy={`stick-note-text-${number}`}
@@ -49,9 +55,10 @@ const TextNote = styled.textarea`
   font-weight: 700;
   background-color: unset;
   border: unset;
-  width: 100px;
+  outline: unset;
   height: 100%;
   overflow-y: scroll;
+  resize: none;
   &::-webkit-scrollbar {
     width: 3px;
   }
@@ -81,12 +88,20 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const ButtonAndNoteContainer = styled.div`
+const ButtonAndNoteContainer = styled.div<{ is_mobile?: string }>`
   display: flex;
   flex-direction: column;
   background-color: ${YELLOW};
-  width: 112px;
-  height: 112px;
+  ${(props) =>
+    props.is_mobile === 'true'
+      ? `
+      width: 112px;
+      height: 112px;
+  `
+      : `
+      width: 250px;
+      height: 150px; 
+  `};
   border-radius: 10px;
   margin: 6px;
 `;

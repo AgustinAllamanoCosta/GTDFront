@@ -8,10 +8,10 @@ export const LIGHT_VIOLET: string = '#535C91';
 export const WHITE: string = '#FFFF';
 
 export const THEME_ONE = {
-    backgorund: NAVY,
-    boder: LIGHT_VIOLET,
-    cardBackGround: DEEP_BLUE,
-    stickButton: GREEN,
-    stickBackGround: YELLOW,
-    fontColor: WHITE
+  backgorund: NAVY,
+  boder: LIGHT_VIOLET,
+  cardBackGround: DEEP_BLUE,
+  stickButton: GREEN,
+  stickBackGround: YELLOW,
+  fontColor: WHITE,
 };

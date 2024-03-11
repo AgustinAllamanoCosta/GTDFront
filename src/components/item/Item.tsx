@@ -45,9 +45,9 @@ const ItemContent = styled.div`
 `;
 
 const ItemText = styled.span`
-  font-family: 'Inner Normal';
+  font-family: 'InerNormal';
   font-size: ${FONTS.TEXT};
-  font-weight: bold;
+  font-weight: 550;
   overflow-y: scroll;
   &::-webkit-scrollbar {
     width: 0px;

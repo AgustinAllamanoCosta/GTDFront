@@ -64,15 +64,19 @@ export const useTask = () => {
       creationDate: new Date().toISOString(),
       points: 0,
     };
-    estimateTask(newTask)
-      .then((taksWithEstimation: Task) => {
-        inboxItems.set(taksWithEstimation.id, taksWithEstimation);
-        setInboxItems(new Map(inboxItems));
-      })
-      .catch((error: any) => {
-        inboxItems.set(newTask.id, newTask);
-        setInboxItems(new Map(inboxItems));
-      });
+    if (false) {
+      estimateTask(newTask)
+        .then((taksWithEstimation: Task) => {
+          inboxItems.set(taksWithEstimation.id, taksWithEstimation);
+          setInboxItems(new Map(inboxItems));
+        })
+        .catch((error: any) => {
+          inboxItems.set(newTask.id, newTask);
+          setInboxItems(new Map(inboxItems));
+        });
+    }
+    inboxItems.set(newTask.id, newTask);
+    setInboxItems(new Map(inboxItems));
     return newTask.id;
   };
 

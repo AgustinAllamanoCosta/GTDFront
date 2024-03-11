@@ -1,8 +1,8 @@
-import { styled } from "styled-components";
-import { useRef, memo, useState } from "react";
-import faPlus from "../../assets/icons/faPlus.svg";
-import { BLACK, GREY } from "../../constants/colors";
-import { ENTER_KEY_COE } from "../../constants/keys";
+import { styled } from 'styled-components';
+import { useRef, memo, useState } from 'react';
+import faPlus from '../../assets/icons/faPlus.svg';
+import { BLACK, GREY } from '../../constants/colors';
+import { ENTER_KEY_COE } from '../../constants/keys';
 
 type ItemAddButtonProps = {
   action: (event: any) => void;
@@ -39,23 +39,19 @@ export const ItemAddButton = memo(
       }
     };
 
-    const displayCharacterLimit = (): boolean => {
-      return characterLimit != undefined && showCharacterLimit;
-    };
-
     return (
       <ItemContent data-cy={`task-add-button-${dataTest}`}>
         <Icon
           data-cy={`task-add-button-icon`}
           onClick={focusInput}
           src={faPlus}
-          alt={"Plus"}
+          alt={'Plus'}
         />
         <AddItemInput
           ref={newTaskInput}
           disabled={disable}
           data-cy={`task-add-button-input`}
-          placeholder={"Add Task"}
+          placeholder={'Add Task'}
           onBlur={(e) => {
             action(e);
             setShowCharacterLimit(false);
@@ -67,16 +63,16 @@ export const ItemAddButton = memo(
           onChange={onChange}
           onKeyDown={onInputKeyDown}
         />
-        {displayCharacterLimit() && (
+        {characterLimit && showCharacterLimit && (
           <CharacterCount>{characterLimit - value.length}</CharacterCount>
         )}
       </ItemContent>
     );
-  }
+  },
 );
 
 const CharacterCount = styled.span`
-  font-family: "Inner Normal";
+  font-family: 'Inner Normal';
   margin-left: 10px;
   font-weight: 550;
 `;

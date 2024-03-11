@@ -86,7 +86,7 @@ const ActiveTasksContainer = styled.div<{ is_mobile?: string }>`
   `
       : `
       height: 600px;
-      width: 210px;
+      width: 300px;
   `};
 `;
 
