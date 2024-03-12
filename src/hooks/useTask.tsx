@@ -115,19 +115,29 @@ export const useTask = () => {
   };
 
   const getInboxTaskToMap = (): Array<Task> => {
-    return [...inboxItems.values()];
+    const itemsToReturn: Array<Task> = [...inboxItems.values()];
+    return orderItems(itemsToReturn);
   };
 
   const getActiveTaskToMap = (): Array<Task> => {
-    return [...activeItems.values()];
+    const itemsToReturn: Array<Task> = [...activeItems.values()];
+    return orderItems(itemsToReturn);
   };
 
   const getCancelTaskToMap = (): Array<Task> => {
-    return [...cancelItems.values()];
+    const itemsToReturn: Array<Task> = [...cancelItems.values()];
+    return orderItems(itemsToReturn);
   };
 
   const getDoneTaskToMap = (): Array<Task> => {
-    return [...doneItems.values()];
+    const itemsToReturn: Array<Task> = [...doneItems.values()];
+    return orderItems(itemsToReturn);
+  };
+
+  const orderItems = (items: Array<Task>): Array<Task> => {
+    return items.sort((taskA: Task, taskB: Task) => {
+      return Date.parse(taskA.creationDate) - Date.parse(taskB.creationDate);
+    });
   };
 
   const getIsLoading = (): boolean => isLoading;
