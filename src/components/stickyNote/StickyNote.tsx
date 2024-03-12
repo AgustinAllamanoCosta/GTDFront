@@ -62,7 +62,7 @@ const TextNote = styled.textarea<{ is_mobile?: string }>`
   ${(props) =>
     props.is_mobile === 'true'
       ? `
-      width: 112px;
+      width: 100px;
   `
       : `
       width: 250px;
