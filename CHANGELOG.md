@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.26 (2024-03-12)
+
+
+### Bug Fixes
+
+* 🐛 stick text are over flow ([ac1c357](https://github.com/AgustinAllamanoCosta/GTDFront/commit/ac1c3576f9190196bde87c7882ef16bdb70568b2))
+
 ### 0.1.25 (2024-03-12)
 
 ### 0.1.24 (2024-03-12)
