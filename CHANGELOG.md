@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.27 (2024-03-12)
+
+
+### Bug Fixes
+
+* 🐛 active task padding ([50cac72](https://github.com/AgustinAllamanoCosta/GTDFront/commit/50cac7249a0f6e2e9f219f060502873a2dfc9ca9))
+
 ### 0.1.26 (2024-03-12)
 
 
