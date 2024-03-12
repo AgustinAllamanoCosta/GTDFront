@@ -31,6 +31,7 @@ export const StickyNote = memo(
         <TextContainer data-cy={`stick-note-text-container-${number}`}>
           <TextNote
             data-cy={`stick-note-text-${number}`}
+            is_mobile={`${userInformation.isMobile}`}
             value={textNoteValue}
             onChange={onChange}
           />
@@ -50,7 +51,7 @@ export const StickyNote = memo(
   },
 );
 
-const TextNote = styled.textarea`
+const TextNote = styled.textarea<{ is_mobile?: string }>`
   font-size: ${FONTS.TEXT};
   font-weight: 700;
   color: ${THEME_ONE.fontColor};
@@ -58,8 +59,16 @@ const TextNote = styled.textarea`
   border: unset;
   outline: unset;
   height: 100%;
-  overflow-y: scroll;
+  ${(props) =>
+    props.is_mobile === 'true'
+      ? `
+      width: 112px;
+  `
+      : `
+      width: 250px;
+  `};
   resize: none;
+  overflow-y: scroll;
   &::-webkit-scrollbar {
     width: 3px;
   }
