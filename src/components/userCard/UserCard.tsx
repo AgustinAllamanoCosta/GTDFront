@@ -161,5 +161,6 @@ const UserCardContainer = styled.div<{ is_mobile?: string }>`
       : `
   height: 50px;
   width: 100%;
+  padding-bottom: 24px;
   `};
 `;

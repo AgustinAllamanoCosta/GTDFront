@@ -120,11 +120,12 @@ const ContentContainer = styled.div<{ is_mobile?: string }>`
   align-items: center;
   `
       : `
-  justify-content: space-between;
-  width: 170vh;
+  justify-content: space-evenly;
   flex-direction: row;
   align-items: center;
+  width: 100%;
   height: 820px;
+  flex-wrap: nowrap;
   `};
 `;
 

@@ -67,6 +67,7 @@ const InboxTaskContainer = styled.div<{ is_mobile?: string }>`
       : `
       height: 600px;
       width: 430px;
+      padding: 8px;
   `};
 `;
 
