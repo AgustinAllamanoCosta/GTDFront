@@ -4,7 +4,7 @@ import { Card } from '../../components/card/Card';
 import faAddressCard from '../../assets/icons/addressCard.svg';
 import { FONTS } from '../../constants/size';
 import { REPO_URL } from '../../constants/routePaths';
-import { BLACK } from '../../constants/colors';
+import { THEME_ONE } from '../../constants/colors';
 import { useGoogleLoginActions } from '../../hooks/useGoogleLogin';
 import { TASK } from '../../constants/routePaths';
 
@@ -61,7 +61,7 @@ const ButtonContent = styled.div`
 const Title = styled.a`
   font-weight: bold;
   text-decoration: none;
-  color: ${BLACK};
+  color: ${THEME_ONE.fontColor};
   font-size: ${FONTS.TITLE};
 `;
 

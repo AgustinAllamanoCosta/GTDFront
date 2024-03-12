@@ -7,6 +7,7 @@ import VersionNumberTag from './components/versionTag/VersionTag';
 import { configuration } from './config/appConfig';
 import { Spiner } from './components/loadingSpiner/Spiner';
 import styled from 'styled-components';
+import { THEME_ONE } from './constants/colors';
 
 const TaskViewLazy = lazy(() => import('./views/tasks/Task'));
 const LoginViewLazy = lazy(() => import('./views/login/Login'));

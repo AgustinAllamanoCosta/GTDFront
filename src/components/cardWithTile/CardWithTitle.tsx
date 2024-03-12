@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { Card } from '../card/Card';
 import { FONTS } from '../../constants/size';
-import { BLACK } from '../../constants/colors';
+import { THEME_ONE } from '../../constants/colors';
 import { memo } from 'react';
 
 export type CardProps = {
@@ -27,7 +27,7 @@ export const CardTitle = memo(
 
 const MyTitleContainer = styled.div<{ join_tag?: boolean }>`
   border-bottom-style: solid;
-  border-bottom-color: ${BLACK};
+  border-bottom-color: ${THEME_ONE.boder};
   border-bottom-width: 1px;
   display: flex;
   flex-direction: row;

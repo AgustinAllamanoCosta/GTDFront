@@ -9,13 +9,13 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
       class="sc-bXxmBy fAEwdg"
     >
       <div
-        class="sc-dBwcjI fsysFb"
+        class="sc-dBwcjI bSENHT"
         data-cy="Card-Contents"
         is_center="true"
         padding="true"
       >
         <a
-          class="sc-dMnqAs dOugPz"
+          class="sc-dMnqAs cJUjLv"
           data-cy="Login-Title"
           href="https://github.com/AgustinAllamanoCosta/GTDFront"
           target="_blank"
@@ -26,7 +26,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
           class="sc-jlOLRj jnZxFa"
         >
           <div
-            class="sc-hfDuwB hZBRcw"
+            class="sc-hfDuwB hqokru"
             data-cy="button-Login With Google"
           >
             <span

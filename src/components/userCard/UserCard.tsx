@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { FONTS, SIZE } from '../../constants/size';
 import { Button } from '../button/Button';
-import { BLACK, GREY } from '../../constants/colors';
+import { THEME_ONE } from '../../constants/colors';
 import { REPO_URL } from '../../constants/routePaths';
 import { useContext } from 'react';
 import { UserInformationContext } from '../../contexts/userContext';
@@ -72,7 +72,7 @@ export const UserCard = ({
 };
 
 const Bar = styled.div`
-  background-color: ${GREY};
+  background-color: ${THEME_ONE.cardBackGround};
   border-radius: 10px;
   width: 100%;
   height: 100%;
@@ -81,8 +81,7 @@ const Bar = styled.div`
 `;
 
 const BarDesk = styled.div`
-  background-color: ${GREY};
-  border-radius: 10px;
+  background-color: ${THEME_ONE.cardBackGround};
   width: 100%;
   height: 100%;
   display: flex;
@@ -132,7 +131,7 @@ const MyAvatarDataHeaderDesk = styled.div`
 const MyTitle = styled.a`
   font-size: 24px;
   text-decoration: none;
-  color: ${BLACK};
+  color: ${THEME_ONE.fontColor};
 `;
 
 const MySubTitle = styled.span`
@@ -144,12 +143,14 @@ const UserCardContainer = styled.div<{ is_mobile?: string }>`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-content: center;
   align-items: center;
-  margin-bottom: 16px;
+  -webkit-box-shadow: 5px 5px 0px 0px rgba(7, 15, 43, 1);
+  -moz-box-shadow: 5px 5px 0px 0px rgba(7, 15, 43, 1);
+  box-shadow: 5px 5px 0px 0px rgba(7, 15, 43, 1);
   ${(props) =>
     props.is_mobile === 'true'
       ? `
+  margin-bottom: 16px;
   margin-top: 10px;
   min-height: 90px;
   min-width: 280px;

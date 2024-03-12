@@ -1,7 +1,7 @@
 import { REPO_URL } from '../../constants/routePaths';
 import { styled } from 'styled-components';
 import pjson from '../../../package.json';
-import { GREY } from '../../constants/colors';
+import { THEME_ONE } from '../../constants/colors';
 
 const VersionNumberTag = () => {
   return (
@@ -26,7 +26,7 @@ const TagContainer = styled.div`
 `;
 
 const VersionTag = styled.a`
-  color: ${GREY};
+  color: ${THEME_ONE.fontColor};
   font-family: 'InerNormal' !important;
 `;
 

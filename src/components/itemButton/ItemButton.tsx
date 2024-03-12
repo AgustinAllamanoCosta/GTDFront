@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { useRef, memo, useState } from 'react';
 import faPlus from '../../assets/icons/faPlus.svg';
-import { BLACK, GREY } from '../../constants/colors';
+import { THEME_ONE } from '../../constants/colors';
 import { ENTER_KEY_COE } from '../../constants/keys';
 
 type ItemAddButtonProps = {
@@ -72,14 +72,14 @@ export const ItemAddButton = memo(
 );
 
 const CharacterCount = styled.span`
-  font-family: 'Inner Normal';
+  font-family: 'InerNormal';
   margin-left: 10px;
   font-weight: 550;
 `;
 
 const ItemContent = styled.div`
   border-bottom-style: solid;
-  border-bottom-color: ${BLACK};
+  border-bottom-color: ${THEME_ONE.boder};
   border-bottom-width: 1px;
   display: flex;
   flex-direction: row;
@@ -91,18 +91,21 @@ const ItemContent = styled.div`
 
 const AddItemInput = styled.input`
   border: 0px;
-  background-color: ${GREY};
+  font-family: 'InerNormal';
+  font-weight: 600;
+  background-color: ${THEME_ONE.cardBackGround};
+  color: ${THEME_ONE.fontColor};
   width: 85%;
   outline-width: 1px;
   border-radius: 2px;
   padding: 3px;
   &::placeholder {
-    color: ${BLACK};
-    font-weight: bold;
+    color: ${THEME_ONE.fontColor};
   }
 `;
 
 const Icon = styled.img`
+  filter: invert(100%);
   width: 14px;
   height: 14px;
 `;

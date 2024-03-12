@@ -1,7 +1,7 @@
 import 'react';
 import { styled } from 'styled-components';
 import TaskList from '../../assets/icons/taskList.svg';
-import { GREY } from '../../constants/colors';
+import { THEME_ONE } from '../../constants/colors';
 
 export const Spiner = (): React.JSX.Element => {
   return (
@@ -19,13 +19,14 @@ const ButtonAndNoteContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: ${GREY};
+  background-color: ${THEME_ONE.cardBackGround};
   border-radius: 14px;
   width: 43vh;
   height: 25vh;
 `;
 
 const Icon = styled.img`
+  filter: invert(100%);
   @keyframes animating-multiple-properties {
     from {
       transform: translateX(-50px);

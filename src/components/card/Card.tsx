@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { styled } from 'styled-components';
-import { GREY } from '../../constants/colors';
+import { GREY, THEME_ONE } from '../../constants/colors';
 
 export type CardProps = {
   content_center?: boolean;
@@ -27,7 +27,7 @@ export const Card = memo(
 );
 
 const MyCard = styled.div<{ is_center?: string; padding?: string }>`
-  background-color: ${GREY};
+  background-color: ${THEME_ONE.cardBackGround};
   border-radius: 10px;
   width: 100%;
   height: 100%;
@@ -36,4 +36,7 @@ const MyCard = styled.div<{ is_center?: string; padding?: string }>`
   ${(props) => (props.is_center === 'true' ? `align-items: center;` : ``)};
   ${(props) => (props.is_center === 'true' ? `justify-content: center;` : ``)};
   ${(props) => (props.padding === 'true' ? `padding: 5px;` : ``)};
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 `;

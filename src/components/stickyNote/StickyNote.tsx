@@ -2,7 +2,7 @@ import { useState, memo, useContext } from 'react';
 import { styled } from 'styled-components';
 import faCheck from '../../assets/icons/check.svg';
 import { FONTS } from '../../constants/size';
-import { BLACK, GREEN, YELLOW } from '../../constants/colors';
+import { THEME_ONE } from '../../constants/colors';
 import { UserInformationContext } from '../../contexts/userContext';
 
 export type StickyNoteProps = {
@@ -53,6 +53,7 @@ export const StickyNote = memo(
 const TextNote = styled.textarea`
   font-size: ${FONTS.TEXT};
   font-weight: 700;
+  color: ${THEME_ONE.fontColor};
   background-color: unset;
   border: unset;
   outline: unset;
@@ -63,7 +64,7 @@ const TextNote = styled.textarea`
     width: 3px;
   }
   &::-webkit-scrollbar-thumb {
-    background: ${BLACK};
+    background: ${THEME_ONE.backgorund};
     border-radius: 10px;
   }
 `;
@@ -79,19 +80,23 @@ const ButtonContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   border-top: 1px solid;
+  border-top-color: ${THEME_ONE.boder};
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   height: 16px;
   padding: 3px;
   &:hover {
-    background-color: ${GREEN};
+    background-color: ${THEME_ONE.stickButton};
   }
 `;
 
 const ButtonAndNoteContainer = styled.div<{ is_mobile?: string }>`
   display: flex;
   flex-direction: column;
-  background-color: ${YELLOW};
+  background-color: ${THEME_ONE.stickBackGround};
+  -webkit-box-shadow: 5px 5px 0px 0px rgba(7, 15, 43, 1);
+  -moz-box-shadow: 5px 5px 0px 0px rgba(7, 15, 43, 1);
+  box-shadow: 5px 5px 0px 0px rgba(7, 15, 43, 1);
   ${(props) =>
     props.is_mobile === 'true'
       ? `
@@ -107,6 +112,7 @@ const ButtonAndNoteContainer = styled.div<{ is_mobile?: string }>`
 `;
 
 const Icon = styled.img`
+  filter: invert(100%);
   width: 14px;
   height: 15px;
 `;

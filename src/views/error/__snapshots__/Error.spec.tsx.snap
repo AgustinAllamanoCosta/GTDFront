@@ -9,7 +9,7 @@ exports[`Error View Should render an Error view  1`] = `
       class="sc-bXxmBy dHniBR"
     >
       <div
-        class="sc-hfDuwB hsgPwo"
+        class="sc-hfDuwB JWWdo"
         data-cy="Card-Contents"
         is_center="true"
         padding="true"
@@ -25,7 +25,7 @@ exports[`Error View Should render an Error view  1`] = `
           data-cy="Error-view-message"
         />
         <div
-          class="sc-jCIOXC fChOOW"
+          class="sc-jCIOXC hEvA-Ds"
           data-cy="button-OK"
         >
           <span

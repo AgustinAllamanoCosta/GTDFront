@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { styled } from 'styled-components';
 import { FONTS } from '../../constants/size';
-import { BLACK } from '../../constants/colors';
+import { THEME_ONE } from '../../constants/colors';
 
 export type ButtonProps = {
   text: string;
@@ -31,14 +31,14 @@ export const Button = memo(
 
 const ButtonContainer = styled.div`
   display: inline-flex;
-  width: min-content;
+  width: auto;
   flex-direction: row;
   margin-top: 5px;
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
   border-bottom-style: solid;
-  border-bottom-color: ${BLACK};
+  border-bottom-color: ${THEME_ONE.boder};
   border-bottom-width: 1px;
   cursor: pointer;
   font-weight: bold;
@@ -51,6 +51,7 @@ const ButtonText = styled.span`
 `;
 
 const Icon = styled.img`
+  filter: invert(100%);
   width: 14px;
   height: 14px;
   padding-left: 5px;

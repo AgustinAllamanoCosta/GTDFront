@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import faBoxes from '../../assets/icons/boxes.svg';
 import { FONTS } from '../../constants/size';
 import { memo } from 'react';
-import { BLACK } from '../../constants/colors';
+import { THEME_ONE } from '../../constants/colors';
 
 export type ItemProps = {
   title: string;
@@ -33,10 +33,10 @@ const ItemContainer = styled.div``;
 
 const ItemContent = styled.div`
   border-bottom-style: solid;
-  border-bottom-color: ${BLACK};
+  border-bottom-color: ${THEME_ONE.boder};
   border-bottom-width: 1px;
-  padding-bottom: 3px;
-  padding-top: 3px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -54,12 +54,13 @@ const ItemText = styled.span`
     height: 0px;
   }
   &::-webkit-scrollbar-thumb {
-    background: ${BLACK};
+    background: ${THEME_ONE.backgorund};
     border-radius: 10px;
   }
 `;
 
 const Icon = styled.img`
+  filter: invert(100%);
   width: 14px;
   height: 14px;
   padding-right: 5px;

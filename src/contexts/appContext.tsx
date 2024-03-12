@@ -6,7 +6,7 @@ import MetricContext from '../components/useEvent/useEvent';
 import UserContext from '../components/useUserInformation/useUserInformation';
 import GoogleAuthContext from '../components/useGoogleAuth/useGoogleAuth';
 import { configuration } from '../config/appConfig';
-import { BLACK } from '../constants/colors';
+import { THEME_ONE } from '../constants/colors';
 import InerFontBold from '../assets/fonts/Inter-Bold.ttf';
 import InerFontNormal from '../assets/fonts/Inter-Regular.ttf';
 import { firebaseData } from '../hooks/useFirebase';
@@ -60,10 +60,11 @@ const GlobalStyles = createGlobalStyle`
     font-style: normal;
   }
   body {
-    background-color: ${BLACK};
+    background-color: ${THEME_ONE.backgorund};
+    color: ${THEME_ONE.fontColor};
     font-family: 'Iner';
+    margin: 0px;
   }
-
 `;
 
 export default AppContext;
