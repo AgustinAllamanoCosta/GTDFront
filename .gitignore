@@ -30,5 +30,6 @@ coverage
 **/cypress.env.json
 .env*
 .flaskenv*
+dev-dist
 !.env.project
 !.env.vault
