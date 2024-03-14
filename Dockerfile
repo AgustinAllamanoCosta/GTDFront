@@ -15,4 +15,4 @@ RUN yarn install --ignore-scripts
 COPY . /app/
 
 EXPOSE 8080
-CMD ["yarn","preview"]
+CMD ["yarn","dev"]

@@ -43,7 +43,7 @@ export default defineConfig({
         sourcemap: true,
       },
       devOptions: {
-        enabled: true,
+        enabled: false,
       },
     }),
   ],
