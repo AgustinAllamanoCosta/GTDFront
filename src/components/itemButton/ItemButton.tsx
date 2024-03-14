@@ -1,8 +1,8 @@
-import { styled } from "styled-components";
-import { useRef, memo, useState } from "react";
-import faPlus from "../../assets/icons/faPlus.svg";
-import { THEME_ONE } from "../../constants/colors";
-import { ENTER_KEY_COE } from "../../constants/keys";
+import { styled } from 'styled-components';
+import { useRef, memo, useState } from 'react';
+import faPlus from '../../assets/icons/faPlus.svg';
+import { THEME_ONE } from '../../constants/colors';
+import { ENTER_KEY_COE } from '../../constants/keys';
 
 type ItemAddButtonProps = {
   action: (event: any) => void;
@@ -45,13 +45,13 @@ export const ItemAddButton = memo(
           data-cy={`task-add-button-icon`}
           onClick={focusInput}
           src={faPlus}
-          alt={"Plus"}
+          alt={'Plus'}
         />
         <AddItemInput
           ref={newTaskInput}
           disabled={disable}
           data-cy={`task-add-button-input`}
-          placeholder={"Add Task"}
+          placeholder={'Add Task'}
           onBlur={(e) => {
             action(e);
             setShowCharacterLimit(false);
@@ -68,11 +68,11 @@ export const ItemAddButton = memo(
         )}
       </ItemContent>
     );
-  }
+  },
 );
 
 const CharacterCount = styled.span`
-  font-family: "InerNormal";
+  font-family: 'InerNormal';
   margin-left: 10px;
   font-weight: 550;
 `;
@@ -91,7 +91,7 @@ const ItemContent = styled.div`
 
 const AddItemInput = styled.input`
   border: 0px;
-  font-family: "InerNormal";
+  font-family: 'InerNormal';
   font-weight: 600;
   background-color: ${THEME_ONE.cardBackGround};
   color: ${THEME_ONE.fontColor};
