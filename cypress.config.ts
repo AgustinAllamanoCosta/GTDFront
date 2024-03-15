@@ -16,10 +16,10 @@ export default defineConfig({
     specPattern: '**/*.cy.tsx',
   },
   env: {
-    BASE_URL: 'http://localhost:8080/',
     isMobile: false,
   },
   e2e: {
+    baseUrl: 'http://localhost:8080/',
     setupNodeEvents(on, config) {
       on('task', {
         async cleanDB() {

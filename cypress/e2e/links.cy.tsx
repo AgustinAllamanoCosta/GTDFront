@@ -14,7 +14,7 @@ describe('Get The Things Done Links', () => {
   });
 
   it('Should redicrect to the repo', () => {
-    cy.visit(Cypress.env('BASE_URL'));
+    cy.visit('/');
     cy.get('[data-cy="User-Card-Header"] > [data-cy="Card-title"]').should(
       'have.attr',
       'href',

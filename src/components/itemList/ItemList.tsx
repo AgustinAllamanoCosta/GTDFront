@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { ItemAddButton } from '../itemButton/ItemButton';
 import { ItemWithActions } from '../itemWithActions/ItemWithActions';
 import { TaskInformationContext } from '../../contexts/taskContext';
@@ -21,8 +21,10 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
   const itemsInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
   const { eventBus } = useContext(EventContext);
+  const refToList = useRef<HTMLDivElement[]>([]);
 
   const [value, setValue] = useState<string>('');
+
   const activeTask = itemsInformation.getActiveTaskToMap();
   const inboxToMap = itemsInformation.getInboxTaskToMap();
 
@@ -100,17 +102,32 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
     }
   };
 
-  const itemComponentsList: React.JSX.Element[] = inboxToMap.map(
-    (item: Task) => (
-      <ItemWithActions
-        key={`${item.id}-${item.title}`}
-        title={item.title}
-        onAcive={() => onActiveTask(item.id)}
-        onCancel={() => onCancelTask(item.id)}
-        onSplit={(taskOne: string, taskTwo: string) =>
-          buttonAddSplitTask(taskOne, taskTwo, item.id)
-        }
-      />
+  const itemComponentsList: React.ReactNode[] = inboxToMap.map(
+    (item: Task, index: number) => (
+      <div
+        ref={(el) => {
+          if (el) {
+            refToList.current[index] = el;
+          }
+          return refToList;
+        }}
+        onClick={() => {
+          refToList?.current[index].scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          });
+        }}
+      >
+        <ItemWithActions
+          key={`${item.id}-${item.title}`}
+          title={item.title}
+          onAcive={() => onActiveTask(item.id)}
+          onCancel={() => onCancelTask(item.id)}
+          onSplit={(taskOne: string, taskTwo: string) =>
+            buttonAddSplitTask(taskOne, taskTwo, item.id)
+          }
+        />
+      </div>
     ),
   );
 
@@ -126,17 +143,15 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
         {itemsInformation.getIsLoading() ? (
           <Spiner />
         ) : (
-          <>
-            <ItemAddButton
-              onChange={onChangeButton}
-              value={value}
-              action={buttonAdd}
-              disable={itemsInformation.getIsLoading()}
-              characterLimit={CHARACTER_LIMIT}
-            />
-            <InboxContainer>{itemComponentsList}</InboxContainer>
-          </>
+          <ItemAddButton
+            onChange={onChangeButton}
+            value={value}
+            action={buttonAdd}
+            disable={itemsInformation.getIsLoading()}
+            characterLimit={CHARACTER_LIMIT}
+          />
         )}
+        <InboxContainer>{itemComponentsList}</InboxContainer>
       </CardTitle>
     </InboxTaskContainer>
   );

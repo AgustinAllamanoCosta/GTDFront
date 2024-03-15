@@ -90,11 +90,16 @@ export const ItemWithActions = memo(
     };
 
     return (
-      <ItemContainer onMouseLeave={() => setShowButton(false)}>
+      <ItemContainer
+        onMouseLeave={() => {
+          setShowButton(false);
+        }}
+      >
         <Item
           title={title}
-          onMouseOver={() => setShowButton(true)}
-          onClick={() => setShowButton(!showButton)}
+          onClick={() => {
+            setShowButton(!showButton);
+          }}
         />
         {showSplit && (
           <SplitForm
@@ -144,7 +149,9 @@ const SplitInputContainer = styled.div`
   padding-left: 20px;
 `;
 
-const ItemContainer = styled.div``;
+const ItemContainer = styled.div`
+  cursor: pointer;
+`;
 
 const ButtonContainer = styled.div`
   display: flex;
