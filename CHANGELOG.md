@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.30 (2024-03-15)
+
+
+### Features
+
+* 🎸 add new scroll in list and when a item is created ([b6953ce](https://github.com/AgustinAllamanoCosta/GTDFront/commit/b6953cea1542481339cf88e84124758de4941ce9))
+
 ### 0.1.29 (2024-03-14)
 
 ### 0.1.28 (2024-03-12)
