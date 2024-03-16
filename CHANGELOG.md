@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.31 (2024-03-16)
+
+
+### Bug Fixes
+
+* 🐛 caching of task in local storage for user ([e78108a](https://github.com/AgustinAllamanoCosta/GTDFront/commit/e78108aa52baccdd5a95db76b8880546a921c0e8))
+
 ### 0.1.30 (2024-03-15)
 
 
