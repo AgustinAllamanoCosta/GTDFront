@@ -34,6 +34,7 @@ const TaskView = ({
   const logOut = useCallback(() => {
     googleLogout();
     userInformation.setUserData(undefined);
+    itemContext.clearCache();
     navigate('/');
   }, [userInformation.userData]);
 

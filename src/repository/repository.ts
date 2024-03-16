@@ -74,6 +74,10 @@ export const repository = (userId: string, useFireBase: Firestore) => {
     };
   };
 
+  const clearCache = () => {
+    saveItems(undefined);
+  };
+
   const clear = async () => {
     const userTaskDoc = doc(useFireBase, FIRE_BASE_COLLECTION_NAME, userId);
     await deleteDoc(userTaskDoc);
@@ -83,5 +87,6 @@ export const repository = (userId: string, useFireBase: Firestore) => {
     save,
     clear,
     getData,
+    clearCache,
   };
 };

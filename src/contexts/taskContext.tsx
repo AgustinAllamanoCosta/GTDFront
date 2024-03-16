@@ -17,6 +17,7 @@ export const TaskInformationContext = createContext<{
   setInboxTask: (a: any) => void;
   setCancelItems: (a: any) => void;
   setDoneItems: (a: any) => void;
+  clearCache: () => void;
 }>({
   getIsLoading: () => true,
   getActiveTaskToMap: () => {
@@ -45,4 +46,5 @@ export const TaskInformationContext = createContext<{
   setInboxTask: (a: any) => {},
   setCancelItems: (a: any) => {},
   setDoneItems: (a: any) => {},
+  clearCache: () => {},
 });

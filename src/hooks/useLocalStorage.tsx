@@ -7,8 +7,9 @@ export const useLocalStorage = () => {
   const ITEMS_KEY: string = 'items';
   const USER_DATA_KEY: string = 'userData';
 
-  const saveItems = (items: UserTaskData) => {
-    save(ITEMS_KEY, items);
+  const saveItems = (items: UserTaskData | undefined) => {
+    if (items) save(ITEMS_KEY, items);
+    else deleteKey(ITEMS_KEY);
   };
 
   const getItem = () => {

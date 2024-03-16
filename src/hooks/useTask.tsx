@@ -20,7 +20,7 @@ export const useTask = () => {
   const userInformation = useContext(UserInformationContext);
   const { estimateTask } = useAIAssistance(configuration);
 
-  const { getData, save } = repository(
+  const { getData, save, clearCache } = repository(
     userInformation.userData?.id ? userInformation.userData?.id : '',
     firebaseData.useFireBase,
   );
@@ -142,6 +142,14 @@ export const useTask = () => {
 
   const getIsLoading = (): boolean => isLoading;
 
+  const clearTask = () => {
+    clearCache();
+    setDoneItems(new Map());
+    setInboxItems(new Map());
+    setActiveItems(new Map());
+    setCancelItems(new Map());
+  };
+
   useEffect(() => {
     if (userInformation?.userData?.id && isLoading)
       loadTask()
@@ -183,5 +191,6 @@ export const useTask = () => {
     setDoneItems,
     setInboxTask: setInboxItems,
     refreshData: loadTask,
+    clearCache: clearTask,
   };
 };
