@@ -44,6 +44,15 @@ describe('Get The Things Done Login and Logout', () => {
       `Hi ${USER_NAME} !`,
     );
   });
+
+  it.skip('Should not load the task from the previous user', () => {
+    const taskContent: string = 'some task to do';
+
+    cy.visit('/');
+    cy.get('[data-cy="task-add-button-input"]').type(taskContent);
+    cy.get('[data-cy="task-add-button-input"]').type('{enter}');
+    cy.get('[data-cy="button-text"]').click();
+  });
 });
 
 export {};

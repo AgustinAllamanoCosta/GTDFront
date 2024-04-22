@@ -40,6 +40,7 @@ const TaskView = ({
 
   useEffect(() => {
     try {
+      itemContext.refreshData();
       if (userData) {
         userInformation.setUserData(userData);
       }

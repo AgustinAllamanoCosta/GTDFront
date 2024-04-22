@@ -30,15 +30,18 @@ export const useTask = () => {
   const [inboxItems, setInboxItems] = useState<InboxTasks>(new Map());
   const [doneItems, setDoneItems] = useState<DoneTasks>(new Map());
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isClearCaching, setIsClearCaching] = useState<boolean>(false);
 
   const loadTask = async () => {
     try {
       if (userInformation?.userData?.id) {
+        setIsLoading(true);
         const userTaskData: UserTaskData = await getData();
         if (userTaskData.doneItems) setDoneItems(userTaskData.doneItems);
         if (userTaskData.inboxItems) setInboxItems(userTaskData.inboxItems);
         if (userTaskData.activeItems) setActiveItems(userTaskData.activeItems);
         if (userTaskData.cancelItems) setCancelItems(userTaskData.cancelItems);
+        setIsLoading(false);
       }
     } catch (error: any) {
       errorContext.setFlagError(true);
@@ -143,6 +146,7 @@ export const useTask = () => {
   const getIsLoading = (): boolean => isLoading;
 
   const clearTask = () => {
+    setIsClearCaching(true);
     clearCache();
     setDoneItems(new Map());
     setInboxItems(new Map());
@@ -151,23 +155,19 @@ export const useTask = () => {
   };
 
   useEffect(() => {
-    if (userInformation?.userData?.id && isLoading)
-      loadTask()
-        .then(() => setIsLoading(false))
-        .catch((error: any) => {
+    if (userInformation?.userData?.id) {
+      if (!isLoading && !isClearCaching) {
+        saveTask().catch((error: any) => {
           errorContext.setFlagError(true);
           errorContext.setError(error);
         });
-  }, [isLoading, userInformation?.userData?.id]);
+      }
 
-  useEffect(() => {
-    if (userInformation?.userData?.id && !isLoading)
-      saveTask().catch((error: any) => {
-        errorContext.setFlagError(true);
-        errorContext.setError(error);
-      });
+      if (isClearCaching) {
+        setIsClearCaching(false);
+      }
+    }
   }, [
-    isLoading,
     userInformation.userData?.id,
     activeItems,
     doneItems,
