@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.32 (2024-04-22)
+
+
+### Bug Fixes
+
+* 🐛 switch user and load wrong task ([cac69d0](https://github.com/AgustinAllamanoCosta/GTDFront/commit/cac69d086b76f2f3c379d184615154975c7db2b1))
+
 ### 0.1.31 (2024-03-16)
 
 
