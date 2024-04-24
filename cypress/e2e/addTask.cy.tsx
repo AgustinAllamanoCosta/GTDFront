@@ -16,6 +16,27 @@ describe('Get The Things Done Task', () => {
     window.localStorage.clear();
   });
 
+  it('Should not add an empty task', () => {
+    const taskContent: string = 'some task to do';
+    cy.visit('/');
+
+    cy.get('[data-cy="task-add-button-input"]').click();
+    cy.get('[data-cy="button-accept"]').click();
+
+    cy.get('[data-cy="button-accept"]').should('not.exist');
+    cy.get('[data-cy="task-"]').should('not.exist');
+  });
+
+  it('Should add a new task', () => {
+    const taskContent: string = 'some task to do';
+    cy.visit('/');
+    cy.get('[data-cy="task-add-button-input"]').type(taskContent);
+    cy.get('[data-cy="button-accept"]').click();
+
+    cy.get('[data-cy="button-accept"]').should('not.exist');
+    cy.get('[data-cy="task-some task to do"]').should('have.text', taskContent);
+  });
+
   it('Should add a new task', () => {
     const taskContent: string = 'some task to do';
     cy.visit('/');
@@ -183,6 +204,20 @@ describe('Get The Things Done Task', () => {
       'have.text',
       taskContentOne,
     );
+  });
+
+  it('Should add a daily task and mark as complete and reapear in inbox taks and in the done list', () => {
+    const taskContent: string = 'some task to do';
+    cy.visit('/');
+    cy.get('[data-cy="task-add-button-input"]').type(taskContent);
+    cy.get('[data-cy="button-make daily"]').click();
+    cy.get('[data-cy="task-some task to do"]').click();
+    cy.get('[data-cy="button-active"]').click();
+
+    cy.get('[data-cy="stick-note-button-0"]').click();
+
+    cy.get('[data-cy="stick-note-text-0"]').should('not.exist');
+    cy.get('[data-cy="task-some task to do"]').should('have.length', 2);
   });
 });
 

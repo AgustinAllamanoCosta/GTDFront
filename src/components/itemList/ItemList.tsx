@@ -28,16 +28,16 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
   const activeTask = itemsInformation.getActiveTaskToMap();
   const inboxToMap = itemsInformation.getInboxTaskToMap();
 
-  const buttonAdd = (event: any) => {
-    if (event.target.value !== '') {
-      itemsInformation.addNewTask(event.target.value, '');
+  const buttonAdd = (makeDaily: boolean = false) => {
+    if (value) {
+      itemsInformation.addNewTask(value, '', makeDaily);
       setValue('');
       eventBus.publish({
         name: SUBSCRIBER_NAMES.METRICS,
         data: {
           name: 'addItem',
           userId: userInformation.userData?.id,
-          taskLenght: event.target.value.lenght,
+          taskLenght: value.length,
         },
       });
     }
@@ -53,8 +53,8 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
 
     if (parentTask) {
       parentTask.childTask = {
-        taksOne: itemsInformation.addNewTask(newTaskOne, parentTaskId),
-        taksTwo: itemsInformation.addNewTask(newTaskTwo, parentTaskId),
+        taksOne: itemsInformation.addNewTask(newTaskOne, parentTaskId, false),
+        taksTwo: itemsInformation.addNewTask(newTaskTwo, parentTaskId, false),
       };
       itemsInformation.cancelTask(parentTask.id);
 
@@ -143,15 +143,22 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
         {itemsInformation.getIsLoading() ? (
           <Spiner />
         ) : (
-          <ItemAddButton
-            onChange={onChangeButton}
-            value={value}
-            action={buttonAdd}
-            disable={itemsInformation.getIsLoading()}
-            characterLimit={CHARACTER_LIMIT}
-          />
+          <>
+            <ItemAddButton
+              onChange={onChangeButton}
+              value={value}
+              action={() => {
+                buttonAdd(false);
+              }}
+              disable={itemsInformation.getIsLoading()}
+              characterLimit={CHARACTER_LIMIT}
+              onMakeDaily={() => {
+                buttonAdd(true);
+              }}
+            />
+            <InboxContainer>{itemComponentsList}</InboxContainer>
+          </>
         )}
-        <InboxContainer>{itemComponentsList}</InboxContainer>
       </CardTitle>
     </InboxTaskContainer>
   );

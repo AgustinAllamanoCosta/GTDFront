@@ -3,10 +3,12 @@ import { useRef, memo, useState } from 'react';
 import faPlus from '../../assets/icons/faPlus.svg';
 import { THEME_ONE } from '../../constants/colors';
 import { ENTER_KEY_COE } from '../../constants/keys';
+import { Button } from '../button/Button';
 
 type ItemAddButtonProps = {
-  action: (event: any) => void;
+  action: () => void;
   onChange: (event: any) => void;
+  onMakeDaily?: () => void;
   value: string;
   dataTest?: string;
   disable?: boolean;
@@ -17,6 +19,7 @@ export const ItemAddButton = memo(
   ({
     onChange,
     action,
+    onMakeDaily,
     value,
     dataTest,
     disable = false,
@@ -35,38 +38,57 @@ export const ItemAddButton = memo(
       const keyCode = event.keyCode;
       if (keyCode === ENTER_KEY_COE) {
         event.preventDefault();
-        action(event);
+        action();
+        setShowCharacterLimit(false);
       }
     };
 
     return (
-      <ItemContent data-cy={`task-add-button-${dataTest}`}>
-        <Icon
-          data-cy={`task-add-button-icon`}
-          onClick={focusInput}
-          src={faPlus}
-          alt={'Plus'}
-        />
-        <AddItemInput
-          ref={newTaskInput}
-          disabled={disable}
-          data-cy={`task-add-button-input`}
-          placeholder={'Add Task'}
-          onBlur={(e) => {
-            action(e);
-            setShowCharacterLimit(false);
-          }}
-          onFocus={(e) => {
-            setShowCharacterLimit(true);
-          }}
-          value={value}
-          onChange={onChange}
-          onKeyDown={onInputKeyDown}
-        />
-        {characterLimit && showCharacterLimit && (
-          <CharacterCount>{characterLimit - value.length}</CharacterCount>
+      <div
+        onFocus={() => setShowCharacterLimit(true)}
+        onMouseLeave={() => setShowCharacterLimit(false)}
+      >
+        <ItemContent data-cy={`task-add-button-${dataTest}`}>
+          <Icon
+            data-cy={`task-add-button-icon`}
+            onClick={focusInput}
+            src={faPlus}
+            alt={'Plus'}
+          />
+          <AddItemInput
+            ref={newTaskInput}
+            disabled={disable}
+            data-cy={`task-add-button-input`}
+            placeholder={'Add Task'}
+            value={value}
+            onChange={onChange}
+            onKeyDown={onInputKeyDown}
+          />
+          {characterLimit && showCharacterLimit && (
+            <CharacterCount>{characterLimit - value.length}</CharacterCount>
+          )}
+        </ItemContent>
+        {showCharacterLimit && (
+          <ButtonContainer>
+            <Button
+              text={'accept'}
+              onClick={() => {
+                action();
+                setShowCharacterLimit(false);
+              }}
+            />
+            {onMakeDaily && (
+              <Button
+                text={'make daily'}
+                onClick={() => {
+                  onMakeDaily();
+                  setShowCharacterLimit(false);
+                }}
+              />
+            )}
+          </ButtonContainer>
         )}
-      </ItemContent>
+      </div>
     );
   },
 );
@@ -108,4 +130,12 @@ const Icon = styled.img`
   filter: invert(100%);
   width: 14px;
   height: 14px;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-evenly;
+  padding-left: 9px;
 `;

@@ -60,14 +60,18 @@ export const useTask = () => {
     await save(taskToSave);
   };
 
-  const addNewTask = (newTaskTitle: string, parentId: string, itsRepeat: boolean = false) => {
+  const addNewTask = (
+    newTaskTitle: string,
+    parentId: string,
+    itsRepeat: boolean = false,
+  ) => {
     const newTask: Task = {
       id: uuidv4(),
       title: newTaskTitle,
       parentTask: parentId,
       creationDate: new Date().toISOString(),
       points: 0,
-      repiteTask: itsRepeat
+      repiteTask: itsRepeat,
     };
     if (false) {
       estimateTask(newTask)
@@ -108,11 +112,12 @@ export const useTask = () => {
   const doneTask = (taskId: string) => {
     const taskToDone: Task | undefined = activeItems.get(taskId);
     if (taskToDone) {
-      if(taskToDone.repiteTask){
-        doneItems.set(taskToDone.id, {...taskToDone});
+      if (taskToDone.repiteTask) {
+        doneItems.set(taskToDone.id, { ...taskToDone });
         activeItems.delete(taskId);
-        inboxItems.set(taskToDone.id, taskToDone);
-      }else{
+        const parentId: string = taskToDone?.parentTask ? taskToDone.parentTask : '';
+        addNewTask(taskToDone.title,parentId, true);
+      } else {
         doneItems.set(taskId, taskToDone);
         activeItems.delete(taskId);
       }
@@ -161,9 +166,14 @@ export const useTask = () => {
     setCancelItems(new Map());
   };
 
-  const isDataToStore = (): boolean =>{
-    return inboxItems.size > 0 || activeItems.size > 0 || cancelItems.size > 0 || doneItems.size > 0;
-  }
+  const isDataToStore = (): boolean => {
+    return (
+      inboxItems.size > 0 ||
+      activeItems.size > 0 ||
+      cancelItems.size > 0 ||
+      doneItems.size > 0
+    );
+  };
 
   useEffect(() => {
     if (userInformation?.userData?.id) {

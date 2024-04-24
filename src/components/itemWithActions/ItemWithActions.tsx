@@ -71,7 +71,12 @@ const SplitForm = ({
 };
 
 export const ItemWithActions = memo(
-  ({ title, onCancel, onAcive, onSplit }: ItemProps): React.JSX.Element => {
+  ({
+    title = '',
+    onCancel,
+    onAcive,
+    onSplit,
+  }: ItemProps): React.JSX.Element => {
     const [showButton, setShowButton] = useState<boolean>(false);
     const [showSplit, setShowSplit] = useState<boolean>(false);
 
