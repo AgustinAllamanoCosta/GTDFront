@@ -7,12 +7,12 @@ export const useLocalStorage = () => {
   const ITEMS_KEY: string = 'items';
   const USER_DATA_KEY: string = 'userData';
 
-  const saveItems = (items: UserTaskData | undefined) => {
+  const saveItems = (items: UserTaskData | undefined): void => {
     if (items) save(ITEMS_KEY, items);
     else deleteKey(ITEMS_KEY);
   };
 
-  const getItem = () => {
+  const getItem = (): UserTaskData | undefined => {
     return get(ITEMS_KEY);
   };
 
@@ -21,11 +21,11 @@ export const useLocalStorage = () => {
     else deleteKey(USER_DATA_KEY);
   };
 
-  const getUserData = () => {
+  const getUserData = (): UserData | undefined => {
     return get(USER_DATA_KEY);
   };
 
-  const save = (key: string, item: any) => {
+  const save = (key: string, item: any): void => {
     const data: any = secureLocalStorage.getItem(LOCAL_STORAGE_KEY);
     if (data) {
       data[key] = item;
@@ -37,7 +37,7 @@ export const useLocalStorage = () => {
     }
   };
 
-  const get = (key: string) => {
+  const get = (key: string): any | undefined => {
     const gtdData: any = secureLocalStorage.getItem(LOCAL_STORAGE_KEY);
     if (gtdData) {
       return gtdData[key];
@@ -45,7 +45,7 @@ export const useLocalStorage = () => {
     return undefined;
   };
 
-  const deleteKey = (key: string) => {
+  const deleteKey = (key: string): void => {
     const gtdData: any = secureLocalStorage.getItem(LOCAL_STORAGE_KEY);
     if (gtdData) {
       delete gtdData[key];

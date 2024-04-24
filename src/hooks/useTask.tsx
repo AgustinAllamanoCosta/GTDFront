@@ -20,7 +20,7 @@ export const useTask = () => {
   const userInformation = useContext(UserInformationContext);
   const { estimateTask } = useAIAssistance(configuration);
 
-  const { getData, save, clearCache } = repository(
+  const { getData, save } = repository(
     userInformation.userData?.id ? userInformation.userData?.id : '',
     firebaseData.useFireBase,
   );
@@ -29,6 +29,7 @@ export const useTask = () => {
   const [cancelItems, setCancelItems] = useState<CancelTasks>(new Map());
   const [inboxItems, setInboxItems] = useState<InboxTasks>(new Map());
   const [doneItems, setDoneItems] = useState<DoneTasks>(new Map());
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isClearCaching, setIsClearCaching] = useState<boolean>(false);
 
@@ -59,13 +60,14 @@ export const useTask = () => {
     await save(taskToSave);
   };
 
-  const addNewTask = (newTaskTitle: string, parentId: string) => {
+  const addNewTask = (newTaskTitle: string, parentId: string, itsRepeat: boolean = false) => {
     const newTask: Task = {
       id: uuidv4(),
       title: newTaskTitle,
       parentTask: parentId,
       creationDate: new Date().toISOString(),
       points: 0,
+      repiteTask: itsRepeat
     };
     if (false) {
       estimateTask(newTask)
@@ -106,8 +108,14 @@ export const useTask = () => {
   const doneTask = (taskId: string) => {
     const taskToDone: Task | undefined = activeItems.get(taskId);
     if (taskToDone) {
-      doneItems.set(taskId, taskToDone);
-      activeItems.delete(taskId);
+      if(taskToDone.repiteTask){
+        doneItems.set(taskToDone.id, {...taskToDone});
+        activeItems.delete(taskId);
+        inboxItems.set(taskToDone.id, taskToDone);
+      }else{
+        doneItems.set(taskId, taskToDone);
+        activeItems.delete(taskId);
+      }
       setDoneItems(new Map(doneItems));
       setActiveItems(new Map(activeItems));
     }
@@ -147,16 +155,19 @@ export const useTask = () => {
 
   const clearTask = () => {
     setIsClearCaching(true);
-    clearCache();
     setDoneItems(new Map());
     setInboxItems(new Map());
     setActiveItems(new Map());
     setCancelItems(new Map());
   };
 
+  const isDataToStore = (): boolean =>{
+    return inboxItems.size > 0 || activeItems.size > 0 || cancelItems.size > 0 || doneItems.size > 0;
+  }
+
   useEffect(() => {
     if (userInformation?.userData?.id) {
-      if (!isLoading && !isClearCaching) {
+      if (!getIsLoading() && !isClearCaching && isDataToStore()) {
         saveTask().catch((error: any) => {
           errorContext.setFlagError(true);
           errorContext.setError(error);
