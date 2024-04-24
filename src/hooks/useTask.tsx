@@ -115,8 +115,10 @@ export const useTask = () => {
       if (taskToDone.repiteTask) {
         doneItems.set(taskToDone.id, { ...taskToDone });
         activeItems.delete(taskId);
-        const parentId: string = taskToDone?.parentTask ? taskToDone.parentTask : '';
-        addNewTask(taskToDone.title,parentId, true);
+        const parentId: string = taskToDone?.parentTask
+          ? taskToDone.parentTask
+          : '';
+        addNewTask(taskToDone.title, parentId, true);
       } else {
         doneItems.set(taskId, taskToDone);
         activeItems.delete(taskId);

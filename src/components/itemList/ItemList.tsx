@@ -11,6 +11,7 @@ import { UserInformationContext } from '../../contexts/userContext';
 import { EventContext } from '../../contexts/eventContext';
 import { SUBSCRIBER_NAMES } from '../useEvent/useEvent';
 import { Spiner } from '../loadingSpiner/Spiner';
+import { ItemAddButtonWithOptions } from '../itemButtonWithOptions/ItemButtonWithOptions';
 
 type ItemListProps = {
   id?: string;
@@ -144,7 +145,7 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
           <Spiner />
         ) : (
           <>
-            <ItemAddButton
+            <ItemAddButtonWithOptions
               onChange={onChangeButton}
               value={value}
               action={() => {
