@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { useRef, memo, useState } from 'react';
+import { useRef, memo } from 'react';
 import faPlus from '../../assets/icons/faPlus.svg';
 import { THEME_ONE } from '../../constants/colors';
 import { ENTER_KEY_COE } from '../../constants/keys';
@@ -8,6 +8,7 @@ type ItemAddButtonProps = {
   action: () => void;
   onChange: (event: any) => void;
   value: string;
+  showCharacterLimit: boolean;
   dataTest?: string;
   disable?: boolean;
   characterLimit?: number;
@@ -18,12 +19,12 @@ export const ItemAddButton = memo(
     onChange,
     action,
     value,
+    showCharacterLimit,
     dataTest,
     disable = false,
     characterLimit,
   }: ItemAddButtonProps): React.JSX.Element => {
     const newTaskInput = useRef<any>();
-    const [showCharacterLimit, setShowCharacterLimit] = useState(false);
 
     const focusInput = (event: any) => {
       if (newTaskInput.current) {
@@ -36,7 +37,6 @@ export const ItemAddButton = memo(
       if (keyCode === ENTER_KEY_COE) {
         event.preventDefault();
         action();
-        setShowCharacterLimit(false);
       }
     };
 
@@ -58,7 +58,9 @@ export const ItemAddButton = memo(
           onKeyDown={onInputKeyDown}
         />
         {characterLimit && showCharacterLimit && (
-          <CharacterCount>{characterLimit - value.length}</CharacterCount>
+          <CharacterCount data-cy={`task-add-button-character-counter`}>
+            {characterLimit - value.length}
+          </CharacterCount>
         )}
       </ItemContent>
     );
@@ -102,12 +104,4 @@ const Icon = styled.img`
   filter: invert(100%);
   width: 14px;
   height: 14px;
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: space-evenly;
-  padding-left: 9px;
 `;

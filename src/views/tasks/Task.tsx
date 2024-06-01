@@ -69,7 +69,7 @@ const TaskView = ({
         />
       )}
       <ContentContainer is_mobile={`${userInformation.isMobile}`}>
-        {userInformation.isMobile && (
+        {userInformation.isMobile ? (
           <>
             <ActiveTask />
             <Carousel>
@@ -84,8 +84,7 @@ const TaskView = ({
               </Suspense>
             </Carousel>
           </>
-        )}
-        {!userInformation.isMobile && (
+        ) : (
           <>
             <Suspense fallback={<Spiner />}>
               <CancelList />

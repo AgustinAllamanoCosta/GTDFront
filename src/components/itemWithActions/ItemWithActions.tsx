@@ -9,7 +9,6 @@ import { ItemProps, ItemSplitProps } from '../../types/types';
 import { Item } from '../item/Item';
 
 const SplitForm = ({
-  taskToSplit,
   onCancel,
   onSplit,
 }: ItemSplitProps): React.JSX.Element => {

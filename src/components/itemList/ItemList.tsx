@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
 import { useContext, useEffect, useRef, useState } from 'react';
-import { ItemAddButton } from '../itemButton/ItemButton';
 import { ItemWithActions } from '../itemWithActions/ItemWithActions';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { Task } from '../../types/types';
@@ -38,7 +37,7 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
         data: {
           name: 'addItem',
           userId: userInformation.userData?.id,
-          taskLenght: value.length,
+          taskLength: value.length,
         },
       });
     }
@@ -54,8 +53,8 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
 
     if (parentTask) {
       parentTask.childTask = {
-        taksOne: itemsInformation.addNewTask(newTaskOne, parentTaskId, false),
-        taksTwo: itemsInformation.addNewTask(newTaskTwo, parentTaskId, false),
+        taskOne: itemsInformation.addNewTask(newTaskOne, parentTaskId, false),
+        taskTwo: itemsInformation.addNewTask(newTaskTwo, parentTaskId, false),
       };
       itemsInformation.cancelTask(parentTask.id);
 

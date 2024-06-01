@@ -31,12 +31,16 @@ export const ItemAddButtonWithOptions = memo(
         onMouseLeave={() => setShowOptions(false)}
       >
         <ItemAddButton
-          action={action}
+          action={() => {
+            action();
+            setShowOptions(false);
+          }}
           onChange={onChange}
           value={value}
           characterLimit={characterLimit}
           dataTest={dataTest}
           disable={disable}
+          showCharacterLimit={showOptions}
         />
         {showOptions && (
           <ButtonContainer>
