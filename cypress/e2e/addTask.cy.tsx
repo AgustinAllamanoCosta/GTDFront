@@ -206,7 +206,7 @@ describe('Get The Things Done Task', () => {
     );
   });
 
-  it('Should add a daily task and mark as complete and reapear in inbox taks and in the done list', () => {
+  it('Should add a daily task and mark as complete and reapear in inbox task and in the done list', () => {
     const taskContent: string = 'some task to do';
     cy.visit('/');
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
