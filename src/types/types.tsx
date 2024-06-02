@@ -13,15 +13,15 @@ export type Task = {
   points?: number;
   parentTask?: string;
   childTask?: {
-    taksOne: string;
-    taksTwo: string;
+    taskOne: string;
+    taskTwo: string;
   };
 };
 
 export type ItemProps = {
   title: string;
   onCancel: () => void;
-  onAcive: () => void;
+  onActive: () => void;
   onSplit: (taskOne: string, taskTwo: string) => void;
 };
 

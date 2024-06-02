@@ -121,7 +121,7 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
         <ItemWithActions
           key={`${item.id}-${item.title}`}
           title={item.title}
-          onAcive={() => onActiveTask(item.id)}
+          onActive={() => onActiveTask(item.id)}
           onCancel={() => onCancelTask(item.id)}
           onSplit={(taskOne: string, taskTwo: string) =>
             buttonAddSplitTask(taskOne, taskTwo, item.id)

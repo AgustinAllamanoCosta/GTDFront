@@ -40,6 +40,7 @@ const SplitForm = ({
             return;
           }}
           onChange={onChangeTaskOne}
+          showCharacterLimit={true}
           value={newTaskOne}
         />
         <ItemAddButton
@@ -48,6 +49,7 @@ const SplitForm = ({
             return;
           }}
           onChange={onChangeTaskTwo}
+          showCharacterLimit={true}
           value={newTaskTwo}
         />
       </SplitInputContainer>
@@ -73,7 +75,7 @@ export const ItemWithActions = memo(
   ({
     title = '',
     onCancel,
-    onAcive,
+    onActive,
     onSplit,
   }: ItemProps): React.JSX.Element => {
     const [showButton, setShowButton] = useState<boolean>(false);
@@ -119,7 +121,7 @@ export const ItemWithActions = memo(
             <Button
               onClick={() => {
                 setShowButton(false);
-                onAcive();
+                onActive();
               }}
               text="active"
               icon={check}
