@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.35 (2024-06-22)
+
+
+### Features
+
+* 🎸 add schedule task loader ([f73ffaa](https://github.com/AgustinAllamanoCosta/GTDFront/commit/f73ffaa0a96190a22ca3cf9a73087286bfd13825))
+
 ### 0.1.34 (2024-06-02)
 
 
