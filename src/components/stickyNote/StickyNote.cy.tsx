@@ -1,4 +1,5 @@
 import React from 'react';
+import { THEME_ONE } from '../../constants/colors';
 import { StickyNote } from './StickyNote';
 
 describe('StickNote with title and subtitle', () => {
@@ -10,6 +11,7 @@ describe('StickNote with title and subtitle', () => {
         number="0"
         text={stickText}
         onConfirm={() => {}}
+        backgroundColor={THEME_ONE.stickBackGround}
       />,
     );
     cy.get('[data-cy="stick-note-text-0"]').should(

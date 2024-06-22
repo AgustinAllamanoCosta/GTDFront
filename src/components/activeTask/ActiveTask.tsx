@@ -1,9 +1,9 @@
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { styled } from 'styled-components';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
 import { StickyNote } from '../stickyNote/StickyNote';
 import { TaskInformationContext } from '../../contexts/taskContext';
-import { Task } from '../../types/types';
+import { ActiveTasksWithTemp, TaskWithTemp } from '../../types/types';
 import { BLACK } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
@@ -12,35 +12,42 @@ const ActiveTask = (): React.JSX.Element => {
   const activeInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
 
-  const removeActiveTaks = (id: string) => {
+  const removeActiveTask = (id: string) => {
     activeInformation.doneTask(id);
   };
 
-  const activeTasks = activeInformation.getActiveTaskToMap();
-  const activeComponentsList: React.JSX.Element[] = activeTasks.map(
-    (item: Task, index: number) => (
+  const generateTask = (
+    item: TaskWithTemp,
+    index: number,
+  ): React.JSX.Element => {
+    return (
       <StickyNote
         number={index.toString()}
         data-cy={`task-number-${index}`}
         key={`${item.id}-${item.title}`}
         text={item.title}
-        onConfirm={() => removeActiveTaks(item.id)}
+        backgroundColor={item.backgroundColor}
+        onConfirm={() => removeActiveTask(item.id)}
       />
-    ),
-  );
+    );
+  };
+
+  const activeTask: ActiveTasksWithTemp =
+    activeInformation.getActiveTaskToMap();
+  const activeTaskComponent: React.JSX.Element[] = activeTask.map(generateTask);
 
   return (
     <ActiveTasksContainer is_mobile={`${userInformation.isMobile}`}>
       <CardTitle
         title="Active Task"
-        label={`${activeTasks.length}/3`}
+        label={`${activeTaskComponent.length}/3`}
         data-cy="Active-task-title"
       >
         <ActiveTaskContent
           data-cy="Active-task-list"
           is_mobile={`${userInformation.isMobile}`}
         >
-          {activeComponentsList}
+          {activeTaskComponent}
         </ActiveTaskContent>
       </CardTitle>
     </ActiveTasksContainer>

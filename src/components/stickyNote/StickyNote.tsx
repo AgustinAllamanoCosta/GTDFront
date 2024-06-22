@@ -8,11 +8,17 @@ import { UserInformationContext } from '../../contexts/userContext';
 export type StickyNoteProps = {
   number: string;
   text: string;
+  backgroundColor: string;
   onConfirm?: (event: any) => void;
 };
 
 export const StickyNote = memo(
-  ({ number, text, onConfirm }: StickyNoteProps): React.JSX.Element => {
+  ({
+    number,
+    text,
+    backgroundColor = THEME_ONE.stickBackGround,
+    onConfirm,
+  }: StickyNoteProps): React.JSX.Element => {
     const userInformation = useContext(UserInformationContext);
 
     const [textNoteValue, setTextNoteValue] = useState<string>(
@@ -27,6 +33,7 @@ export const StickyNote = memo(
       <ButtonAndNoteContainer
         data-cy={`stick-note-container-${number}`}
         is_mobile={`${userInformation.isMobile}`}
+        background_color={backgroundColor}
       >
         <TextContainer data-cy={`stick-note-text-container-${number}`}>
           <TextNote
@@ -36,16 +43,18 @@ export const StickyNote = memo(
             onChange={onChange}
           />
         </TextContainer>
-        <ButtonContainer
-          onClick={onConfirm}
-          data-cy={`stick-note-button-${number}`}
-        >
-          <Icon
-            src={faCheck}
+        {onConfirm && (
+          <ButtonContainer
             onClick={onConfirm}
-            alt={'Check'}
-          />
-        </ButtonContainer>
+            data-cy={`stick-note-button-${number}`}
+          >
+            <Icon
+              src={faCheck}
+              onClick={onConfirm}
+              alt={'Check'}
+            />
+          </ButtonContainer>
+        )}
       </ButtonAndNoteContainer>
     );
   },
@@ -73,7 +82,7 @@ const TextNote = styled.textarea<{ is_mobile?: string }>`
     width: 3px;
   }
   &::-webkit-scrollbar-thumb {
-    background: ${THEME_ONE.backgorund};
+    background: ${THEME_ONE.background};
     border-radius: 10px;
   }
 `;
@@ -99,10 +108,13 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const ButtonAndNoteContainer = styled.div<{ is_mobile?: string }>`
+const ButtonAndNoteContainer = styled.div<{
+  background_color: string;
+  is_mobile?: string;
+}>`
   display: flex;
   flex-direction: column;
-  background-color: ${THEME_ONE.stickBackGround};
+  background-color: ${(props) => props.background_color};
   -webkit-box-shadow: 5px 5px 0px 0px rgba(7, 15, 43, 1);
   -moz-box-shadow: 5px 5px 0px 0px rgba(7, 15, 43, 1);
   box-shadow: 5px 5px 0px 0px rgba(7, 15, 43, 1);
@@ -114,7 +126,7 @@ const ButtonAndNoteContainer = styled.div<{ is_mobile?: string }>`
   `
       : `
       width: 250px;
-      height: 150px; 
+      height: 150px;
   `};
   border-radius: 10px;
   margin: 6px;

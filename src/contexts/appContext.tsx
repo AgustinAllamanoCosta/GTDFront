@@ -60,7 +60,7 @@ const GlobalStyles = createGlobalStyle`
     font-style: normal;
   }
   body {
-    background-color: ${THEME_ONE.backgorund};
+    background-color: ${THEME_ONE.background};
     color: ${THEME_ONE.fontColor};
     font-family: 'Iner';
     margin: 0px;

@@ -9,6 +9,7 @@ import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 import { useNavigate } from 'react-router-dom';
 import { Carousel } from '../../components/carousel/Carousel';
 import { Spiner } from '../../components/loadingSpiner/Spiner';
+import { useInterval } from '../../hooks/useInterval';
 
 const ActiveTask = lazy(() => import('../../components/activeTask/ActiveTask'));
 const ItemList = lazy(() => import('../../components/itemList/ItemList'));
@@ -38,6 +39,10 @@ const TaskView = ({
     navigate('/');
   }, [userInformation.userData]);
 
+  if (refreshTaskInterval) {
+    useInterval(itemContext.refreshData, refreshTaskInterval);
+  }
+
   useEffect(() => {
     try {
       itemContext.refreshData();
@@ -46,12 +51,6 @@ const TaskView = ({
       }
       if (inboxTasks) {
         itemContext.setInboxTask(inboxTasks);
-      }
-      if (refreshTaskInterval) {
-        const interval = setInterval(() => {
-          itemContext.refreshData();
-        }, refreshTaskInterval);
-        return () => clearInterval(interval);
       }
     } catch (error: any) {
       errorContext.setFlagError(true);

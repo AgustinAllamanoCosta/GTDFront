@@ -54,7 +54,7 @@ const ItemText = styled.span`
     height: 0px;
   }
   &::-webkit-scrollbar-thumb {
-    background: ${THEME_ONE.backgorund};
+    background: ${THEME_ONE.background};
     border-radius: 10px;
   }
 `;

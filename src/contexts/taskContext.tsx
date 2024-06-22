@@ -1,9 +1,9 @@
 import { createContext } from 'react';
-import { Task } from '../types/types';
+import { Task, ActiveTasksWithTemp } from '../types/types';
 
 export const TaskInformationContext = createContext<{
   getIsLoading: () => boolean;
-  getActiveTaskToMap: () => Array<Task>;
+  getActiveTaskToMap: () => ActiveTasksWithTemp;
   getCancelTaskToMap: () => Array<Task>;
   getDoneTaskToMap: () => Array<Task>;
   getInboxTaskToMap: () => Array<Task>;

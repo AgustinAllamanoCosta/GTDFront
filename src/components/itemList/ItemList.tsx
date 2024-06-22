@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { ItemWithActions } from '../itemWithActions/ItemWithActions';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { Task } from '../../types/types';
@@ -11,6 +11,7 @@ import { EventContext } from '../../contexts/eventContext';
 import { SUBSCRIBER_NAMES } from '../useEvent/useEvent';
 import { Spiner } from '../loadingSpiner/Spiner';
 import { ItemAddButtonWithOptions } from '../itemButtonWithOptions/ItemButtonWithOptions';
+import { v4 as uuidv4 } from 'uuid';
 
 type ItemListProps = {
   id?: string;
@@ -117,9 +118,10 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
             block: 'center',
           });
         }}
+        key={uuidv4()}
       >
         <ItemWithActions
-          key={`${item.id}-${item.title}`}
+          key={`${item.id}-${uuidv4()}`}
           title={item.title}
           onActive={() => onActiveTask(item.id)}
           onCancel={() => onCancelTask(item.id)}
@@ -171,7 +173,7 @@ const InboxContainer = styled.div`
     width: 5px;
   }
   &::-webkit-scrollbar-thumb {
-    background: ${THEME_ONE.backgorund};
+    background: ${THEME_ONE.background};
     border-radius: 10px;
   }
 `;

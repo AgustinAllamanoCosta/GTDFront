@@ -18,6 +18,8 @@ export type Task = {
   };
 };
 
+export type TaskWithTemp = Task & { backgroundColor: string };
+
 export type ItemProps = {
   title: string;
   onCancel: () => void;
@@ -35,12 +37,14 @@ export type ActiveTasks = Map<string, Task>;
 export type CancelTasks = Map<string, Task>;
 export type DoneTasks = Map<string, Task>;
 export type InboxTasks = Map<string, Task>;
+export type ActiveTasksWithTemp = TaskWithTemp[];
 
 export type UserTaskData = {
   activeItems: ActiveTasks;
   cancelItems: CancelTasks;
   doneItems: DoneTasks;
   inboxItems: InboxTasks;
+  scheduleTask: InboxTasks;
 };
 
 export type Configuration = {

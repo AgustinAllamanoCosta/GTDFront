@@ -6,6 +6,7 @@ export const userDataFactory = (): UserTaskData => {
     cancelItems: new Map(),
     doneItems: new Map(),
     inboxItems: new Map(),
+    scheduleTask: new Map(),
   };
   return newUserTaskData;
 };

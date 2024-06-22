@@ -1,10 +1,12 @@
 import { useEffect, useState, useContext } from 'react';
 import {
   ActiveTasks,
+  ActiveTasksWithTemp,
   CancelTasks,
   DoneTasks,
   InboxTasks,
   Task,
+  TaskWithTemp,
   UserTaskData,
 } from '../types/types';
 import { ErrorHandlerContext } from '../contexts/errorHandlerContext';
@@ -12,13 +14,11 @@ import { UserInformationContext } from '../contexts/userContext';
 import { repository } from '../repository/repository';
 import { firebaseData } from '../hooks/useFirebase';
 import { v4 as uuidv4 } from 'uuid';
-import { useAIAssistance } from './useAIAssistance';
-import { configuration } from '../config/appConfig';
+import { THEME_ONE } from '../constants/colors';
 
 export const useTask = () => {
   const errorContext = useContext(ErrorHandlerContext);
   const userInformation = useContext(UserInformationContext);
-  const { estimateTask } = useAIAssistance(configuration);
 
   const { getData, save } = repository(
     userInformation.userData?.id ? userInformation.userData?.id : '',
@@ -29,6 +29,7 @@ export const useTask = () => {
   const [cancelItems, setCancelItems] = useState<CancelTasks>(new Map());
   const [inboxItems, setInboxItems] = useState<InboxTasks>(new Map());
   const [doneItems, setDoneItems] = useState<DoneTasks>(new Map());
+  const [scheduleTask, setScheduleTask] = useState<InboxTasks>(new Map());
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isClearCaching, setIsClearCaching] = useState<boolean>(false);
@@ -42,6 +43,8 @@ export const useTask = () => {
         if (userTaskData.inboxItems) setInboxItems(userTaskData.inboxItems);
         if (userTaskData.activeItems) setActiveItems(userTaskData.activeItems);
         if (userTaskData.cancelItems) setCancelItems(userTaskData.cancelItems);
+        if (userTaskData.scheduleTask)
+          setScheduleTask(userTaskData.scheduleTask);
         setIsLoading(false);
       }
     } catch (error: any) {
@@ -56,6 +59,7 @@ export const useTask = () => {
       cancelItems,
       doneItems,
       inboxItems,
+      scheduleTask,
     };
     await save(taskToSave);
   };
@@ -73,19 +77,12 @@ export const useTask = () => {
       points: 0,
       repiteTask: itsRepeat,
     };
-    if (false) {
-      estimateTask(newTask)
-        .then((taksWithEstimation: Task) => {
-          inboxItems.set(taksWithEstimation.id, taksWithEstimation);
-          setInboxItems(new Map(inboxItems));
-        })
-        .catch((error: any) => {
-          inboxItems.set(newTask.id, newTask);
-          setInboxItems(new Map(inboxItems));
-        });
-    }
     inboxItems.set(newTask.id, newTask);
     setInboxItems(new Map(inboxItems));
+    if (itsRepeat) {
+      scheduleTask.set(newTask.id, newTask);
+      setScheduleTask(new Map(scheduleTask));
+    }
     return newTask.id;
   };
 
@@ -94,6 +91,8 @@ export const useTask = () => {
     if (taskToCancel) {
       inboxItems.delete(taskId);
       setInboxItems(new Map(inboxItems));
+      scheduleTask.delete(taskId);
+      setScheduleTask(new Map(scheduleTask));
       cancelItems.set(taskToCancel.id, taskToCancel);
       setCancelItems(new Map(cancelItems));
     }
@@ -112,17 +111,8 @@ export const useTask = () => {
   const doneTask = (taskId: string) => {
     const taskToDone: Task | undefined = activeItems.get(taskId);
     if (taskToDone) {
-      if (taskToDone.repiteTask) {
-        doneItems.set(taskToDone.id, { ...taskToDone });
-        activeItems.delete(taskId);
-        const parentId: string = taskToDone?.parentTask
-          ? taskToDone.parentTask
-          : '';
-        addNewTask(taskToDone.title, parentId, true);
-      } else {
-        doneItems.set(taskId, taskToDone);
-        activeItems.delete(taskId);
-      }
+      doneItems.set(taskId, taskToDone);
+      activeItems.delete(taskId);
       setDoneItems(new Map(doneItems));
       setActiveItems(new Map(activeItems));
     }
@@ -137,9 +127,9 @@ export const useTask = () => {
     return orderItems(itemsToReturn);
   };
 
-  const getActiveTaskToMap = (): Array<Task> => {
-    const itemsToReturn: Array<Task> = [...activeItems.values()];
-    return orderItems(itemsToReturn);
+  const getActiveTaskToMap = (): ActiveTasksWithTemp => {
+    const activeTaskWithTemp = generateActiveTaskWithTemp();
+    return orderItems(activeTaskWithTemp) as ActiveTasksWithTemp;
   };
 
   const getCancelTaskToMap = (): Array<Task> => {
@@ -152,10 +142,14 @@ export const useTask = () => {
     return orderItems(itemsToReturn);
   };
 
-  const orderItems = (items: Array<Task>): Array<Task> => {
-    return items.sort((taskA: Task, taskB: Task) => {
-      return Date.parse(taskA.creationDate) - Date.parse(taskB.creationDate);
-    });
+  const orderItems = (
+    items: Array<Task> | ActiveTasksWithTemp,
+  ): Array<Task> | ActiveTasksWithTemp => {
+    return items.sort(
+      (taskA: Task | TaskWithTemp, taskB: Task | TaskWithTemp) => {
+        return Date.parse(taskA.creationDate) - Date.parse(taskB.creationDate);
+      },
+    );
   };
 
   const getIsLoading = (): boolean => isLoading;
@@ -176,6 +170,59 @@ export const useTask = () => {
       doneItems.size > 0
     );
   };
+
+  const calculateBackgroundColor = (task: Task): string => {
+    const taskDate: Date = new Date(task.creationDate);
+    const diffBetweenDates: number = new Date().getTime() - taskDate.getTime();
+    const hoursDiff: number = diffBetweenDates / (1000 * 60 * 60);
+
+    if (hoursDiff > 12) {
+      return THEME_ONE.stickBackGroundWarm;
+    } else if (hoursDiff > 18) {
+      return THEME_ONE.stickBackGroundHot;
+    } else if (hoursDiff > 20) {
+      return THEME_ONE.stickBackGroundBurn;
+    } else {
+      return THEME_ONE.stickBackGround;
+    }
+  };
+
+  const generateActiveTaskWithTemp = () => {
+    const activeTask: Array<Task> = [...activeItems.values()];
+    const activeTaskWithTemp: ActiveTasksWithTemp = activeTask.map(
+      (item: Task): TaskWithTemp => {
+        const backgroundColor: string = calculateBackgroundColor(item);
+        return { ...item, backgroundColor };
+      },
+    );
+    return activeTaskWithTemp;
+  };
+
+  const loadScheduleTask = async () => {
+    const tasks: Array<Task> = [...scheduleTask.values()];
+    const systemDate: Date = new Date();
+
+    tasks.map((task: Task) => {
+      const taskDate: Date = new Date(task.creationDate);
+      const diffBetweenDates: number =
+        systemDate.getTime() - taskDate.getTime();
+      const hoursDiff: number = diffBetweenDates / (1000 * 60 * 60);
+
+      if (hoursDiff >= 24) {
+        inboxItems.set(task.id, task);
+        setInboxItems(new Map(inboxItems));
+      }
+    });
+  };
+
+  const refreshData = async () => {
+    await loadTask();
+    await loadScheduleTask();
+  };
+
+  useEffect(() => {
+    loadScheduleTask();
+  }, []);
 
   useEffect(() => {
     if (userInformation?.userData?.id) {
@@ -213,7 +260,7 @@ export const useTask = () => {
     setCancelItems,
     setDoneItems,
     setInboxTask: setInboxItems,
-    refreshData: loadTask,
+    refreshData: refreshData,
     clearCache: clearTask,
   };
 };
