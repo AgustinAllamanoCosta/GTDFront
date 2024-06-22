@@ -17,7 +17,6 @@ describe('Get The Things Done Task', () => {
   });
 
   it('Should not add an empty task', () => {
-    const taskContent: string = 'some task to do';
     cy.visit('/');
 
     cy.get('[data-cy="task-add-button-input"]').click();
@@ -208,13 +207,19 @@ describe('Get The Things Done Task', () => {
 
   it('Should add a daily task and mark as complete and reapear in inbox task and in the done list', () => {
     const taskContent: string = 'some task to do';
+
+    cy.clock(new Date().getTime(), ['setInterval', 'Date']);
     cy.visit('/');
+
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="button-make daily"]').click();
+
     cy.get('[data-cy="task-some task to do"]').click();
     cy.get('[data-cy="button-active"]').click();
 
     cy.get('[data-cy="stick-note-button-0"]').click();
+
+    cy.tick(48 * (1000 * 60 * 60));
 
     cy.get('[data-cy="stick-note-text-0"]').should('not.exist');
     cy.get('[data-cy="task-some task to do"]').should('have.length', 2);
