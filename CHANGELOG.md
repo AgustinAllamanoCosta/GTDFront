@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.38 (2024-06-25)
+
+
+### Bug Fixes
+
+* 🐛 test component bug in prop definition ([90b14b4](https://github.com/AgustinAllamanoCosta/GTDFront/commit/90b14b4aa15747544f2ac09b1802ecfd872b2aed))
+
 ### 0.1.37 (2024-06-25)
 
 
