@@ -26,7 +26,7 @@ describe('Get The Things Done Task', () => {
     cy.get('[data-cy="task-"]').should('not.exist');
   });
 
-  it('Should add a new task', () => {
+  it('Should add a new task and add with accept button', () => {
     const taskContent: string = 'some task to do';
     cy.visit('/');
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
@@ -41,6 +41,7 @@ describe('Get The Things Done Task', () => {
     cy.visit('/');
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
+
     cy.get('[data-cy="task-some task to do"]').should('have.text', taskContent);
   });
 
@@ -208,6 +209,45 @@ describe('Get The Things Done Task', () => {
 
     cy.get('[data-cy="stick-note-text-0"]').should('not.exist');
     cy.get('[data-cy="task-some task to do"]').should('have.length', 2);
+  });
+
+  it('Should cancel a daily task and not appear again', () => {
+    const taskContent: string = 'some task to do';
+
+    cy.clock(new Date().getTime(), ['setInterval', 'Date']);
+    cy.visit('/');
+
+    cy.get('[data-cy="task-add-button-input"]').type(taskContent);
+    cy.get('[data-cy="button-make daily"]').click();
+
+    cy.get('[data-cy="task-some task to do"]').click();
+    cy.get('[data-cy="button-cancel"]').click();
+
+    cy.tick(48 * (1000 * 60 * 60));
+
+    cy.get('[data-cy="stick-note-text-0"]').should('not.exist');
+    cy.get('[data-cy="task-some task to do"]').should('have.length', 1);
+  });
+
+  it('Should add task, active and change the temp to warn', () => {
+    const taskContent: string = 'some task to do';
+
+    cy.clock(new Date().getTime(), ['setInterval', 'Date']);
+    cy.visit('/');
+
+    cy.get('[data-cy="task-add-button-input"]').type(taskContent);
+    cy.get('[data-cy="button-make daily"]').click();
+
+    cy.get('[data-cy="task-some task to do"]').click();
+    cy.get('[data-cy="button-active"]').click();
+
+    cy.tick(13 * (1000 * 60 * 60));
+
+    cy.get('[data-cy="stick-note-container-0"]').should(
+      'have.css',
+      'background-color',
+      'rgb(121, 119, 181)',
+    );
   });
 });
 
