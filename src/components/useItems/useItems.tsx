@@ -42,6 +42,7 @@ const ItemsContext = ({
     setCancelItems,
     refreshData,
     clearCache,
+    calculateTaskTemp,
   } = useTask();
 
   const taskInfoContextValue = {
@@ -61,6 +62,7 @@ const ItemsContext = ({
     setDoneItems,
     refreshData,
     clearCache,
+    calculateTaskTemp,
   };
 
   useEffect(() => {

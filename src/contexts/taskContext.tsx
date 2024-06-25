@@ -18,6 +18,7 @@ export const TaskInformationContext = createContext<{
   setCancelItems: (a: any) => void;
   setDoneItems: (a: any) => void;
   clearCache: () => void;
+  calculateTaskTemp: () => void;
 }>({
   getIsLoading: () => true,
   getActiveTaskToMap: () => {
@@ -47,4 +48,5 @@ export const TaskInformationContext = createContext<{
   setCancelItems: (a: any) => {},
   setDoneItems: (a: any) => {},
   clearCache: () => {},
+  calculateTaskTemp: () => {},
 });

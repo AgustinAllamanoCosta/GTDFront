@@ -42,6 +42,7 @@ const TaskView = ({
   if (refreshTaskInterval) {
     useInterval(itemContext.refreshData, refreshTaskInterval);
   }
+  useInterval(itemContext.calculateTaskTemp, 1000 * 60 * 60);
 
   useEffect(() => {
     try {

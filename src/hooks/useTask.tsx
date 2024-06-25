@@ -30,6 +30,8 @@ export const useTask = () => {
   const [inboxItems, setInboxItems] = useState<InboxTasks>(new Map());
   const [doneItems, setDoneItems] = useState<DoneTasks>(new Map());
   const [scheduleTask, setScheduleTask] = useState<InboxTasks>(new Map());
+  const [activeTaskWithTemp, setActiveTaskWithTemp] =
+    useState<ActiveTasksWithTemp>([]);
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isClearCaching, setIsClearCaching] = useState<boolean>(false);
@@ -115,6 +117,7 @@ export const useTask = () => {
       activeItems.delete(taskId);
       setDoneItems(new Map(doneItems));
       setActiveItems(new Map(activeItems));
+      calculateTaskTemp();
     }
   };
 
@@ -128,7 +131,6 @@ export const useTask = () => {
   };
 
   const getActiveTaskToMap = (): ActiveTasksWithTemp => {
-    const activeTaskWithTemp = generateActiveTaskWithTemp();
     return orderItems(activeTaskWithTemp) as ActiveTasksWithTemp;
   };
 
@@ -160,6 +162,7 @@ export const useTask = () => {
     setInboxItems(new Map());
     setActiveItems(new Map());
     setCancelItems(new Map());
+    setScheduleTask(new Map());
   };
 
   const isDataToStore = (): boolean => {
@@ -167,6 +170,7 @@ export const useTask = () => {
       inboxItems.size > 0 ||
       activeItems.size > 0 ||
       cancelItems.size > 0 ||
+      scheduleTask.size > 0 ||
       doneItems.size > 0
     );
   };
@@ -176,11 +180,11 @@ export const useTask = () => {
     const diffBetweenDates: number = new Date().getTime() - taskDate.getTime();
     const hoursDiff: number = diffBetweenDates / (1000 * 60 * 60);
 
-    if (hoursDiff > 12) {
+    if (hoursDiff >= 12) {
       return THEME_ONE.stickBackGroundWarm;
-    } else if (hoursDiff > 18) {
+    } else if (hoursDiff >= 18) {
       return THEME_ONE.stickBackGroundHot;
-    } else if (hoursDiff > 20) {
+    } else if (hoursDiff >= 20) {
       return THEME_ONE.stickBackGroundBurn;
     } else {
       return THEME_ONE.stickBackGround;
@@ -220,6 +224,11 @@ export const useTask = () => {
     await loadScheduleTask();
   };
 
+  const calculateTaskTemp = async () => {
+    const taskWithTemp: ActiveTasksWithTemp = generateActiveTaskWithTemp();
+    setActiveTaskWithTemp(taskWithTemp);
+  };
+
   useEffect(() => {
     loadScheduleTask();
   }, []);
@@ -235,6 +244,10 @@ export const useTask = () => {
 
       if (isClearCaching) {
         setIsClearCaching(false);
+      }
+
+      if (activeItems.size > 0) {
+        calculateTaskTemp();
       }
     }
   }, [
@@ -262,5 +275,6 @@ export const useTask = () => {
     setInboxTask: setInboxItems,
     refreshData: refreshData,
     clearCache: clearTask,
+    calculateTaskTemp,
   };
 };
