@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import ItemsContext from '../useItems/useItems';
 
 describe('Active Task List with active task', () => {
-  it('render Active task with ther active task inside', () => {
+  it('render Active task with there active task inside', () => {
     cy.mount(
       <BrowserRouter>
         <ItemsContext defaultActiveItems={mockTaskInContext}>

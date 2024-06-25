@@ -245,10 +245,9 @@ export const useTask = () => {
       if (isClearCaching) {
         setIsClearCaching(false);
       }
-
-      if (activeItems.size > 0) {
-        calculateTaskTemp();
-      }
+    }
+    if (activeItems.size > 0) {
+      calculateTaskTemp();
     }
   }, [
     userInformation.userData?.id,
