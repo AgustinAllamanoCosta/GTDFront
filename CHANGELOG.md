@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.37 (2024-06-25)
+
+
+### Bug Fixes
+
+* 🐛 component task ([bc0b5d0](https://github.com/AgustinAllamanoCosta/GTDFront/commit/bc0b5d06f4d0c95ea376866872a95f754eea6165))
+
 ### 0.1.36 (2024-06-22)
 
 ### 0.1.35 (2024-06-22)
