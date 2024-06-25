@@ -72,6 +72,10 @@ const ItemsContext = ({
     if (defaultDoneItems) setDoneItems(defaultDoneItems);
   }, []);
 
+  useEffect(() => {
+    calculateTaskTemp();
+  }, [activeTask]);
+
   return (
     <TaskInformationContext.Provider value={taskInfoContextValue}>
       {children}
