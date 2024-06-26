@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { Item } from '../item/Item';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { SIZE } from '../../constants/size';
+import { BLACK } from '../../constants/colors';
 import { UserInformationContext } from '../../contexts/userContext';
 import { Task } from '../../types/types';
 
@@ -42,6 +43,14 @@ const CancelList = ({ id }: CancelListProps): React.JSX.Element => {
 
 const InboxContainer = styled.div`
   width: 100%;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${BLACK};
+    border-radius: 10px;
+  }
 `;
 
 const InboxTaskContainer = styled.div<{ is_mobile?: string }>`
