@@ -103,6 +103,7 @@ export const useTask = () => {
   const activeTask = (taskId: string) => {
     const taskToActive: Task | undefined = inboxItems.get(taskId);
     if (taskToActive) {
+      taskToActive.activationDate = new Date().toISOString();
       activeItems.set(taskId, taskToActive);
       inboxItems.delete(taskId);
       setActiveItems(new Map(activeItems));
@@ -176,7 +177,7 @@ export const useTask = () => {
   };
 
   const calculateBackgroundColor = (task: Task): string => {
-    const taskDate: Date = new Date(task.creationDate);
+    const taskDate: Date = new Date(task.activationDate);
     const diffBetweenDates: number = new Date().getTime() - taskDate.getTime();
     const hoursDiff: number = diffBetweenDates / (1000 * 60 * 60);
 

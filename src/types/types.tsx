@@ -9,6 +9,7 @@ export type Task = {
   id: string;
   title: string;
   creationDate: string;
+  activationDate?: string;
   repiteTask?: boolean;
   points?: number;
   parentTask?: string;
