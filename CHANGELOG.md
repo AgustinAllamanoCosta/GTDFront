@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.39 (2024-06-26)
+
+
+### Bug Fixes
+
+* 🐛 build issue with validation ([858c725](https://github.com/AgustinAllamanoCosta/GTDFront/commit/858c725ae3b1ad2f265e9a6f249b74326a2e6e37))
+
 ### 0.1.38 (2024-06-25)
 
 
