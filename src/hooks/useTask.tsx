@@ -177,6 +177,10 @@ export const useTask = () => {
   };
 
   const calculateBackgroundColor = (task: Task): string => {
+    if (!task.activationDate) {
+      return THEME_ONE.stickBackGround;
+    }
+
     const taskDate: Date = new Date(task.activationDate);
     const diffBetweenDates: number = new Date().getTime() - taskDate.getTime();
     const hoursDiff: number = diffBetweenDates / (1000 * 60 * 60);
