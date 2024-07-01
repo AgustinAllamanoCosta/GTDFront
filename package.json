@@ -1,6 +1,6 @@
 {
   "name": "get-things-done-front",
-  "version": "0.1.40",
+  "version": "0.1.41",
   "type": "module",
   "scripts": {
     "dev": "node -r dotenv/config ./node_modules/.bin/vite",
