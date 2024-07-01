@@ -1,33 +1,13 @@
-import { v4 as uuidv4 } from 'uuid';
 import { Task } from '../../types/types';
 import { BrowserRouter } from 'react-router-dom';
 import ItemsContext from '../../components/useItems/useItems';
+import { taskFactory } from '../../factories/TaskFactory';
 
-export const task1: Task = {
-  title: 'some task 1',
-  id: uuidv4(),
-  creationDate: '',
-};
-export const task2: Task = {
-  title: 'some task 2',
-  id: uuidv4(),
-  creationDate: '',
-};
-export const task3: Task = {
-  title: 'some task 3',
-  id: uuidv4(),
-  creationDate: '',
-};
-export const task4: Task = {
-  title: 'some task 4',
-  id: uuidv4(),
-  creationDate: '',
-};
-export const task5: Task = {
-  title: 'some task 5',
-  id: uuidv4(),
-  creationDate: '',
-};
+export const task1: Task = taskFactory(true)('some task 1', 0, false);
+export const task2: Task = taskFactory(true)('some task 2', 0, false);
+export const task3: Task = taskFactory(true)('some task 3', 0, false);
+export const task4: Task = taskFactory(true)('some task 4', 0, false);
+export const task5: Task = taskFactory(true)('some task 5', 0, false);
 
 export const mockTaskInContext: Map<string, Task> = new Map();
 mockTaskInContext.set(task1.id, task1);

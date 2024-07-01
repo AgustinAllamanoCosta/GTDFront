@@ -19,7 +19,7 @@ describe('Item List', () => {
       </BrowserRouter>,
     );
     cy.get('[data-cy="Card-title"]').should('have.text', listTitle);
-    cy.get('[data-cy="task-some task 1"]').should('have.text', task1.title);
+    cy.get(`[data-cy="task-${task1.title}"]`).should('have.text', task1.title);
     cy.get('[data-cy="task-add-button-input"]').should(
       'have.attr',
       'placeholder',

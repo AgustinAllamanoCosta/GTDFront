@@ -18,6 +18,6 @@ describe('Cancel List', () => {
       </BrowserRouter>,
     );
     cy.get('[data-cy="Card-title"]').should('have.text', listTitle);
-    cy.get('[data-cy="task-some task 4"]').should('have.text', task4.title);
+    cy.get(`[data-cy="task-${task4.title}"]`).should('have.text', task4.title);
   });
 });

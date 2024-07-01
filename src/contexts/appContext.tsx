@@ -18,7 +18,10 @@ type AppContextProps = {
 const AppContext = ({ children }: AppContextProps) => {
   return (
     <AppContainer>
-      <MetricContext analytics={firebaseData.analytics}>
+      <MetricContext
+        analytics={firebaseData.analytics}
+        configuration={configuration}
+      >
         <GlobalStyles />
         <ErrorContext>
           <UserContext configuration={configuration}>

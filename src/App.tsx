@@ -59,6 +59,8 @@ const App = () => {
                 >
                   <TaskViewLazy
                     refreshTaskInterval={configuration.refreshTimeOut}
+                    calculateTaskTemp={configuration.calculateTaskTemp}
+                    loadScheduleTask={configuration.loadScheduleTask}
                   />
                 </Suspense>
               </RequireAuth>

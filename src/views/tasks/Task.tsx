@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { UserCard } from '../../components/userCard/UserCard';
 import { Suspense, useCallback, useContext, useEffect, lazy } from 'react';
-import { InboxTasks, UserData } from '../../types/types';
+import { InboxTasks, UserData, UserTaskData } from '../../types/types';
 import { UserInformationContext } from '../../contexts/userContext';
 import { googleLogout } from '@react-oauth/google';
 import { TaskInformationContext } from '../../contexts/taskContext';
@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { Carousel } from '../../components/carousel/Carousel';
 import { Spiner } from '../../components/loadingSpiner/Spiner';
 import { useInterval } from '../../hooks/useInterval';
+import { userDataFactory } from '../../factories/UserDataFactory';
 
 const ActiveTask = lazy(() => import('../../components/activeTask/ActiveTask'));
 const ItemList = lazy(() => import('../../components/itemList/ItemList'));
@@ -20,12 +21,16 @@ type TaskViewProps = {
   inboxTasks?: InboxTasks;
   userData?: UserData;
   refreshTaskInterval?: number;
+  loadScheduleTask?: number;
+  calculateTaskTemp?: number;
 };
 
 const TaskView = ({
   inboxTasks = undefined,
   userData,
   refreshTaskInterval,
+  loadScheduleTask,
+  calculateTaskTemp,
 }: TaskViewProps) => {
   const errorContext = useContext(ErrorHandlerContext);
   const userInformation = useContext(UserInformationContext);
@@ -42,16 +47,26 @@ const TaskView = ({
   if (refreshTaskInterval) {
     useInterval(itemContext.refreshData, refreshTaskInterval);
   }
-  useInterval(itemContext.calculateTaskTemp, 1000 * 60 * 60);
+
+  if (loadScheduleTask) {
+    useInterval(itemContext.loadScheduleTask, loadScheduleTask);
+  }
+
+  if (calculateTaskTemp) {
+    useInterval(itemContext.calculateTaskTemp, calculateTaskTemp);
+  }
 
   useEffect(() => {
+    console.log(loadScheduleTask);
     try {
       itemContext.refreshData();
       if (userData) {
         userInformation.setUserData(userData);
       }
       if (inboxTasks) {
-        itemContext.setInboxTask(inboxTasks);
+        const userTaskData: UserTaskData = userDataFactory();
+        userTaskData.inboxItems = inboxTasks;
+        itemContext.setUserData(userTaskData);
       }
     } catch (error: any) {
       errorContext.setFlagError(true);

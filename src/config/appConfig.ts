@@ -24,5 +24,11 @@ export const configuration: Configuration = {
   refreshTimeOut: import.meta.env.VITE_REFRESH_TIMEOUT
     ? +import.meta.env.VITE_REFRESH_TIMEOUT
     : undefined,
+  loadScheduleTask: import.meta.env.VITE_LOAD_SCHEDULE_TASK
+    ? +import.meta.env.VITE_LOAD_SCHEDULE_TASK
+    : undefined,
+  calculateTaskTemp: import.meta.env.VITE_CALCULATE_TASK_TEMP
+    ? +import.meta.env.VITE_CALCULATE_TASK_TEMP
+    : undefined,
   backendURL: import.meta.env.VITE_BACKEND_URL,
 };

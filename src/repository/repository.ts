@@ -1,13 +1,14 @@
 import { doc, getDoc, setDoc, deleteDoc, Firestore } from 'firebase/firestore';
 import { FIRE_BASE_COLLECTION_NAME } from '../constants/keys';
-import { UserTaskData } from '../types/types';
+import { Repository, UserTaskData } from '../types/types';
 import {
   userDataDocumentFactory,
   userDataFactory,
   userDataFactoryFromData,
 } from '../factories/UserDataFactory';
+import { IS_END_TO_END } from '../constants/environment';
 
-export const repository = (userId: string, useFireBase: Firestore) => {
+export const firebaseRepository = (userId: string, useFireBase: Firestore) => {
   const saveIntoFirebase = async (userTasksData: UserTaskData) => {
     const userTaskDoc: any = doc(
       useFireBase,
@@ -60,4 +61,37 @@ export const repository = (userId: string, useFireBase: Firestore) => {
     clear,
     getData,
   };
+};
+
+export const memoryRepository = (userId: string, useFireBase: Firestore) => {
+  const userInformation: Map<string, UserTaskData> = new Map();
+
+  const save = async (items: UserTaskData): Promise<void> => {
+    userInformation.set(userId, items);
+  };
+
+  const getData = async (): Promise<UserTaskData> => {
+    const data: UserTaskData | undefined = userInformation.get(userId);
+    if (data) {
+      return new Promise((resolver) => resolver(data));
+    }
+    return new Promise((resolver) => resolver(userDataFactory()));
+  };
+
+  const clear = async (): Promise<void> => {
+    userInformation.delete(userId);
+  };
+
+  return {
+    save,
+    clear,
+    getData,
+  };
+};
+
+export const repositoryFactory = (environment: string): Repository => {
+  if (environment === IS_END_TO_END) {
+    return memoryRepository;
+  }
+  return firebaseRepository;
 };

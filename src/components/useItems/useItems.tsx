@@ -6,7 +6,10 @@ import {
   CancelTasks,
   DoneTasks,
   InboxTasks,
+  UserTaskData,
+  UseTaskResponse,
 } from '../../types/types';
+import { userDataFactory } from '../../factories/UserDataFactory';
 
 type ItemsContextPorps = {
   defaultItems?: InboxTasks;
@@ -25,55 +28,19 @@ const ItemsContext = ({
   loading,
   children,
 }: ItemsContextPorps) => {
-  const {
-    getIsLoading,
-    getActiveTaskToMap,
-    getCancelTaskToMap,
-    getDoneTaskToMap,
-    getInboxTaskToMap,
-    addNewTask,
-    cancelTask,
-    activeTask,
-    doneTask,
-    getInboxTask,
-    setInboxTask,
-    setDoneItems,
-    setActiveItems,
-    setCancelItems,
-    refreshData,
-    clearCache,
-    calculateTaskTemp,
-  } = useTask();
-
-  const taskInfoContextValue = {
-    getIsLoading: loading != undefined ? () => loading : getIsLoading,
-    getActiveTaskToMap,
-    getCancelTaskToMap,
-    getDoneTaskToMap,
-    getInboxTaskToMap,
-    addNewTask,
-    cancelTask,
-    activeTask,
-    doneTask,
-    getInboxTask,
-    setActiveItems,
-    setInboxTask,
-    setCancelItems,
-    setDoneItems,
-    refreshData,
-    clearCache,
-    calculateTaskTemp,
-  };
+  const useTaskfunctions: UseTaskResponse = useTask(loading);
 
   useEffect(() => {
-    if (defaultActiveItems) setActiveItems(defaultActiveItems);
-    if (defaultItems) setInboxTask(defaultItems);
-    if (defaultCancelItems) setCancelItems(defaultCancelItems);
-    if (defaultDoneItems) setDoneItems(defaultDoneItems);
+    const defaultUserData: UserTaskData = userDataFactory();
+    if (defaultActiveItems) defaultUserData.activeItems = defaultActiveItems;
+    if (defaultItems) defaultUserData.inboxItems = defaultItems;
+    if (defaultCancelItems) defaultUserData.cancelItems = defaultCancelItems;
+    if (defaultDoneItems) defaultUserData.doneItems = defaultDoneItems;
+    useTaskfunctions.setUserData(defaultUserData);
   }, []);
 
   return (
-    <TaskInformationContext.Provider value={taskInfoContextValue}>
+    <TaskInformationContext.Provider value={useTaskfunctions}>
       {children}
     </TaskInformationContext.Provider>
   );

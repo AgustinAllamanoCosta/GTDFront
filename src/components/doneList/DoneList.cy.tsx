@@ -15,6 +15,6 @@ describe('Done List', () => {
       </BrowserRouter>,
     );
     cy.get('[data-cy="Card-title"]').should('have.text', listTitle);
-    cy.get('[data-cy="task-some task 5"]').should('have.text', task5.title);
+    cy.get(`[data-cy="task-${task5.title}"]`).should('have.text', task5.title);
   });
 });
