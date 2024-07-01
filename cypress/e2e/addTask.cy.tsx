@@ -193,9 +193,8 @@ describe('Get The Things Done Task', () => {
 
   it('Should add a daily task and mark as complete and reapear in inbox task and in the done list', () => {
     const taskContent: string = 'some task to do';
-
     cy.clock(new Date().getTime(), ['setInterval', 'Date']);
-    cy.visit('/');
+    cy.visit('/task');
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="button-make daily"]').click();

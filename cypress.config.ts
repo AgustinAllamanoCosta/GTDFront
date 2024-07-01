@@ -33,10 +33,9 @@ export default defineConfig({
             measurementId: process.env.VITE_MEASUREMENT_ID,
           });
           const useFireBase = getFirestore(firebaseApp);
-          const { clear } = repositoryFactory(process.env.VITE_APP_ENV)(
-            process.env.VITE_ID ? process.env.VITE_ID : '',
-            useFireBase,
-          );
+          const { clear } = repositoryFactory(
+            process.env.VITE_APP_ENV ? process.env.VITE_APP_ENV : 'NOT_E2E',
+          )(process.env.VITE_ID ? process.env.VITE_ID : '', useFireBase);
           await clear();
           return null;
         },
