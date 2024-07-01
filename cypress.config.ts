@@ -1,5 +1,5 @@
 import { defineConfig } from 'cypress';
-import { repository } from './src/repository/repository';
+import { repositoryFactory } from './src/repository/repository';
 import { getFirestore } from 'firebase/firestore';
 import { initializeApp } from 'firebase/app';
 import dotenv from 'dotenv';
@@ -33,7 +33,7 @@ export default defineConfig({
             measurementId: process.env.VITE_MEASUREMENT_ID,
           });
           const useFireBase = getFirestore(firebaseApp);
-          const { clear } = repository(
+          const { clear } = repositoryFactory(process.env.VITE_APP_ENV)(
             process.env.VITE_ID ? process.env.VITE_ID : '',
             useFireBase,
           );
