@@ -17,7 +17,8 @@ describe('Get The Things Done Task', () => {
   });
 
   it('Should not add an empty task', () => {
-    cy.visit('/');
+    cy.visit('/task');
+    cy.wait(1000);
 
     cy.get('[data-cy="task-add-button-input"]').click();
     cy.get('[data-cy="button-accept"]').click();
@@ -28,7 +29,9 @@ describe('Get The Things Done Task', () => {
 
   it('Should add a new task and add with accept button', () => {
     const taskContent: string = 'some task to do';
-    cy.visit('/');
+    cy.visit('/task');
+    cy.wait(1000);
+
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="button-accept"]').click();
 
@@ -38,7 +41,9 @@ describe('Get The Things Done Task', () => {
 
   it('Should add a new task', () => {
     const taskContent: string = 'some task to do';
-    cy.visit('/');
+    cy.visit('/task');
+    cy.wait(1000);
+
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
 
@@ -47,7 +52,9 @@ describe('Get The Things Done Task', () => {
 
   it('Should add a new task and active', () => {
     const taskContent: string = 'some task to do';
-    cy.visit('/');
+    cy.visit('/task');
+    cy.wait(1000);
+
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.get('[data-cy="task-some task to do"]').click();
@@ -62,7 +69,9 @@ describe('Get The Things Done Task', () => {
 
   it('Should add a new task, active it and mark as complete', () => {
     const taskContent: string = 'some task to do';
-    cy.visit('/');
+    cy.visit('/task');
+    cy.wait(1000);
+
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
     cy.get('[data-cy="task-some task to do"]').click();
@@ -78,7 +87,8 @@ describe('Get The Things Done Task', () => {
     const taskContentTwo: string = 'some task to do 2';
     const taskContentThree: string = 'some task to do 3';
     const taskContentFour: string = 'some task to do 4';
-    cy.visit('/');
+    cy.visit('/task');
+    cy.wait(1000);
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentOne);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
@@ -125,7 +135,8 @@ describe('Get The Things Done Task', () => {
     const taskContentTwo: string = 'some task to do 2';
     const taskContentThree: string = 'some task to do 3';
     const taskContentFour: string = 'some task to do 4';
-    cy.visit('/');
+    cy.visit('/task');
+    cy.wait(1000);
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentOne);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
@@ -150,6 +161,8 @@ describe('Get The Things Done Task', () => {
 
     cy.get(`[data-cy="task-${taskContentFour}"]`).click();
     cy.get(`[data-cy="button-active"]`).click();
+
+    cy.wait(1000);
 
     cy.get('[data-cy="stick-note-button-0"]').should('be.visible');
     cy.get('[data-cy="stick-note-text-0"]').should(
@@ -177,13 +190,16 @@ describe('Get The Things Done Task', () => {
 
   it('Should add a new task and them cancel it', () => {
     const taskContentOne: string = 'some task to do 1';
-    cy.visit('/');
+    cy.visit('/task');
+    cy.wait(1000);
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContentOne);
     cy.get('[data-cy="task-add-button-input"]').type('{enter}');
 
     cy.get(`[data-cy="task-${taskContentOne}"]`).click();
     cy.get(`[data-cy="button-cancel"]`).click();
+
+    cy.wait(1000);
 
     cy.get('[data-cy="task-some task to do 1"]').should(
       'have.text',
@@ -214,7 +230,7 @@ describe('Get The Things Done Task', () => {
     const taskContent: string = 'some task to do';
 
     cy.clock(new Date().getTime(), ['setInterval', 'Date']);
-    cy.visit('/');
+    cy.visit('/task');
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="button-make daily"]').click();
@@ -232,7 +248,7 @@ describe('Get The Things Done Task', () => {
     const taskContent: string = 'some task to do';
 
     cy.clock(new Date().getTime(), ['setInterval', 'Date']);
-    cy.visit('/');
+    cy.visit('/task');
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="button-make daily"]').click();
