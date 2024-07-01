@@ -26,7 +26,7 @@ export const ItemAddButton = memo(
   }: ItemAddButtonProps): React.JSX.Element => {
     const newTaskInput = useRef<any>();
 
-    const focusInput = (event: any) => {
+    const focusInput = () => {
       if (newTaskInput.current) {
         newTaskInput.current.focus();
       }

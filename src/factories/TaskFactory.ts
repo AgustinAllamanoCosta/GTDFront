@@ -18,11 +18,9 @@ const newTaskFactory = (
     id: uuid(),
     title: newTaskTitle,
     points: 0,
-    childTask: undefined,
     parentTask: parentId,
     repiteTask: itsRepeat,
     creationDate: new Date().toISOString(),
-    activationDate: undefined,
     backgroundColor: THEME_ONE.stickBackGround,
   };
 
@@ -34,10 +32,7 @@ const createTask = (): Task => {
     id: uuid(),
     title: 'Factory Task',
     creationDate: new Date().toISOString(),
-    activationDate: undefined,
     repiteTask: false,
-    parentTask: undefined,
-    childTask: undefined,
     points: 0,
     backgroundColor: THEME_ONE.stickBackGround,
   };

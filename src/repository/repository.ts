@@ -6,7 +6,7 @@ import {
   userDataFactory,
   userDataFactoryFromData,
 } from '../factories/UserDataFactory';
-import { IS_END_TO_END } from '../constants/environment';
+import { IS_LOCAL_TESTING } from '../constants/environment';
 
 export const firebaseRepository = (userId: string, useFireBase: Firestore) => {
   const saveIntoFirebase = async (userTasksData: UserTaskData) => {
@@ -90,7 +90,7 @@ export const memoryRepository = (userId: string, useFireBase: Firestore) => {
 };
 
 export const repositoryFactory = (environment: string): Repository => {
-  if (environment === IS_END_TO_END) {
+  if (environment === IS_LOCAL_TESTING) {
     return memoryRepository;
   }
   return firebaseRepository;

@@ -10,6 +10,7 @@ import {
   UserTaskData,
   UseTask,
 } from '../types/types';
+
 import { ErrorHandlerContext } from '../contexts/errorHandlerContext';
 import { UserInformationContext } from '../contexts/userContext';
 import { repositoryFactory } from '../repository/repository';
@@ -19,7 +20,9 @@ import { itemUtil } from './itemUtil';
 import { userDataFactory } from '../factories/UserDataFactory';
 import { taskFactory } from '../factories/TaskFactory';
 
-export const useTask: UseTask = (isLoadingDefualt: boolean = true) => {
+export const useTask: UseTask = (
+  isLoadingDefault: boolean | undefined = false,
+) => {
   const errorContext = useContext(ErrorHandlerContext);
   const userInformation = useContext(UserInformationContext);
 
@@ -27,6 +30,7 @@ export const useTask: UseTask = (isLoadingDefualt: boolean = true) => {
     userInformation.userData?.id ? userInformation.userData?.id : '',
     firebaseData.useFireBase,
   );
+
   const {
     mergeMaps,
     generateActiveItemsWithTemp,
@@ -34,39 +38,31 @@ export const useTask: UseTask = (isLoadingDefualt: boolean = true) => {
     loadScheduleTask,
   } = itemUtil();
 
-  const [userData, setUserData] = useState<UserTaskData>(userDataFactory());
-  const [isLoading, setIsLoading] = useState<boolean>(isLoadingDefualt);
+  const [userTaskData, setUserTaskData] =
+    useState<UserTaskData>(userDataFactory());
+  const [isLoading, setIsLoading] = useState<boolean>(isLoadingDefault);
   const [isClearCaching, setIsClearCaching] = useState<boolean>(false);
-
-  const saveTask = async () => {
-    await save(userData);
-  };
 
   const loadScheduleItems = () => {
     const newTask: Map<string, Task> = loadScheduleTask(
-      userData.scheduleTask,
-      userData.inboxItems,
+      userTaskData.scheduleTask,
+      userTaskData.inboxItems,
     );
-    userData.inboxItems = newTask;
-    setUserData({ ...userData });
+    userTaskData.inboxItems = newTask;
+    setUserTaskData({ ...userTaskData });
   };
 
   const loadTask = async () => {
     try {
-      if (userInformation?.userData?.id) {
-        setIsLoading(true);
-        const userTaskData: UserTaskData = await getData();
-        const newUserData: UserTaskData = userDataFactory();
-        Object.keys(userTaskData).forEach((key) => {
-          const castKey = key as keyof typeof userTaskData;
-          newUserData[castKey] = mergeMaps(
-            userTaskData[castKey],
-            userData[castKey],
-          );
-        });
-        setUserData(newUserData);
-        setIsLoading(false);
-      }
+      const userTaskData: UserTaskData = await getData();
+      Object.keys(userTaskData).forEach((key) => {
+        const castKey = key as keyof typeof userTaskData;
+        userTaskData[castKey] = mergeMaps(
+          userTaskData[castKey],
+          userTaskData[castKey],
+        );
+      });
+      setUserTaskData({ ...userTaskData });
     } catch (error: any) {
       errorContext.setFlagError(true);
       errorContext.setError(error);
@@ -79,91 +75,96 @@ export const useTask: UseTask = (isLoadingDefualt: boolean = true) => {
     itsRepeat: boolean = false,
   ) => {
     const newTask: Task = taskFactory(true)(newTaskTitle, parentId, itsRepeat);
-    userData.inboxItems.set(newTask.id, newTask);
+    userTaskData.inboxItems.set(newTask.id, newTask);
     if (itsRepeat) {
-      userData.scheduleTask.set(newTask.id, newTask);
+      userTaskData.scheduleTask.set(newTask.id, newTask);
     }
-    setUserData({ ...userData });
+    setUserTaskData({ ...userTaskData });
     return newTask.id;
   };
 
   const cancelTask: CancelTask = (taskId: string) => {
-    const taskToCancel: Task | undefined = userData.inboxItems.get(taskId);
+    const taskToCancel: Task | undefined = userTaskData.inboxItems.get(taskId);
     if (taskToCancel) {
-      userData.inboxItems.delete(taskId);
-      userData.scheduleTask.delete(taskId);
-      userData.cancelItems.set(taskToCancel.id, taskToCancel);
-      setUserData({ ...userData });
+      userTaskData.inboxItems.delete(taskId);
+      userTaskData.scheduleTask.delete(taskId);
+      userTaskData.cancelItems.set(taskToCancel.id, taskToCancel);
+      setUserTaskData({ ...userTaskData });
     }
   };
 
   const activeTask: ActiveTask = (taskId: string) => {
-    const taskToActive: Task | undefined = userData.inboxItems.get(taskId);
+    const taskToActive: Task | undefined = userTaskData.inboxItems.get(taskId);
     if (taskToActive) {
       taskToActive.activationDate = new Date().toISOString();
-      userData.activeItems.set(taskId, taskToActive);
-      userData.inboxItems.delete(taskId);
-      setUserData({ ...userData });
+      userTaskData.activeItems.set(taskId, taskToActive);
+      userTaskData.inboxItems.delete(taskId);
+      setUserTaskData({ ...userTaskData });
     }
   };
 
   const doneTask: DoneTask = (taskId: string) => {
-    const taskToDone: Task | undefined = userData.activeItems.get(taskId);
+    const taskToDone: Task | undefined = userTaskData.activeItems.get(taskId);
     if (taskToDone) {
-      userData.doneItems.set(taskId, taskToDone);
-      userData.activeItems.delete(taskId);
+      userTaskData.doneItems.set(taskId, taskToDone);
+      userTaskData.activeItems.delete(taskId);
       calculateItemsTemp();
     }
   };
 
   const getInboxTask = (taskId: string): Task | undefined => {
-    return userData.inboxItems.get(taskId);
+    return userTaskData.inboxItems.get(taskId);
   };
 
   const getInboxTaskToMap: GetItems = () => {
-    return processMap(userData.inboxItems);
+    return processMap(userTaskData.inboxItems);
   };
 
   const getActiveTaskToMap: GetItems = () => {
-    return processMap(userData.activeItems);
+    return processMap(userTaskData.activeItems);
   };
 
   const getCancelTaskToMap: GetItems = () => {
-    return processMap(userData.cancelItems);
+    return processMap(userTaskData.cancelItems);
   };
 
   const getDoneTaskToMap: GetItems = () => {
-    return processMap(userData.doneItems);
+    return processMap(userTaskData.doneItems);
   };
   const getIsLoading = (): boolean => isLoading;
 
   const clearTask = () => {
     setIsClearCaching(true);
-    setUserData(userDataFactory());
-  };
-
-  const isDataToStore = (): boolean => {
-    return (
-      userData.inboxItems.size > 0 ||
-      userData.activeItems.size > 0 ||
-      userData.cancelItems.size > 0 ||
-      userData.scheduleTask.size > 0 ||
-      userData.doneItems.size > 0
-    );
+    setUserTaskData(userDataFactory());
   };
 
   const calculateItemsTemp = async () => {
     const itemsWithTemp: ActiveTasks = generateActiveItemsWithTemp(
-      userData.activeItems,
+      userTaskData.activeItems,
     );
-    userData.activeItems = itemsWithTemp;
-    setUserData({ ...userData });
+    userTaskData.activeItems = itemsWithTemp;
+    setUserTaskData({ ...userTaskData });
+  };
+
+  const isNewDataToStore = (userTaskData: UserTaskData): boolean => {
+    let result: boolean = false;
+    Object.keys(userTaskData).forEach((key) => {
+      const castKey = key as keyof typeof userTaskData;
+      if (userTaskData[castKey].size > 0) {
+        result = true;
+      }
+    });
+    return result;
   };
 
   useEffect(() => {
     if (userInformation?.userData?.id) {
-      if (!getIsLoading() && !isClearCaching && isDataToStore()) {
-        saveTask().catch((error: any) => {
+      if (
+        !getIsLoading() &&
+        !isClearCaching &&
+        isNewDataToStore(userTaskData)
+      ) {
+        save(userTaskData).catch((error: any) => {
           errorContext.setFlagError(true);
           errorContext.setError(error);
         });
@@ -173,7 +174,7 @@ export const useTask: UseTask = (isLoadingDefualt: boolean = true) => {
         setIsClearCaching(false);
       }
     }
-  }, [userInformation.userData?.id, userData]);
+  }, [isLoading, userTaskData, isClearCaching]);
 
   return {
     getIsLoading,
@@ -186,7 +187,7 @@ export const useTask: UseTask = (isLoadingDefualt: boolean = true) => {
     activeTask,
     doneTask,
     getInboxTaskToMap,
-    setUserData,
+    setUserTaskData,
     refreshData: loadTask,
     loadScheduleTask: loadScheduleItems,
     clearCache: clearTask,

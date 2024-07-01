@@ -1,24 +1,12 @@
-import { ReactNode, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useTask } from '../../hooks/useTask';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import {
-  ActiveTasks,
-  CancelTasks,
-  DoneTasks,
-  InboxTasks,
+  ItemsContextPorps,
   UserTaskData,
   UseTaskResponse,
 } from '../../types/types';
 import { userDataFactory } from '../../factories/UserDataFactory';
-
-type ItemsContextPorps = {
-  defaultItems?: InboxTasks;
-  defaultCancelItems?: CancelTasks;
-  defaultDoneItems?: DoneTasks;
-  defaultActiveItems?: ActiveTasks;
-  loading?: boolean;
-  children: ReactNode;
-};
 
 const ItemsContext = ({
   defaultItems,
@@ -36,7 +24,7 @@ const ItemsContext = ({
     if (defaultItems) defaultUserData.inboxItems = defaultItems;
     if (defaultCancelItems) defaultUserData.cancelItems = defaultCancelItems;
     if (defaultDoneItems) defaultUserData.doneItems = defaultDoneItems;
-    useTaskfunctions.setUserData(defaultUserData);
+    useTaskfunctions.setUserTaskData(defaultUserData);
   }, []);
 
   return (

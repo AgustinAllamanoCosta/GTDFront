@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { UserCard } from '../../components/userCard/UserCard';
 import { Suspense, useCallback, useContext, useEffect, lazy } from 'react';
-import { InboxTasks, UserData, UserTaskData } from '../../types/types';
+import { TaskViewProps, UserTaskData } from '../../types/types';
 import { UserInformationContext } from '../../contexts/userContext';
 import { googleLogout } from '@react-oauth/google';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 import { useNavigate } from 'react-router-dom';
 import { Carousel } from '../../components/carousel/Carousel';
-import { Spiner } from '../../components/loadingSpiner/Spiner';
+import { Spinner } from '../../components/loadingSpiner/Spiner';
 import { useInterval } from '../../hooks/useInterval';
 import { userDataFactory } from '../../factories/UserDataFactory';
 
@@ -16,14 +16,6 @@ const ActiveTask = lazy(() => import('../../components/activeTask/ActiveTask'));
 const ItemList = lazy(() => import('../../components/itemList/ItemList'));
 const CancelList = lazy(() => import('../../components/cancelList/CancelList'));
 const DoneList = lazy(() => import('../../components/doneList/DoneList'));
-
-type TaskViewProps = {
-  inboxTasks?: InboxTasks;
-  userData?: UserData;
-  refreshTaskInterval?: number;
-  loadScheduleTask?: number;
-  calculateTaskTemp?: number;
-};
 
 const TaskView = ({
   inboxTasks = undefined,
@@ -37,6 +29,10 @@ const TaskView = ({
   const itemContext = useContext(TaskInformationContext);
   const navigate = useNavigate();
 
+  useInterval(itemContext.refreshData, refreshTaskInterval);
+  useInterval(itemContext.loadScheduleTask, loadScheduleTask);
+  useInterval(itemContext.calculateTaskTemp, calculateTaskTemp);
+
   const logOut = useCallback(() => {
     googleLogout();
     userInformation.setUserData(undefined);
@@ -44,30 +40,17 @@ const TaskView = ({
     navigate('/');
   }, [userInformation.userData]);
 
-  if (refreshTaskInterval) {
-    useInterval(itemContext.refreshData, refreshTaskInterval);
-  }
-
-  if (loadScheduleTask) {
-    useInterval(itemContext.loadScheduleTask, loadScheduleTask);
-  }
-
-  if (calculateTaskTemp) {
-    useInterval(itemContext.calculateTaskTemp, calculateTaskTemp);
-  }
-
   useEffect(() => {
-    console.log(loadScheduleTask);
     try {
-      itemContext.refreshData();
       if (userData) {
         userInformation.setUserData(userData);
       }
       if (inboxTasks) {
         const userTaskData: UserTaskData = userDataFactory();
         userTaskData.inboxItems = inboxTasks;
-        itemContext.setUserData(userTaskData);
+        itemContext.setUserTaskData(userTaskData);
       }
+      itemContext.refreshData();
     } catch (error: any) {
       errorContext.setFlagError(true);
       errorContext.setError(error.message);
@@ -88,29 +71,29 @@ const TaskView = ({
           <>
             <ActiveTask />
             <Carousel>
-              <Suspense fallback={<Spiner />}>
+              <Suspense fallback={<Spinner />}>
                 <ItemList id={'item-0'} />
               </Suspense>
-              <Suspense fallback={<Spiner />}>
+              <Suspense fallback={<Spinner />}>
                 <DoneList id={'item-1'} />
               </Suspense>
-              <Suspense fallback={<Spiner />}>
+              <Suspense fallback={<Spinner />}>
                 <CancelList id={'item-2'} />
               </Suspense>
             </Carousel>
           </>
         ) : (
           <>
-            <Suspense fallback={<Spiner />}>
+            <Suspense fallback={<Spinner />}>
               <CancelList />
             </Suspense>
-            <Suspense fallback={<Spiner />}>
+            <Suspense fallback={<Spinner />}>
               <ItemList />
             </Suspense>
-            <Suspense fallback={<Spiner />}>
+            <Suspense fallback={<Spinner />}>
               <ActiveTask />
             </Suspense>
-            <Suspense fallback={<Spiner />}>
+            <Suspense fallback={<Spinner />}>
               <DoneList />
             </Suspense>
           </>

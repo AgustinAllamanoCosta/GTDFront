@@ -2,12 +2,7 @@ import { memo } from 'react';
 import { styled } from 'styled-components';
 import { FONTS } from '../../constants/size';
 import { THEME_ONE } from '../../constants/colors';
-
-export type ButtonProps = {
-  text: string;
-  icon?: string;
-  onClick: (e: any) => void;
-};
+import { ButtonProps } from '../../types/types';
 
 export const Button = memo(
   ({ text, icon, onClick }: ButtonProps): React.JSX.Element => {

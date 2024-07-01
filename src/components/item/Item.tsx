@@ -3,12 +3,7 @@ import faBoxes from '../../assets/icons/boxes.svg';
 import { FONTS } from '../../constants/size';
 import { memo } from 'react';
 import { THEME_ONE } from '../../constants/colors';
-
-export type ItemProps = {
-  title: string;
-  onMouseOver?: (e: any) => void;
-  onClick?: (e: any) => void;
-};
+import { ItemProps } from '../../types/types';
 
 export const Item = memo(
   ({ title, onMouseOver, onClick }: ItemProps): React.JSX.Element => {

@@ -5,7 +5,7 @@ import { INDEX, OTHER, TASK } from './constants/routePaths';
 import { Suspense, lazy, useCallback } from 'react';
 import VersionNumberTag from './components/versionTag/VersionTag';
 import { configuration } from './config/appConfig';
-import { Spiner } from './components/loadingSpiner/Spiner';
+import { Spinner } from './components/loadingSpiner/Spiner';
 import styled from 'styled-components';
 
 const TaskViewLazy = lazy(() => import('./views/tasks/Task'));
@@ -25,9 +25,9 @@ const App = () => {
   return (
     <Suspense
       fallback={
-        <SpinerContainer>
-          <Spiner />
-        </SpinerContainer>
+        <SpinnerContainer>
+          <Spinner />
+        </SpinnerContainer>
       }
     >
       <AppContext>
@@ -37,9 +37,9 @@ const App = () => {
             element={
               <Suspense
                 fallback={
-                  <SpinerContainer>
-                    <Spiner />
-                  </SpinerContainer>
+                  <SpinnerContainer>
+                    <Spinner />
+                  </SpinnerContainer>
                 }
               >
                 <LoginViewLazy />
@@ -52,9 +52,9 @@ const App = () => {
               <RequireAuth>
                 <Suspense
                   fallback={
-                    <SpinerContainer>
-                      <Spiner />
-                    </SpinerContainer>
+                    <SpinnerContainer>
+                      <Spinner />
+                    </SpinnerContainer>
                   }
                 >
                   <TaskViewLazy
@@ -82,7 +82,7 @@ const App = () => {
   );
 };
 
-const SpinerContainer = styled.div`
+const SpinnerContainer = styled.div`
   width: 100%;
   height: 90vh;
   display: flex;

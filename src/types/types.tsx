@@ -1,4 +1,61 @@
 import { Firestore } from 'firebase/firestore';
+import { ReactNode } from 'react';
+
+export type AppContextProps = {
+  children: ReactNode;
+};
+
+export interface BusEvent {
+  name: string;
+  data?: any;
+}
+
+export interface Subscriber {
+  subscriberName: string;
+  subscriberFunction: (event: BusEvent) => void;
+}
+
+export type CardProps = {
+  content_center?: boolean;
+  padding?: boolean;
+  children?: string | React.JSX.Element | React.JSX.Element[];
+};
+
+export type ItemListProps = {
+  id?: string;
+};
+
+export type CardWithTitleProps = {
+  title?: string;
+  label?: string;
+  joinTag?: boolean;
+  children?: string | React.JSX.Element | React.JSX.Element[];
+};
+
+export type ButtonProps = {
+  text: string;
+  icon?: string;
+  onClick: (e: any) => void;
+};
+
+export type UserCardProps = {
+  userName: string;
+  userPhoto: string;
+  logout: () => void;
+};
+
+export type StickyNoteProps = {
+  number: string;
+  text: string;
+  backgroundColor: string;
+  onConfirm?: (event: any) => void;
+};
+
+export type ItemProps = {
+  title: string;
+  onMouseOver?: (e: any) => void;
+  onClick?: (e: any) => void;
+};
 
 export type UserData = {
   id: string | undefined;
@@ -22,7 +79,7 @@ export type Task = {
   };
 };
 
-export type ItemProps = {
+export type ItemWithActionsProps = {
   title: string;
   onCancel: () => void;
   onActive: () => void;
@@ -33,6 +90,10 @@ export type ItemSplitProps = {
   taskToSplit: string;
   onCancel: () => void;
   onSplit: (taskOne: string, taskTwo: string) => void;
+};
+
+export type CarouselProps = {
+  children: React.JSX.Element[];
 };
 
 export type ActiveTasks = Map<string, Task>;
@@ -113,6 +174,23 @@ export interface CalculateBackgroundColor {
   (task: Task): string;
 }
 
+export type ItemsContextPorps = {
+  defaultItems?: InboxTasks;
+  defaultCancelItems?: CancelTasks;
+  defaultDoneItems?: DoneTasks;
+  defaultActiveItems?: ActiveTasks;
+  loading?: boolean;
+  children: ReactNode;
+};
+
+export type TaskViewProps = {
+  inboxTasks?: InboxTasks;
+  userData?: UserData;
+  refreshTaskInterval?: number;
+  loadScheduleTask?: number;
+  calculateTaskTemp?: number;
+};
+
 export interface ItemUtil {
   (): {
     loadScheduleTask: LoadScheduleTask;
@@ -128,6 +206,16 @@ export interface GetItems {
   (): Array<Task>;
 }
 
+export type ItemAddButtonProps = {
+  action: () => void;
+  onChange: (event: any) => void;
+  onMakeDaily?: () => void;
+  value: string;
+  dataTest?: string;
+  disable?: boolean;
+  characterLimit?: number;
+};
+
 export type UseTaskResponse = {
   getIsLoading: () => boolean;
   getDoneTaskToMap: GetItems;
@@ -139,7 +227,7 @@ export type UseTaskResponse = {
   cancelTask: CancelTask;
   activeTask: ActiveTask;
   doneTask: DoneTask;
-  setUserData: (userData: UserTaskData) => void;
+  setUserTaskData: (userData: UserTaskData) => void;
   refreshData: () => Promise<void>;
   loadScheduleTask: LoadScheduleItems;
   clearCache: () => void;

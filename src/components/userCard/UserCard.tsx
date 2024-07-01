@@ -5,12 +5,7 @@ import { THEME_ONE } from '../../constants/colors';
 import { REPO_URL } from '../../constants/routePaths';
 import { useContext } from 'react';
 import { UserInformationContext } from '../../contexts/userContext';
-
-export type UserCardProps = {
-  userName: string;
-  userPhoto: string;
-  logout: () => void;
-};
+import { UserCardProps } from '../../types/types';
 
 export const UserCard = ({
   userName,

@@ -5,7 +5,7 @@ import X from '../../assets/icons/x.svg';
 import { useState, memo, useEffect } from 'react';
 import { Button } from '../button/Button';
 import { ItemAddButton } from '../itemButton/ItemButton';
-import { ItemProps, ItemSplitProps } from '../../types/types';
+import { ItemWithActionsProps, ItemSplitProps } from '../../types/types';
 import { Item } from '../item/Item';
 
 const SplitForm = ({
@@ -77,7 +77,7 @@ export const ItemWithActions = memo(
     onCancel,
     onActive,
     onSplit,
-  }: ItemProps): React.JSX.Element => {
+  }: ItemWithActionsProps): React.JSX.Element => {
     const [showButton, setShowButton] = useState<boolean>(false);
     const [showSplit, setShowSplit] = useState<boolean>(false);
 
@@ -85,7 +85,7 @@ export const ItemWithActions = memo(
       return showButton && !showSplit;
     };
 
-    const onCreateNewTaks = (newTaskOne: string, newTaskTwo: string) => {
+    const onCreateNewTask = (newTaskOne: string, newTaskTwo: string) => {
       onCancelSplit();
       if (newTaskOne && newTaskTwo) onSplit(newTaskOne, newTaskTwo);
     };
@@ -111,13 +111,13 @@ export const ItemWithActions = memo(
           <SplitForm
             taskToSplit={title}
             onCancel={onCancelSplit}
-            onSplit={onCreateNewTaks}
+            onSplit={onCreateNewTask}
             data-cy={`task-split-${title}`}
             key={`task-split-${title}`}
           />
         )}
         {canShowActionsButtons() && (
-          <ButtonContainer data-cy={`task-${title}-actions-butons`}>
+          <ButtonContainer data-cy={`task-${title}-actions-buttons`}>
             <Button
               onClick={() => {
                 setShowButton(false);

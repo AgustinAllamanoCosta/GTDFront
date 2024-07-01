@@ -1,5 +1,4 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { ReactNode } from 'react';
 import ErrorContext from '../components/useError/useError';
 import ItemsContext from '../components/useItems/useItems';
 import MetricContext from '../components/useEvent/useEvent';
@@ -10,18 +9,12 @@ import { THEME_ONE } from '../constants/colors';
 import InerFontBold from '../assets/fonts/Inter-Bold.ttf';
 import InerFontNormal from '../assets/fonts/Inter-Regular.ttf';
 import { firebaseData } from '../hooks/useFirebase';
-
-type AppContextProps = {
-  children: ReactNode;
-};
+import { AppContextProps } from '../types/types';
 
 const AppContext = ({ children }: AppContextProps) => {
   return (
     <AppContainer>
-      <MetricContext
-        analytics={firebaseData.analytics}
-        configuration={configuration}
-      >
+      <MetricContext analytics={firebaseData.analytics}>
         <GlobalStyles />
         <ErrorContext>
           <UserContext configuration={configuration}>
@@ -62,6 +55,7 @@ const GlobalStyles = createGlobalStyle`
     src: url(${InerFontNormal}) format('truetype');
     font-style: normal;
   }
+
   body {
     background-color: ${THEME_ONE.background};
     color: ${THEME_ONE.fontColor};

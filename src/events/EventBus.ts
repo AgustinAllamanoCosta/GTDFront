@@ -1,12 +1,4 @@
-export interface BusEvent {
-  name: string;
-  data?: any;
-}
-
-export interface Subscriber {
-  subscriberName: string;
-  subscriberFunction: (event: BusEvent) => void;
-}
+import { BusEvent, Subscriber } from '../types/types';
 
 export class EventBus {
   private subscribers: Subscriber[];

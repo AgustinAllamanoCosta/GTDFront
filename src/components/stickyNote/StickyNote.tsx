@@ -4,13 +4,7 @@ import faCheck from '../../assets/icons/check.svg';
 import { FONTS } from '../../constants/size';
 import { THEME_ONE } from '../../constants/colors';
 import { UserInformationContext } from '../../contexts/userContext';
-
-export type StickyNoteProps = {
-  number: string;
-  text: string;
-  backgroundColor: string;
-  onConfirm?: (event: any) => void;
-};
+import { StickyNoteProps } from '../../types/types';
 
 export const StickyNote = memo(
   ({

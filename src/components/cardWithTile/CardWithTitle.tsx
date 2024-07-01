@@ -3,16 +3,15 @@ import { Card } from '../card/Card';
 import { FONTS } from '../../constants/size';
 import { THEME_ONE } from '../../constants/colors';
 import { memo } from 'react';
-
-export type CardProps = {
-  title?: string;
-  label?: string;
-  joinTag?: boolean;
-  children?: string | React.JSX.Element | React.JSX.Element[];
-};
+import { CardWithTitleProps } from '../../types/types';
 
 export const CardTitle = memo(
-  ({ title, children, joinTag, label }: CardProps): React.JSX.Element => {
+  ({
+    title,
+    children,
+    joinTag,
+    label,
+  }: CardWithTitleProps): React.JSX.Element => {
     return (
       <Card padding={false}>
         <MyTitleContainer join_tag={joinTag}>

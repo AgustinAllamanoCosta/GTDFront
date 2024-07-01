@@ -1,12 +1,7 @@
 import { memo } from 'react';
 import { styled } from 'styled-components';
-import { GREY, THEME_ONE } from '../../constants/colors';
-
-export type CardProps = {
-  content_center?: boolean;
-  padding?: boolean;
-  children?: string | React.JSX.Element | React.JSX.Element[];
-};
+import { THEME_ONE } from '../../constants/colors';
+import { CardProps } from '../../types/types';
 
 export const Card = memo(
   ({

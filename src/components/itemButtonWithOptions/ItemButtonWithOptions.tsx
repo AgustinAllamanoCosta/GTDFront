@@ -2,16 +2,8 @@ import { styled } from 'styled-components';
 import { memo, useState } from 'react';
 import { Button } from '../button/Button';
 import { ItemAddButton } from '../itemButton/ItemButton';
-
-type ItemAddButtonProps = {
-  action: () => void;
-  onChange: (event: any) => void;
-  onMakeDaily?: () => void;
-  value: string;
-  dataTest?: string;
-  disable?: boolean;
-  characterLimit?: number;
-};
+import { ItemAddButtonProps } from '../../types/types';
+import { v4 as uuidv4 } from 'uuid';
 
 export const ItemAddButtonWithOptions = memo(
   ({
@@ -45,6 +37,7 @@ export const ItemAddButtonWithOptions = memo(
         {showOptions && (
           <ButtonContainer>
             <Button
+              key={`${uuidv4()}`}
               text={'accept'}
               onClick={() => {
                 action();
@@ -53,6 +46,7 @@ export const ItemAddButtonWithOptions = memo(
             />
             {onMakeDaily && (
               <Button
+                key={`${uuidv4()}`}
                 text={'make daily'}
                 onClick={() => {
                   onMakeDaily();

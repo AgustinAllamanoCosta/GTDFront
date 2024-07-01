@@ -1,9 +1,8 @@
 import { ReactNode, useEffect, useMemo, useState } from 'react';
 import { EventContext } from '../../contexts/eventContext';
 import { Analytics, logEvent } from 'firebase/analytics';
-import { BusEvent, EventBus } from '../../events/EventBus';
-import { Configuration } from '../../types/types';
-import { IS_END_TO_END } from '../../constants/environment';
+import { EventBus } from '../../events/EventBus';
+import { BusEvent } from '../../types/types';
 
 export enum SUBSCRIBER_NAMES {
   METRICS = 'metrics',
@@ -12,11 +11,9 @@ export enum SUBSCRIBER_NAMES {
 const MetricContext = ({
   children,
   analytics,
-  configuration,
 }: {
   children: ReactNode;
   analytics: Analytics | undefined;
-  configuration: Configuration;
 }) => {
   const [eventBus] = useState<EventBus>(new EventBus());
   const eventContextValue = useMemo(
@@ -31,8 +28,7 @@ const MetricContext = ({
   };
 
   useEffect(() => {
-    if (analytics && configuration.environment != IS_END_TO_END)
-      eventBus.subscribe(SUBSCRIBER_NAMES.METRICS, sendMetrics);
+    if (analytics) eventBus.subscribe(SUBSCRIBER_NAMES.METRICS, sendMetrics);
   }, []);
 
   return (

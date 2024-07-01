@@ -3,18 +3,18 @@ import { styled } from 'styled-components';
 import TaskList from '../../assets/icons/taskList.svg';
 import { THEME_ONE } from '../../constants/colors';
 
-export const Spiner = (): React.JSX.Element => {
+export const Spinner = (): React.JSX.Element => {
   return (
-    <ButtonAndNoteContainer data-cy={`spiner-container`}>
+    <SpinnerContainer data-cy={`spinner-container`}>
       <Icon
         src={TaskList}
-        alt={'spiner'}
+        alt={'spinner'}
       />
-    </ButtonAndNoteContainer>
+    </SpinnerContainer>
   );
 };
 
-const ButtonAndNoteContainer = styled.div`
+const SpinnerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,6 +27,7 @@ const ButtonAndNoteContainer = styled.div`
 
 const Icon = styled.img`
   filter: invert(100%);
+
   @keyframes animating-multiple-properties {
     from {
       transform: translateX(-50px);
@@ -35,6 +36,7 @@ const Icon = styled.img`
       transform: translateX(70px);
     }
   }
+
   width: 35px;
   height: 40px;
   animation: 1s linear 1s infinite alternate animating-multiple-properties;

@@ -3,7 +3,7 @@ import { UserInformationContext } from '../../contexts/userContext';
 import { UserData } from '../../types/types';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
-import { IS_END_TO_END } from '../../constants/environment';
+import { IS_END_TO_END, IS_LOCAL_TESTING } from '../../constants/environment';
 import { useViewport } from '../../hooks/useView';
 
 const UserContext = ({
@@ -35,7 +35,10 @@ const UserContext = ({
 
   useEffect(() => {
     try {
-      if (configuration.environment === IS_END_TO_END) {
+      if (
+        configuration.environment === IS_END_TO_END ||
+        configuration.environment === IS_LOCAL_TESTING
+      ) {
         const userData = {
           accessToken: configuration.accessToken,
           id: configuration.ID,

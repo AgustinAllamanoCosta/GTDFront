@@ -3,19 +3,15 @@ import { CardTitle } from '../cardWithTile/CardWithTitle';
 import { useContext, useRef, useState } from 'react';
 import { ItemWithActions } from '../itemWithActions/ItemWithActions';
 import { TaskInformationContext } from '../../contexts/taskContext';
-import { Task } from '../../types/types';
+import { ItemListProps, Task } from '../../types/types';
 import { THEME_ONE } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
 import { EventContext } from '../../contexts/eventContext';
 import { SUBSCRIBER_NAMES } from '../useEvent/useEvent';
-import { Spiner } from '../loadingSpiner/Spiner';
+import { Spinner } from '../loadingSpiner/Spiner';
 import { ItemAddButtonWithOptions } from '../itemButtonWithOptions/ItemButtonWithOptions';
 import { v4 as uuidv4 } from 'uuid';
-
-type ItemListProps = {
-  id?: string;
-};
 
 const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
   const CHARACTER_LIMIT: number = 43;
@@ -143,7 +139,7 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
         label={`total ${inboxToMap.length}`}
       >
         {itemsInformation.getIsLoading() ? (
-          <Spiner />
+          <Spinner key={`${uuidv4()}`} />
         ) : (
           <>
             <ItemAddButtonWithOptions
@@ -158,7 +154,9 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
                 buttonAdd(true);
               }}
             />
-            <InboxContainer>{itemComponentsList}</InboxContainer>
+            <InboxContainer key={`${uuidv4()}`}>
+              {itemComponentsList}
+            </InboxContainer>
           </>
         )}
       </CardTitle>

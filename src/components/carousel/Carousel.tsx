@@ -1,9 +1,6 @@
 import { styled } from 'styled-components';
 import { memo, useEffect, useState } from 'react';
-
-export type CarouselProps = {
-  children: React.JSX.Element[];
-};
+import { CarouselProps } from '../../types/types';
 
 export const Carousel = memo(
   ({ children }: CarouselProps): React.JSX.Element => {
