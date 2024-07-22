@@ -226,6 +226,19 @@ describe('Get The Things Done Task', () => {
     cy.get('[data-cy="task-some task to do"]').should('have.length', 2);
   });
 
+  it('Should not add a schedule task if the task is in the inbox list', () => {
+    const taskContent: string = 'some task to do';
+    cy.clock(new Date().getTime(), ['setInterval', 'Date']);
+    cy.visit('/task');
+
+    cy.get('[data-cy="task-add-button-input"]').type(taskContent);
+    cy.get('[data-cy="button-make daily"]').click();
+
+    cy.tick(48 * (1000 * 60 * 60));
+
+    cy.get('[data-cy="task-some task to do"]').should('have.length', 1);
+  });
+
   it('Should cancel a daily task and not appear again', () => {
     const taskContent: string = 'some task to do';
 
