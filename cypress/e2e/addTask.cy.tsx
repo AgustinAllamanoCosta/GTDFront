@@ -209,14 +209,16 @@ describe('Get The Things Done Task', () => {
 
   it('Should add a daily task and mark as complete and reapear in inbox task and in the done list', () => {
     const taskContent: string = 'some task to do';
-    cy.clock(new Date().getTime(), ['setInterval', 'Date']);
+    cy.clock(new Date().getTime(), ['setInterval', 'setTimeout', 'Date']);
     cy.visit('/task');
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="button-make daily"]').click();
+    cy.tick(100);
 
     cy.get('[data-cy="task-some task to do"]').click();
     cy.get('[data-cy="button-active"]').click();
+    cy.tick(100);
 
     cy.get('[data-cy="stick-note-button-0"]').click();
 
@@ -242,25 +244,26 @@ describe('Get The Things Done Task', () => {
   it('Should cancel a daily task and not appear again', () => {
     const taskContent: string = 'some task to do';
 
-    cy.clock(new Date().getTime(), ['setInterval', 'Date']);
+    cy.clock(new Date().getTime(), ['setInterval', 'setTimeout', 'Date']);
     cy.visit('/task');
 
-    cy.get('[data-cy="task-add-button-input"]').type(taskContent);
-    cy.get('[data-cy="button-make daily"]').click();
+    cy.get('[data-cy="task-add-button-input"]', { timeout: 1000 }).type(taskContent);
+    cy.get('[data-cy="button-make daily"]', { timeout: 1000 }).click();
 
-    cy.get('[data-cy="task-some task to do"]').click();
-    cy.get('[data-cy="button-cancel"]').click();
+    cy.get('[data-cy="task-some task to do"]', { timeout: 1000 }).click();
+    cy.get('[data-cy="button-cancel"]', { timeout: 1000 }).click();
 
     cy.tick(48 * (1000 * 60 * 60));
 
-    cy.get('[data-cy="stick-note-text-0"]').should('not.exist');
-    cy.get('[data-cy="task-some task to do"]').should('have.length', 1);
+    cy.get('[data-cy="stick-note-text-0"]', { timeout: 1000 }).should('not.exist');
+    cy.get('[data-cy="task-some task to do"]', { timeout: 1000 }).should('have.length', 1);
   });
 
   it('Should add task, active and change the temp to warn', () => {
     const taskContent: string = 'some task to do';
 
-    cy.clock(new Date().getTime(), ['setInterval', 'Date']);
+    cy.clock(new Date().getTime(), ['setInterval', 'setTimeout', 'Date']);
+
     cy.visit('/task');
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
