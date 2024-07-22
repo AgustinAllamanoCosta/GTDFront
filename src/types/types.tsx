@@ -70,6 +70,8 @@ export type Task = {
   creationDate: string;
   backgroundColor: string;
   activationDate?: string;
+  cancelationDate?: string;
+  completionDate?: string;
   repiteTask?: boolean;
   points?: number;
   parentTask?: string;
@@ -147,6 +149,18 @@ export interface LoadScheduleTask {
   ): Map<string, Task>;
 }
 
+export interface ArchiveDoneTaskWithAfterAWeek {
+  (
+    filterToList: Map<string, Task>,
+  ): Map<string, Task>;
+}
+
+export interface ArchiveCancelTaskWithAfterAWeek {
+  (
+    filterToList: Map<string, Task>,
+  ): Map<string, Task>;
+}
+
 export interface LoadScheduleItems {
   (): void;
 }
@@ -163,7 +177,7 @@ export interface MergeMaps {
 }
 
 export interface ProcessMap {
-  (mapToProcess: Map<string, Task>): Array<Task>;
+  (mapToProcess: Map<string, Task>, callBack: Function): Array<Task>;
 }
 
 export interface OrderItems {
@@ -194,7 +208,11 @@ export type TaskViewProps = {
 export interface ItemUtil {
   (): {
     loadScheduleTask: LoadScheduleTask;
+    archiveDoneTaskWithAfterAWeek: ArchiveDoneTaskWithAfterAWeek;
+    archiveCancelTaskWithAfterAWeek: ArchiveCancelTaskWithAfterAWeek;
     orderItems: OrderItems;
+    orderCompleteItems: OrderItems;
+    orderCancelItems: OrderItems;
     processMap: ProcessMap;
     mergeMaps: MergeMaps;
     generateActiveItemsWithTemp: GenerateActiveItemsWithTemp;
@@ -207,13 +225,11 @@ export interface GetItems {
 }
 
 export type ItemAddButtonProps = {
-  action: () => void;
-  onChange: (event: any) => void;
-  onMakeDaily?: () => void;
-  value: string;
+  action: (value: string) => void;
+  characterLimit: number;
+  onMakeDaily?: (value: string) => void;
   dataTest?: string;
   disable?: boolean;
-  characterLimit?: number;
 };
 
 export type UseTaskResponse = {

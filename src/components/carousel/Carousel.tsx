@@ -76,6 +76,9 @@ const CarouselContainer = styled.div`
   width: 50vh;
   max-width: 380px;
   overflow: hidden;
+  -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
 `;
 
 const CarouselWrapper = styled.div`

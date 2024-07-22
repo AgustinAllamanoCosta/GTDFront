@@ -123,7 +123,7 @@ const ContentContainer = styled.div<{ is_mobile?: string }>`
   flex-direction: row;
   align-items: center;
   width: 100%;
-  height: 820px;
+  height: 830px;
   flex-wrap: nowrap;
   `};
 `;

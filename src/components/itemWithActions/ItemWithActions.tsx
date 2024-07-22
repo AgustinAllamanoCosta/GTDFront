@@ -1,8 +1,8 @@
-import { styled } from 'styled-components';
+import { css, keyframes, styled } from 'styled-components';
 import check from '../../assets/icons/check.svg';
 import percent from '../../assets/icons/percent.svg';
 import X from '../../assets/icons/x.svg';
-import { useState, memo, useEffect } from 'react';
+import { useState, memo } from 'react';
 import { Button } from '../button/Button';
 import { ItemAddButton } from '../itemButton/ItemButton';
 import { ItemWithActionsProps, ItemSplitProps } from '../../types/types';
@@ -14,6 +14,7 @@ const SplitForm = ({
 }: ItemSplitProps): React.JSX.Element => {
   const [newTaskOne, setNewTaskOne] = useState('');
   const [newTaskTwo, setNewTaskTwo] = useState('');
+  const [runAnimation, setRunAnimation] = useState<boolean>(false);
 
   const onChangeTaskOne = (event: any) => {
     setNewTaskOne(event.target.value);
@@ -23,16 +24,8 @@ const SplitForm = ({
     setNewTaskTwo(event.target.value);
   };
 
-  const getSugesstionFromAssistance = async () => {
-    console.log('message from assistance: Implement');
-  };
-
-  useEffect(() => {
-    getSugesstionFromAssistance();
-  }, []);
-
   return (
-    <>
+    <SplitFormContainer run_animation={`${runAnimation}`}>
       <SplitInputContainer data-cy={'split-form'}>
         <ItemAddButton
           dataTest="task1"
@@ -63,11 +56,14 @@ const SplitForm = ({
         />
         <Button
           icon={X}
-          onClick={onCancel}
+          onClick={() => {
+            setRunAnimation(true);
+            setTimeout(onCancel, 100);
+          }}
           text="cancel"
         />
       </ButtonContainer>
-    </>
+    </SplitFormContainer>
   );
 };
 
@@ -80,14 +76,20 @@ export const ItemWithActions = memo(
   }: ItemWithActionsProps): React.JSX.Element => {
     const [showButton, setShowButton] = useState<boolean>(false);
     const [showSplit, setShowSplit] = useState<boolean>(false);
+    const [runAnimation, setRunAnimation] = useState<boolean>(false);
 
     const canShowActionsButtons = (): boolean => {
       return showButton && !showSplit;
     };
 
     const onCreateNewTask = (newTaskOne: string, newTaskTwo: string) => {
-      onCancelSplit();
-      if (newTaskOne && newTaskTwo) onSplit(newTaskOne, newTaskTwo);
+      if (newTaskOne && newTaskTwo) {
+        setRunAnimation(true);
+        setTimeout(() => {
+          onCancelSplit();
+          onSplit(newTaskOne, newTaskTwo);
+        }, 100);
+      }
     };
 
     const onCancelSplit = () => {
@@ -96,11 +98,7 @@ export const ItemWithActions = memo(
     };
 
     return (
-      <ItemContainer
-        onMouseLeave={() => {
-          setShowButton(false);
-        }}
-      >
+      <ItemContainer run_animation={`${runAnimation}`}>
         <Item
           title={title}
           onClick={() => {
@@ -121,7 +119,8 @@ export const ItemWithActions = memo(
             <Button
               onClick={() => {
                 setShowButton(false);
-                onActive();
+                setRunAnimation(true);
+                setTimeout(onActive, 100);
               }}
               text="active"
               icon={check}
@@ -140,7 +139,8 @@ export const ItemWithActions = memo(
               icon={X}
               onClick={() => {
                 setShowButton(false);
-                onCancel();
+                setRunAnimation(true);
+                setTimeout(onCancel, 100);
               }}
               text="cancel"
             />
@@ -151,18 +151,84 @@ export const ItemWithActions = memo(
   },
 );
 
+const ActiveAnimation = keyframes`
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+`;
+
+const InSplitFormContainer = keyframes`
+    0% {
+		opacity: 0;
+		transform: translateY(-250px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+`;
+
+const OutSplitFormContainer = keyframes`
+    0% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-250px);
+	}
+`;
+
+const InButtonContainer = keyframes`
+    0% {
+		opacity: 0;
+		transform: translateY(-250px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+`;
+
 const SplitInputContainer = styled.div`
   padding-left: 20px;
 `;
 
-const ItemContainer = styled.div`
+const ItemContainer = styled.div<{ run_animation: string }>`
   cursor: pointer;
+  animation: ${(props) => {
+    if (props.run_animation === 'true') {
+      return css`
+        ${ActiveAnimation} 500ms ease-out 0s 1 normal forwards;
+      `;
+    }
+    return `null`;
+  }};
 `;
 
 const ButtonContainer = styled.div`
+  animation: ${InButtonContainer} 500ms ease-out 0s 1 normal forwards;
   display: flex;
   flex-direction: row;
   align-content: center;
   justify-content: space-evenly;
   padding-left: 9px;
+`;
+
+const SplitFormContainer = styled.div<{ run_animation: string }>`
+  animation: ${(props) => {
+    if (props.run_animation === 'true') {
+      return css`
+        ${OutSplitFormContainer} 500ms ease-out 0s 1 normal forwards;
+      `;
+    }
+    return css`
+      ${InSplitFormContainer} 500ms ease-out 0s 1 normal forwards;
+    `;
+  }};
 `;

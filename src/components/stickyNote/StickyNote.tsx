@@ -1,5 +1,5 @@
 import { useState, memo, useContext } from 'react';
-import { styled } from 'styled-components';
+import { keyframes, styled } from 'styled-components';
 import faCheck from '../../assets/icons/check.svg';
 import { FONTS } from '../../constants/size';
 import { THEME_ONE } from '../../constants/colors';
@@ -54,6 +54,20 @@ export const StickyNote = memo(
   },
 );
 
+const InAnimation = keyframes`
+	0% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.2;
+	}
+
+	100% {
+		opacity: 1;
+	}
+`;
+
 const TextNote = styled.textarea<{ is_mobile?: string }>`
   font-size: ${FONTS.TEXT};
   font-weight: 700;
@@ -106,6 +120,7 @@ const ButtonAndNoteContainer = styled.div<{
   background_color: string;
   is_mobile?: string;
 }>`
+  animation: ${InAnimation} 1s ease-out 0s 1 normal forwards;
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.background_color};

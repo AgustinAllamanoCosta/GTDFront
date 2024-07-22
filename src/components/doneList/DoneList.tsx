@@ -2,7 +2,6 @@ import { styled } from 'styled-components';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
 import { useContext } from 'react';
 import { Item } from '../item/Item';
-import { v4 as uuidv4 } from 'uuid';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { BLACK } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
@@ -21,7 +20,7 @@ const DoneList = ({ id }: DoneListProps): React.JSX.Element => {
   const doneComponentsList: React.JSX.Element[] = doneTasks.map(
     (item: Task) => (
       <Item
-        key={`${uuidv4()}-${item.title}`}
+        key={`${item.id}-${item.title}`}
         title={item.title}
       />
     ),

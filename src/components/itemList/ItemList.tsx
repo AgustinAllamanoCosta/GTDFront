@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
-import { useContext, useRef, useState } from 'react';
+import { useContext, useRef } from 'react';
 import { ItemWithActions } from '../itemWithActions/ItemWithActions';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { ItemListProps, Task } from '../../types/types';
@@ -10,7 +10,7 @@ import { UserInformationContext } from '../../contexts/userContext';
 import { EventContext } from '../../contexts/eventContext';
 import { SUBSCRIBER_NAMES } from '../useEvent/useEvent';
 import { Spinner } from '../loadingSpiner/Spiner';
-import { ItemAddButtonWithOptions } from '../itemButtonWithOptions/ItemButtonWithOptions';
+import { InputWithActions } from '../itemButtonWithOptions/ItemButtonWithOptions';
 import { v4 as uuidv4 } from 'uuid';
 
 const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
@@ -20,15 +20,12 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
   const { eventBus } = useContext(EventContext);
   const refToList = useRef<HTMLDivElement[]>([]);
 
-  const [value, setValue] = useState<string>('');
-
   const activeTask = itemsInformation.getActiveTaskToMap();
   const inboxToMap = itemsInformation.getInboxTaskToMap();
 
-  const buttonAdd = (makeDaily: boolean = false) => {
+  const buttonAdd = (makeDaily: boolean = false, value: string | undefined) => {
     if (value) {
       itemsInformation.addNewTask(value, '', makeDaily);
-      setValue('');
       eventBus.publish({
         name: SUBSCRIBER_NAMES.METRICS,
         data: {
@@ -92,13 +89,6 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
     }
   };
 
-  const onChangeButton = (event: any) => {
-    const value: string = event.target.value;
-    if (value.length <= CHARACTER_LIMIT) {
-      setValue(value);
-    }
-  };
-
   const itemComponentsList: React.ReactNode[] = inboxToMap.map(
     (item: Task, index: number) => (
       <div
@@ -114,10 +104,10 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
             block: 'center',
           });
         }}
-        key={uuidv4()}
+        key={item.id}
       >
         <ItemWithActions
-          key={`${item.id}-${uuidv4()}`}
+          key={`${item.id}-${item.title}`}
           title={item.title}
           onActive={() => onActiveTask(item.id)}
           onCancel={() => onCancelTask(item.id)}
@@ -142,21 +132,17 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
           <Spinner key={`${uuidv4()}`} />
         ) : (
           <>
-            <ItemAddButtonWithOptions
-              onChange={onChangeButton}
-              value={value}
-              action={() => {
-                buttonAdd(false);
+            <InputWithActions
+              action={(value: string | undefined) => {
+                buttonAdd(false, value);
               }}
               disable={itemsInformation.getIsLoading()}
               characterLimit={CHARACTER_LIMIT}
-              onMakeDaily={() => {
-                buttonAdd(true);
+              onMakeDaily={(value: string | undefined) => {
+                buttonAdd(true, value);
               }}
             />
-            <InboxContainer key={`${uuidv4()}`}>
-              {itemComponentsList}
-            </InboxContainer>
+            <InboxContainer>{itemComponentsList}</InboxContainer>
           </>
         )}
       </CardTitle>

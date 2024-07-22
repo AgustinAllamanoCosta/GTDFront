@@ -13,8 +13,11 @@ export const mockTaskInContext: Map<string, Task> = new Map();
 mockTaskInContext.set(task1.id, task1);
 mockTaskInContext.set(task2.id, task2);
 mockTaskInContext.set(task3.id, task3);
+
 export const mockCancelTaskInContext: Map<string, Task> = new Map();
+task4.cancelationDate = new Date().toISOString();
 mockCancelTaskInContext.set(task4.id, task4);
+
 export const mockDoneTaskInContext: Map<string, Task> = new Map();
 mockDoneTaskInContext.set(task5.id, task5);
 

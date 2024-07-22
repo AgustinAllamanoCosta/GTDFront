@@ -1,11 +1,10 @@
 import React from 'react';
-import { ItemAddButtonWithOptions } from './ItemButtonWithOptions';
+import { InputWithActions } from './ItemButtonWithOptions';
 
 describe('Should render a add task input and show the character limit when is focused', () => {
   it('render a card with title, subtitle and content', () => {
     let actionWasExecuted: boolean = false;
     let isDaily: boolean = false;
-    let value: string = '';
 
     const characterLimit: number = 43;
     const testID: string = 'task-add-button-input';
@@ -13,24 +12,19 @@ describe('Should render a add task input and show the character limit when is fo
     const testButtonMakeDailyID: string = 'button-make daily';
     const characterCounterTestID: string = 'task-add-button-character-counter';
 
-    const inputAction = () => {
+    const inputAction = (value: string) => {
       actionWasExecuted = true;
     };
-    const inputOnChange = (event: any) => {
-      value = event;
-    };
-    const inputOnMackeDaily = () => {
+    const inputOnMackeDaily = (value: string) => {
       isDaily = false;
     };
 
     cy.mount(
-      <ItemAddButtonWithOptions
+      <InputWithActions
         action={inputAction}
-        onChange={inputOnChange}
         onMakeDaily={inputOnMackeDaily}
         disable={false}
         characterLimit={characterLimit}
-        value={value}
         dataTest={'component'}
       />,
     );

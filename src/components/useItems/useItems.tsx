@@ -19,11 +19,12 @@ const ItemsContext = ({
   const useTaskfunctions: UseTaskResponse = useTask(loading);
 
   useEffect(() => {
-    const defaultUserData: UserTaskData = userDataFactory();
-    if (defaultActiveItems) defaultUserData.activeItems = defaultActiveItems;
-    if (defaultItems) defaultUserData.inboxItems = defaultItems;
-    if (defaultCancelItems) defaultUserData.cancelItems = defaultCancelItems;
-    if (defaultDoneItems) defaultUserData.doneItems = defaultDoneItems;
+    const defaultUserData: UserTaskData = userDataFactory(
+      defaultActiveItems,
+      defaultCancelItems,
+      defaultDoneItems,
+      defaultItems,
+    );
     useTaskfunctions.setUserTaskData(defaultUserData);
   }, []);
 

@@ -1,12 +1,18 @@
-import { UserTaskData } from '../types/types';
+import { ActiveTasks, CancelTasks, DoneTasks, InboxTasks, UserTaskData } from '../types/types';
 
-export const userDataFactory = (): UserTaskData => {
+export const userDataFactory = (
+  activeItems?: ActiveTasks,
+  cancelItems?: CancelTasks,
+  doneItems?: DoneTasks,
+  inboxItems?: InboxTasks,
+  scheduleItems?: InboxTasks
+  ): UserTaskData => {
   const newUserTaskData: UserTaskData = {
-    activeItems: new Map(),
-    cancelItems: new Map(),
-    doneItems: new Map(),
-    inboxItems: new Map(),
-    scheduleTask: new Map(),
+    activeItems: activeItems ? activeItems : new Map(),
+    cancelItems: cancelItems ? cancelItems : new Map(),
+    doneItems: doneItems ? doneItems : new Map(),
+    inboxItems: inboxItems ? inboxItems : new Map(),
+    scheduleTask: scheduleItems ? scheduleItems : new Map(),
   };
   return newUserTaskData;
 };

@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { keyframes, styled } from 'styled-components';
 import faBoxes from '../../assets/icons/boxes.svg';
 import { FONTS } from '../../constants/size';
 import { memo } from 'react';
@@ -24,7 +24,21 @@ export const Item = memo(
     );
   },
 );
-const ItemContainer = styled.div``;
+
+const InAnimation = keyframes`
+    0% {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+`;
+
+const ItemContainer = styled.div`
+  animation: ${InAnimation} 500ms ease-out 0s 1 normal forwards;
+`;
 
 const ItemContent = styled.div`
   border-bottom-style: solid;
@@ -36,7 +50,7 @@ const ItemContent = styled.div`
   flex-direction: row;
   align-items: center;
   padding-left: 9px;
-  height: 20px;
+  height: 25px;
 `;
 
 const ItemText = styled.span`
@@ -56,7 +70,7 @@ const ItemText = styled.span`
 
 const Icon = styled.img`
   filter: invert(100%);
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   padding-right: 5px;
 `;

@@ -3,28 +3,34 @@ import { memo, useState } from 'react';
 import { Button } from '../button/Button';
 import { ItemAddButton } from '../itemButton/ItemButton';
 import { ItemAddButtonProps } from '../../types/types';
-import { v4 as uuidv4 } from 'uuid';
 
-export const ItemAddButtonWithOptions = memo(
+export const InputWithActions = memo(
   ({
-    onChange,
     action,
     onMakeDaily,
-    value,
     dataTest,
     disable = false,
     characterLimit,
   }: ItemAddButtonProps): React.JSX.Element => {
-    const [showOptions, setShowOptions] = useState(false);
+    const [showOptions, setShowOptions] = useState<boolean>(false);
+    const [value, setValue] = useState<string>('');
+
+    const onChange = (event: any) => {
+      const value: string = event.target.value;
+      if (value.length <= characterLimit) {
+        setValue(value);
+      }
+    };
 
     return (
       <div
-        onFocus={() => setShowOptions(true)}
         onMouseLeave={() => setShowOptions(false)}
+        onClick={() => setShowOptions(!showOptions)}
       >
         <ItemAddButton
           action={() => {
-            action();
+            action(value);
+            setValue('');
             setShowOptions(false);
           }}
           onChange={onChange}
@@ -34,23 +40,24 @@ export const ItemAddButtonWithOptions = memo(
           disable={disable}
           showCharacterLimit={showOptions}
         />
+
         {showOptions && (
           <ButtonContainer>
             <Button
-              key={`${uuidv4()}`}
+              key={`accept-button`}
               text={'accept'}
               onClick={() => {
-                action();
-                setShowOptions(false);
+                action(value);
+                setValue('');
               }}
             />
             {onMakeDaily && (
               <Button
-                key={`${uuidv4()}`}
+                key={`make-daily-button`}
                 text={'make daily'}
                 onClick={() => {
-                  onMakeDaily();
-                  setShowOptions(false);
+                  onMakeDaily(value);
+                  setValue('');
                 }}
               />
             )}

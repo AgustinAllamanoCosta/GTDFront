@@ -36,6 +36,11 @@ export const useTask: UseTask = (
     generateActiveItemsWithTemp,
     processMap,
     loadScheduleTask,
+    orderItems,
+    orderCancelItems,
+    orderCompleteItems,
+    archiveDoneTaskWithAfterAWeek,
+    archiveCancelTaskWithAfterAWeek,
   } = itemUtil();
 
   const [userTaskData, setUserTaskData] =
@@ -86,6 +91,7 @@ export const useTask: UseTask = (
   const cancelTask: CancelTask = (taskId: string) => {
     const taskToCancel: Task | undefined = userTaskData.inboxItems.get(taskId);
     if (taskToCancel) {
+      taskToCancel.cancelationDate = new Date().toISOString();
       userTaskData.inboxItems.delete(taskId);
       userTaskData.scheduleTask.delete(taskId);
       userTaskData.cancelItems.set(taskToCancel.id, taskToCancel);
@@ -106,6 +112,7 @@ export const useTask: UseTask = (
   const doneTask: DoneTask = (taskId: string) => {
     const taskToDone: Task | undefined = userTaskData.activeItems.get(taskId);
     if (taskToDone) {
+      taskToDone.completionDate = new Date().toISOString();
       userTaskData.doneItems.set(taskId, taskToDone);
       userTaskData.activeItems.delete(taskId);
       calculateItemsTemp();
@@ -117,19 +124,21 @@ export const useTask: UseTask = (
   };
 
   const getInboxTaskToMap: GetItems = () => {
-    return processMap(userTaskData.inboxItems);
+    return processMap(userTaskData.inboxItems, orderItems);
   };
 
   const getActiveTaskToMap: GetItems = () => {
-    return processMap(userTaskData.activeItems);
+    return processMap(userTaskData.activeItems, orderItems);
   };
 
   const getCancelTaskToMap: GetItems = () => {
-    return processMap(userTaskData.cancelItems);
+    const latestCancelItems: Map<string, Task> =
+      archiveCancelTaskWithAfterAWeek(userTaskData.cancelItems);
+    return processMap(latestCancelItems, orderCancelItems);
   };
 
   const getDoneTaskToMap: GetItems = () => {
-    return processMap(userTaskData.doneItems);
+    return processMap(userTaskData.doneItems, orderCompleteItems);
   };
   const getIsLoading = (): boolean => isLoading;
 
