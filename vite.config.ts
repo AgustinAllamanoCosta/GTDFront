@@ -8,6 +8,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: 'script',
       includeAssets: ['apple-icon-180.png'],
       manifest: {
         icons: [
@@ -36,11 +37,6 @@ export default defineConfig({
         orientation: 'portrait',
         theme_color: '#070F2B',
         background_color: '#070F2B',
-      },
-      workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
-        cleanupOutdatedCaches: true,
-        sourcemap: true,
       },
       devOptions: {
         enabled: false,
