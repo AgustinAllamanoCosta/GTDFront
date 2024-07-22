@@ -1,12 +1,18 @@
-import { ActiveTasks, CancelTasks, DoneTasks, InboxTasks, UserTaskData } from '../types/types';
+import {
+  ActiveTasks,
+  CancelTasks,
+  DoneTasks,
+  InboxTasks,
+  UserTaskData,
+} from '../types/types';
 
 export const userDataFactory = (
   activeItems?: ActiveTasks,
   cancelItems?: CancelTasks,
   doneItems?: DoneTasks,
   inboxItems?: InboxTasks,
-  scheduleItems?: InboxTasks
-  ): UserTaskData => {
+  scheduleItems?: InboxTasks,
+): UserTaskData => {
   const newUserTaskData: UserTaskData = {
     activeItems: activeItems ? activeItems : new Map(),
     cancelItems: cancelItems ? cancelItems : new Map(),

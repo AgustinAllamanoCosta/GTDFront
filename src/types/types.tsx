@@ -150,15 +150,11 @@ export interface LoadScheduleTask {
 }
 
 export interface ArchiveDoneTaskWithAfterAWeek {
-  (
-    filterToList: Map<string, Task>,
-  ): Map<string, Task>;
+  (filterToList: Map<string, Task>): Map<string, Task>;
 }
 
 export interface ArchiveCancelTaskWithAfterAWeek {
-  (
-    filterToList: Map<string, Task>,
-  ): Map<string, Task>;
+  (filterToList: Map<string, Task>): Map<string, Task>;
 }
 
 export interface LoadScheduleItems {
