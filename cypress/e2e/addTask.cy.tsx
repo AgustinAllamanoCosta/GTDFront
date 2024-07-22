@@ -247,7 +247,9 @@ describe('Get The Things Done Task', () => {
     cy.clock(new Date().getTime(), ['setInterval', 'setTimeout', 'Date']);
     cy.visit('/task');
 
-    cy.get('[data-cy="task-add-button-input"]', { timeout: 1000 }).type(taskContent);
+    cy.get('[data-cy="task-add-button-input"]', { timeout: 1000 }).type(
+      taskContent,
+    );
     cy.get('[data-cy="button-make daily"]', { timeout: 1000 }).click();
 
     cy.get('[data-cy="task-some task to do"]', { timeout: 1000 }).click();
@@ -255,8 +257,13 @@ describe('Get The Things Done Task', () => {
 
     cy.tick(48 * (1000 * 60 * 60));
 
-    cy.get('[data-cy="stick-note-text-0"]', { timeout: 1000 }).should('not.exist');
-    cy.get('[data-cy="task-some task to do"]', { timeout: 1000 }).should('have.length', 1);
+    cy.get('[data-cy="stick-note-text-0"]', { timeout: 1000 }).should(
+      'not.exist',
+    );
+    cy.get('[data-cy="task-some task to do"]', { timeout: 1000 }).should(
+      'have.length',
+      1,
+    );
   });
 
   it('Should add task, active and change the temp to warn', () => {
