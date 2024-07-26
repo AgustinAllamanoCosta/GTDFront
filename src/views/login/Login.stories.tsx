@@ -14,5 +14,5 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const FullLoginView: Story = {
-  args: {},
+  args: { environment: 'prod' },
 };

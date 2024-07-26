@@ -28,7 +28,7 @@ const ErrorContext = ({ children }: { children: ReactNode }) => {
   return (
     <ErrorHandlerContext.Provider value={errorHandlerContextValue}>
       {anErrorHappened ? (
-        <ErrorView onClick={() => setAnErrorHappend(false)} />
+        <ErrorView onClick={() => setAnErrorHappened(false)} />
       ) : (
         children
       )}
