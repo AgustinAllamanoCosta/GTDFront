@@ -7,9 +7,21 @@ import { REPO_URL } from '../../constants/routePaths';
 import { THEME_ONE } from '../../constants/colors';
 import { useGoogleLoginActions } from '../../hooks/useGoogleLogin';
 import { TASK } from '../../constants/routePaths';
+import { configuration } from '../../config/appConfig';
+import { IS_END_TO_END, IS_LOCAL_TESTING } from '../../constants/environment';
+import { useState } from 'react';
 
 const LoginView = () => {
-  const { loginGoogle } = useGoogleLoginActions(TASK);
+  const { loginGoogle, loginWithEmailAndPass } = useGoogleLoginActions(TASK);
+  const [userEmail, setUserEmail] = useState<string>('');
+  const [userPassword, setUserPassword] = useState<string>('');
+
+  const isLocalOrEndToEnd = (): Boolean => {
+    return (
+      configuration.environment === IS_LOCAL_TESTING ||
+      configuration.environment === IS_END_TO_END
+    );
+  };
 
   return (
     <Container>
@@ -23,17 +35,75 @@ const LoginView = () => {
             Get Things Done
           </Title>
           <ButtonContent>
-            <Button
-              text="Login With Google"
-              icon={faAddressCard}
-              onClick={loginGoogle}
-            />
+            {isLocalOrEndToEnd() ? (
+              <>
+                <InputContent>
+                  <LoginInput
+                    data-cy="input-email"
+                    type="email"
+                    placeholder={'Email'}
+                    onChange={(event) => {
+                      setUserEmail(event.target.value);
+                    }}
+                  />
+                </InputContent>
+                <InputContent>
+                  <LoginInput
+                    data-cy="input-pass"
+                    type="password"
+                    placeholder={'Password'}
+                    onChange={(event) => {
+                      setUserPassword(event.target.value);
+                    }}
+                  />
+                </InputContent>
+
+                <Button
+                  text="Login"
+                  icon={faAddressCard}
+                  onClick={() => {
+                    loginWithEmailAndPass(userEmail, userPassword);
+                  }}
+                />
+              </>
+            ) : (
+              <Button
+                text="Login With Google"
+                icon={faAddressCard}
+                onClick={loginGoogle}
+              />
+            )}
           </ButtonContent>
         </Card>
       </LoginCardContainer>
     </Container>
   );
 };
+
+const InputContent = styled.div`
+  border-bottom-style: solid;
+  border-bottom-color: ${THEME_ONE.boder};
+  border-bottom-width: 1px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-bottom: 5px;
+  margin: 5px;
+`;
+
+const LoginInput = styled.input`
+  border: 0px;
+  font-family: 'InerNormal';
+  font-weight: 600;
+  background-color: ${THEME_ONE.cardBackGround};
+  color: ${THEME_ONE.fontColor};
+  border-radius: 2px;
+  outline: none;
+  padding: 3px;
+  &::placeholder {
+    color: ${THEME_ONE.fontColor};
+  }
+`;
 
 const Container = styled.div`
   display: flex;
@@ -45,7 +115,7 @@ const Container = styled.div`
 
 const LoginCardContainer = styled.div`
   width: 43vh;
-  height: 25vh;
+  height: 30vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,9 +123,10 @@ const LoginCardContainer = styled.div`
 
 const ButtonContent = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 15vh;
+  height: 20vh;
 `;
 
 const Title = styled.a`

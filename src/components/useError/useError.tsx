@@ -3,31 +3,31 @@ import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 import ErrorView from '../../views/error/Error';
 
 const ErrorContext = ({ children }: { children: ReactNode }) => {
-  const [anErrorHappend, setAnErrorHappend] = useState<boolean>(false);
+  const [anErrorHappened, setAnErrorHappened] = useState<boolean>(false);
   const [error, setError] = useState<any>(undefined);
 
   const errorHandlerContextValue = useMemo(
     () => ({
-      anErrorHappend,
+      anErrorHappened,
       error,
-      setFlagError: setAnErrorHappend,
+      setFlagError: setAnErrorHappened,
       setError,
     }),
-    [anErrorHappend, error],
+    [anErrorHappened, error],
   );
 
   useEffect(() => {
-    if (anErrorHappend) {
+    if (anErrorHappened) {
       console.group('Error handlers ');
       console.debug('ErrorMessage', error.message);
       console.debug('Error', error);
       console.groupEnd();
     }
-  }, [anErrorHappend]);
+  }, [anErrorHappened]);
 
   return (
     <ErrorHandlerContext.Provider value={errorHandlerContextValue}>
-      {anErrorHappend ? (
+      {anErrorHappened ? (
         <ErrorView onClick={() => setAnErrorHappend(false)} />
       ) : (
         children

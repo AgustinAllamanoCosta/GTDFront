@@ -14,10 +14,11 @@ const ErrorView = ({ onClick, message }: ErrorViewProps) => {
   const errorContext = useContext(ErrorHandlerContext);
 
   useEffect(() => {
+    console.log('On error location ', window.location);
     if (message) {
       errorContext.setError({ message });
     }
-  }, [errorContext.anErrorHappend]);
+  }, [errorContext.anErrorHappened]);
 
   return (
     <Container>

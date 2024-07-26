@@ -1,6 +1,6 @@
 import { useState, useEffect, ReactNode, useContext, useMemo } from 'react';
 import { UserInformationContext } from '../../contexts/userContext';
-import { UserData } from '../../types/types';
+import { Configuration, UserData } from '../../types/types';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { ErrorHandlerContext } from '../../contexts/errorHandlerContext';
 import { IS_END_TO_END, IS_LOCAL_TESTING } from '../../constants/environment';
@@ -11,7 +11,7 @@ const UserContext = ({
   configuration,
 }: {
   children: ReactNode;
-  configuration: any;
+  configuration: Configuration;
 }) => {
   const errorContext = useContext(ErrorHandlerContext);
   const { getUserData, saveUserData } = useLocalStorage();
