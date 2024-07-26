@@ -16,10 +16,7 @@ const LoginView = ({ environment }: { environment: string }) => {
   const [userPassword, setUserPassword] = useState<string>('');
 
   const isLocalOrEndToEnd = (): Boolean => {
-    return (
-      environment === IS_LOCAL_TESTING ||
-      environment === IS_END_TO_END
-    );
+    return environment === IS_LOCAL_TESTING || environment === IS_END_TO_END;
   };
 
   return (
