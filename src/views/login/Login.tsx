@@ -7,19 +7,18 @@ import { REPO_URL } from '../../constants/routePaths';
 import { THEME_ONE } from '../../constants/colors';
 import { useGoogleLoginActions } from '../../hooks/useGoogleLogin';
 import { TASK } from '../../constants/routePaths';
-import { configuration } from '../../config/appConfig';
 import { IS_END_TO_END, IS_LOCAL_TESTING } from '../../constants/environment';
 import { useState } from 'react';
 
-const LoginView = () => {
+const LoginView = ({ environment }: { environment: string }) => {
   const { loginGoogle, loginWithEmailAndPass } = useGoogleLoginActions(TASK);
   const [userEmail, setUserEmail] = useState<string>('');
   const [userPassword, setUserPassword] = useState<string>('');
 
   const isLocalOrEndToEnd = (): Boolean => {
     return (
-      configuration.environment === IS_LOCAL_TESTING ||
-      configuration.environment === IS_END_TO_END
+      environment === IS_LOCAL_TESTING ||
+      environment === IS_END_TO_END
     );
   };
 

@@ -42,7 +42,7 @@ const App = () => {
                   </SpinnerContainer>
                 }
               >
-                <LoginViewLazy />
+                <LoginViewLazy environment={configuration.environment} />
               </Suspense>
             }
           />

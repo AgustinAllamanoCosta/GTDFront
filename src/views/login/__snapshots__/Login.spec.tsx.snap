@@ -3,10 +3,10 @@
 exports[`Login View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-kPNBzt hWCVUV"
+    class="sc-jlOLRj iVSIKd"
   >
     <div
-      class="sc-bXxmBy fAEwdg"
+      class="sc-dMnqAs hyaFig"
     >
       <div
         class="sc-dBwcjI bSENHT"
@@ -15,7 +15,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
         padding="true"
       >
         <a
-          class="sc-dMnqAs cJUjLv"
+          class="sc-eErDDp eYKSnR"
           data-cy="Login-Title"
           href="https://github.com/AgustinAllamanoCosta/GTDFront"
           target="_blank"
@@ -23,17 +23,37 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
           Get Things Done
         </a>
         <div
-          class="sc-jlOLRj jnZxFa"
+          class="sc-laEPQd tkJze"
         >
           <div
+            class="sc-kPNBzt jeqkYh"
+          >
+            <input
+              class="sc-bXxmBy hDqWsa"
+              data-cy="input-email"
+              placeholder="Email"
+              type="email"
+            />
+          </div>
+          <div
+            class="sc-kPNBzt jeqkYh"
+          >
+            <input
+              class="sc-bXxmBy hDqWsa"
+              data-cy="input-pass"
+              placeholder="Password"
+              type="password"
+            />
+          </div>
+          <div
             class="sc-hfDuwB hqokru"
-            data-cy="button-Login With Google"
+            data-cy="button-Login"
           >
             <span
               class="sc-jCIOXC cfzUow"
               data-cy="button-text"
             >
-              Login With Google
+              Login
             </span>
           </div>
         </div>
