@@ -55,7 +55,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    needs: lint
+    needs: install-dep
 
     steps:
       - name: Checkout code
@@ -79,7 +79,7 @@ jobs:
   component_testing:
     runs-on: ubuntu-latest
 
-    needs: lint
+    needs: install-dep
 
     steps:
       - name: Checkout
@@ -111,7 +111,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    needs: component_testing
+    needs: [component_testing, test, lint]
 
     steps:
       - name: Checkout code
@@ -341,7 +341,7 @@ jobs:
   deploy_on_firebase:
     runs-on: ubuntu-latest
 
-    needs: end_to_end_testing
+    needs: [end_to_end_testing, end_to_end_testing_mobile]
 
     steps:
       - name: Checkout code
