@@ -79,7 +79,7 @@ jobs:
   component_testing:
     runs-on: ubuntu-latest
 
-    needs: test
+    needs: lint
 
     steps:
       - name: Checkout
@@ -188,7 +188,7 @@ jobs:
         with:
           node-version: 20.x
 
-      - name: Configure commiter
+      - name: Configure committer
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "<>"
@@ -238,6 +238,56 @@ jobs:
           bodyFile: 'CHANGELOG.md'
           tag: ${{ steps.get_version.outputs.version }}
 
+  end_to_end_testing_mobile:
+    runs-on: ubuntu-latest
+
+    needs: creating_release
+
+    services:
+      app_to_test:
+        image: ghcr.io/agustinallamanocosta/gtdfront:master
+        options: --name app_to_test
+        env:
+          DOTENV_KEY: ${{ secrets.DOTENV_KEY_CI }}
+        ports:
+          - 8080:8080
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Cache dependencies
+        id: cache-dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            **/node_modules
+            /home/runner/.cache/Cypress
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install Latest Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: Run end to end testing Mobile
+        shell: bash
+        env:
+          DOTENV_KEY: ${{ secrets.DOTENV_KEY_CI }}
+        run: yarn cy-run-e2e-mobile
+
+      - name: Archive cypress videos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos-mobile
+          path: |
+            ./cypress/videos
+
+      - name: Retrieving logs for the service
+        run: |
+          docker logs "${{ job.services.app_to_test.id }}"
+
   end_to_end_testing:
     runs-on: ubuntu-latest
 
@@ -284,21 +334,7 @@ jobs:
           path: |
             ./cypress/videos
 
-      - name: Run end to end testing Mobile
-        shell: bash
-        env:
-          DOTENV_KEY: ${{ secrets.DOTENV_KEY_CI }}
-        run: yarn cy-run-e2e-mobile
-
-      - name: Archive cypress videos
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-videos-mobile
-          path: |
-            ./cypress/videos
-
-      - name: Retriving logs for the service
+      - name: Retrieving logs for the service
         run: |
           docker logs "${{ job.services.app_to_test.id }}"
 
