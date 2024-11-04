@@ -30,6 +30,7 @@
     "vault-push": "npx dotenv-vault@latest push"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.1.0",
     "@react-oauth/google": "^0.11.0",
     "@types/firebase": "^3.2.1",
     "@vitejs/plugin-react": "^4.2.1",
