@@ -3,19 +3,19 @@
 exports[`Login View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-jlOLRj iVSIKd"
+    class="sc-gnpbhQ LWrqV"
   >
     <div
-      class="sc-dMnqAs hyaFig"
+      class="sc-la-DxNn cpltan"
     >
       <div
-        class="sc-dBwcjI bSENHT"
+        class="sc-fQpRED cnGfsE"
         data-cy="Card-Contents"
         is_center="true"
         padding="true"
       >
         <a
-          class="sc-eErDDp eYKSnR"
+          class="sc-knesRu hiYDfw"
           data-cy="Login-Title"
           href="https://github.com/AgustinAllamanoCosta/GTDFront"
           target="_blank"
@@ -23,34 +23,34 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
           Get Things Done
         </a>
         <div
-          class="sc-laEPQd tkJze"
+          class="sc-iCZwEW dNBtIl"
         >
           <div
-            class="sc-kPNBzt jeqkYh"
+            class="sc-dsLQwm bkHwKf"
           >
             <input
-              class="sc-bXxmBy hDqWsa"
+              class="sc-iKTcqh hrPuPp"
               data-cy="input-email"
               placeholder="Email"
               type="email"
             />
           </div>
           <div
-            class="sc-kPNBzt jeqkYh"
+            class="sc-dsLQwm bkHwKf"
           >
             <input
-              class="sc-bXxmBy hDqWsa"
+              class="sc-iKTcqh hrPuPp"
               data-cy="input-pass"
               placeholder="Password"
               type="password"
             />
           </div>
           <div
-            class="sc-hfDuwB hqokru"
+            class="sc-braxZu eaLJYF"
             data-cy="button-Login"
           >
             <span
-              class="sc-jCIOXC cfzUow"
+              class="sc-gJhJTp jwgdgA"
               data-cy="button-text"
             >
               Login

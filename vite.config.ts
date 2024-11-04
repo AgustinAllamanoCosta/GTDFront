@@ -1,9 +1,15 @@
+/// <reference types="vitest" />
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import react from '@vitejs/plugin-react';
-// https://vitejs.dev/config/
 
 export default defineConfig({
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./setup.ts'],
+    include: ['./src/**/*.spec.edge.tsx'],
+    globals: true
+  },
   plugins: [
     react(),
     VitePWA({
@@ -63,3 +69,4 @@ export default defineConfig({
     },
   },
 });
+

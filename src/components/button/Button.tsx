@@ -9,6 +9,7 @@ export const Button = memo(
     return (
       <ButtonContainer
         data-cy={`button-${text}`}
+        data-testid={`button-${text}`}
         onClick={onClick}
       >
         <ButtonText data-cy="button-text">{text}</ButtonText>

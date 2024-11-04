@@ -31,6 +31,7 @@ const App = () => {
       }
     >
       <AppContext>
+
         <Routes>
           <Route
             path={INDEX}
@@ -46,6 +47,7 @@ const App = () => {
               </Suspense>
             }
           />
+
           <Route
             path={TASK}
             element={
@@ -66,6 +68,7 @@ const App = () => {
               </RequireAuth>
             }
           />
+
           <Route
             path={OTHER}
             element={
@@ -75,6 +78,7 @@ const App = () => {
               />
             }
           />
+
         </Routes>
       </AppContext>
       <VersionNumberTag />

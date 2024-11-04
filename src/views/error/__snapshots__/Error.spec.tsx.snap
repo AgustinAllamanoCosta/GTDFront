@@ -3,33 +3,33 @@
 exports[`Error View Should render an Error view  1`] = `
 <div>
   <div
-    class="sc-kPNBzt hWCVUV"
+    class="sc-dsLQwm ehlGIL"
   >
     <div
-      class="sc-bXxmBy dHniBR"
+      class="sc-iKTcqh iCNJAu"
     >
       <div
-        class="sc-hfDuwB JWWdo"
+        class="sc-braxZu bzYKie"
         data-cy="Card-Contents"
         is_center="true"
         padding="true"
       >
         <span
-          class="sc-dMnqAs ijRcvV"
+          class="sc-la-DxNn kUqJKy"
           data-cy="Error-view-title"
         >
           Something went wrong!
         </span>
         <span
-          class="sc-jlOLRj iHRscV"
+          class="sc-gnpbhQ ksXoUd"
           data-cy="Error-view-message"
         />
         <div
-          class="sc-jCIOXC hEvA-Ds"
+          class="sc-gJhJTp QnPUY"
           data-cy="button-OK"
         >
           <span
-            class="sc-fBEEOr kOXoid"
+            class="sc-elDIKY eIxNWV"
             data-cy="button-text"
           >
             OK

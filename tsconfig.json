@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["cypress", "node", "jest", "vite-plugin-pwa/client"]
+    "types": ["vitest/globals","cypress", "node", "jest", "vite-plugin-pwa/client"]
   },
   "include": ["src", "cypress"],
   "exclude": ["node_modules", "./cypress.config.ts"],
