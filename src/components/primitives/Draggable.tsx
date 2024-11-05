@@ -1,5 +1,5 @@
-import { FC, ReactNode, useMemo } from "react";
-import { useDraggable } from "@dnd-kit/core";
+import { FC, ReactNode, useMemo } from 'react';
+import { useDraggable } from '@dnd-kit/core';
 
 interface IDraggable {
   id: string;
@@ -19,7 +19,12 @@ export const Draggable: FC<IDraggable> = ({ id, children }) => {
   }, [transform]);
 
   return (
-    <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...listeners}
+      {...attributes}
+    >
       {children}
     </div>
   );

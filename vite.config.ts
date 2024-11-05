@@ -8,7 +8,7 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./setup.ts'],
     include: ['./src/**/*.spec.edge.tsx'],
-    globals: true
+    globals: true,
   },
   plugins: [
     react(),
@@ -69,4 +69,3 @@ export default defineConfig({
     },
   },
 });
-

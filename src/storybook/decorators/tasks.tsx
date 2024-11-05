@@ -18,6 +18,7 @@ export const mockCancelTaskInContext: Map<string, Task> = new Map();
 task4.cancelationDate = new Date().toISOString();
 mockCancelTaskInContext.set(task4.id, task4);
 
+task5.completionDate = new Date().toISOString();
 export const mockDoneTaskInContext: Map<string, Task> = new Map();
 mockDoneTaskInContext.set(task5.id, task5);
 

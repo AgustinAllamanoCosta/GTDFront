@@ -1,5 +1,5 @@
-import { FC, ReactNode, useMemo } from "react";
-import { useDroppable } from "@dnd-kit/core";
+import { FC, ReactNode, useMemo } from 'react';
+import { useDroppable } from '@dnd-kit/core';
 
 interface IDroppable {
   id: string;
@@ -13,11 +13,14 @@ export const Droppable: FC<IDroppable> = ({ id, children }) => {
     () => ({
       opacity: isOver ? 0.5 : 1,
     }),
-    [isOver]
+    [isOver],
   );
 
   return (
-    <div ref={setNodeRef} style={style}>
+    <div
+      ref={setNodeRef}
+      style={style}
+    >
       {children}
     </div>
   );

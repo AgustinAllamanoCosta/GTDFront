@@ -138,7 +138,10 @@ export const useTask: UseTask = (
   };
 
   const getDoneTaskToMap: GetItems = () => {
-    return processMap(userTaskData.doneItems, orderCompleteItems);
+    const latestDoneItems: Map<string, Task> = archiveDoneTaskWithAfterAWeek(
+      userTaskData.doneItems,
+    );
+    return processMap(latestDoneItems, orderCompleteItems);
   };
   const getIsLoading = (): boolean => isLoading;
 

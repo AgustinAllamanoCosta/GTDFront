@@ -48,6 +48,7 @@ exports[`Login View Should render a login view with singin and login buttons 1`]
           <div
             class="sc-braxZu eaLJYF"
             data-cy="button-Login"
+            data-testid="button-Login"
           >
             <span
               class="sc-gJhJTp jwgdgA"

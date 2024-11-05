@@ -31,7 +31,6 @@ const App = () => {
       }
     >
       <AppContext>
-
         <Routes>
           <Route
             path={INDEX}
@@ -78,7 +77,6 @@ const App = () => {
               />
             }
           />
-
         </Routes>
       </AppContext>
       <VersionNumberTag />

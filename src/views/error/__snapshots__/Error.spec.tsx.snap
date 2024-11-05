@@ -27,6 +27,7 @@ exports[`Error View Should render an Error view  1`] = `
         <div
           class="sc-gJhJTp QnPUY"
           data-cy="button-OK"
+          data-testid="button-OK"
         >
           <span
             class="sc-elDIKY eIxNWV"

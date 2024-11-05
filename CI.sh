@@ -1,4 +1,4 @@
-yarn vault-pull CI .env --yes
+yarn vault-pull development .env --yes
 yarn install
 yarn lint-format
 #docker run \
