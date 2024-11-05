@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.2.0 (2024-11-05)
+
+
+### Features
+
+* 🎸 add new filter in done list ([07ef54c](https://github.com/AgustinAllamanoCosta/GTDFront/commit/07ef54cd1406a1592bf600f292d78659d04a053b))
+
 ### 1.1.2 (2024-08-02)
 
 ### 1.1.1 (2024-08-02)
