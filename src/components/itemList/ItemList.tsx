@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 import { CardTitle } from '../cardWithTile/CardWithTitle';
 import { useContext, useRef } from 'react';
-import { ItemWithActions } from '../itemWithActions/ItemWithActions';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { ItemListProps, Task } from '../../types/types';
 import { THEME_ONE } from '../../constants/colors';
@@ -12,6 +11,7 @@ import { SUBSCRIBER_NAMES } from '../useEvent/useEvent';
 import { Spinner } from '../loadingSpiner/Spiner';
 import { InputWithActions } from '../itemButtonWithOptions/ItemButtonWithOptions';
 import { v4 as uuidv4 } from 'uuid';
+import { DraggableItem } from '../draggableItem/DraggableItem';
 
 const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
   const CHARACTER_LIMIT: number = 43;
@@ -106,8 +106,10 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
         }}
         key={item.id}
       >
-        <ItemWithActions
+        <DraggableItem
+          data-cy="DraggableItem"
           key={`${item.id}-${item.title}`}
+          id={item.id}
           title={item.title}
           onActive={() => onActiveTask(item.id)}
           onCancel={() => onCancelTask(item.id)}

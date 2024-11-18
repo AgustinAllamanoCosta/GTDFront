@@ -1,12 +1,12 @@
-import { FC, ReactNode, useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 
-interface IDroppable {
+type DroppableElementProps = {
   id: string;
   children: ReactNode;
-}
+};
 
-export const Droppable: FC<IDroppable> = ({ id, children }) => {
+export const Droppable = ({ id, children }: DroppableElementProps) => {
   const { isOver, setNodeRef } = useDroppable({ id });
 
   const style = useMemo(

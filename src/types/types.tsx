@@ -1,5 +1,6 @@
 import { Firestore } from 'firebase/firestore';
 import { ReactNode } from 'react';
+import { ItemWithActions } from '../components/itemWithActions/ItemWithActions';
 
 export type AppContextProps = {
   children: ReactNode;
@@ -87,6 +88,10 @@ export type ItemWithActionsProps = {
   onActive: () => void;
   onSplit: (taskOne: string, taskTwo: string) => void;
 };
+
+export type DraggableItemProps = {
+  id: string;
+} & ItemWithActionsProps;
 
 export type ItemSplitProps = {
   taskToSplit: string;

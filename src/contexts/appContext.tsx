@@ -38,30 +38,30 @@ const AppContainer = styled.div`
 `;
 
 const GlobalStyles = createGlobalStyle`
-  @font-face {
-    font-family: 'Iner';
-    font-weight: 16;
-    font-style: normal;
-    font-display: swap;
-    src: url(${InerFontBold}) format('truetype');
-    font-style: normal;
-  }
+@font-face {
+  font-family: 'Iner';
+  font-weight: 16;
+  font-style: normal;
+  font-display: swap;
+src: url(${InerFontBold}) format('truetype');
+     font-style: normal;
+}
 
-  @font-face {
-    font-family: 'InerNormal';
-    font-weight: lighter;
-    font-style: normal;
-    font-display: swap;
-    src: url(${InerFontNormal}) format('truetype');
-    font-style: normal;
-  }
+@font-face {
+  font-family: 'InerNormal';
+  font-weight: lighter;
+  font-style: normal;
+  font-display: swap;
+src: url(${InerFontNormal}) format('truetype');
+     font-style: normal;
+}
 
-  body {
-    background-color: ${THEME_ONE.background};
-    color: ${THEME_ONE.fontColor};
-    font-family: 'Iner';
-    margin: 0px;
-  }
+body {
+  background-color: ${THEME_ONE.background};
+color: ${THEME_ONE.fontColor};
+       font-family: 'Iner';
+margin: 0px;
+}
 `;
 
 export default AppContext;

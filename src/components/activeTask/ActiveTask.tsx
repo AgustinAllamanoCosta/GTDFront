@@ -7,8 +7,11 @@ import { Task } from '../../types/types';
 import { BLACK } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
+import { useDroppable } from '@dnd-kit/core';
 
 const ActiveTask = (): React.JSX.Element => {
+  const { isOver, setNodeRef } = useDroppable({ id: 'active-task' });
+
   const activeInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
 
@@ -33,7 +36,11 @@ const ActiveTask = (): React.JSX.Element => {
   const activeTaskComponent: React.JSX.Element[] = activeTask.map(generateTask);
 
   return (
-    <ActiveTasksContainer is_mobile={`${userInformation.isMobile}`}>
+    <ActiveTasksContainer
+      ref={setNodeRef}
+      is_mobile={`${userInformation.isMobile}`}
+      is_over={`${isOver}`}
+    >
       <CardTitle
         title="Active Task"
         label={`${activeTaskComponent.length}/3`}
@@ -74,10 +81,21 @@ const ActiveTaskContent = styled.div<{ is_mobile?: string }>`
   `};
 `;
 
-const ActiveTasksContainer = styled.div<{ is_mobile?: string }>`
+const ActiveTasksContainer = styled.div<{
+  is_mobile?: string;
+  is_over?: string;
+}>`
   display: flex;
   align-items: center;
   flex-direction: column;
+  ${(props) =>
+    props.is_over === 'true'
+      ? `
+      opacity:  0.5
+  `
+      : `
+      opacity: 1
+  `};
   ${(props) =>
     props.is_mobile === 'true'
       ? `

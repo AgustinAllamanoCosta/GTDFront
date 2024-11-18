@@ -3,10 +3,10 @@
 exports[`Task View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-eJgwjL hwSBjP"
+    class="sc-ifyrTC LPXKh"
   >
     <div
-      class="sc-epPVmt gXroYB"
+      class="sc-dENhDJ iQIdeG"
       is_mobile="false"
     >
       <div
@@ -47,5 +47,22 @@ exports[`Task View Should render a login view with singin and login buttons 1`] 
       </div>
     </div>
   </div>
+  <div
+    id="DndDescribedBy-0"
+    style="display: none;"
+  >
+    
+    To pick up a draggable item, press the space bar.
+    While dragging, use the arrow keys to move the item.
+    Press space again to drop the item in its new position, or press escape to cancel.
+  
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="assertive"
+    id="DndLiveRegion-0"
+    role="status"
+    style="position: fixed; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip-path: inset(100%); white-space: nowrap;"
+  />
 </div>
 `;

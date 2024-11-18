@@ -6,38 +6,38 @@ export const Carousel = memo(
   ({ children }: CarouselProps): React.JSX.Element => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [lasIndex, setLastIndex] = useState(children.length - 1);
-    const [touchPosition, setTouchPosition] = useState(null);
+    const [touchPosition, setTouchPosition] = useState<number>(0);
     const [elementWidth, setElementWidth] = useState<number>(380);
 
     const next = () => {
       if (currentIndex < lasIndex)
         setCurrentIndex((prevState) => prevState + 1);
-      else setCurrentIndex(0);
     };
 
     const prev = () => {
       if (currentIndex > 0) setCurrentIndex((prevState) => prevState - 1);
-      else setCurrentIndex(lasIndex);
     };
 
     const handleTouchStart = (e: any) => {
-      const touchDown = e.touches[0].clientX;
-      setTouchPosition(touchDown);
+      setTouchPosition(e.touches[0].clientX);
     };
 
     const handleTouchMove = (e: any) => {
       const touchDown = touchPosition;
 
-      if (touchDown === null) return;
+      if (touchDown === 0) return;
 
-      const currentTouch = e.touches[0].clientX;
-      const diff = touchDown - currentTouch;
+      const diffX = touchDown - e.touches[0].clientX;
 
-      if (diff > 5) next();
-
-      if (diff < -5) prev();
-
-      setTouchPosition(null);
+      if (diffX > 10) {
+        next();
+        setTouchPosition(0);
+        return;
+      } else if (diffX < -10) {
+        prev();
+        setTouchPosition(0);
+        return;
+      }
     };
 
     useEffect(() => {

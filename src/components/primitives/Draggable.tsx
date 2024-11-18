@@ -1,27 +1,17 @@
-import { FC, ReactNode, useMemo } from 'react';
+import { ReactNode } from 'react';
 import { useDraggable } from '@dnd-kit/core';
 
-interface IDraggable {
+type DraggableElementProps = {
   id: string;
   children: ReactNode;
-}
+};
 
-export const Draggable: FC<IDraggable> = ({ id, children }) => {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({ id });
-
-  const style = useMemo(() => {
-    if (transform) {
-      return {
-        transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`,
-      };
-    }
-    return undefined;
-  }, [transform]);
+export const Draggable = ({ id, children }: DraggableElementProps) => {
+  const { attributes, listeners, setNodeRef } = useDraggable({ id });
 
   return (
     <div
       ref={setNodeRef}
-      style={style}
       {...listeners}
       {...attributes}
     >
