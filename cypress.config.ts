@@ -19,6 +19,8 @@ export default defineConfig({
     isMobile: false,
   },
   e2e: {
+    trashAssetsBeforeRuns: true,
+    screenshotOnRunFailure: true,
     baseUrl: 'http://localhost:8080/',
     setupNodeEvents(on, config) {
       on('task', {
