@@ -2,6 +2,14 @@ echo '--------------------------'
 echo 'Starting local CI pipeline'
 echo '--------------------------'
 echo '=========================='
+echo '=Cleaning environment    ='
+echo '=========================='
+docker-compose down
+docker image rm vite-example
+rm -r testCov
+rm -r node_modules
+rm -r ./dist
+echo '=========================='
 echo '=Pulling CI configuration='
 echo '=========================='
 yarn vault-pull CI .env --yes
