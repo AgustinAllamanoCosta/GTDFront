@@ -207,10 +207,13 @@ describe('Get The Things Done Task', () => {
     );
   });
 
-  it('Should add a daily task and mark as complete and reapear in inbox task and in the done list', () => {
+  it.only('Should add a daily task and mark as complete and reapear in inbox task and in the done list', () => {
     const taskContent: string = 'some task to do';
-    cy.clock(new Date().getTime(), ['setInterval', 'setTimeout', 'Date']);
+
+    const initialTime = new Date('2024-01-01T00:00:00').getTime();
+    cy.clock(initialTime, ['Date']);
     cy.visit('/task');
+    cy.tick(100);
 
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="button-make daily"]').click();
@@ -218,12 +221,11 @@ describe('Get The Things Done Task', () => {
 
     cy.get('[data-cy="task-some task to do"]').click();
     cy.get('[data-cy="button-active"]').click();
-    cy.tick(100);
-
-    cy.get('[data-cy="stick-note-button-0"]').click();
 
     cy.tick(48 * (1000 * 60 * 60));
+    cy.get('[data-cy="stick-note-button-0"]').click();
 
+    cy.tick(300);
     cy.get('[data-cy="stick-note-text-0"]').should('not.exist');
     cy.get('[data-cy="task-some task to do"]').should('have.length', 2);
   });

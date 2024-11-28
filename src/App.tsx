@@ -62,6 +62,7 @@ const App = () => {
                     refreshTaskInterval={configuration.refreshTimeOut}
                     calculateTaskTemp={configuration.calculateTaskTemp}
                     loadScheduleTask={configuration.loadScheduleTask}
+                    environment={configuration.environment}
                   />
                 </Suspense>
               </RequireAuth>

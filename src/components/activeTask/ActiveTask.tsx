@@ -72,8 +72,7 @@ const ActiveTaskContent = styled.div<{ is_mobile?: string }>`
       &::-webkit-scrollbar-thumb {
         background: ${BLACK};
         border-radius: 10px;
-      }
-  `
+      }`
       : `
       flex-direction: column;
       justify-content: center;
@@ -91,8 +90,7 @@ const ActiveTasksContainer = styled.div<{
   ${(props) =>
     props.is_over === 'true'
       ? `
-      opacity:  0.5
-  `
+      opacity:  0.5`
       : `
       opacity: 1
   `};
@@ -103,8 +101,7 @@ const ActiveTasksContainer = styled.div<{
       margin-bottom: 8px;
       min-width: 280px;
       max-width: 380px;
-      max-height: 573px;
-  `
+      max-height: 573px;`
       : `
       height: 600px;
       width: 300px;

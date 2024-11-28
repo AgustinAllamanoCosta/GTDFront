@@ -199,6 +199,7 @@ export type ItemsContextPorps = {
 };
 
 export type TaskViewProps = {
+  environment: string;
   inboxTasks?: InboxTasks;
   userData?: UserData;
   refreshTaskInterval?: number;

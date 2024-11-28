@@ -42,6 +42,7 @@ const TaskView = ({
   refreshTaskInterval,
   loadScheduleTask,
   calculateTaskTemp,
+  environment,
 }: TaskViewProps) => {
   const errorContext = useContext(ErrorHandlerContext);
   const userInformation = useContext(UserInformationContext);
@@ -50,6 +51,7 @@ const TaskView = ({
   const [activeTask, setActiveTask] = useState<Array<Task>>([]);
   const touchSensor = useSensor(TouchSensor, {
     activationConstraint: {
+      distance: 10,
       delay: 100,
       tolerance: 5,
     },
@@ -69,9 +71,13 @@ const TaskView = ({
     undefined,
   );
 
-  useInterval(itemsInformation.refreshData, refreshTaskInterval);
-  useInterval(itemsInformation.loadScheduleTask, loadScheduleTask);
-  useInterval(itemsInformation.calculateTaskTemp, calculateTaskTemp);
+  useInterval(itemsInformation.refreshData, refreshTaskInterval, environment);
+  useInterval(itemsInformation.loadScheduleTask, loadScheduleTask, environment);
+  useInterval(
+    itemsInformation.calculateTaskTemp,
+    calculateTaskTemp,
+    environment,
+  );
 
   const logOut = useCallback(() => {
     googleLogout();

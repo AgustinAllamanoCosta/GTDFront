@@ -10,7 +10,10 @@ describe('Task View', () => {
     const { container } = render(
       <MetricContext analytics={undefined}>
         <BrowserRouter>
-          <TaskView refreshTaskInterval={900000} />
+          <TaskView
+            environment="Test"
+            refreshTaskInterval={900000}
+          />
         </BrowserRouter>
       </MetricContext>,
     );
