@@ -8,7 +8,6 @@ export const configuration: Configuration = {
   accessToken: import.meta.env.VITE_ACCESS_TOKEN
     ? import.meta.env.VITE_ACCESS_TOKEN
     : '',
-  id: import.meta.env.VITE_ID ? import.meta.env.VITE_ID : '',
   name: import.meta.env.VITE_NAME ? import.meta.env.VITE_NAME : '',
   photoURL: import.meta.env.VITE_PHOTO_URL
     ? import.meta.env.VITE_PHOTO_URL

@@ -123,7 +123,6 @@ export type Configuration = {
   clientId: string | undefined;
   environment: string;
   accessToken: string;
-  id: string;
   name: string;
   photoURL: string;
   ID: string;

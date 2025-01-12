@@ -40,13 +40,23 @@ const UserContext = ({
         configuration.environment === IS_LOCAL_TESTING
       ) {
         console.log('Used mock user data');
-        const userData = {
-          accessToken: configuration.accessToken,
-          id: configuration.ID,
-          name: configuration.name,
-          photoURL: configuration.photoURL,
-        };
-        saveUserDataInApp(userData);
+        if (isMobile) {
+          const userData = {
+            accessToken: configuration.accessToken,
+            id: 'MOBILE-TEST-123-123-123-123',
+            name: 'Mobile test user',
+            photoURL: configuration.photoURL,
+          };
+          saveUserDataInApp(userData);
+        } else {
+          const userData = {
+            accessToken: configuration.accessToken,
+            id: configuration.ID,
+            name: configuration.name,
+            photoURL: configuration.photoURL,
+          };
+          saveUserDataInApp(userData);
+        }
       } else {
         const localUserData: UserData | undefined = getUserData();
         if (localUserData) {
