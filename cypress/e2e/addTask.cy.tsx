@@ -180,7 +180,11 @@ describe('Get The Things Done Task', () => {
       taskContentThree.toUpperCase(),
     );
 
-    cy.get(`[data-cy="task-${taskContentFour}"]`).should('have.css', 'opacity', '1');
+    cy.get(`[data-cy="task-${taskContentFour}"]`).should(
+      'have.css',
+      'opacity',
+      '1',
+    );
   });
 
   it('Should add a four new task and try to active four of them', () => {

@@ -37,11 +37,12 @@ describe('Get The Things Done Drag and Drop', () => {
 
     activeATaskDoingDropping(taskContent);
 
-    const item = cy.get(`[data-cy="stick-note-text-0"]`)
+    const item = cy
+      .get(`[data-cy="stick-note-text-0"]`)
       .trigger('mousedown')
       .wait(100);
-    let listPosition = undefined
-    const activeList = cy.get('[data-cy="Done-task-list"]').then(list => {
+    let listPosition = undefined;
+    const activeList = cy.get('[data-cy="Done-task-list"]').then((list) => {
       listPosition = list.position();
     });
     activeList.trigger('mousemove', listPosition);
@@ -56,11 +57,12 @@ describe('Get The Things Done Drag and Drop', () => {
     cy.get('[data-cy="task-add-button-input"]').type(taskContent);
     cy.get('[data-cy="button-accept"]').click();
 
-    const item = cy.get(`[data-cy="task-${taskContent}"]`)
+    const item = cy
+      .get(`[data-cy="task-${taskContent}"]`)
       .trigger('mousedown')
       .wait(100);
-    let listPosition = undefined
-    const activeList = cy.get('[data-cy="Cancel-task-list"]').then(list => {
+    let listPosition = undefined;
+    const activeList = cy.get('[data-cy="Cancel-task-list"]').then((list) => {
       listPosition = list.position();
     });
     activeList.trigger('mousemove', listPosition);
@@ -145,11 +147,12 @@ describe('Get The Things Done Drag and Drop', () => {
   });
 
   const activeATaskDoingDropping = (taskId: string) => {
-    const item = cy.get(`[data-cy="task-${taskId}"]`)
+    const item = cy
+      .get(`[data-cy="task-${taskId}"]`)
       .trigger('mousedown')
       .wait(100);
-    let listPosition = undefined
-    const activeList = cy.get('[data-cy="Active-task-list"]').then(list => {
+    let listPosition = undefined;
+    const activeList = cy.get('[data-cy="Active-task-list"]').then((list) => {
       listPosition = list.position();
     });
     activeList.trigger('mousemove', listPosition);
@@ -157,4 +160,4 @@ describe('Get The Things Done Drag and Drop', () => {
   };
 });
 
-export { };
+export {};
