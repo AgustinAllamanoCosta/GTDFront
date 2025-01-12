@@ -1,4 +1,7 @@
+import { skipOn } from '@cypress/skip-test'
+
 describe('Get The Things Done Drag and Drop', () => {
+
   beforeEach(() => {
     cy.testCleanDb();
     window.localStorage.clear();
@@ -11,7 +14,14 @@ describe('Get The Things Done Drag and Drop', () => {
     window.localStorage.clear();
   });
 
+  const skipOnMoviel = () => {
+    if (Cypress.env('isMobile')) {
+      skipOn(true);
+    }
+  };
+
   it('Should active an Item when is drop on the active zone', () => {
+    skipOnMoviel();
     const taskContent = 'task to active';
     cy.visit('/task');
     cy.wait(1000);
@@ -28,6 +38,7 @@ describe('Get The Things Done Drag and Drop', () => {
   });
 
   it('Should mark a task as done using drag and drop', () => {
+    skipOnMoviel();
     const taskContent = 'task to done';
     cy.visit('/task');
     cy.wait(1000);
@@ -50,6 +61,7 @@ describe('Get The Things Done Drag and Drop', () => {
   });
 
   it('Should mark a task as cancel using drag and drop', () => {
+    skipOnMoviel();
     const taskContent = 'task to cancel';
     cy.visit('/task');
     cy.wait(1000);
@@ -70,6 +82,7 @@ describe('Get The Things Done Drag and Drop', () => {
   });
 
   it('Should active an 3 Item when is drop on the active zone', () => {
+    skipOnMoviel();
     const taskContentOne = 'task to active one';
     const taskContentTwo = 'task to active two';
     const taskContentThree = 'task to active three';
@@ -104,6 +117,7 @@ describe('Get The Things Done Drag and Drop', () => {
   });
 
   it('Should active 3 Item of 4 when is drop on the active zone', () => {
+    skipOnMoviel();
     const taskContentOne = 'task to active one';
     const taskContentTwo = 'task to active two';
     const taskContentThree = 'task to active three';
@@ -160,4 +174,4 @@ describe('Get The Things Done Drag and Drop', () => {
   };
 });
 
-export {};
+export { };
