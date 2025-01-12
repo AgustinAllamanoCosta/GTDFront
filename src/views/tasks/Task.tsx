@@ -40,30 +40,30 @@ const CancelList = lazy(() => import('../../components/cancelList/CancelList'));
 const DoneList = lazy(() => import('../../components/doneList/DoneList'));
 
 export const DRAGGING_IDS = {
-  ACTIVE_TASK: "active-task",
-  CANCEL_TASK: "cancel-task",
-  DONE_TASK: "done-task",
-  ITEM_TASK: "item-task"
+  ACTIVE_TASK: 'active-task',
+  CANCEL_TASK: 'cancel-task',
+  DONE_TASK: 'done-task',
+  ITEM_TASK: 'item-task',
 };
 
 export const DRAGGIND_TYPES = {
   ACTIVE: 'active',
-  ITEM: 'item'
-}
+  ITEM: 'item',
+};
 
 export const TOUCH_SENSOR_OPTIONS = {
-    activationConstraint: {
-      distance: 10,
-      delay: 100,
-      tolerance: 5,
-    },
+  activationConstraint: {
+    distance: 10,
+    delay: 100,
+    tolerance: 5,
+  },
 };
 
 export const MOUSE_SENSOR_OPTIONS = {
-    activationConstraint: {
-      delay: 100,
-      tolerance: 5,
-    },
+  activationConstraint: {
+    delay: 100,
+    tolerance: 5,
+  },
 };
 
 const TaskView = ({
@@ -153,13 +153,20 @@ const TaskView = ({
         active.id.toString(),
       )?.title;
       if (title)
-        element = <StickyNote  number='1' text={title} backgroundColor={THEME_ONE.stickButton} onConfirm={() => { }} key={'DRAGGABLE'} />;
+        element = (
+          <StickyNote
+            number="1"
+            text={title}
+            backgroundColor={THEME_ONE.stickButton}
+            onConfirm={() => {}}
+            key={'DRAGGABLE'}
+          />
+        );
     } else if (active.id) {
       const title: string | undefined = itemsInformation.getInboxTask(
         active.id.toString(),
       )?.title;
-      if (title)
-        element = <Item title={title} />;
+      if (title) element = <Item title={title} />;
     }
     setDraggingItem(element);
   };
