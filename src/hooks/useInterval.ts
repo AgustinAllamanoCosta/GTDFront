@@ -21,7 +21,6 @@ export const useInterval = (
       savedCallback.current();
     }
     if (delay !== null) {
-      console.log(isLocalOrE2E());
       const actualDelay = isLocalOrE2E() ? 100 : delay;
       const id = setInterval(tick, actualDelay);
       return () => clearInterval(id);

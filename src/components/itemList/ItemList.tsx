@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { CardTitle } from '../cardWithTile/CardWithTitle';
+import { CardWithTitle } from '../cardWithTile/CardWithTitle';
 import { useContext, useRef } from 'react';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { ItemListProps, Task } from '../../types/types';
@@ -12,15 +12,17 @@ import { Spinner } from '../loadingSpiner/Spiner';
 import { InputWithActions } from '../itemButtonWithOptions/ItemButtonWithOptions';
 import { v4 as uuidv4 } from 'uuid';
 import { DraggableItem } from '../draggableItem/DraggableItem';
+import { useDroppable } from '@dnd-kit/core';
+import { DRAGGING_IDS } from '../../views/tasks/Task';
 
 const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
+  const { isOver, setNodeRef } = useDroppable({ id: DRAGGING_IDS.ITEM_TASK });
   const CHARACTER_LIMIT: number = 43;
   const itemsInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
   const { eventBus } = useContext(EventContext);
   const refToList = useRef<HTMLDivElement[]>([]);
 
-  const activeTask = itemsInformation.getActiveTaskToMap();
   const inboxToMap = itemsInformation.getInboxTaskToMap();
 
   const buttonAdd = (makeDaily: boolean = false, value: string | undefined) => {
@@ -76,7 +78,6 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
   };
 
   const onActiveTask = (taskId: string) => {
-    if (activeTask.length < 3) {
       itemsInformation.activeTask(taskId);
       eventBus.publish({
         name: SUBSCRIBER_NAMES.METRICS,
@@ -86,7 +87,6 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
           taskId,
         },
       });
-    }
   };
 
   const itemComponentsList: React.ReactNode[] = inboxToMap.map(
@@ -125,8 +125,9 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
     <InboxTaskContainer
       is_mobile={`${userInformation.isMobile}`}
       id={id}
+      ref={setNodeRef}
     >
-      <CardTitle
+      <CardWithTitle
         title={'Inbox'}
         label={`total ${inboxToMap.length}`}
       >
@@ -147,7 +148,7 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
             <InboxContainer>{itemComponentsList}</InboxContainer>
           </>
         )}
-      </CardTitle>
+      </CardWithTitle>
     </InboxTaskContainer>
   );
 };

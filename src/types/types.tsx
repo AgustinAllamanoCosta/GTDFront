@@ -1,6 +1,5 @@
 import { Firestore } from 'firebase/firestore';
 import { ReactNode } from 'react';
-import { ItemWithActions } from '../components/itemWithActions/ItemWithActions';
 
 export type AppContextProps = {
   children: ReactNode;
@@ -92,6 +91,10 @@ export type ItemWithActionsProps = {
 export type DraggableItemProps = {
   id: string;
 } & ItemWithActionsProps;
+
+export type DraggableStickyNoteProps = {
+  id: string;
+} & StickyNoteProps;
 
 export type ItemSplitProps = {
   taskToSplit: string;
@@ -236,9 +239,11 @@ export type ItemAddButtonProps = {
 
 export type UseTaskResponse = {
   getIsLoading: () => boolean;
+  canActivate: () => boolean;
   getDoneTaskToMap: GetItems;
   getCancelTaskToMap: GetItems;
   getActiveTaskToMap: GetItems;
+  getActiveTask: (taskId: string) => Task | undefined;
   getInboxTaskToMap: GetItems;
   getInboxTask: (taskId: string) => Task | undefined;
   addNewTask: AddNewTask;

@@ -163,36 +163,36 @@ const ActiveAnimation = keyframes`
 `;
 
 const InSplitFormContainer = keyframes`
-    0% {
-		opacity: 0;
-		transform: translateY(-250px);
-	}
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
+  0% {
+      opacity: 0;
+      transform: translateY(-250px);
+    }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
 `;
 
 const OutSplitFormContainer = keyframes`
-    0% {
-		opacity: 1;
-		transform: translateY(0);
-	}
-	100% {
-		opacity: 0;
-		transform: translateY(-250px);
-	}
+  0% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+  100% {
+      opacity: 0;
+      transform: translateY(-250px);
+  }
 `;
 
 const InButtonContainer = keyframes`
-    0% {
-		opacity: 0;
-		transform: translateY(-250px);
-	}
-	100% {
-		opacity: 1;
-		transform: translateY(0);
-	}
+  0% {
+      opacity: 0;
+      transform: translateY(-250px);
+    }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
 `;
 
 const SplitInputContainer = styled.div`
@@ -201,13 +201,13 @@ const SplitInputContainer = styled.div`
 
 const ItemContainer = styled.div<{ run_animation: string }>`
   cursor: pointer;
-  animation: ${(props) => {
+  ${(props) => {
     if (props.run_animation === 'true') {
       return css`
-        ${ActiveAnimation} 500ms ease-out 0s 1 normal forwards;
+        animation: ${ActiveAnimation} 500ms ease-out 0s 1 infinite forwards;
       `;
     }
-    return `null`;
+    return null;
   }};
 `;
 

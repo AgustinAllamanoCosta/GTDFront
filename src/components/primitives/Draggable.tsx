@@ -1,13 +1,14 @@
 import { ReactNode } from 'react';
-import { useDraggable } from '@dnd-kit/core';
+import { Active, useDraggable } from '@dnd-kit/core';
 
 type DraggableElementProps = {
   id: string;
+  type: 'item' | 'active';
   children: ReactNode;
 };
 
-export const Draggable = ({ id, children }: DraggableElementProps) => {
-  const { attributes, listeners, setNodeRef } = useDraggable({ id });
+export const Draggable = (data : DraggableElementProps) => {
+  const { attributes, listeners, setNodeRef } = useDraggable({ id: data.id, data: { type: data.type } });
 
   return (
     <div
@@ -15,7 +16,7 @@ export const Draggable = ({ id, children }: DraggableElementProps) => {
       {...listeners}
       {...attributes}
     >
-      {children}
+      {data.children}
     </div>
   );
 };

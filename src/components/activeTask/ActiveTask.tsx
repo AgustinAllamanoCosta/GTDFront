@@ -1,16 +1,17 @@
 import React, { useContext } from 'react';
 import { styled } from 'styled-components';
-import { CardTitle } from '../cardWithTile/CardWithTitle';
-import { StickyNote } from '../stickyNote/StickyNote';
+import { CardWithTitle } from '../cardWithTile/CardWithTitle';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { Task } from '../../types/types';
 import { BLACK } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
 import { useDroppable } from '@dnd-kit/core';
+import { DRAGGING_IDS } from '../../views/tasks/Task';
+import { DraggableStickNote } from '../draggableStickNote/DraggableStickNote';
 
 const ActiveTask = (): React.JSX.Element => {
-  const { isOver, setNodeRef } = useDroppable({ id: 'active-task' });
+  const { isOver, setNodeRef } = useDroppable({ id: DRAGGING_IDS.ACTIVE_TASK });
 
   const activeInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
@@ -21,7 +22,8 @@ const ActiveTask = (): React.JSX.Element => {
 
   const generateTask = (item: Task, index: number): React.JSX.Element => {
     return (
-      <StickyNote
+      <DraggableStickNote
+        id={item.id}
         number={index.toString()}
         data-cy={`task-number-${index}`}
         key={`${item.id}-${item.title}`}
@@ -41,7 +43,7 @@ const ActiveTask = (): React.JSX.Element => {
       is_mobile={`${userInformation.isMobile}`}
       is_over={`${isOver}`}
     >
-      <CardTitle
+      <CardWithTitle
         title="Active Task"
         label={`${activeTaskComponent.length}/3`}
         data-cy="Active-task-title"
@@ -52,7 +54,7 @@ const ActiveTask = (): React.JSX.Element => {
         >
           {activeTaskComponent}
         </ActiveTaskContent>
-      </CardTitle>
+      </CardWithTitle>
     </ActiveTasksContainer>
   );
 };

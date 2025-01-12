@@ -13,7 +13,7 @@ export const DraggableItem = ({
   const itemIdentifier = useMemo(() => id, [id]);
 
   return (
-    <Draggable id={itemIdentifier}>
+    <Draggable id={itemIdentifier} type="item">
       <ItemWithActions
         title={title}
         onSplit={onSplit}

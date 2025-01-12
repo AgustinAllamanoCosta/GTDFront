@@ -100,12 +100,14 @@ export const useTask: UseTask = (
   };
 
   const activeTask: ActiveTask = (taskId: string) => {
-    const taskToActive: Task | undefined = userTaskData.inboxItems.get(taskId);
-    if (taskToActive) {
-      taskToActive.activationDate = new Date().toISOString();
-      userTaskData.activeItems.set(taskId, taskToActive);
-      userTaskData.inboxItems.delete(taskId);
-      setUserTaskData({ ...userTaskData });
+    if (canActivate()) {
+      const taskToActive: Task | undefined = userTaskData.inboxItems.get(taskId);
+      if (taskToActive) {
+        taskToActive.activationDate = new Date().toISOString();
+        userTaskData.activeItems.set(taskId, taskToActive);
+        userTaskData.inboxItems.delete(taskId);
+        setUserTaskData({ ...userTaskData });
+      }
     }
   };
 
@@ -121,6 +123,10 @@ export const useTask: UseTask = (
 
   const getInboxTask = (taskId: string): Task | undefined => {
     return userTaskData.inboxItems.get(taskId);
+  };
+
+  const getActiveTask = (activeTaskId: string): Task | undefined => {
+    return userTaskData.activeItems.get(activeTaskId);
   };
 
   const getInboxTaskToMap: GetItems = () => {
@@ -143,7 +149,9 @@ export const useTask: UseTask = (
     );
     return processMap(latestDoneItems, orderCompleteItems);
   };
+
   const getIsLoading = (): boolean => isLoading;
+  const canActivate = (): boolean => { return getActiveTaskToMap().length < 3; };
 
   const clearTask = () => {
     setIsClearCaching(true);
@@ -193,9 +201,11 @@ export const useTask: UseTask = (
     getDoneTaskToMap,
     getCancelTaskToMap,
     getActiveTaskToMap,
+    getActiveTask,
     getInboxTask,
     addNewTask,
     cancelTask,
+    canActivate,
     activeTask,
     doneTask,
     getInboxTaskToMap,

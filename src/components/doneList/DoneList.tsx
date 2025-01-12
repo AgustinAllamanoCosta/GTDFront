@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { CardTitle } from '../cardWithTile/CardWithTitle';
+import { CardWithTitle } from '../cardWithTile/CardWithTitle';
 import { useContext } from 'react';
 import { Item } from '../item/Item';
 import { TaskInformationContext } from '../../contexts/taskContext';
@@ -7,12 +7,15 @@ import { BLACK } from '../../constants/colors';
 import { SIZE } from '../../constants/size';
 import { UserInformationContext } from '../../contexts/userContext';
 import { Task } from '../../types/types';
+import { useDroppable } from '@dnd-kit/core';
+import { DRAGGING_IDS } from '../../views/tasks/Task';
 
 type DoneListProps = {
   id?: string;
 };
 
 const DoneList = ({ id }: DoneListProps): React.JSX.Element => {
+  const { isOver, setNodeRef } = useDroppable({ id: DRAGGING_IDS.DONE_TASK });
   const itemsInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
 
@@ -30,13 +33,16 @@ const DoneList = ({ id }: DoneListProps): React.JSX.Element => {
     <InboxTaskContainer
       is_mobile={`${userInformation.isMobile}`}
       id={id}
+      ref={setNodeRef}
+      is_over={`${isOver}`}
+      data-cy={'Done-task-list'}
     >
-      <CardTitle
+      <CardWithTitle
         title={'Done'}
         label={`total ${doneTasks.length}`}
       >
-        <InboxContainer>{doneComponentsList}</InboxContainer>
-      </CardTitle>
+        <InboxContainer >{doneComponentsList}</InboxContainer>
+      </CardWithTitle>
     </InboxTaskContainer>
   );
 };
@@ -53,7 +59,14 @@ const InboxContainer = styled.div`
   }
 `;
 
-const InboxTaskContainer = styled.div<{ is_mobile?: string }>`
+const InboxTaskContainer = styled.div<{ is_mobile?: string, is_over?:string }>`
+  ${(props) =>
+    props.is_over === 'true'
+      ? `
+      opacity:  0.5`
+      : `
+      opacity: 1
+  `};
   ${(props) =>
     props.is_mobile === 'true'
       ? `

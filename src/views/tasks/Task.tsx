@@ -7,6 +7,7 @@ import {
   useEffect,
   lazy,
   useState,
+  ReactNode,
 } from 'react';
 import { TaskViewProps, UserTaskData, Task } from '../../types/types';
 import { UserInformationContext } from '../../contexts/userContext';
@@ -30,11 +31,40 @@ import {
 import { SUBSCRIBER_NAMES } from '../../components/useEvent/useEvent';
 import { EventContext } from '../../contexts/eventContext';
 import { Item } from '../../components/item/Item';
+import { StickyNote } from '../../components/stickyNote/StickyNote';
+import { THEME_ONE } from '../../constants/colors';
 
 const ActiveTask = lazy(() => import('../../components/activeTask/ActiveTask'));
 const ItemList = lazy(() => import('../../components/itemList/ItemList'));
 const CancelList = lazy(() => import('../../components/cancelList/CancelList'));
 const DoneList = lazy(() => import('../../components/doneList/DoneList'));
+
+export const DRAGGING_IDS = {
+  ACTIVE_TASK: "active-task",
+  CANCEL_TASK: "cancel-task",
+  DONE_TASK: "done-task",
+  ITEM_TASK: "item-task"
+};
+
+export const DRAGGIND_TYPES = {
+  ACTIVE: 'active',
+  ITEM: 'item'
+}
+
+export const TOUCH_SENSOR_OPTIONS = {
+    activationConstraint: {
+      distance: 10,
+      delay: 100,
+      tolerance: 5,
+    },
+};
+
+export const MOUSE_SENSOR_OPTIONS = {
+    activationConstraint: {
+      delay: 100,
+      tolerance: 5,
+    },
+};
 
 const TaskView = ({
   inboxTasks = undefined,
@@ -49,25 +79,14 @@ const TaskView = ({
   const itemsInformation = useContext(TaskInformationContext);
   const { eventBus } = useContext(EventContext);
   const [activeTask, setActiveTask] = useState<Array<Task>>([]);
-  const touchSensor = useSensor(TouchSensor, {
-    activationConstraint: {
-      distance: 10,
-      delay: 100,
-      tolerance: 5,
-    },
-  });
-  const mouseSensor = useSensor(MouseSensor, {
-    activationConstraint: {
-      delay: 100,
-      tolerance: 5,
-    },
-  });
+  const touchSensor = useSensor(TouchSensor, TOUCH_SENSOR_OPTIONS);
+  const mouseSensor = useSensor(MouseSensor, MOUSE_SENSOR_OPTIONS);
 
   const sensors = useSensors(touchSensor, mouseSensor);
 
   const navigate = useNavigate();
 
-  const [draggingItem, setDraggingItem] = useState<string | undefined>(
+  const [draggingItem, setDraggingItem] = useState<ReactNode | undefined>(
     undefined,
   );
 
@@ -86,28 +105,63 @@ const TaskView = ({
     navigate('/');
   }, [userInformation.userData]);
 
-  const onActiveTask = ({ active, over }: DragEndEvent) => {
-    if (activeTask.length < 3 && over) {
-      itemsInformation.activeTask(active.id.toString());
-      eventBus.publish({
-        name: SUBSCRIBER_NAMES.METRICS,
-        data: {
-          name: 'activeTaskDraggable',
-          userId: userInformation.userData?.id,
-          taskId: active.id,
-        },
-      });
+  const onDragEnds = (dragEndEvent: DragEndEvent) => {
+    if (dragEndEvent.over) {
+      switch (dragEndEvent.over.id) {
+        case DRAGGING_IDS.ACTIVE_TASK:
+          itemsInformation.activeTask(dragEndEvent.active.id.toString());
+          eventBus.publish({
+            name: SUBSCRIBER_NAMES.METRICS,
+            data: {
+              name: 'activeTaskDraggable',
+              userId: userInformation.userData?.id,
+              taskId: dragEndEvent.active.id,
+            },
+          });
+          break;
+        case DRAGGING_IDS.CANCEL_TASK:
+          itemsInformation.cancelTask(dragEndEvent.active.id.toString());
+          eventBus.publish({
+            name: SUBSCRIBER_NAMES.METRICS,
+            data: {
+              name: 'cancelTaskDraggable',
+              userId: userInformation.userData?.id,
+              taskId: dragEndEvent.active.id,
+            },
+          });
+          break;
+        case DRAGGING_IDS.DONE_TASK:
+          itemsInformation.doneTask(dragEndEvent.active.id.toString());
+          eventBus.publish({
+            name: SUBSCRIBER_NAMES.METRICS,
+            data: {
+              name: 'doneTaskDraggable',
+              userId: userInformation.userData?.id,
+              taskId: dragEndEvent.active.id,
+            },
+          });
+          break;
+      }
+      setDraggingItem(undefined);
     }
-    setDraggingItem(undefined);
   };
 
   const onDragStart = ({ active, over }: DragEndEvent) => {
-    if (active.id) {
+    let element: ReactNode | undefined = undefined;
+    if (active.data.current?.type == DRAGGIND_TYPES.ACTIVE) {
+      const title: string | undefined = itemsInformation.getActiveTask(
+        active.id.toString(),
+      )?.title;
+      if (title)
+        element = <StickyNote  number='1' text={title} backgroundColor={THEME_ONE.stickButton} onConfirm={() => { }} key={'DRAGGABLE'} />;
+    } else if (active.id) {
       const title: string | undefined = itemsInformation.getInboxTask(
         active.id.toString(),
       )?.title;
-      setDraggingItem(title);
+      if (title)
+        element = <Item title={title} />;
     }
+    setDraggingItem(element);
   };
 
   useEffect(() => {
@@ -132,7 +186,7 @@ const TaskView = ({
     <DndContext
       sensors={sensors}
       onDragStart={onDragStart}
-      onDragEnd={onActiveTask}
+      onDragEnd={onDragEnds}
     >
       <Container>
         {userInformation.userData && (
@@ -176,8 +230,8 @@ const TaskView = ({
           )}
         </ContentContainer>
       </Container>
-      <DragOverlay>
-        {draggingItem ? <Item title={draggingItem} /> : undefined}
+      <DragOverlay data-cy="drag-overlay">
+        {draggingItem ? draggingItem : undefined}
       </DragOverlay>
     </DndContext>
   );

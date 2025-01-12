@@ -5,7 +5,7 @@ import { THEME_ONE } from '../../constants/colors';
 import { memo } from 'react';
 import { CardWithTitleProps } from '../../types/types';
 
-export const CardTitle = memo(
+export const CardWithTitle = memo(
   ({
     title,
     children,
