@@ -10,11 +10,13 @@ export const DraggableStickNote = ({
   text,
   backgroundColor = THEME_ONE.stickBackGround,
   onConfirm,
-}: DraggableStickyNoteProps
-) => {
+}: DraggableStickyNoteProps) => {
   const stickNoteIdentifier = useMemo(() => id, [id]);
   return (
-    <Draggable id={stickNoteIdentifier} type="active">
+    <Draggable
+      id={stickNoteIdentifier}
+      type="active"
+    >
       <StickyNote
         number={number}
         text={text}

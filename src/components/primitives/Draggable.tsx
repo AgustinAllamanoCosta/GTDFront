@@ -7,8 +7,11 @@ type DraggableElementProps = {
   children: ReactNode;
 };
 
-export const Draggable = (data : DraggableElementProps) => {
-  const { attributes, listeners, setNodeRef } = useDraggable({ id: data.id, data: { type: data.type } });
+export const Draggable = (data: DraggableElementProps) => {
+  const { attributes, listeners, setNodeRef } = useDraggable({
+    id: data.id,
+    data: { type: data.type },
+  });
 
   return (
     <div

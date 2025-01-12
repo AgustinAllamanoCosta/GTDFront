@@ -78,15 +78,15 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
   };
 
   const onActiveTask = (taskId: string) => {
-      itemsInformation.activeTask(taskId);
-      eventBus.publish({
-        name: SUBSCRIBER_NAMES.METRICS,
-        data: {
-          name: 'activeTask',
-          userId: userInformation.userData?.id,
-          taskId,
-        },
-      });
+    itemsInformation.activeTask(taskId);
+    eventBus.publish({
+      name: SUBSCRIBER_NAMES.METRICS,
+      data: {
+        name: 'activeTask',
+        userId: userInformation.userData?.id,
+        taskId,
+      },
+    });
   };
 
   const itemComponentsList: React.ReactNode[] = inboxToMap.map(

@@ -59,7 +59,7 @@ const InboxContainer = styled.div`
   }
 `;
 
-const InboxTaskContainer = styled.div<{ is_mobile?: string; is_over?:string  }>`
+const InboxTaskContainer = styled.div<{ is_mobile?: string; is_over?: string }>`
   ${(props) =>
     props.is_mobile === 'true'
       ? `

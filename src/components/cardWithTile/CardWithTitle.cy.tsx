@@ -1,12 +1,12 @@
 import React from 'react';
-import { CardTitle } from './CardWithTitle';
+import { CardWithTitle } from './CardWithTitle';
 
 describe('Card with title and subtitle', () => {
   it('render a card with title and sub title', () => {
     const title: string = 'Some title';
     const label: string = 'Some label';
     cy.mount(
-      <CardTitle
+      <CardWithTitle
         title={title}
         label={label}
       />,

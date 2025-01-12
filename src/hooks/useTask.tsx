@@ -101,7 +101,8 @@ export const useTask: UseTask = (
 
   const activeTask: ActiveTask = (taskId: string) => {
     if (canActivate()) {
-      const taskToActive: Task | undefined = userTaskData.inboxItems.get(taskId);
+      const taskToActive: Task | undefined =
+        userTaskData.inboxItems.get(taskId);
       if (taskToActive) {
         taskToActive.activationDate = new Date().toISOString();
         userTaskData.activeItems.set(taskId, taskToActive);
@@ -151,7 +152,9 @@ export const useTask: UseTask = (
   };
 
   const getIsLoading = (): boolean => isLoading;
-  const canActivate = (): boolean => { return getActiveTaskToMap().length < 3; };
+  const canActivate = (): boolean => {
+    return getActiveTaskToMap().length < 3;
+  };
 
   const clearTask = () => {
     setIsClearCaching(true);
