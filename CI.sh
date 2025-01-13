@@ -19,17 +19,19 @@ echo '=========================='
 yarn install
 echo '=========================='
 echo '=Running linting on code ='
-echo '=========================='
-yarn lint-format
-echo '=========================='
 echo '=Running snapshot test   ='
-echo '=========================='
-yarn test
-echo '=========================='
 echo '=Running component test  ='
 echo '=========================='
-yarn cy-run-components
-docker-compose down
+yarn lint-format >> format_log &
+yarn test >> snapshot_log &
+yarn cy-run-components >> component_log &
+wait
+cat ./format_log
+cat ./snapshot_log
+cat ./component_log
+rm ./format_log
+rm ./snapshot_log
+rm ./component_log
 echo '=========================='
 echo '=Creating new build      ='
 echo '=========================='
@@ -42,8 +44,9 @@ docker-compose up -d
 echo '=========================='
 echo '=Running test e2e        ='
 echo '=========================='
-yarn cy-run-e2e
-yarn cy-run-e2e-mobile
+yarn cy-run-e2e &
+yarn cy-run-e2e-mobile &
+wait
 echo '=========================='
 echo '=Cleaning environment    ='
 echo '=========================='

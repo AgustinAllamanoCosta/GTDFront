@@ -8,7 +8,7 @@ describe('Get The Things Done Drag and Drop', () => {
     cy.log('Using desktop view with drag and drop test');
   });
 
-  afterEach(() => {
+  after(() => {
     cy.testCleanDb();
     window.localStorage.clear();
   });

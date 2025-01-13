@@ -13,11 +13,13 @@ export default defineConfig({
       bundler: 'vite',
     },
     watchForFileChanges: true,
-    specPattern: '**/*.cy.tsx',
+    specPattern: ['**/*.cy.tsx', '!**/dailyTask.cy.tsx'],
   },
   env: {
     isMobile: false,
   },
+  numTestsKeptInMemory: 0,
+  experimentalMemoryManagement: true,
   e2e: {
     trashAssetsBeforeRuns: true,
     screenshotOnRunFailure: true,

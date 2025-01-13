@@ -1,4 +1,4 @@
-describe('Get The Things Done Split Taks', () => {
+describe('Get The Things Done Split Tasks', () => {
   beforeEach(() => {
     cy.testCleanDb();
     window.localStorage.clear();
@@ -11,7 +11,7 @@ describe('Get The Things Done Split Taks', () => {
     }
   });
 
-  afterEach(() => {
+  after(() => {
     cy.testCleanDb();
     window.localStorage.clear();
   });
