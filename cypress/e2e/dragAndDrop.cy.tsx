@@ -1,7 +1,6 @@
-import { skipOn } from '@cypress/skip-test'
+import { skipOn } from '@cypress/skip-test';
 
 describe('Get The Things Done Drag and Drop', () => {
-
   beforeEach(() => {
     cy.testCleanDb();
     window.localStorage.clear();
@@ -174,4 +173,4 @@ describe('Get The Things Done Drag and Drop', () => {
   };
 });
 
-export { };
+export {};
