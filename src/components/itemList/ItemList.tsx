@@ -14,11 +14,13 @@ import { v4 as uuidv4 } from 'uuid';
 import { DraggableItem } from '../draggableItem/DraggableItem';
 import { useDroppable } from '@dnd-kit/core';
 import { DRAGGING_IDS } from '../../views/tasks/Task';
+import { NotificationHandlerContext } from '../notificationContext';
 
 const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
   const { isOver, setNodeRef } = useDroppable({ id: DRAGGING_IDS.ITEM_TASK });
   const CHARACTER_LIMIT: number = 43;
   const itemsInformation = useContext(TaskInformationContext);
+  const notificationManager = useContext(NotificationHandlerContext);
   const userInformation = useContext(UserInformationContext);
   const { eventBus } = useContext(EventContext);
   const refToList = useRef<HTMLDivElement[]>([]);
@@ -111,7 +113,13 @@ const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
           key={`${item.id}-${item.title}`}
           id={item.id}
           title={item.title}
-          onActive={() => onActiveTask(item.id)}
+          onActive={() => {
+            try {
+              onActiveTask(item.id);
+            } catch (er: any) {
+              notificationManager.setNotification(er.message);
+            }
+          }}
           onCancel={() => onCancelTask(item.id)}
           onSplit={(taskOne: string, taskTwo: string) =>
             buttonAddSplitTask(taskOne, taskTwo, item.id)

@@ -2,6 +2,7 @@ import { Task } from '../../types/types';
 import { BrowserRouter } from 'react-router-dom';
 import ItemsContext from '../../components/useItems/useItems';
 import { taskFactory } from '../../factories/TaskFactory';
+import NotificationContext from '../../components/useNotification/useNotification';
 
 export const task1: Task = taskFactory(true)('some task 1', 0, false);
 export const task2: Task = taskFactory(true)('some task 2', 0, false);
@@ -26,7 +27,9 @@ export const TaskContextDecorator = (Story: any) => {
   return (
     <BrowserRouter>
       <ItemsContext>
-        <Story />
+        <NotificationContext>
+          <Story />
+        </NotificationContext>
       </ItemsContext>
     </BrowserRouter>
   );

@@ -109,6 +109,10 @@ export const useTask: UseTask = (
         userTaskData.inboxItems.delete(taskId);
         setUserTaskData({ ...userTaskData });
       }
+    } else {
+      throw new Error(
+        'you need to complete a active task before to active a new one',
+      );
     }
   };
 

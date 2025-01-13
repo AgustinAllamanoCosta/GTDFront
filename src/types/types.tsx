@@ -21,6 +21,11 @@ export type CardProps = {
   children?: string | React.JSX.Element | React.JSX.Element[];
 };
 
+export type ToastProp = {
+  children?: string | React.JSX.Element | React.JSX.Element[];
+  onClose: () => void;
+};
+
 export type ItemListProps = {
   id?: string;
 };
@@ -207,6 +212,7 @@ export type TaskViewProps = {
   refreshTaskInterval?: number;
   loadScheduleTask?: number;
   calculateTaskTemp?: number;
+  showToast?: boolean;
 };
 
 export interface ItemUtil {

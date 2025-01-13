@@ -33,6 +33,8 @@ import { EventContext } from '../../contexts/eventContext';
 import { Item } from '../../components/item/Item';
 import { StickyNote } from '../../components/stickyNote/StickyNote';
 import { THEME_ONE } from '../../constants/colors';
+import { NotificationHandlerContext } from '../../components/notificationContext';
+import { Toast } from '../../components/toast/Toast';
 
 const ActiveTask = lazy(() => import('../../components/activeTask/ActiveTask'));
 const ItemList = lazy(() => import('../../components/itemList/ItemList'));
@@ -73,9 +75,11 @@ const TaskView = ({
   loadScheduleTask,
   calculateTaskTemp,
   environment,
+  showToast,
 }: TaskViewProps) => {
   const errorContext = useContext(ErrorHandlerContext);
   const userInformation = useContext(UserInformationContext);
+  const notificationManager = useContext(NotificationHandlerContext);
   const itemsInformation = useContext(TaskInformationContext);
   const { eventBus } = useContext(EventContext);
   const [activeTask, setActiveTask] = useState<Array<Task>>([]);
@@ -109,15 +113,19 @@ const TaskView = ({
     if (dragEndEvent.over) {
       switch (dragEndEvent.over.id) {
         case DRAGGING_IDS.ACTIVE_TASK:
-          itemsInformation.activeTask(dragEndEvent.active.id.toString());
-          eventBus.publish({
-            name: SUBSCRIBER_NAMES.METRICS,
-            data: {
-              name: 'activeTaskDraggable',
-              userId: userInformation.userData?.id,
-              taskId: dragEndEvent.active.id,
-            },
-          });
+          try {
+            itemsInformation.activeTask(dragEndEvent.active.id.toString());
+            eventBus.publish({
+              name: SUBSCRIBER_NAMES.METRICS,
+              data: {
+                name: 'activeTaskDraggable',
+                userId: userInformation.userData?.id,
+                taskId: dragEndEvent.active.id,
+              },
+            });
+          } catch (er: any) {
+            notificationManager.setNotification(er.message);
+          }
           break;
         case DRAGGING_IDS.CANCEL_TASK:
           itemsInformation.cancelTask(dragEndEvent.active.id.toString());
@@ -183,6 +191,11 @@ const TaskView = ({
       }
       itemsInformation.refreshData();
       setActiveTask(itemsInformation.getActiveTaskToMap());
+      if (showToast) {
+        notificationManager.setNotification(
+          'you need to complete an active task before active a new one',
+        );
+      }
     } catch (error: any) {
       errorContext.setFlagError(true);
       errorContext.setError(error.message);
@@ -202,7 +215,7 @@ const TaskView = ({
             userPhoto={userInformation.userData.photoURL}
             logout={logOut}
           />
-        )}
+        )}{' '}
         <ContentContainer is_mobile={`${userInformation.isMobile}`}>
           {userInformation.isMobile ? (
             <>

@@ -15,7 +15,7 @@ const postItOne: React.JSX.Element = <span>post it one</span>;
 const postItTwo: React.JSX.Element = <span>post it two</span>;
 const postItThree: React.JSX.Element = <span>post it three</span>;
 
-export const CardSecondaryWithChilds: Story = {
+export const CardSecondaryWithChildren: Story = {
   args: {
     children: [postItOne, postItTwo, postItThree],
   },

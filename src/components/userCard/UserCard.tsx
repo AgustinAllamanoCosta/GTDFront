@@ -6,6 +6,8 @@ import { REPO_URL } from '../../constants/routePaths';
 import { useContext } from 'react';
 import { UserInformationContext } from '../../contexts/userContext';
 import { UserCardProps } from '../../types/types';
+import { NotificationHandlerContext } from '../notificationContext';
+import { Toast } from '../toast/Toast';
 
 export const UserCard = ({
   userName,
@@ -13,6 +15,7 @@ export const UserCard = ({
   logout,
 }: UserCardProps): React.JSX.Element => {
   const userInformation = useContext(UserInformationContext);
+  const notificationManager = useContext(NotificationHandlerContext);
 
   return (
     <UserCardContainer is_mobile={`${userInformation.isMobile}`}>
@@ -62,9 +65,22 @@ export const UserCard = ({
           </MyAvatarDataHeaderDesk>
         </BarDesk>
       )}
+      <ToastContent is_mobile={`${userInformation.isMobile}`}>
+        {notificationManager.showNotification && (
+          <Toast onClose={notificationManager.closeNotification}>
+            {notificationManager.message}
+          </Toast>
+        )}
+      </ToastContent>
     </UserCardContainer>
   );
 };
+
+const ToastContent = styled.div<{ is_mobile: string }>`
+  position: absolute;
+  z-index: 999;
+  top: ${SIZE.XS};
+`;
 
 const Bar = styled.div`
   background-color: ${THEME_ONE.cardBackGround};
@@ -142,20 +158,20 @@ const UserCardContainer = styled.div<{ is_mobile?: string }>`
   -webkit-box-shadow: 5px 5px 0px 0px rgba(7, 15, 43, 1);
   -moz-box-shadow: 5px 5px 0px 0px rgba(7, 15, 43, 1);
   box-shadow: 5px 5px 0px 0px rgba(7, 15, 43, 1);
+  height: 100%;
+  width: 100%;
   ${(props) =>
     props.is_mobile === 'true'
       ? `
   margin-bottom: 16px;
-  margin-top: 10px;
   min-height: 90px;
+  margin-top: 10px;
   min-width: 280px;
   max-width: 380px;
   width: ${SIZE.L};
   height: ${SIZE.XS};
   `
       : `
-  height: 50px;
-  width: 100%;
   padding-bottom: 24px;
   `};
 `;

@@ -10,6 +10,7 @@ import InerFontBold from '../assets/fonts/Inter-Bold.ttf';
 import InerFontNormal from '../assets/fonts/Inter-Regular.ttf';
 import { firebaseData } from '../hooks/useFirebase';
 import { AppContextProps } from '../types/types';
+import NotificationContext from '../components/useNotification/useNotification';
 
 const AppContext = ({ children }: AppContextProps) => {
   return (
@@ -20,7 +21,7 @@ const AppContext = ({ children }: AppContextProps) => {
           <UserContext configuration={configuration}>
             <ItemsContext>
               <GoogleAuthContext clientId={configuration.clientId}>
-                {children}
+                <NotificationContext>{children}</NotificationContext>
               </GoogleAuthContext>
             </ItemsContext>
           </UserContext>

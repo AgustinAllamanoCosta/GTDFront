@@ -15,7 +15,7 @@ type Story = StoryObj<typeof meta>;
 
 export const FullTaskView: Story = {
   args: {
-    environment: 'Locla',
+    environment: 'Local',
     refreshTaskInterval: 900000,
     userData: {
       id: 'some user id',
@@ -24,5 +24,6 @@ export const FullTaskView: Story = {
       accessToken: 'some access token',
     },
     inboxTasks: mockTaskInContext,
+    showToast: true,
   },
 };
