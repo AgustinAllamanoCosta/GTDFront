@@ -1,4 +1,4 @@
-describe.skip('Get The Things Done Task Daily', () => {
+describe('Get The Things Done Task Daily', () => {
   beforeEach(() => {
     cy.testCleanDb();
     window.localStorage.clear();
@@ -83,7 +83,7 @@ describe.skip('Get The Things Done Task Daily', () => {
     );
   });
 
-  it('Should add task, active and change the temp to warn', () => {
+  it.only('Should add task, active and change the temp to warn', () => {
     const taskContent: string = 'some task to do';
 
     cy.clock(new Date().getTime(), ['setInterval', 'setTimeout', 'Date']);

@@ -44,8 +44,8 @@ docker-compose up -d
 echo '=========================='
 echo '=Running test e2e        ='
 echo '=========================='
-yarn cy-run-e2e &
-yarn cy-run-e2e-mobile &
+yarn cy-run-e2e
+yarn cy-run-e2e-mobile
 wait
 echo '=========================='
 echo '=Cleaning environment    ='

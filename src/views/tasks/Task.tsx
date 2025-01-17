@@ -34,7 +34,6 @@ import { Item } from '../../components/item/Item';
 import { StickyNote } from '../../components/stickyNote/StickyNote';
 import { THEME_ONE } from '../../constants/colors';
 import { NotificationHandlerContext } from '../../components/notificationContext';
-import { Toast } from '../../components/toast/Toast';
 
 const ActiveTask = lazy(() => import('../../components/activeTask/ActiveTask'));
 const ItemList = lazy(() => import('../../components/itemList/ItemList'));
