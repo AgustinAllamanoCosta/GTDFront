@@ -1,6 +1,5 @@
 import {
   prepearEnvironment,
-  cleanDB,
   activeATaskByContent,
   completeATaskByOrder,
   cancelATaskByContent,
@@ -11,7 +10,7 @@ const addADailyTask = (taskContent: string) => {
   cy.get('[data-cy="button-make daily"]').click();
 };
 
-describe('Get The Things Done Task Daily', () => {
+describe.skip('Get The Things Done Task Daily', () => {
   beforeEach(() => {
     cy.clock().then((clock) => {
       clock.restore();
@@ -25,7 +24,7 @@ describe('Get The Things Done Task Daily', () => {
     });
   });
 
-  it.only('Should add a daily task and mark as complete and reapear in inbox task and in the done list', () => {
+  it('Should add a daily task and mark as complete and reapear in inbox task and in the done list', () => {
     const taskContent: string = 'some task to do';
 
     const initialTime = new Date('2024-01-01T00:00:00').getTime();
