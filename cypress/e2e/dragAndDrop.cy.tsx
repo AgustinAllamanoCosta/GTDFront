@@ -1,32 +1,40 @@
 import { skipOn } from '@cypress/skip-test';
+import { addANewTaskByEnter, cleanDB } from './testSupports.cy';
+
+const activeATaskDoingDropping = (taskId: string) => {
+  const item = cy
+    .get(`[data-cy="task-${taskId}"]`)
+    .trigger('mousedown')
+    .wait(100);
+  let listPosition = undefined;
+  const activeList = cy.get('[data-cy="Active-task-list"]').then((list) => {
+    listPosition = list.position();
+  });
+  activeList.trigger('mousemove', listPosition);
+  item.trigger('mouseup');
+};
+
+const skipOnMoviel = () => {
+  if (Cypress.env('isMobile')) {
+    skipOn(true);
+  }
+};
 
 describe('Get The Things Done Drag and Drop', () => {
   beforeEach(() => {
-    cy.testCleanDb();
+    cy.wrap(null).then(async () => {
+      await cleanDB();
+    });
     window.localStorage.clear();
     cy.viewport(1700, 1000);
     cy.log('Using desktop view with drag and drop test');
   });
 
-  after(() => {
-    cy.testCleanDb();
-    window.localStorage.clear();
-  });
-
-  const skipOnMoviel = () => {
-    if (Cypress.env('isMobile')) {
-      skipOn(true);
-    }
-  };
-
   it('Should active an Item when is drop on the active zone', () => {
     skipOnMoviel();
     const taskContent = 'task to active';
     cy.visit('/task');
-    cy.wait(1000);
-
-    cy.get('[data-cy="task-add-button-input"]').type(taskContent);
-    cy.get('[data-cy="button-accept"]').click();
+    addANewTaskByEnter(taskContent);
 
     activeATaskDoingDropping(taskContent);
 
@@ -40,10 +48,7 @@ describe('Get The Things Done Drag and Drop', () => {
     skipOnMoviel();
     const taskContent = 'task to done';
     cy.visit('/task');
-    cy.wait(1000);
-
-    cy.get('[data-cy="task-add-button-input"]').type(taskContent);
-    cy.get('[data-cy="button-accept"]').click();
+    addANewTaskByEnter(taskContent);
 
     activeATaskDoingDropping(taskContent);
 
@@ -63,10 +68,8 @@ describe('Get The Things Done Drag and Drop', () => {
     skipOnMoviel();
     const taskContent = 'task to cancel';
     cy.visit('/task');
-    cy.wait(1000);
 
-    cy.get('[data-cy="task-add-button-input"]').type(taskContent);
-    cy.get('[data-cy="button-accept"]').click();
+    addANewTaskByEnter(taskContent);
 
     const item = cy
       .get(`[data-cy="task-${taskContent}"]`)
@@ -86,16 +89,10 @@ describe('Get The Things Done Drag and Drop', () => {
     const taskContentTwo = 'task to active two';
     const taskContentThree = 'task to active three';
     cy.visit('/task');
-    cy.wait(1000);
 
-    cy.get('[data-cy="task-add-button-input"]').type(taskContentOne);
-    cy.get('[data-cy="button-accept"]').click();
-
-    cy.get('[data-cy="task-add-button-input"]').type(taskContentTwo);
-    cy.get('[data-cy="button-accept"]').click();
-
-    cy.get('[data-cy="task-add-button-input"]').type(taskContentThree);
-    cy.get('[data-cy="button-accept"]').click();
+    addANewTaskByEnter(taskContentOne);
+    addANewTaskByEnter(taskContentTwo);
+    addANewTaskByEnter(taskContentThree);
 
     activeATaskDoingDropping(taskContentOne);
     activeATaskDoingDropping(taskContentTwo);
@@ -122,19 +119,11 @@ describe('Get The Things Done Drag and Drop', () => {
     const taskContentThree = 'task to active three';
     const taskContentFour = 'task to active four';
     cy.visit('/task');
-    cy.wait(1000);
 
-    cy.get('[data-cy="task-add-button-input"]').type(taskContentOne);
-    cy.get('[data-cy="button-accept"]').click();
-
-    cy.get('[data-cy="task-add-button-input"]').type(taskContentTwo);
-    cy.get('[data-cy="button-accept"]').click();
-
-    cy.get('[data-cy="task-add-button-input"]').type(taskContentThree);
-    cy.get('[data-cy="button-accept"]').click();
-
-    cy.get('[data-cy="task-add-button-input"]').type(taskContentFour);
-    cy.get('[data-cy="button-accept"]').click();
+    addANewTaskByEnter(taskContentOne);
+    addANewTaskByEnter(taskContentTwo);
+    addANewTaskByEnter(taskContentThree);
+    addANewTaskByEnter(taskContentFour);
 
     activeATaskDoingDropping(taskContentOne);
     activeATaskDoingDropping(taskContentTwo);
@@ -158,19 +147,6 @@ describe('Get The Things Done Drag and Drop', () => {
       taskContentFour,
     );
   });
-
-  const activeATaskDoingDropping = (taskId: string) => {
-    const item = cy
-      .get(`[data-cy="task-${taskId}"]`)
-      .trigger('mousedown')
-      .wait(100);
-    let listPosition = undefined;
-    const activeList = cy.get('[data-cy="Active-task-list"]').then((list) => {
-      listPosition = list.position();
-    });
-    activeList.trigger('mousemove', listPosition);
-    item.trigger('mouseup');
-  };
 });
 
 export {};

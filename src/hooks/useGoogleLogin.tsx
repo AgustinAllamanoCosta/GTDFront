@@ -14,10 +14,6 @@ export const useGoogleLoginActions = (redirectPath: string) => {
     (email: string, pass: string) => {
       const firebaseAuth = getAuth();
 
-      console.log(email);
-      console.log(pass);
-      console.log(firebaseAuth);
-
       signInWithEmailAndPassword(firebaseAuth, email, pass)
         .then((userCredential) => {
           const user = userCredential.user;

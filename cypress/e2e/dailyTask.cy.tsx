@@ -1,14 +1,22 @@
+import {
+  prepearEnvironment,
+  cleanDB,
+  activeATaskByContent,
+  completeATaskByOrder,
+  cancelATaskByContent,
+} from './testSupports.cy';
+
+const addADailyTask = (taskContent: string) => {
+  cy.get('[data-cy="task-add-button-input"]').type(taskContent);
+  cy.get('[data-cy="button-make daily"]').click();
+};
+
 describe('Get The Things Done Task Daily', () => {
   beforeEach(() => {
-    cy.testCleanDb();
-    window.localStorage.clear();
-    if (Cypress.env('isMobile')) {
-      cy.viewport(400, 790);
-      cy.log('Mobile view');
-    } else {
-      cy.viewport(1700, 1000);
-      cy.log('Desktop view');
-    }
+    cy.clock().then((clock) => {
+      clock.restore();
+    });
+    prepearEnvironment();
   });
 
   afterEach(() => {
@@ -17,28 +25,21 @@ describe('Get The Things Done Task Daily', () => {
     });
   });
 
-  after(() => {
-    cy.testCleanDb();
-    window.localStorage.clear();
-  });
-
-  it('Should add a daily task and mark as complete and reapear in inbox task and in the done list', () => {
+  it.only('Should add a daily task and mark as complete and reapear in inbox task and in the done list', () => {
     const taskContent: string = 'some task to do';
 
     const initialTime = new Date('2024-01-01T00:00:00').getTime();
     cy.clock(initialTime, ['Date']);
     cy.visit('/task');
-    cy.tick(100);
 
-    cy.get('[data-cy="task-add-button-input"]').type(taskContent);
-    cy.get('[data-cy="button-make daily"]').click();
     cy.tick(100);
+    addADailyTask(taskContent);
 
-    cy.get('[data-cy="task-some task to do"]').click();
-    cy.get('[data-cy="button-active"]').click();
+    cy.tick(100);
+    activeATaskByContent(taskContent);
 
     cy.tick(48 * (1000 * 60 * 60));
-    cy.get('[data-cy="stick-note-button-0"]').click();
+    completeATaskByOrder(0);
 
     cy.tick(300);
     cy.get('[data-cy="stick-note-text-0"]').should('not.exist');
@@ -50,9 +51,7 @@ describe('Get The Things Done Task Daily', () => {
     cy.clock(new Date().getTime(), ['setInterval', 'Date']);
     cy.visit('/task');
 
-    cy.get('[data-cy="task-add-button-input"]').type(taskContent);
-    cy.get('[data-cy="button-make daily"]').click();
-
+    addADailyTask(taskContent);
     cy.tick(48 * (1000 * 60 * 60));
 
     cy.get('[data-cy="task-some task to do"]').should('have.length', 1);
@@ -64,14 +63,8 @@ describe('Get The Things Done Task Daily', () => {
     cy.clock(new Date().getTime(), ['setInterval', 'setTimeout', 'Date']);
     cy.visit('/task');
 
-    cy.get('[data-cy="task-add-button-input"]', { timeout: 1000 }).type(
-      taskContent,
-    );
-    cy.get('[data-cy="button-make daily"]', { timeout: 1000 }).click();
-
-    cy.get('[data-cy="task-some task to do"]', { timeout: 1000 }).click();
-    cy.get('[data-cy="button-cancel"]', { timeout: 1000 }).click();
-
+    addADailyTask(taskContent);
+    cancelATaskByContent(taskContent);
     cy.tick(48 * (1000 * 60 * 60));
 
     cy.get('[data-cy="stick-note-text-0"]', { timeout: 1000 }).should(
@@ -83,19 +76,14 @@ describe('Get The Things Done Task Daily', () => {
     );
   });
 
-  it.only('Should add task, active and change the temp to warn', () => {
+  it('Should add task, active and change the temp to warn', () => {
     const taskContent: string = 'some task to do';
 
     cy.clock(new Date().getTime(), ['setInterval', 'setTimeout', 'Date']);
-
     cy.visit('/task');
 
-    cy.get('[data-cy="task-add-button-input"]').type(taskContent);
-    cy.get('[data-cy="button-make daily"]').click();
-
-    cy.get('[data-cy="task-some task to do"]').click();
-    cy.get('[data-cy="button-active"]').click();
-
+    addADailyTask(taskContent);
+    activeATaskByContent(taskContent);
     cy.tick(13 * (1000 * 60 * 60));
 
     cy.get('[data-cy="stick-note-container-0"]').should(

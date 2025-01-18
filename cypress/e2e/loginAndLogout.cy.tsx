@@ -1,18 +1,10 @@
+import { configViewPorts } from './testSupports.cy';
+
 const USER_NAME: string = 'Test User';
 
 describe('Get The Things Done Login and Logout', () => {
-  afterEach(() => {
-    window.localStorage.clear();
-  });
-
   beforeEach(() => {
-    if (Cypress.env('isMobile')) {
-      cy.viewport(400, 790);
-      cy.log('Mobile view');
-    } else {
-      cy.viewport(1700, 1000);
-      cy.log('Desktop view');
-    }
+    configViewPorts();
   });
 
   it('Should Login into the app with a gmail account', () => {

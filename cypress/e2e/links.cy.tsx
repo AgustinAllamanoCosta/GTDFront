@@ -1,16 +1,8 @@
-describe('Get The Things Done Links', () => {
-  afterEach(() => {
-    window.localStorage.clear();
-  });
+import { configViewPorts } from './testSupports.cy';
 
+describe('Get The Things Done Links', () => {
   beforeEach(() => {
-    if (Cypress.env('isMobile')) {
-      cy.viewport(400, 790);
-      cy.log('Mobile view');
-    } else {
-      cy.viewport(1700, 1000);
-      cy.log('Desktop view');
-    }
+    configViewPorts();
   });
 
   it('Should redicrect to the repo', () => {

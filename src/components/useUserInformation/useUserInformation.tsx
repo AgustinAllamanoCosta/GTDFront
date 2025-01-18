@@ -39,7 +39,6 @@ const UserContext = ({
         configuration.environment === IS_END_TO_END ||
         configuration.environment === IS_LOCAL_TESTING
       ) {
-        console.log('Used mock user data');
         if (isMobile) {
           const userData = {
             accessToken: configuration.accessToken,

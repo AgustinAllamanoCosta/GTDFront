@@ -9,6 +9,12 @@ import {
 import { IS_LOCAL_TESTING } from '../constants/environment';
 
 export const firebaseRepository = (userId: string, useFireBase: Firestore) => {
+  if (userId == undefined || useFireBase == undefined) {
+    const errorMessage: string = `The value/s ${userId ? '' : 'userId'} ${
+      useFireBase ? '' : 'useFirebase'
+    } can not be undefined`;
+    throw new Error(errorMessage);
+  }
   const saveIntoFirebase = async (userTasksData: UserTaskData) => {
     const userTaskDoc: any = doc(
       useFireBase,
@@ -64,6 +70,9 @@ export const firebaseRepository = (userId: string, useFireBase: Firestore) => {
 };
 
 export const memoryRepository = (userId: string, useFireBase: Firestore) => {
+  if (userId == undefined) {
+    throw new Error('The use ID can not be undefined');
+  }
   const userInformation: Map<string, UserTaskData> = new Map();
 
   const save = async (items: UserTaskData): Promise<void> => {
