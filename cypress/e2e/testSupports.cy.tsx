@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp, deleteApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { repositoryFactory } from '../../src/repository/repository';
 
@@ -18,10 +18,13 @@ export const cleanDB = async () => {
       measurementId: Cypress.env('VITE_MEASUREMENT_ID'),
     });
     const useFireBase = getFirestore(firebaseApp);
-    const { clear } = repositoryFactory(
-      Cypress.env('VITE_APP_ENV') ? Cypress.env('VITE_APP_ENV') : 'NOT_E2E',
-    )(Cypress.env('VITE_ID') ? Cypress.env('VITE_ID') : '', useFireBase);
+    const userID: string = Cypress.env('VITE_ID') ? Cypress.env('VITE_ID') : '';
+    const environment: string = Cypress.env('VITE_APP_ENV')
+      ? Cypress.env('VITE_APP_ENV')
+      : 'NOT_E2E';
+    const { clear } = repositoryFactory(environment)(userID, useFireBase);
     await clear();
+    deleteApp(firebaseApp);
     cy.log('Clean ended');
   }
   window.localStorage.clear();
@@ -51,15 +54,17 @@ export const prepearEnvironment = () => {
 };
 
 export const addANewTaskByButton = (taskContent: string) => {
-  cy.get('[data-cy="task-add-button-input"]').type(taskContent);
-  cy.get('[data-cy="button-accept"]').click();
-  cy.wait(STEP_TIME);
+  const input = cy.get('[data-cy="task-add-button-input"]');
+  input.type(taskContent);
+  const button = cy.get('[data-cy="button-accept"]');
+  button.click();
 };
 
 export const addANewTaskByEnter = (taskContent: string) => {
-  cy.get('[data-cy="task-add-button-input"]').type(taskContent);
-  cy.get('[data-cy="task-add-button-input"]').type('{enter}');
-  cy.wait(STEP_TIME);
+  const taskInput = cy.get('[data-cy="task-add-button-input"]');
+  taskInput.type(taskContent);
+  const button = cy.get('[data-cy="task-add-button-input"]');
+  button.type('{enter}');
 };
 
 export const activeATaskByContent = (taskContent: string) => {
@@ -69,20 +74,22 @@ export const activeATaskByContent = (taskContent: string) => {
 };
 
 export const cancelATaskByContent = (taskContent: string) => {
-  cy.get(`[data-cy="task-${taskContent}"]`).click();
-  cy.get('[data-cy="button-cancel"]').click();
-  cy.wait(STEP_TIME);
+  const task = cy.get(`[data-cy="task-${taskContent}"]`);
+  task.click();
+  const button = cy.get('[data-cy="button-cancel"]');
+  button.click();
 };
 
 export const completeATaskByOrder = (order: number) => {
-  cy.get(`[data-cy="stick-note-button-${order}"]`).click();
-  cy.wait(STEP_TIME);
+  const button = cy.get(`[data-cy="stick-note-button-${order}"]`);
+  button.click();
 };
 
 export const addADailyTask = (taskContent: string) => {
-  cy.get('[data-cy="task-add-button-input"]').type(taskContent);
-  cy.get('[data-cy="button-make daily"]').click();
-  cy.wait(STEP_TIME);
+  const button = cy.get('[data-cy="task-add-button-input"]');
+  button.type(taskContent);
+  const buttonDaily = cy.get('[data-cy="button-make daily"]');
+  buttonDaily.click();
 };
 
 export const activeATaskDoingDropping = (taskId: string) => {
@@ -104,12 +111,16 @@ export const splitATaskByContent = (
   subContentOne: string,
   subContenttwo: string,
 ) => {
-  cy.get(`[data-cy="task-${taskContent}"]`).click();
-  cy.get(`[data-cy="button-split"]`).click();
+  const task = cy.get(`[data-cy="task-${taskContent}"]`);
+  task.click();
+  const button = cy.get(`[data-cy="button-split"]`);
+  button.click();
 
-  cy.get('[data-cy="task-add-button-task1"]').type(subContentOne);
-  cy.get('[data-cy="task-add-button-task2"]').type(subContenttwo);
+  const subTaskInputOne = cy.get('[data-cy="task-add-button-task1"]');
+  const subTaskInputTwo = cy.get('[data-cy="task-add-button-task2"]');
+  subTaskInputOne.type(subContentOne);
+  subTaskInputTwo.type(subContenttwo);
 
-  cy.get(`[data-cy="button-split"]`).click();
-  cy.wait(STEP_TIME);
+  const buttonSplit = cy.get(`[data-cy="button-split"]`);
+  buttonSplit.click();
 };
