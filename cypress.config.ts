@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default defineConfig({
+  video: true,
   component: {
     devServer: {
       framework: 'react',

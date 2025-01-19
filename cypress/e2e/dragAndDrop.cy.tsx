@@ -1,18 +1,10 @@
 import { skipOn } from '@cypress/skip-test';
-import { addANewTaskByEnter, cleanDB } from './testSupports.cy';
-
-const activeATaskDoingDropping = (taskId: string) => {
-  const item = cy
-    .get(`[data-cy="task-${taskId}"]`)
-    .trigger('mousedown')
-    .wait(100);
-  let listPosition = undefined;
-  const activeList = cy.get('[data-cy="Active-task-list"]').then((list) => {
-    listPosition = list.position();
-  });
-  activeList.trigger('mousemove', listPosition);
-  item.trigger('mouseup');
-};
+import {
+  activeATaskDoingDropping,
+  addANewTaskByEnter,
+  cleanDB,
+  gotToTask,
+} from './testSupports.cy';
 
 const skipOnMoviel = () => {
   if (Cypress.env('isMobile')) {
@@ -33,7 +25,7 @@ describe('Get The Things Done Drag and Drop', () => {
   it('Should active an Item when is drop on the active zone', () => {
     skipOnMoviel();
     const taskContent = 'task to active';
-    cy.visit('/task');
+    gotToTask();
     addANewTaskByEnter(taskContent);
 
     activeATaskDoingDropping(taskContent);
@@ -47,7 +39,7 @@ describe('Get The Things Done Drag and Drop', () => {
   it('Should mark a task as done using drag and drop', () => {
     skipOnMoviel();
     const taskContent = 'task to done';
-    cy.visit('/task');
+    gotToTask();
     addANewTaskByEnter(taskContent);
 
     activeATaskDoingDropping(taskContent);
@@ -67,7 +59,7 @@ describe('Get The Things Done Drag and Drop', () => {
   it('Should mark a task as cancel using drag and drop', () => {
     skipOnMoviel();
     const taskContent = 'task to cancel';
-    cy.visit('/task');
+    gotToTask();
 
     addANewTaskByEnter(taskContent);
 
@@ -88,7 +80,7 @@ describe('Get The Things Done Drag and Drop', () => {
     const taskContentOne = 'task to active one';
     const taskContentTwo = 'task to active two';
     const taskContentThree = 'task to active three';
-    cy.visit('/task');
+    gotToTask();
 
     addANewTaskByEnter(taskContentOne);
     addANewTaskByEnter(taskContentTwo);
@@ -118,7 +110,7 @@ describe('Get The Things Done Drag and Drop', () => {
     const taskContentTwo = 'task to active two';
     const taskContentThree = 'task to active three';
     const taskContentFour = 'task to active four';
-    cy.visit('/task');
+    gotToTask();
 
     addANewTaskByEnter(taskContentOne);
     addANewTaskByEnter(taskContentTwo);

@@ -1,22 +1,9 @@
 import {
   prepearEnvironment,
   addANewTaskByEnter,
-  cleanDB,
+  gotToTask,
+  splitATaskByContent,
 } from './testSupports.cy';
-
-const splitATaskByContent = (
-  taskContent: string,
-  subContentOne: string,
-  subContenttwo: string,
-) => {
-  cy.get(`[data-cy="task-${taskContent}"]`).click();
-  cy.get(`[data-cy="button-split"]`).click();
-
-  cy.get('[data-cy="task-add-button-task1"]').type(subContentOne);
-  cy.get('[data-cy="task-add-button-task2"]').type(subContenttwo);
-
-  cy.get(`[data-cy="button-split"]`).click();
-};
 
 describe('Get The Things Done Split Tasks', () => {
   beforeEach(() => {
@@ -27,8 +14,8 @@ describe('Get The Things Done Split Tasks', () => {
     const taskContent: string = 'task to split';
     const subTaskContentOne: string = 'sub task to split one';
     const subTaskContentTwo: string = 'sub task to split two';
+    gotToTask();
 
-    cy.visit('/');
     addANewTaskByEnter(taskContent);
     splitATaskByContent(taskContent, subTaskContentOne, subTaskContentTwo);
 
@@ -46,8 +33,8 @@ describe('Get The Things Done Split Tasks', () => {
   it('Should not split an existing task with only one input complete', () => {
     const taskContent: string = 'task to split';
     const subTaskContentOne: string = 'sub task to split one';
+    gotToTask();
 
-    cy.visit('/');
     addANewTaskByEnter(taskContent);
     cy.get(`[data-cy="task-${taskContent}"]`).click();
 
@@ -77,8 +64,7 @@ describe('Get The Things Done Split Tasks', () => {
     const taskContentThirteen: string = 'some task to do 13';
     const taskContentFourteen: string = 'some task to do 14';
     const taskContentFiftteen: string = 'some task to do 15';
-
-    cy.visit('/');
+    gotToTask();
 
     addANewTaskByEnter(taskContentOne);
     addANewTaskByEnter(taskContentTwo);

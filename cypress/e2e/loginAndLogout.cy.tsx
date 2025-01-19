@@ -1,6 +1,4 @@
-import { configViewPorts } from './testSupports.cy';
-
-const USER_NAME: string = 'Test User';
+import { configViewPorts, USER_NAME } from './testSupports.cy';
 
 describe('Get The Things Done Login and Logout', () => {
   beforeEach(() => {

@@ -2,6 +2,7 @@ import {
   prepearEnvironment,
   addANewTaskByEnter,
   activeATaskByContent,
+  gotToTask,
 } from './testSupports.cy';
 
 describe('Get The Things Done Task Sec', () => {
@@ -14,7 +15,7 @@ describe('Get The Things Done Task Sec', () => {
     const taskContentTwo: string = 'some task to do 2';
     const taskContentThree: string = 'some task to do 3';
     const taskContentFour: string = 'some task to do 4';
-    cy.visit('/task');
+    gotToTask();
 
     addANewTaskByEnter(taskContentOne);
     activeATaskByContent(taskContentOne);
@@ -49,7 +50,7 @@ describe('Get The Things Done Task Sec', () => {
     const taskContentTwo: string = 'some task to do 2';
     const taskContentThree: string = 'some task to do 3';
     const taskContentFour: string = 'some task to do 4';
-    cy.visit('/task');
+    gotToTask();
 
     addANewTaskByEnter(taskContentOne);
     activeATaskByContent(taskContentOne);
@@ -90,7 +91,7 @@ describe('Get The Things Done Task Sec', () => {
     const taskContentTwo: string = 'some task to do 2';
     const taskContentThree: string = 'some task to do 3';
     const taskContentFour: string = 'some task to do 4';
-    cy.visit('/task');
+    gotToTask();
 
     addANewTaskByEnter(taskContentOne);
     addANewTaskByEnter(taskContentTwo);

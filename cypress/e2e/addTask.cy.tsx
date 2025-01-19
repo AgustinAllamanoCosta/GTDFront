@@ -5,6 +5,7 @@ import {
   completeATaskByOrder,
   activeATaskByContent,
   addANewTaskByButton,
+  gotToTask,
 } from './testSupports.cy';
 describe('Get The Things Done Task', () => {
   beforeEach(() => {
@@ -12,7 +13,7 @@ describe('Get The Things Done Task', () => {
   });
 
   it('Should not add an empty task', () => {
-    cy.visit('/task');
+    gotToTask();
 
     cy.get('[data-cy="task-add-button-input"]').click();
     cy.get('[data-cy="button-accept"]').click();
@@ -23,7 +24,7 @@ describe('Get The Things Done Task', () => {
 
   it('Should add a new task and add with accept button', () => {
     const taskContent: string = 'some task to do';
-    cy.visit('/task');
+    gotToTask();
 
     addANewTaskByButton(taskContent);
 
@@ -33,7 +34,7 @@ describe('Get The Things Done Task', () => {
 
   it('Should add a new task', () => {
     const taskContent: string = 'some task to do';
-    cy.visit('/task');
+    gotToTask();
 
     addANewTaskByEnter(taskContent);
 
@@ -42,7 +43,7 @@ describe('Get The Things Done Task', () => {
 
   it('Should add a new task and active', () => {
     const taskContent: string = 'some task to do';
-    cy.visit('/task');
+    gotToTask();
 
     addANewTaskByEnter(taskContent);
     activeATaskByContent(taskContent);
@@ -56,7 +57,7 @@ describe('Get The Things Done Task', () => {
 
   it('Should add a new task, active it and mark as complete', () => {
     const taskContent: string = 'some task to do';
-    cy.visit('/task');
+    gotToTask();
 
     addANewTaskByEnter(taskContent);
     activeATaskByContent(taskContent);
@@ -68,7 +69,7 @@ describe('Get The Things Done Task', () => {
 
   it('Should add a new task and them cancel it', () => {
     const taskContentOne: string = 'some task to do 1';
-    cy.visit('/task');
+    gotToTask();
 
     addANewTaskByEnter(taskContentOne);
     cancelATaskByContent(taskContentOne);

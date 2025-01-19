@@ -3,12 +3,9 @@ import {
   activeATaskByContent,
   completeATaskByOrder,
   cancelATaskByContent,
+  gotToTask,
+  addADailyTask,
 } from './testSupports.cy';
-
-const addADailyTask = (taskContent: string) => {
-  cy.get('[data-cy="task-add-button-input"]').type(taskContent);
-  cy.get('[data-cy="button-make daily"]').click();
-};
 
 describe.skip('Get The Things Done Task Daily', () => {
   beforeEach(() => {
@@ -29,9 +26,8 @@ describe.skip('Get The Things Done Task Daily', () => {
 
     const initialTime = new Date('2024-01-01T00:00:00').getTime();
     cy.clock(initialTime, ['Date']);
-    cy.visit('/task');
+    gotToTask();
 
-    cy.tick(100);
     addADailyTask(taskContent);
 
     cy.tick(100);
@@ -48,7 +44,7 @@ describe.skip('Get The Things Done Task Daily', () => {
   it('Should not add a schedule task if the task is in the inbox list', () => {
     const taskContent: string = 'some task to do';
     cy.clock(new Date().getTime(), ['setInterval', 'Date']);
-    cy.visit('/task');
+    gotToTask();
 
     addADailyTask(taskContent);
     cy.tick(48 * (1000 * 60 * 60));
@@ -60,7 +56,7 @@ describe.skip('Get The Things Done Task Daily', () => {
     const taskContent: string = 'some task to do';
 
     cy.clock(new Date().getTime(), ['setInterval', 'setTimeout', 'Date']);
-    cy.visit('/task');
+    gotToTask();
 
     addADailyTask(taskContent);
     cancelATaskByContent(taskContent);
@@ -79,7 +75,7 @@ describe.skip('Get The Things Done Task Daily', () => {
     const taskContent: string = 'some task to do';
 
     cy.clock(new Date().getTime(), ['setInterval', 'setTimeout', 'Date']);
-    cy.visit('/task');
+    gotToTask();
 
     addADailyTask(taskContent);
     activeATaskByContent(taskContent);

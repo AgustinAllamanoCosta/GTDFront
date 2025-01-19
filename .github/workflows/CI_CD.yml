@@ -280,7 +280,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-videos-mobile
+          name: cypress-logs-mobile
           path: |
             ./cypress/videos
 
@@ -330,7 +330,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cypress-videos
+          name: cypress-logs-desktop
           path: |
             ./cypress/videos
 
