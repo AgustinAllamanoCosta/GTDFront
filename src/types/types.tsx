@@ -257,6 +257,7 @@ export type UseTaskResponse = {
   doneTask: DoneTask;
   setUserTaskData: (userData: UserTaskData) => void;
   refreshData: () => Promise<void>;
+  loadDataForFirstTime: () => Promise<void>;
   loadScheduleTask: LoadScheduleItems;
   clearCache: () => void;
   calculateTaskTemp: () => Promise<void>;

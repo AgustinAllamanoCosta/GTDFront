@@ -7,6 +7,7 @@ import {
   userDataFactoryFromData,
 } from '../factories/UserDataFactory';
 import { IS_LOCAL_TESTING } from '../constants/environment';
+const userInformation: Map<string, UserTaskData> = new Map();
 
 export const firebaseRepository = (userId: string, useFireBase: Firestore) => {
   if (userId == undefined || useFireBase == undefined) {
@@ -15,6 +16,7 @@ export const firebaseRepository = (userId: string, useFireBase: Firestore) => {
     } can not be undefined`;
     throw new Error(errorMessage);
   }
+
   const saveIntoFirebase = async (userTasksData: UserTaskData) => {
     const userTaskDoc: any = doc(
       useFireBase,
@@ -31,11 +33,10 @@ export const firebaseRepository = (userId: string, useFireBase: Firestore) => {
 
   const getData = async (): Promise<UserTaskData> => {
     const data: UserTaskData | null = await getDataFromFirebase();
-    if (data === null) {
-      return userDataFactory();
-    } else {
+    if (data != null) {
       return data;
     }
+    return userDataFactory();
   };
 
   const getDataFromFirebase = async (): Promise<UserTaskData | null> => {
@@ -73,7 +74,6 @@ export const memoryRepository = (userId: string, useFireBase: Firestore) => {
   if (userId == undefined) {
     throw new Error('The use ID can not be undefined');
   }
-  const userInformation: Map<string, UserTaskData> = new Map();
 
   const save = async (items: UserTaskData): Promise<void> => {
     userInformation.set(userId, items);

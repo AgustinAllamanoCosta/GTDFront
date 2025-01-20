@@ -1,3 +1,4 @@
+import { skipOn } from '@cypress/skip-test';
 import {
   prepearEnvironment,
   cancelATaskByContent,
@@ -6,6 +7,8 @@ import {
   activeATaskByContent,
   addANewTaskByButton,
   gotToTask,
+  chargeInboxTaskOnFirebase,
+  isLocalEnv,
 } from './testSupports.cy';
 describe('Get The Things Done Task', () => {
   beforeEach(() => {
@@ -20,6 +23,46 @@ describe('Get The Things Done Task', () => {
 
     cy.get('[data-cy="button-accept"]').should('not.exist');
     cy.get('[data-cy="task-"]').should('not.exist');
+  });
+
+  it('Should add a task if it exist on remote', () => {
+    skipOn(isLocalEnv());
+    const dummyTaskContent: Array<string> = [
+      'some task',
+      'another task',
+      'another awesome task',
+    ];
+    chargeInboxTaskOnFirebase(dummyTaskContent);
+
+    gotToTask();
+
+    cy.get(`[data-cy="task-${dummyTaskContent[0]}"]`).should('exist');
+    cy.get(`[data-cy="task-${dummyTaskContent[1]}"]`).should('exist');
+    cy.get(`[data-cy="task-${dummyTaskContent[2]}"]`).should('exist');
+  });
+
+  it('Should merge the local task with the remote task and display all of them', () => {
+    skipOn(isLocalEnv());
+    const dummyTaskContent: Array<string> = [
+      'some task',
+      'another task',
+      'another awesome task',
+    ];
+    const dummyLocalTaskContent: string = 'dummy local task';
+    chargeInboxTaskOnFirebase(dummyTaskContent);
+
+    gotToTask();
+
+    addANewTaskByEnter(dummyLocalTaskContent);
+
+    cy.get(`[data-cy="task-${dummyLocalTaskContent}"]`).should('exist');
+    cy.wait(4000);
+    cy.reload();
+
+    cy.get(`[data-cy="task-${dummyTaskContent[0]}"]`).should('exist');
+    cy.get(`[data-cy="task-${dummyTaskContent[1]}"]`).should('exist');
+    cy.get(`[data-cy="task-${dummyTaskContent[2]}"]`).should('exist');
+    cy.get(`[data-cy="task-${dummyLocalTaskContent}"]`).should('exist');
   });
 
   it('Should add a new task and add with accept button', () => {
@@ -81,4 +124,4 @@ describe('Get The Things Done Task', () => {
   });
 });
 
-export {};
+export { };

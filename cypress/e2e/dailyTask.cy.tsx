@@ -27,6 +27,7 @@ describe.skip('Get The Things Done Task Daily', () => {
     const initialTime = new Date('2024-01-01T00:00:00').getTime();
     cy.clock(initialTime, ['Date']);
     gotToTask();
+    cy.tick(100);
 
     addADailyTask(taskContent);
 
@@ -45,6 +46,7 @@ describe.skip('Get The Things Done Task Daily', () => {
     const taskContent: string = 'some task to do';
     cy.clock(new Date().getTime(), ['setInterval', 'Date']);
     gotToTask();
+    cy.tick(100);
 
     addADailyTask(taskContent);
     cy.tick(48 * (1000 * 60 * 60));
@@ -57,6 +59,7 @@ describe.skip('Get The Things Done Task Daily', () => {
 
     cy.clock(new Date().getTime(), ['setInterval', 'setTimeout', 'Date']);
     gotToTask();
+    cy.tick(100);
 
     addADailyTask(taskContent);
     cancelATaskByContent(taskContent);
@@ -76,6 +79,7 @@ describe.skip('Get The Things Done Task Daily', () => {
 
     cy.clock(new Date().getTime(), ['setInterval', 'setTimeout', 'Date']);
     gotToTask();
+    cy.tick(100);
 
     addADailyTask(taskContent);
     activeATaskByContent(taskContent);

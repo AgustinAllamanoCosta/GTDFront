@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import {
   ActiveTask,
   ActiveTasks,
@@ -45,8 +45,8 @@ export const useTask: UseTask = (
 
   const [userTaskData, setUserTaskData] =
     useState<UserTaskData>(userDataFactory());
+  const [isNewDataToStore, setIsNewDataToStore] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(isLoadingDefault);
-  const [isClearCaching, setIsClearCaching] = useState<boolean>(false);
 
   const loadScheduleItems = () => {
     const newTask: Map<string, Task> = loadScheduleTask(
@@ -57,21 +57,67 @@ export const useTask: UseTask = (
     setUserTaskData({ ...userTaskData });
   };
 
-  const loadTask = async () => {
+  const updateTask = async () => {
     try {
-      const userTaskData: UserTaskData = await getData();
-      Object.keys(userTaskData).forEach((key) => {
-        const castKey = key as keyof typeof userTaskData;
-        userTaskData[castKey] = mergeMaps(
-          userTaskData[castKey],
-          userTaskData[castKey],
-        );
-      });
-      setUserTaskData({ ...userTaskData });
+      if (userInformation?.userData?.id) {
+        const userTaskDataOnRemote: UserTaskData = await getData();
+        let isDataToUpdate: boolean = false;
+        Object.keys(userTaskDataOnRemote).forEach((key) => {
+          const castKey = key as keyof typeof userTaskDataOnRemote;
+          if (userTaskDataOnRemote[castKey].size > 0) {
+            isDataToUpdate = true;
+          }
+        });
+
+        if (isDataToUpdate) {
+          const rawLocalData: string | null = localStorage.getItem(
+            userInformation.userData.id,
+          );
+          if (rawLocalData != null) {
+            const localData: UserTaskData = JSON.parse(rawLocalData);
+            Object.keys(localData).forEach((key) => {
+              const castKey = key as keyof typeof userTaskData;
+              if (localData[castKey].size > 0) {
+                userTaskDataOnRemote[castKey] = mergeMaps(
+                  userTaskDataOnRemote[castKey],
+                  localData[castKey],
+                );
+              }
+            });
+          }
+          setUserTaskData(userTaskDataOnRemote);
+          localStorage.setItem(
+            userInformation.userData.id,
+            JSON.stringify(userTaskDataOnRemote),
+          );
+        }
+      }
     } catch (error: any) {
       errorContext.setFlagError(true);
       errorContext.setError(error);
     }
+  };
+
+  const saveData = async () => {
+    try {
+      if (isNewDataToStore && userInformation?.userData?.id) {
+        localStorage.setItem(
+          userInformation.userData.id,
+          JSON.stringify(userTaskData),
+        );
+        await save(userTaskData);
+        setIsNewDataToStore(false);
+      }
+    } catch (error: any) {
+      errorContext.setFlagError(true);
+      errorContext.setError(error);
+    }
+  };
+
+  const loadDataForFirstTime = async () => {
+    setIsLoading(true);
+    await updateTask();
+    setIsLoading(false);
   };
 
   const addNewTask: AddNewTask = (
@@ -85,6 +131,7 @@ export const useTask: UseTask = (
       userTaskData.scheduleTask.set(newTask.id, newTask);
     }
     setUserTaskData({ ...userTaskData });
+    setIsNewDataToStore(true);
     return newTask.id;
   };
 
@@ -96,6 +143,7 @@ export const useTask: UseTask = (
       userTaskData.scheduleTask.delete(taskId);
       userTaskData.cancelItems.set(taskToCancel.id, taskToCancel);
       setUserTaskData({ ...userTaskData });
+      setIsNewDataToStore(true);
     }
   };
 
@@ -108,6 +156,7 @@ export const useTask: UseTask = (
         userTaskData.activeItems.set(taskId, taskToActive);
         userTaskData.inboxItems.delete(taskId);
         setUserTaskData({ ...userTaskData });
+        setIsNewDataToStore(true);
       }
     } else {
       throw new Error(
@@ -123,6 +172,7 @@ export const useTask: UseTask = (
       userTaskData.doneItems.set(taskId, taskToDone);
       userTaskData.activeItems.delete(taskId);
       calculateItemsTemp();
+      setIsNewDataToStore(true);
     }
   };
 
@@ -161,7 +211,6 @@ export const useTask: UseTask = (
   };
 
   const clearTask = () => {
-    setIsClearCaching(true);
     setUserTaskData(userDataFactory());
   };
 
@@ -173,35 +222,9 @@ export const useTask: UseTask = (
     setUserTaskData({ ...userTaskData });
   };
 
-  const isNewDataToStore = (userTaskData: UserTaskData): boolean => {
-    let result: boolean = false;
-    Object.keys(userTaskData).forEach((key) => {
-      const castKey = key as keyof typeof userTaskData;
-      if (userTaskData[castKey].size > 0) {
-        result = true;
-      }
-    });
-    return result;
-  };
-
   useEffect(() => {
-    if (userInformation?.userData?.id) {
-      if (
-        !getIsLoading() &&
-        !isClearCaching &&
-        isNewDataToStore(userTaskData)
-      ) {
-        save(userTaskData).catch((error: any) => {
-          errorContext.setFlagError(true);
-          errorContext.setError(error);
-        });
-      }
-
-      if (isClearCaching) {
-        setIsClearCaching(false);
-      }
-    }
-  }, [isLoading, userTaskData, isClearCaching]);
+    saveData();
+  }, [isNewDataToStore]);
 
   return {
     getIsLoading,
@@ -217,7 +240,8 @@ export const useTask: UseTask = (
     doneTask,
     getInboxTaskToMap,
     setUserTaskData,
-    refreshData: loadTask,
+    refreshData: updateTask,
+    loadDataForFirstTime: loadDataForFirstTime,
     loadScheduleTask: loadScheduleItems,
     clearCache: clearTask,
     calculateTaskTemp: calculateItemsTemp,

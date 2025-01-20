@@ -93,13 +93,9 @@ const TaskView = ({
     undefined,
   );
 
-  useInterval(itemsInformation.refreshData, refreshTaskInterval, environment);
-  useInterval(itemsInformation.loadScheduleTask, loadScheduleTask, environment);
-  useInterval(
-    itemsInformation.calculateTaskTemp,
-    calculateTaskTemp,
-    environment,
-  );
+  useInterval(itemsInformation.refreshData, refreshTaskInterval);
+  useInterval(itemsInformation.loadScheduleTask, loadScheduleTask);
+  useInterval(itemsInformation.calculateTaskTemp, calculateTaskTemp);
 
   const logOut = useCallback(() => {
     googleLogout();
@@ -188,13 +184,13 @@ const TaskView = ({
         userTaskData.inboxItems = inboxTasks;
         itemsInformation.setUserTaskData(userTaskData);
       }
-      itemsInformation.refreshData();
-      setActiveTask(itemsInformation.getActiveTaskToMap());
       if (showToast) {
         notificationManager.setNotification(
           'you need to complete an active task before active a new one',
         );
       }
+      itemsInformation.loadDataForFirstTime();
+      setActiveTask(itemsInformation.getActiveTaskToMap());
     } catch (error: any) {
       errorContext.setFlagError(true);
       errorContext.setError(error.message);

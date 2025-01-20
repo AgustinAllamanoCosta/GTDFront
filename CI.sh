@@ -44,8 +44,8 @@ docker-compose up -d
 echo '=========================='
 echo '=Running test e2e        ='
 echo '=========================='
-yarn cy-run-e2e
-yarn cy-run-e2e-mobile
+yarn cy-run-e2e &
+yarn cy-run-e2e-mobile &
 wait
 echo '=========================='
 echo '=Cleaning environment    ='
@@ -54,7 +54,6 @@ docker-compose down
 docker image rm vite-example
 yarn vault-pull development .env --yes
 rm -r testCov
-rm -r node_modules
 rm -r ./dist
 echo '--------------------------'
 echo 'End of execution          '

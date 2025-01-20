@@ -1,31 +1,71 @@
 import { initializeApp, deleteApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { IS_END_TO_END, IS_LOCAL_TESTING } from '../../src/constants/environment';
+import { taskFactory } from '../../src/factories/TaskFactory';
+import { userDataFactory } from '../../src/factories/UserDataFactory';
 import { repositoryFactory } from '../../src/repository/repository';
+import { InboxTasks, Task } from '../../src/types/types';
 
 export const USER_NAME: string = 'Test User';
+const userID: string = Cypress.env('VITE_ID') ? Cypress.env('VITE_ID') : '';
 const STEP_TIME: number = 2000;
 
+const firebaeAppConfiguration = {
+  apiKey: Cypress.env('VITE_API_KEY'),
+  authDomain: Cypress.env('VITE_AUTH_DOMAIN'),
+  projectId: Cypress.env('VITE_PROJECT_ID'),
+  storageBucket: Cypress.env('VITE_STORAGE_BUACKET'),
+  messagingSenderId: Cypress.env('VITE_MESSAGING_SENDER_ID'),
+  appId: Cypress.env('VITE_APP_ID'),
+  measurementId: Cypress.env('VITE_MEASUREMENT_ID'),
+};
+
+const getFirebaseConfiguration = () => {
+  const firebaseApp = initializeApp(firebaeAppConfiguration);
+  const useFireBase = getFirestore(firebaseApp);
+  return { useFireBase, firebaseApp };
+};
+
+export const isLocalEnv = (): boolean => {
+  return Cypress.env('VITE_APP_ENV') == IS_LOCAL_TESTING;
+};
+
+export const isE2EEnv = (): boolean => {
+  return Cypress.env('VITE_APP_ENV') == IS_END_TO_END;
+};
+
 export const cleanDB = async () => {
-  if (Cypress.env('VITE_APP_ENV') != 'Local') {
+  if (isE2EEnv()) {
     cy.log('Cleaning DB for e2e');
-    const firebaseApp = initializeApp({
-      apiKey: Cypress.env('VITE_API_KEY'),
-      authDomain: Cypress.env('VITE_AUTH_DOMAIN'),
-      projectId: Cypress.env('VITE_PROJECT_ID'),
-      storageBucket: Cypress.env('VITE_STORAGE_BUACKET'),
-      messagingSenderId: Cypress.env('VITE_MESSAGING_SENDER_ID'),
-      appId: Cypress.env('VITE_APP_ID'),
-      measurementId: Cypress.env('VITE_MEASUREMENT_ID'),
-    });
-    const useFireBase = getFirestore(firebaseApp);
-    const userID: string = Cypress.env('VITE_ID') ? Cypress.env('VITE_ID') : '';
-    const environment: string = Cypress.env('VITE_APP_ENV')
-      ? Cypress.env('VITE_APP_ENV')
-      : 'NOT_E2E';
-    const { clear } = repositoryFactory(environment)(userID, useFireBase);
+    const { useFireBase, firebaseApp } = getFirebaseConfiguration();
+    const { clear } = repositoryFactory(IS_END_TO_END)(userID, useFireBase);
     await clear();
     deleteApp(firebaseApp);
     cy.log('Clean ended');
+  }
+  window.localStorage.clear();
+};
+
+export const chargeInboxTaskOnFirebase = (taskContent: Array<string>) => {
+  if (isE2EEnv()) {
+    cy.wrap(null).then(async () => {
+      const { useFireBase, firebaseApp } = getFirebaseConfiguration();
+      const { save } = repositoryFactory(IS_END_TO_END)(userID, useFireBase);
+
+      const inboxTask: InboxTasks = new Map<string, Task>();
+      const dummyTaskFactory = taskFactory(true);
+
+      taskContent.forEach((content: string) => {
+        const dummyTask: Task = dummyTaskFactory(content, '', false);
+        inboxTask.set(dummyTask.id, dummyTask);
+      });
+
+      await save(
+        userDataFactory(undefined, undefined, undefined, inboxTask, undefined),
+      );
+      deleteApp(firebaseApp);
+      cy.log('Clean ended');
+    });
   }
   window.localStorage.clear();
 };
@@ -47,6 +87,8 @@ export const configViewPorts = () => {
 };
 
 export const prepearEnvironment = () => {
+  cy.clearLocalStorage();
+  cy.intercept({ resourceType: /xhr|fetch/ }, { log: false });
   cy.wrap(null).then(async () => {
     await cleanDB();
   });

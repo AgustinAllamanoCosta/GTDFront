@@ -86,7 +86,7 @@ describe('Get The Things Done Task Sec', () => {
     );
   });
 
-  it.only('Should add a four new task and try to active four of them', () => {
+  it('Should add a four new task and try to active four of them', () => {
     const taskContentOne: string = 'some task to do 1';
     const taskContentTwo: string = 'some task to do 2';
     const taskContentThree: string = 'some task to do 3';
