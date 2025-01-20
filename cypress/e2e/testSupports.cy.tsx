@@ -1,6 +1,9 @@
 import { initializeApp, deleteApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { IS_END_TO_END, IS_LOCAL_TESTING } from '../../src/constants/environment';
+import {
+  IS_END_TO_END,
+  IS_LOCAL_TESTING,
+} from '../../src/constants/environment';
 import { taskFactory } from '../../src/factories/TaskFactory';
 import { userDataFactory } from '../../src/factories/UserDataFactory';
 import { repositoryFactory } from '../../src/repository/repository';

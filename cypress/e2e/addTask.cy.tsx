@@ -124,4 +124,4 @@ describe('Get The Things Done Task', () => {
   });
 });
 
-export { };
+export {};
