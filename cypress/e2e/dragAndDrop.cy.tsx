@@ -14,6 +14,7 @@ const skipOnMoviel = () => {
 
 describe('Get The Things Done Drag and Drop', () => {
   beforeEach(() => {
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false });
     cy.wrap(null).then(async () => {
       await cleanDB();
     });

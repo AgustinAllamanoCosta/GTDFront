@@ -2,6 +2,7 @@ import { configViewPorts, USER_NAME } from './testSupports.cy';
 
 describe('Get The Things Done Login and Logout', () => {
   beforeEach(() => {
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false });
     configViewPorts();
   });
 

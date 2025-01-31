@@ -3,6 +3,7 @@ import {
   ActiveTask,
   ActiveTasks,
   AddNewTask,
+  ArchiveItems,
   CancelTask,
   DoneTask,
   GetItems,
@@ -19,6 +20,10 @@ import { configuration } from '../config/appConfig';
 import { itemUtil } from './itemUtil';
 import { userDataFactory } from '../factories/UserDataFactory';
 import { taskFactory } from '../factories/TaskFactory';
+import {
+  FIRE_BASE_COLLECTION_NAME,
+  FIRE_HISTORIC_COLLECTION_NAME,
+} from '../constants/keys';
 
 export const useTask: UseTask = (
   isLoadingDefault: boolean | undefined = false,
@@ -29,6 +34,13 @@ export const useTask: UseTask = (
   const { getData, save } = repositoryFactory(configuration.environment)(
     userInformation.userData?.id ? userInformation.userData?.id : '',
     firebaseData.useFireBase,
+    FIRE_BASE_COLLECTION_NAME,
+  );
+
+  const archive = repositoryFactory(configuration.environment)(
+    userInformation.userData?.id ? userInformation.userData?.id : '',
+    firebaseData.useFireBase,
+    FIRE_HISTORIC_COLLECTION_NAME,
   );
 
   const {
@@ -98,6 +110,34 @@ export const useTask: UseTask = (
     }
   };
 
+  const archiveOldCancelAndDoneTask = async () => {
+    try {
+      const userTaskDataOnRemote: UserTaskData = await getData();
+      const latestCancelItems: ArchiveItems = archiveCancelTaskWithAfterAWeek(
+        userTaskDataOnRemote.cancelItems,
+      );
+      const latestDoneItems: ArchiveItems = archiveDoneTaskWithAfterAWeek(
+        userTaskDataOnRemote.doneItems,
+      );
+      userTaskDataOnRemote.cancelItems = latestCancelItems.noArchiveItems;
+      userTaskDataOnRemote.doneItems = latestDoneItems.noArchiveItems;
+      const archiveItems = userDataFactory();
+      archiveItems.doneItems = latestDoneItems.archiveItems;
+      archiveItems.cancelItems = latestCancelItems.archiveItems;
+      if (
+        archiveItems.doneItems.size > 0 ||
+        archiveItems.cancelItems.size > 0
+      ) {
+        await archive.save(archiveItems);
+        await save(userTaskDataOnRemote);
+        setUserTaskData(userTaskDataOnRemote);
+      }
+    } catch (error: any) {
+      errorContext.setFlagError(true);
+      errorContext.setError(error);
+    }
+  };
+
   const saveData = async () => {
     try {
       if (isNewDataToStore && userInformation?.userData?.id) {
@@ -115,9 +155,15 @@ export const useTask: UseTask = (
   };
 
   const loadDataForFirstTime = async () => {
-    setIsLoading(true);
-    await updateTask();
-    setIsLoading(false);
+    try {
+      setIsLoading(true);
+      await updateTask();
+      await archiveOldCancelAndDoneTask();
+    } catch (error) {
+      console.error('Error in loadDataForFirstTime:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const addNewTask: AddNewTask = (
@@ -193,16 +239,11 @@ export const useTask: UseTask = (
   };
 
   const getCancelTaskToMap: GetItems = () => {
-    const latestCancelItems: Map<string, Task> =
-      archiveCancelTaskWithAfterAWeek(userTaskData.cancelItems);
-    return processMap(latestCancelItems, orderCancelItems);
+    return processMap(userTaskData.cancelItems, orderCancelItems);
   };
 
   const getDoneTaskToMap: GetItems = () => {
-    const latestDoneItems: Map<string, Task> = archiveDoneTaskWithAfterAWeek(
-      userTaskData.doneItems,
-    );
-    return processMap(latestDoneItems, orderCompleteItems);
+    return processMap(userTaskData.doneItems, orderCompleteItems);
   };
 
   const getIsLoading = (): boolean => isLoading;

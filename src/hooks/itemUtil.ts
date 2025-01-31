@@ -1,5 +1,5 @@
 import { THEME_ONE } from '../constants/colors';
-import { ActiveTasks, ItemUtil, Task } from '../types/types';
+import { ActiveTasks, ArchiveItems, ItemUtil, Task } from '../types/types';
 
 export const itemUtil: ItemUtil = () => {
   const calculateBackgroundColor = (task: Task): string => {
@@ -53,9 +53,10 @@ export const itemUtil: ItemUtil = () => {
 
   const archiveDoneTaskWithAfterAWeek = (
     itemList: Map<string, Task>,
-  ): Map<string, Task> => {
+  ): ArchiveItems => {
     const systemDate: Date = new Date();
-    const itemNotArchive: Map<string, Task> = new Map<string, Task>();
+    const noArchiveItems: Map<string, Task> = new Map<string, Task>();
+    const archiveItems: Map<string, Task> = new Map<string, Task>();
 
     for (const [key, item] of itemList) {
       if (item.completionDate) {
@@ -65,18 +66,21 @@ export const itemUtil: ItemUtil = () => {
         const hoursDiff: number = diffBetweenDates / (1000 * 60 * 60);
 
         if (hoursDiff < 168) {
-          itemNotArchive.set(key, item);
+          noArchiveItems.set(key, item);
+        } else {
+          archiveItems.set(key, item);
         }
       }
     }
-    return itemNotArchive;
+    return { noArchiveItems, archiveItems };
   };
 
   const archiveCancelTaskWithAfterAWeek = (
     itemList: Map<string, Task>,
-  ): Map<string, Task> => {
+  ): ArchiveItems => {
     const systemDate: Date = new Date();
-    const itemNotArchive: Map<string, Task> = new Map<string, Task>();
+    const noArchiveItems: Map<string, Task> = new Map<string, Task>();
+    const archiveItems: Map<string, Task> = new Map<string, Task>();
 
     for (const [key, item] of itemList) {
       if (item.cancelationDate) {
@@ -86,11 +90,13 @@ export const itemUtil: ItemUtil = () => {
         const hoursDiff: number = diffBetweenDates / (1000 * 60 * 60);
 
         if (hoursDiff < 168) {
-          itemNotArchive.set(key, item);
+          noArchiveItems.set(key, item);
+        } else {
+          archiveItems.set(key, item);
         }
       }
     }
-    return itemNotArchive;
+    return { noArchiveItems, archiveItems };
   };
 
   const mergeMaps = (

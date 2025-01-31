@@ -3,15 +3,22 @@ import {
   activeATaskByContent,
   completeATaskByOrder,
   cancelATaskByContent,
-  gotToTask,
   addADailyTask,
+  USER_NAME,
+  gotToTask,
 } from './testSupports.cy';
+
+const goToTaskWithTick = () => {
+  cy.visit('/task');
+  cy.tick(100000);
+  cy.get('[data-cy="Card-SubTitle"]').should('have.text', `Hi ${USER_NAME} !`);
+  cy.tick(100000);
+  cy.get('[data-cy="task-add-button-input"]');
+  cy.tick(100000);
+};
 
 describe.skip('Get The Things Done Task Daily', () => {
   beforeEach(() => {
-    cy.clock().then((clock) => {
-      clock.restore();
-    });
     prepearEnvironment();
   });
 
@@ -23,29 +30,31 @@ describe.skip('Get The Things Done Task Daily', () => {
 
   it('Should add a daily task and mark as complete and reapear in inbox task and in the done list', () => {
     const taskContent: string = 'some task to do';
+    cy.clock();
 
-    const initialTime = new Date('2024-01-01T00:00:00').getTime();
-    cy.clock(initialTime, ['Date']);
     gotToTask();
-    cy.tick(100);
 
     addADailyTask(taskContent);
-
-    cy.tick(100);
-    activeATaskByContent(taskContent);
-
     cy.tick(48 * (1000 * 60 * 60));
-    completeATaskByOrder(0);
+    cy.get(`[data-cy="task-${taskContent}"]`).should('exist');
 
-    cy.tick(300);
+    activeATaskByContent(taskContent);
+    cy.tick(48 * (1000 * 60 * 60));
+
+    completeATaskByOrder(0);
+    cy.tick(48 * (1000 * 60 * 60));
+
     cy.get('[data-cy="stick-note-text-0"]').should('not.exist');
     cy.get('[data-cy="task-some task to do"]').should('have.length', 2);
+    cy.clock().then((clock) => {
+      clock.restore();
+    });
   });
 
   it('Should not add a schedule task if the task is in the inbox list', () => {
     const taskContent: string = 'some task to do';
     cy.clock(new Date().getTime(), ['setInterval', 'Date']);
-    gotToTask();
+    goToTaskWithTick();
     cy.tick(100);
 
     addADailyTask(taskContent);
@@ -58,7 +67,7 @@ describe.skip('Get The Things Done Task Daily', () => {
     const taskContent: string = 'some task to do';
 
     cy.clock(new Date().getTime(), ['setInterval', 'setTimeout', 'Date']);
-    gotToTask();
+    goToTaskWithTick();
     cy.tick(100);
 
     addADailyTask(taskContent);
@@ -78,7 +87,7 @@ describe.skip('Get The Things Done Task Daily', () => {
     const taskContent: string = 'some task to do';
 
     cy.clock(new Date().getTime(), ['setInterval', 'setTimeout', 'Date']);
-    gotToTask();
+    goToTaskWithTick();
     cy.tick(100);
 
     addADailyTask(taskContent);

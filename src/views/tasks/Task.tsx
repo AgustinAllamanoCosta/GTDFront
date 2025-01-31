@@ -86,16 +86,15 @@ const TaskView = ({
   const mouseSensor = useSensor(MouseSensor, MOUSE_SENSOR_OPTIONS);
 
   const sensors = useSensors(touchSensor, mouseSensor);
-
   const navigate = useNavigate();
-
-  const [draggingItem, setDraggingItem] = useState<ReactNode | undefined>(
-    undefined,
-  );
 
   useInterval(itemsInformation.refreshData, refreshTaskInterval);
   useInterval(itemsInformation.loadScheduleTask, loadScheduleTask);
   useInterval(itemsInformation.calculateTaskTemp, calculateTaskTemp);
+
+  const [draggingItem, setDraggingItem] = useState<ReactNode | undefined>(
+    undefined,
+  );
 
   const logOut = useCallback(() => {
     googleLogout();

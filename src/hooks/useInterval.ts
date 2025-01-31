@@ -5,6 +5,7 @@ export const useInterval = (
   delay: number | null | undefined,
 ) => {
   const savedCallback = useRef<Function>(() => {});
+  const intervalRef = useRef<NodeJS.Timeout>();
 
   useEffect(() => {
     savedCallback.current = callback;
@@ -14,9 +15,15 @@ export const useInterval = (
     function tick() {
       savedCallback.current();
     }
-    if (delay !== null) {
-      const id = setInterval(tick, delay);
-      return () => clearInterval(id);
+
+    if (delay !== null && delay !== undefined) {
+      intervalRef.current = setInterval(tick, delay);
+
+      return () => {
+        if (intervalRef.current) {
+          clearInterval(intervalRef.current);
+        }
+      };
     }
   }, [delay]);
 };

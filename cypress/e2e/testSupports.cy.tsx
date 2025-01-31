@@ -4,6 +4,7 @@ import {
   IS_END_TO_END,
   IS_LOCAL_TESTING,
 } from '../../src/constants/environment';
+import { FIRE_BASE_COLLECTION_NAME } from '../../src/constants/keys';
 import { taskFactory } from '../../src/factories/TaskFactory';
 import { userDataFactory } from '../../src/factories/UserDataFactory';
 import { repositoryFactory } from '../../src/repository/repository';
@@ -41,7 +42,11 @@ export const cleanDB = async () => {
   if (isE2EEnv()) {
     cy.log('Cleaning DB for e2e');
     const { useFireBase, firebaseApp } = getFirebaseConfiguration();
-    const { clear } = repositoryFactory(IS_END_TO_END)(userID, useFireBase);
+    const { clear } = repositoryFactory(IS_END_TO_END)(
+      userID,
+      useFireBase,
+      FIRE_BASE_COLLECTION_NAME,
+    );
     await clear();
     deleteApp(firebaseApp);
     cy.log('Clean ended');
@@ -53,7 +58,11 @@ export const chargeInboxTaskOnFirebase = (taskContent: Array<string>) => {
   if (isE2EEnv()) {
     cy.wrap(null).then(async () => {
       const { useFireBase, firebaseApp } = getFirebaseConfiguration();
-      const { save } = repositoryFactory(IS_END_TO_END)(userID, useFireBase);
+      const { save } = repositoryFactory(IS_END_TO_END)(
+        userID,
+        useFireBase,
+        FIRE_BASE_COLLECTION_NAME,
+      );
 
       const inboxTask: InboxTasks = new Map<string, Task>();
       const dummyTaskFactory = taskFactory(true);
@@ -115,7 +124,6 @@ export const addANewTaskByEnter = (taskContent: string) => {
 export const activeATaskByContent = (taskContent: string) => {
   cy.get(`[data-cy="task-${taskContent}"]`).click();
   cy.get('[data-cy="button-active"]').click();
-  cy.wait(STEP_TIME);
 };
 
 export const cancelATaskByContent = (taskContent: string) => {

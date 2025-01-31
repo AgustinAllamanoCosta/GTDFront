@@ -151,7 +151,11 @@ export type RepositoryFunctions = {
 };
 
 export interface Repository {
-  (userId: string, useFireBase: Firestore): RepositoryFunctions;
+  (
+    userId: string,
+    useFireBase: Firestore,
+    collectionName: string,
+  ): RepositoryFunctions;
 }
 
 export interface LoadScheduleTask {
@@ -161,12 +165,17 @@ export interface LoadScheduleTask {
   ): Map<string, Task>;
 }
 
+export type ArchiveItems = {
+  noArchiveItems: Map<string, Task>;
+  archiveItems: Map<string, Task>;
+};
+
 export interface ArchiveDoneTaskWithAfterAWeek {
-  (filterToList: Map<string, Task>): Map<string, Task>;
+  (filterToList: Map<string, Task>): ArchiveItems;
 }
 
 export interface ArchiveCancelTaskWithAfterAWeek {
-  (filterToList: Map<string, Task>): Map<string, Task>;
+  (filterToList: Map<string, Task>): ArchiveItems;
 }
 
 export interface LoadScheduleItems {

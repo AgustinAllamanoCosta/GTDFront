@@ -2,6 +2,7 @@ import { configViewPorts } from './testSupports.cy';
 
 describe('Get The Things Done Links', () => {
   beforeEach(() => {
+    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false });
     configViewPorts();
   });
 

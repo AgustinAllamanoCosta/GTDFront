@@ -1,5 +1,4 @@
 import { doc, getDoc, setDoc, deleteDoc, Firestore } from 'firebase/firestore';
-import { FIRE_BASE_COLLECTION_NAME } from '../constants/keys';
 import { Repository, UserTaskData } from '../types/types';
 import {
   userDataDocumentFactory,
@@ -9,7 +8,11 @@ import {
 import { IS_LOCAL_TESTING } from '../constants/environment';
 const userInformation: Map<string, UserTaskData> = new Map();
 
-export const firebaseRepository = (userId: string, useFireBase: Firestore) => {
+export const firebaseRepository = (
+  userId: string,
+  useFireBase: Firestore,
+  collectionName: string,
+) => {
   if (userId == undefined || useFireBase == undefined) {
     const errorMessage: string = `The value/s ${userId ? '' : 'userId'} ${
       useFireBase ? '' : 'useFirebase'
@@ -18,11 +21,7 @@ export const firebaseRepository = (userId: string, useFireBase: Firestore) => {
   }
 
   const saveIntoFirebase = async (userTasksData: UserTaskData) => {
-    const userTaskDoc: any = doc(
-      useFireBase,
-      FIRE_BASE_COLLECTION_NAME,
-      userId,
-    );
+    const userTaskDoc: any = doc(useFireBase, collectionName, userId);
     const documentData: any = userDataDocumentFactory(userTasksData);
     await setDoc(userTaskDoc, documentData);
   };
@@ -40,11 +39,7 @@ export const firebaseRepository = (userId: string, useFireBase: Firestore) => {
   };
 
   const getDataFromFirebase = async (): Promise<UserTaskData | null> => {
-    const userTaskDoc: any = doc(
-      useFireBase,
-      FIRE_BASE_COLLECTION_NAME,
-      userId,
-    );
+    const userTaskDoc: any = doc(useFireBase, collectionName, userId);
     const itemsInFirebase = await getDoc(userTaskDoc);
     const userData: any = itemsInFirebase.data();
     if (userData) {
@@ -55,11 +50,7 @@ export const firebaseRepository = (userId: string, useFireBase: Firestore) => {
   };
 
   const clear = async (): Promise<void> => {
-    const userTaskDoc: any = doc(
-      useFireBase,
-      FIRE_BASE_COLLECTION_NAME,
-      userId,
-    );
+    const userTaskDoc: any = doc(useFireBase, collectionName, userId);
     await deleteDoc(userTaskDoc);
   };
 
@@ -70,17 +61,23 @@ export const firebaseRepository = (userId: string, useFireBase: Firestore) => {
   };
 };
 
-export const memoryRepository = (userId: string, useFireBase: Firestore) => {
+export const memoryRepository = (
+  userId: string,
+  useFireBase: Firestore,
+  collectionName: string,
+) => {
   if (userId == undefined) {
     throw new Error('The use ID can not be undefined');
   }
 
   const save = async (items: UserTaskData): Promise<void> => {
-    userInformation.set(userId, items);
+    userInformation.set(`${collectionName}-${userId}`, items);
   };
 
   const getData = async (): Promise<UserTaskData> => {
-    const data: UserTaskData | undefined = userInformation.get(userId);
+    const data: UserTaskData | undefined = userInformation.get(
+      `${collectionName}-${userId}`,
+    );
     if (data) {
       return new Promise((resolver) => resolver(data));
     }
@@ -88,7 +85,7 @@ export const memoryRepository = (userId: string, useFireBase: Firestore) => {
   };
 
   const clear = async (): Promise<void> => {
-    userInformation.delete(userId);
+    userInformation.delete(`${collectionName}-${userId}`);
   };
 
   return {
