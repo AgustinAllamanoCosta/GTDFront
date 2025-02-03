@@ -53,12 +53,14 @@ export const useTask: UseTask = (
     orderCompleteItems,
     archiveDoneTaskWithAfterAWeek,
     archiveCancelTaskWithAfterAWeek,
+    filterItems,
   } = itemUtil();
 
   const [userTaskData, setUserTaskData] =
     useState<UserTaskData>(userDataFactory());
   const [isNewDataToStore, setIsNewDataToStore] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(isLoadingDefault);
+  const [filterCriterea, setFilterCriterea] = useState<string>('');
 
   const loadScheduleItems = () => {
     const newTask: Map<string, Task> = loadScheduleTask(
@@ -222,6 +224,14 @@ export const useTask: UseTask = (
     }
   };
 
+  const setFilter = (filter: string | undefined) => {
+    if (filter) {
+      setFilterCriterea(filter);
+    } else {
+      setFilterCriterea('');
+    }
+  };
+
   const getInboxTask = (taskId: string): Task | undefined => {
     return userTaskData.inboxItems.get(taskId);
   };
@@ -231,19 +241,29 @@ export const useTask: UseTask = (
   };
 
   const getInboxTaskToMap: GetItems = () => {
-    return processMap(userTaskData.inboxItems, orderItems);
+    const items: Array<Task> = processMap(userTaskData.inboxItems, orderItems);
+    return filterItems(items, filterCriterea);
   };
 
   const getActiveTaskToMap: GetItems = () => {
-    return processMap(userTaskData.activeItems, orderItems);
+    const items: Array<Task> = processMap(userTaskData.activeItems, orderItems);
+    return filterItems(items, filterCriterea);
   };
 
   const getCancelTaskToMap: GetItems = () => {
-    return processMap(userTaskData.cancelItems, orderCancelItems);
+    const items: Array<Task> = processMap(
+      userTaskData.cancelItems,
+      orderCancelItems,
+    );
+    return filterItems(items, filterCriterea);
   };
 
   const getDoneTaskToMap: GetItems = () => {
-    return processMap(userTaskData.doneItems, orderCompleteItems);
+    const items: Array<Task> = processMap(
+      userTaskData.doneItems,
+      orderCompleteItems,
+    );
+    return filterItems(items, filterCriterea);
   };
 
   const getIsLoading = (): boolean => isLoading;
@@ -281,6 +301,7 @@ export const useTask: UseTask = (
     doneTask,
     getInboxTaskToMap,
     setUserTaskData,
+    setFilter,
     refreshData: updateTask,
     loadDataForFirstTime: loadDataForFirstTime,
     loadScheduleTask: loadScheduleItems,

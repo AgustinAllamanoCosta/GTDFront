@@ -8,6 +8,8 @@ import { UserInformationContext } from '../../contexts/userContext';
 import { UserCardProps } from '../../types/types';
 import { NotificationHandlerContext } from '../notificationContext';
 import { Toast } from '../toast/Toast';
+import { TaskInformationContext } from '../../contexts/taskContext';
+import { InputFilter } from '../inputFilter/InputFilter';
 
 export const UserCard = ({
   userName,
@@ -16,6 +18,7 @@ export const UserCard = ({
 }: UserCardProps): React.JSX.Element => {
   const userInformation = useContext(UserInformationContext);
   const notificationManager = useContext(NotificationHandlerContext);
+  const itemsInformation = useContext(TaskInformationContext);
 
   return (
     <UserCardContainer is_mobile={`${userInformation.isMobile}`}>
@@ -52,6 +55,7 @@ export const UserCard = ({
           >
             Getting Things Done
           </MyTitle>
+          <InputFilter onKeyDown={itemsInformation.setFilter} />
           <MyAvatarDataHeaderDesk>
             <Button
               onClick={logout}

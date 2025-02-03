@@ -3,47 +3,47 @@
 exports[`Task View Should render a login view with singin and login buttons 1`] = `
 <div>
   <div
-    class="sc-jcHdAB jHlfKY"
+    class="sc-euGpHm fApNPs"
   >
      
     <div
-      class="sc-euGpHm hUGEmB"
+      class="sc-pFPEP hRTbBU"
       is_mobile="false"
     >
       <div
-        class="sc-epPVmt iWeplW"
+        class="sc-fpSrms kihRKF"
         data-cy="spinner-container"
       >
         <img
           alt="spinner"
-          class="sc-fpSrms jFTsml"
+          class="sc-hfvVTD joDpJa"
         />
       </div>
       <div
-        class="sc-epPVmt iWeplW"
+        class="sc-fpSrms kihRKF"
         data-cy="spinner-container"
       >
         <img
           alt="spinner"
-          class="sc-fpSrms jFTsml"
+          class="sc-hfvVTD joDpJa"
         />
       </div>
       <div
-        class="sc-epPVmt iWeplW"
+        class="sc-fpSrms kihRKF"
         data-cy="spinner-container"
       >
         <img
           alt="spinner"
-          class="sc-fpSrms jFTsml"
+          class="sc-hfvVTD joDpJa"
         />
       </div>
       <div
-        class="sc-epPVmt iWeplW"
+        class="sc-fpSrms kihRKF"
         data-cy="spinner-container"
       >
         <img
           alt="spinner"
-          class="sc-fpSrms jFTsml"
+          class="sc-hfvVTD joDpJa"
         />
       </div>
     </div>

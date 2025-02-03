@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { CardWithTitle } from '../cardWithTile/CardWithTitle';
-import { useContext, useRef } from 'react';
+import { useContext, useRef, useState } from 'react';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { ItemListProps, Task } from '../../types/types';
 import { THEME_ONE } from '../../constants/colors';

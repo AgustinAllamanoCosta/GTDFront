@@ -1,26 +1,14 @@
-import { skipOn } from '@cypress/skip-test';
 import {
   activeATaskDoingDropping,
   addANewTaskByEnter,
-  cleanDB,
   gotToTask,
+  prepearDesktopEnvironment,
+  skipOnMoviel,
 } from './testSupports.cy';
-
-const skipOnMoviel = () => {
-  if (Cypress.env('isMobile')) {
-    skipOn(true);
-  }
-};
 
 describe('Get The Things Done Drag and Drop', () => {
   beforeEach(() => {
-    cy.intercept({ resourceType: /xhr|fetch/ }, { log: false });
-    cy.wrap(null).then(async () => {
-      await cleanDB();
-    });
-    window.localStorage.clear();
-    cy.viewport(1700, 1000);
-    cy.log('Using desktop view with drag and drop test');
+    prepearDesktopEnvironment();
   });
 
   it('Should active an Item when is drop on the active zone', () => {

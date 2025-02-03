@@ -1,3 +1,4 @@
+import { skipOn } from '@cypress/skip-test';
 import { initializeApp, deleteApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import {
@@ -88,6 +89,12 @@ export const gotToTask = () => {
   cy.get('[data-cy="task-add-button-input"]');
 };
 
+export const skipOnMoviel = () => {
+  if (Cypress.env('isMobile')) {
+    skipOn(true);
+  }
+};
+
 export const configViewPorts = () => {
   if (Cypress.env('isMobile')) {
     cy.viewport(400, 790);
@@ -96,6 +103,16 @@ export const configViewPorts = () => {
     cy.viewport(1700, 1000);
     cy.log('Desktop view');
   }
+};
+
+export const prepearDesktopEnvironment = () => {
+  cy.intercept({ resourceType: /xhr|fetch/ }, { log: false });
+  cy.wrap(null).then(async () => {
+    await cleanDB();
+  });
+  window.localStorage.clear();
+  cy.viewport(1700, 1000);
+  cy.log('Using desktop view with drag and drop test');
 };
 
 export const prepearEnvironment = () => {

@@ -122,6 +122,16 @@ export const itemUtil: ItemUtil = () => {
     }
   };
 
+  const filterItems = (items: Array<Task>, filter: string): Array<Task> => {
+    if (filter == '') {
+      return items;
+    } else {
+      return items.filter((item) => {
+        return item.title.includes(filter);
+      });
+    }
+  };
+
   const orderItems = (items: Array<Task>): Array<Task> => {
     return items.sort((taskA: Task, taskB: Task) => {
       return Date.parse(taskA.creationDate) - Date.parse(taskB.creationDate);
@@ -163,5 +173,6 @@ export const itemUtil: ItemUtil = () => {
     mergeMaps,
     generateActiveItemsWithTemp,
     calculateBackgroundColor,
+    filterItems,
   };
 };

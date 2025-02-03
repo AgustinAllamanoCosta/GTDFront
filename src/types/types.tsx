@@ -21,6 +21,10 @@ export type CardProps = {
   children?: string | React.JSX.Element | React.JSX.Element[];
 };
 
+export type InputFilterProps = {
+  onKeyDown: (value: string) => void;
+};
+
 export type ToastProp = {
   children?: string | React.JSX.Element | React.JSX.Element[];
   onClose: () => void;
@@ -36,6 +40,8 @@ export type CardWithTitleProps = {
   joinTag?: boolean;
   children?: string | React.JSX.Element | React.JSX.Element[];
 };
+
+export type CardWithFilterProps = CardWithTitleProps & InputFilterProps;
 
 export type ButtonProps = {
   text: string;
@@ -236,6 +242,7 @@ export interface ItemUtil {
     mergeMaps: MergeMaps;
     generateActiveItemsWithTemp: GenerateActiveItemsWithTemp;
     calculateBackgroundColor: CalculateBackgroundColor;
+    filterItems: (items: Array<Task>, filter: string) => Array<Task>;
   };
 }
 
@@ -265,6 +272,7 @@ export type UseTaskResponse = {
   activeTask: ActiveTask;
   doneTask: DoneTask;
   setUserTaskData: (userData: UserTaskData) => void;
+  setFilter: (filter: string | undefined) => void;
   refreshData: () => Promise<void>;
   loadDataForFirstTime: () => Promise<void>;
   loadScheduleTask: LoadScheduleItems;
