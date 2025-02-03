@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.3.0 (2025-02-03)
+
+
+### Features
+
+* 🎸 add search input in desktop view ([8ca0a61](https://github.com/AgustinAllamanoCosta/GTDFront/commit/8ca0a6175b6313bb9612c96316bae7eb842c8c3d))
+
 ### 1.2.12 (2025-01-31)
 
 ### 1.2.11 (2025-01-20)
