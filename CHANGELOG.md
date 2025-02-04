@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.4.0 (2025-02-04)
+
+
+### Features
+
+* 🎸 add notification when a task is completed ([1a2ce37](https://github.com/AgustinAllamanoCosta/GTDFront/commit/1a2ce37924622ee54c2f34c7e36391c0134ea4f7))
+
 ## 1.3.0 (2025-02-03)
 
 
