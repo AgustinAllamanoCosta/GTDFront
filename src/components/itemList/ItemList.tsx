@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { CardWithTitle } from '../cardWithTile/CardWithTitle';
-import { useContext, useRef, useState } from 'react';
+import { useContext, useRef } from 'react';
 import { TaskInformationContext } from '../../contexts/taskContext';
 import { ItemListProps, Task } from '../../types/types';
 import { THEME_ONE } from '../../constants/colors';
@@ -17,7 +17,7 @@ import { DRAGGING_IDS } from '../../views/tasks/Task';
 import { NotificationHandlerContext } from '../notificationContext';
 
 const ItemList = ({ id }: ItemListProps): React.JSX.Element => {
-  const { isOver, setNodeRef } = useDroppable({ id: DRAGGING_IDS.ITEM_TASK });
+  const { setNodeRef } = useDroppable({ id: DRAGGING_IDS.ITEM_TASK });
   const CHARACTER_LIMIT: number = 43;
   const itemsInformation = useContext(TaskInformationContext);
   const notificationManager = useContext(NotificationHandlerContext);

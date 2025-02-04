@@ -9,16 +9,14 @@ import { UserInformationContext } from '../../contexts/userContext';
 import { useDroppable } from '@dnd-kit/core';
 import { DRAGGING_IDS } from '../../views/tasks/Task';
 import { DraggableStickNote } from '../draggableStickNote/DraggableStickNote';
+import { NotificationHandlerContext } from '../notificationContext';
 
 const ActiveTask = (): React.JSX.Element => {
   const { isOver, setNodeRef } = useDroppable({ id: DRAGGING_IDS.ACTIVE_TASK });
 
   const activeInformation = useContext(TaskInformationContext);
   const userInformation = useContext(UserInformationContext);
-
-  const removeActiveTask = (id: string) => {
-    activeInformation.doneTask(id);
-  };
+  const notificationManager = useContext(NotificationHandlerContext);
 
   const generateTask = (item: Task, index: number): React.JSX.Element => {
     return (
@@ -29,7 +27,13 @@ const ActiveTask = (): React.JSX.Element => {
         key={`${item.id}-${item.title}`}
         text={item.title}
         backgroundColor={item.backgroundColor}
-        onConfirm={() => removeActiveTask(item.id)}
+        onConfirm={() => {
+          activeInformation.doneTask(item.id);
+          notificationManager.setNotification(
+            'You finish a task well done!!',
+            true,
+          );
+        }}
       />
     );
   };

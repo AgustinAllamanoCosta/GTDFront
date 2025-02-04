@@ -7,13 +7,16 @@ const NotificationContext = ({ children }: { children: ReactNode }) => {
     string | undefined
   >(undefined);
 
-  const setNotification = (message: string): void => {
+  const setNotification = (message: string, autoClose?: boolean): void => {
     if (!notificationMessage) {
       setNotificationMessage(message);
       setShowNotification(true);
+      if (autoClose) {
+        setInterval(closeNotification, 2000);
+      }
     } else {
       closeNotification();
-      setNotification(message);
+      setNotification(message, autoClose);
     }
   };
 
