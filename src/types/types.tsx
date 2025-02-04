@@ -271,13 +271,24 @@ export type UseTaskResponse = {
   cancelTask: CancelTask;
   activeTask: ActiveTask;
   doneTask: DoneTask;
-  setUserTaskData: (userData: UserTaskData) => void;
   setFilter: (filter: string | undefined) => void;
-  refreshData: () => Promise<void>;
-  loadDataForFirstTime: () => Promise<void>;
-  loadScheduleTask: LoadScheduleItems;
   clearCache: () => void;
   calculateTaskTemp: () => Promise<void>;
+  loadScheduleTask: LoadScheduleItems;
+  loadDataForFirstTime: () => Promise<void>;
+  refreshData: () => Promise<void>;
+  setUserTaskData: (useTask: UserTaskData) => void;
+};
+
+export type TaskHandlerResponse = {
+  loadScheduleTask: LoadScheduleItems;
+  loadDataForFirstTime: () => Promise<void>;
+  refreshData: () => Promise<void>;
+  saveData: () => Promise<void>;
+  setUserTaskData: (userData: UserTaskData) => void;
+  clearTask: () => void;
+  userTaskData: UserTaskData;
+  isLoading: boolean;
 };
 
 export interface AddNewTask {
@@ -298,4 +309,8 @@ export interface DoneTask {
 
 export interface UseTask {
   (isLoadingDefault?: boolean): UseTaskResponse;
+}
+
+export interface TaskHandler {
+  (isLoadingDefault?: boolean): TaskHandlerResponse;
 }
