@@ -118,7 +118,7 @@ export const prepearDesktopEnvironment = () => {
 export const prepearEnvironment = () => {
   cy.clearLocalStorage();
   cy.intercept({ resourceType: /xhr|fetch/ }, { log: false });
-  cy.wrap(null).then(async () => {
+  cy.wrap(null).then({ timeout: 10000 },async () => {
     await cleanDB();
   });
   configViewPorts();

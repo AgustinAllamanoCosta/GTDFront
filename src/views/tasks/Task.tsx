@@ -109,6 +109,10 @@ const TaskView = ({
         case DRAGGING_IDS.ACTIVE_TASK:
           try {
             itemsInformation.activeTask(dragEndEvent.active.id.toString());
+            notificationManager.setNotification(
+              'You finish a task well done!!',
+              true,
+            );
             eventBus.publish({
               name: SUBSCRIBER_NAMES.METRICS,
               data: {

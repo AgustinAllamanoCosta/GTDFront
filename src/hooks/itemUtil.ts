@@ -127,7 +127,7 @@ export const itemUtil: ItemUtil = () => {
       return items;
     } else {
       return items.filter((item) => {
-        return item.title.includes(filter);
+        return item.title.toLowerCase().includes(filter.toLowerCase());
       });
     }
   };

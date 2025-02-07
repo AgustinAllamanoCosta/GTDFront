@@ -1,4 +1,4 @@
-import { useState, ReactNode, useMemo } from 'react';
+import { useState, ReactNode, useMemo, useRef } from 'react';
 import { NotificationHandlerContext } from '../notificationContext';
 
 const NotificationContext = ({ children }: { children: ReactNode }) => {
@@ -6,13 +6,14 @@ const NotificationContext = ({ children }: { children: ReactNode }) => {
   const [notificationMessage, setNotificationMessage] = useState<
     string | undefined
   >(undefined);
+  const timer = useRef<NodeJS.Timeout | undefined>(undefined);
 
   const setNotification = (message: string, autoClose?: boolean): void => {
     if (!notificationMessage) {
       setNotificationMessage(message);
       setShowNotification(true);
       if (autoClose) {
-        setInterval(closeNotification, 2000);
+        timer.current = setTimeout(closeNotification, 2000);
       }
     } else {
       closeNotification();
@@ -21,6 +22,10 @@ const NotificationContext = ({ children }: { children: ReactNode }) => {
   };
 
   const closeNotification = (): void => {
+    if (timer.current) {
+      clearTimeout(timer.current);
+    }
+    timer.current = undefined;
     setNotificationMessage(undefined);
     setShowNotification(false);
   };
